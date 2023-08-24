@@ -6,5 +6,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.per.main.member.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.per.main.book.BookDTO" alias="BookDTO"/>
 	</typeAliases>
 </configuration>
