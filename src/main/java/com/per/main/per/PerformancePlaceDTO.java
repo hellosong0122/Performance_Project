@@ -8,9 +8,9 @@ public class PerformancePlaceDTO {
 	//주소
 	private String adres;
 	//위도
-	private Long la;
+	private Double la;
 	//경도
-	private Long lo;
+	private Double lo;
 	//전화번호
 	private String telno;
 	
@@ -41,19 +41,19 @@ public class PerformancePlaceDTO {
 		this.adres = adres;
 	}
 
-	public Long getLa() {
+	public Double getLa() {
 		return la;
 	}
 
-	public void setLa(Long la) {
+	public void setLa(Double la) {
 		this.la = la;
 	}
 
-	public Long getLo() {
+	public Double getLo() {
 		return lo;
 	}
 
-	public void setLo(Long lo) {
+	public void setLo(Double lo) {
 		this.lo = lo;
 	}
 

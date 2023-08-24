@@ -1,65 +1,61 @@
 package com.per.main.per;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
+import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.per.utils.Pager;
 
 @Service
 public class PerformanceService {
 	@Autowired
 	private PerformanceDAO performanceDAO;
+	private PerformanceApi api = new PerformanceApi();
 	
-	public void setAdd() throws Exception {
+	public int setPerAdd() throws Exception {		
+		int count = 0;
 		
+		List<PerformanceDTO> perList = api.getPerList(1);
 		
+		for(int i=0; i<perList.size(); i++) {
+			String id = perList.get(i).getMt20id();
+			PerformanceDTO performanceDTO = api.getPerDetail(id); 
+			int result = performanceDAO.setPerAdd(performanceDTO);
+			count += result;
+		}
+		System.out.println(count);
+		return count;
 	}
 	
-	public void getJson(int n) throws Exception {
-		String key = "283590c11ab54671ad1376d65a8ae2c4";
-		String stdate = "20230801";
-		String eddate = "20230830";
-		String cpage = Integer.toString(n);
-		String rows = "10";
-		String inputLine;
-		String result = "";
+	public List<PerformanceDTO> getPerList(Pager pager) throws Exception {
+		pager.makeRowNum();
+		Long total = performanceDAO.getPerTotal();
+		pager.makePageNum(total);
 		
-		URL url = new URL("http://kopis.or.kr/openApi/restful/pblprfr"+
-				"?service="+key+
-				"&stdate="+stdate+
-				"&eddate="+eddate+
-				"&cpage="+cpage+
-				"&rows="+rows
-		);
+		return performanceDAO.getPerList(pager);
+	}
+	
+	public int setPlaceAdd() throws Exception {
+		int count = 0;
 		
-		BufferedReader bf;
-		bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-
-		while((inputLine=bf.readLine())!=null) {
-			result += inputLine.trim();
+		List<PerformancePlaceDTO> placeList = api.getPlaceList(2);
+	
+		for(int i=0; i<placeList.size(); i++) {
+			String id = placeList.get(i).getMt10id();
+			PerformancePlaceDTO placeDTO = api.getPlaceDetail(id);	
+			int result = performanceDAO.setPlaceAdd(placeDTO);
+			count += result;
 		}
-		System.out.println(result);
-		JSONObject jsonObject = XML.toJSONObject(result);
+		System.out.println(count);
+		return count;
+	}
+	
+	public List<PerformancePlaceDTO> getPlaceList(Pager pager) throws Exception {
+		pager.makeRowNum();
+		Long total = performanceDAO.getPlaceTotal();
+		pager.makePageNum(total);
 		
-		JSONObject dbs = (JSONObject) jsonObject.get("dbs");
-		JSONArray dbArr = (JSONArray) dbs.get("db"); 
-		
-		System.out.println("--------------");
-		for(int i=0; i<dbArr.length(); i++) {
-			JSONObject db = (JSONObject) dbArr.get(i);
-			System.out.println(db.get("mt20id"));
-			System.out.println(db.get("prfnm"));
-			System.out.println(db.get("prfpdfrom"));
-			System.out.println(db.get("prfpdto"));
-			System.out.println(db.get("genrenm"));
-			System.out.println(db.get("poster"));
-
-			System.out.println("-------------");
-		}
+		return performanceDAO.getPlaceList(pager);
 	}
 }
