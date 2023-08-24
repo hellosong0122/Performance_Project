@@ -17,8 +17,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       }
     </style>
   </head>
-  <body>
-    <c:import url="../base/header.jsp"></c:import>
+  <body>  
     <section class="container mt-5">
       <h1 class="mb-3 text-center">회원가입</h1>
 
@@ -87,7 +86,24 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             id="email"
             placeholder="name@example.com"
           />
+
           <div id="emailResult"></div>
+
+          <div class="input-group-addon">
+            <button type="button" class="btn btn-primary" id="mailCheckBtn">
+              본인인증
+            </button>
+          </div>
+
+          <div class="mail-check-box">
+            <input
+              class="form-control mail-check-input"
+              placeholder="인증번호 6자리를 입력해주세요"
+              disabled="disabled"
+              maxlength="6"
+            />
+          </div>
+          <span id="mail-check-warn"></span>
         </div>
 
         <div class="mb-3">
@@ -105,13 +121,47 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <div class="mb-3">
           <label for="birth" class="form-label">생년월일</label>
           <input
-            type="text"
+            type="date"
             name="birth"
             class="form-control"
             id="birth"
             placeholder="19970102"
           />
           <div id="birthResult"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="postcode" class="form-label"></label>
+          <input
+            type="text"
+            name="postcode"
+            class="form-control"
+            id="postcode"
+            placeholder="우편번호"
+          />
+          <button class="btn btn-primary" id="addrSearch" type="button">
+            우편번호찾기
+          </button>
+
+          <label for="address" class="form-label"></label>
+          <input
+            type="text"
+            name="address"
+            class="form-control"
+            id="address"
+            placeholder="주소"
+          />
+
+          <label for="detailAddress" class="form-label"></label>
+          <input
+            type="text"
+            name="detailAddress"
+            class="form-control"
+            id="detailAddress"
+            placeholder="상세주소입력"
+          />
+
+          <div id="addressResult"></div>
         </div>
 
         <div class="mb-3">
@@ -122,5 +172,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       </form>
     </section>
     <script src="/resources/js/member.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </body>
 </html>

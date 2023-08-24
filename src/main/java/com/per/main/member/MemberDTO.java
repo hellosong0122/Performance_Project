@@ -12,9 +12,8 @@ public class MemberDTO {
 	private String phone;
 	private Date birth;
 	private String address;
-	private Integer auth;
-	private Integer marketing;
-	
+	private Boolean auth;
+	private Boolean marketing;
 	public Long getMemberNum() {
 		return memberNum;
 	}
@@ -63,17 +62,18 @@ public class MemberDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Integer getAuth() {
+	public Boolean getAuth() {
 		return auth;
 	}
-	public void setAuth(Integer auth) {
+	public void setAuth(Boolean auth) {
 		this.auth = auth;
 	}
-	public Integer getMarketing() {
+	public Boolean getMarketing() {
 		return marketing;
 	}
-	public void setMarketing(Integer marketing) {
+	public void setMarketing(Boolean marketing) {
 		this.marketing = marketing;
 	}
 	
+
 }
