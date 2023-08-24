@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.per.main.per.PerformanceDAO">
+	<insert id="setPerAdd" parameterType="PerformanceDTO">
+		INSERT INTO PERFORMANCE
+		(PERFORMANCE_NUM, MT10ID, MT20ID, PRFNM, PRFPDFROM, PRFPDTO, PRFCAST, PRFRUNTIME, 
+		GENRENM, POSTER, DTGUIDANCE)
+		VALUES (PERFORMANCE_SEQ.NEXTVAL, #{mt10id}, #{mt20id}, #{prfnm}, 
+		#{prfpdfrom}, #{prfpdto}, #{prfcast}, #{prfruntime}, #{genrenm}, 
+		#{poster}, #{dtguidance})
+	</insert>
+	
+	<insert id="setPlaceAdd" parameterType="PerformancePlaceDTO">
+		INSERT INTO PERFORMANCE_PLACE
+		(MT10ID,FCLTYNM, ADRES, LA, LO, TELNO)
+		VALUES (#{mt10id}, #{fcltynm}, #{adres}, #{la}, #{lo}, #{telno})
+	</insert>
+	
+	<select id="getPerList" resultType="PerformanceDTO" parameterType="Pager">
+		SELECT PRFNM, PRFPDFROM, PRFPDTO, GENRENM
+		FROM (SELECT ROWNUM R, F.*
+			  FROM (SELECT *
+			  		FROM PERFORMANCE) F)
+		WHERE R BETWEEN #{startRow} AND #{lastRow} 
+	</select>
+	
+	<select id="getPlaceList" resultType="PerformancePlaceDTO" parameterType="Pager">
+		SELECT FCLTYNM, ADRES, TELNO
+		FROM (SELECT ROWNUM R, P.*
+		 	  FROM (SELECT * 
+			  	    FROM PERFORMANCE_PLACE) P)
+		WHERE R BETWEEN #{startRow} AND #{lastRow} 
+	</select>
+	
+	<select id="getPerTotal" resultType="Long">
+		SELECT COUNT(PERFORMANCE_NUM) FROM PERFORMANCE
+	</select>
+	
+	<select id="getPlaceTotal" resultType="Long">
+		SELECT COUNT(MT10ID) FROM PERFORMANCE_PLACE
+	</select>
+</mapper>

@@ -23,8 +23,16 @@ public class PerformanceDTO {
 	private	String genrenm;
 	//이미지
 	private String poster;
+	//공연시간
+	private String dtguidance;
 	
 	
+	public String getDtguidance() {
+		return dtguidance;
+	}
+	public void setDtguidance(String dtquidance) {
+		this.dtguidance = dtquidance;
+	}
 	public Long getPerformance_num() {
 		return performance_num;
 	}

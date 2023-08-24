@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<c:import url="../base/base.jsp"></c:import>
 </head>
 <body>
-	<a href="/performance/add">공연</a>
+	<c:import url="../base/header.jsp"></c:import>
+
 </body>
 </html>
