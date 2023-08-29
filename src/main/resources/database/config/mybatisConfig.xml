@@ -9,6 +9,7 @@
 		<typeAlias type="com.per.main.book.BookDTO" alias="BookDTO"/>
 		<typeAlias type="com.per.main.per.PerformanceDTO" alias="PerformanceDTO"/>
 		<typeAlias type="com.per.main.per.PerformancePlaceDTO" alias="PerformancePlaceDTO"/>
+		<typeAlias type="com.per.main.pay.product.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.per.utils.Pager" alias="Pager"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
 	</typeAliases>
