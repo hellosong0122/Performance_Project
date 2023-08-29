@@ -14,27 +14,47 @@ public class PerformanceDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.per.main.per.PerformanceDAO.";
 	
-	public int setPerAdd(PerformanceDTO performanceDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"setPerAdd", performanceDTO);
+	//공연 삭제
+	public int setPerDelete(PerformanceDTO performanceDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setPerDelete", performanceDTO);
+	}
+	//공연시설 삭제
+	public int setPlaceDelete(PerformancePlaceDTO placeDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setPlaceDelete", placeDTO);
 	}
 	
+	//공연 상세정보
+	public PerformanceDTO getPerDetail(PerformanceDTO performanceDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getPerDetail", performanceDTO);
+	}
+	//공연시설 상세정보
+	public PerformancePlaceDTO getPlaceDetail(PerformancePlaceDTO placeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getPlaceDetail", placeDTO);
+	}
+	
+	//공연 리스트
 	public List<PerformanceDTO> getPerList(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getPerList", pager);
 	}
-	
-	public int setPlaceAdd(PerformancePlaceDTO placeDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"setPlaceAdd", placeDTO);
-	}
-	
+	//공연시설 리스트
 	public List<PerformancePlaceDTO> getPlaceList(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getPlaceList", pager);
 	}
 	
-	public Long getPerTotal() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getPerTotal");	
+	public Long getPerTotal(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getPerTotal", pager);	
 	}
 	
-	public Long getPlaceTotal() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getPlaceTotal");	
+	public Long getPlaceTotal(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getPlaceTotal", pager);	
+	}
+	
+	//공연 등록 및 업데이트
+	public int setPerInfo(PerformanceDTO performanceDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setPerInfo", performanceDTO);
+	}
+	//공연시설 등록 및 업데이트
+	public int setPlaceInfo(PerformancePlaceDTO placeDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setPlaceInfo", placeDTO);
 	}
 }

@@ -1,5 +1,6 @@
 package com.per.main.per;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,30 +14,59 @@ public class PerformanceService {
 	private PerformanceDAO performanceDAO;
 	private PerformanceApi api = new PerformanceApi();
 	
-	public int setPerAdd() throws Exception {		
+	//공연 삭제
+	public int setPerDelete(PerformanceDTO performanceDTO) throws Exception {
+		return performanceDAO.setPerDelete(performanceDTO);
+	}
+	//공연시설 삭제
+	public int setPlaceDelete(PerformancePlaceDTO placeDTO) throws Exception {
+		return performanceDAO.setPlaceDelete(placeDTO);
+	}
+	
+	//공연 상세정보
+	public PerformanceDTO getPerDetail(PerformanceDTO performanceDTO) throws Exception {
+		return performanceDAO.getPerDetail(performanceDTO);
+	}
+	//공연시설 상세정보
+	public PerformancePlaceDTO getPlaceDetail(PerformancePlaceDTO placeDTO) throws Exception {
+		return performanceDAO.getPlaceDetail(placeDTO);
+	}
+	
+	//공연 리스트
+	public List<PerformanceDTO> getPerList(Pager pager) throws Exception {
+		pager.makeRowNum();
+		Long total = performanceDAO.getPerTotal(pager);
+		pager.makePageNum(total);
+		
+		return performanceDAO.getPerList(pager);
+	}
+	//공연시설 리스트
+	public List<PerformancePlaceDTO> getPlaceList(Pager pager) throws Exception {
+		pager.makeRowNum();
+		Long total = performanceDAO.getPlaceTotal(pager);
+		pager.makePageNum(total);
+		
+		return performanceDAO.getPlaceList(pager);
+	}
+	
+	//공연 등록 및 업데이트
+	public int setPerInfo() throws Exception {		
 		int count = 0;
 		
-		List<PerformanceDTO> perList = api.getPerList(1);
+		List<PerformanceDTO> perList = api.getPerList(2);
 		
 		for(int i=0; i<perList.size(); i++) {
 			String id = perList.get(i).getMt20id();
 			PerformanceDTO performanceDTO = api.getPerDetail(id); 
-			int result = performanceDAO.setPerAdd(performanceDTO);
+//			System.out.println(performanceDTO.getMt20id());
+			int result = performanceDAO.setPerInfo(performanceDTO);
 			count += result;
 		}
 		System.out.println(count);
 		return count;
 	}
-	
-	public List<PerformanceDTO> getPerList(Pager pager) throws Exception {
-		pager.makeRowNum();
-		Long total = performanceDAO.getPerTotal();
-		pager.makePageNum(total);
-		
-		return performanceDAO.getPerList(pager);
-	}
-	
-	public int setPlaceAdd() throws Exception {
+	//공연시설 등록 및 업데이트
+	public int setPlaceInfo() throws Exception {
 		int count = 0;
 		
 		List<PerformancePlaceDTO> placeList = api.getPlaceList(2);
@@ -44,18 +74,11 @@ public class PerformanceService {
 		for(int i=0; i<placeList.size(); i++) {
 			String id = placeList.get(i).getMt10id();
 			PerformancePlaceDTO placeDTO = api.getPlaceDetail(id);	
-			int result = performanceDAO.setPlaceAdd(placeDTO);
+			int result = performanceDAO.setPlaceInfo(placeDTO);
 			count += result;
 		}
 		System.out.println(count);
 		return count;
 	}
 	
-	public List<PerformancePlaceDTO> getPlaceList(Pager pager) throws Exception {
-		pager.makeRowNum();
-		Long total = performanceDAO.getPlaceTotal();
-		pager.makePageNum(total);
-		
-		return performanceDAO.getPlaceList(pager);
-	}
 }

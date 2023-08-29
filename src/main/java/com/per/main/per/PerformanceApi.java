@@ -37,9 +37,13 @@ public class PerformanceApi {
 		
 		String date = (String) db.get("prfpdfrom");
 		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyy.mm.dd");
+        //Date로 변경하기 위해서는 날짜 형식을 yyyy-mm-dd로 변경해야한다
 		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
+        //현재 yyyy.mm.dd로된 날짜 형식으로 java.util.Date객체를 만든다
 		java.util.Date tempDate = beforeFormat.parse(date);
+        //java.util.Date를 yyyy-mm-dd 형식으로 변경하여 String로 반환
 		String transDate = afterFormat.format(tempDate);
+        //반환된 String 값을 Date로 변경
 		Date d1 = Date.valueOf(transDate);
 		
 		PerformanceDTO performanceDTO = new PerformanceDTO();
@@ -60,14 +64,25 @@ public class PerformanceApi {
 		performanceDTO.setPoster((String) db.get("poster"));
 		performanceDTO.setDtguidance((String) db.get("dtguidance"));
 		
+		String price = (String) db.get("pcseguidance");
+		int beginIdx = price.lastIndexOf(" ");
+		int endIdx = price.lastIndexOf("원");
+		
+		if(beginIdx!=-1 && endIdx!=-1) {
+			price = price.substring(beginIdx+1, endIdx);
+			price = price.replace(",", "");
+			
+			performanceDTO.setPcseguidance(Long.parseLong(price));
+		}
+	
 		return performanceDTO;
 	}
 	
 	public List<PerformanceDTO> getPerList(int n) throws Exception {
-		String stdate = "20230724";
-		String eddate = "20230824";
+		String stdate = "20230727";
+		String eddate = "20230926";
 		String cpage = Integer.toString(n);
-		String rows = "500";
+		String rows = "1000";
 		String signgucode = "11"; //서울 
 		String inputLine;
 		String result = "";

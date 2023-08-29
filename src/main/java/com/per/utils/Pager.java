@@ -18,6 +18,30 @@ public class Pager {
 	//다음 블록 활성화
 	private boolean next;
 	
+	//검색
+	private String kind;
+	private String search;
+	
+	
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if(this.search==null) {
+			this.search = "";
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	//startRow, lastRow를 계산하는 메소드
 	public void makeRowNum() {
 		this.startRow = (this.getPage()-1)*this.getPerPage()+1;
