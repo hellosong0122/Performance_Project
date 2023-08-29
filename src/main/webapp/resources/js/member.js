@@ -109,6 +109,38 @@ email.addEventListener("blur", function () {
   }
 });
 
+$('#mailCheckBtn').click(function(){
+  const eamil = $('#email').val();
+  console.log(eamil);
+  const checkInput = $('.mail-check-input');
+
+  $.ajax({
+    type: 'get',
+    url: "/member/mailCheck?email="+ eamil,
+    success: function (data) {
+      console.log("data: " + data);
+      checkInput.attr('disabled', false);
+      code = data;
+      alert("인증번호가 전송되었습니다.");
+    }
+  });
+});
+
+$('.mail-check-input').blur(function () {
+  const inputCode = $(this).val();
+  const $resultMsg = $('#mail-check-warn');
+  
+  if(inputCode == code){
+    $resultMsg.html('인증번호가 일치합니다.');
+    $resultMsg.css('color','green');
+    $('#mailCheckBtn').attr('disabled',true);   
+    $('#email').attr('readonly',true);
+  }else{
+    $resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+    $resultMsg.css('color','red');
+  }
+});
+
 phone.addEventListener("blur", function () {
   let check = emptyCheck(phone);
   const nameout = document.getElementById("phoneResult");

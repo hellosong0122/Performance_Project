@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 
 
+
 @Repository
 public class MemberDAO {
 	
@@ -23,5 +24,9 @@ public class MemberDAO {
 	
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);
+	}
+	
+	public MemberDTO findId(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"findId", memberDTO);
 	}
 }

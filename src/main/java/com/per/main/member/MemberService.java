@@ -21,4 +21,8 @@ public class MemberService {
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getLogin(memberDTO);
 	}
+	
+	public MemberDTO findId(MemberDTO memberDTO)throws Exception{
+		return memberDAO.findId(memberDTO);
+	}
 }
