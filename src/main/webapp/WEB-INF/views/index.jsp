@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Home</title>
-<c:import url="./base/base.jsp"></c:import>
+<c:import url="./temp/bootStrap.jsp"></c:import>
 </head>
 <body>
-	 <c:import url="./base/header.jsp"></c:import>
+	 <c:import url="./temp/header.jsp"></c:import>
 	<h1>PerFormance</h1>
 	<P>PerFormance</P>	
 	
