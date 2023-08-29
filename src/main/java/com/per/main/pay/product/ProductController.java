@@ -26,12 +26,12 @@ public class ProductController {
 		return mv;
 	}
 
-//	@RequestMapping(value = "giftDetail", method = RequestMethod.GET)
-//	public ModelAndView getGiftDetail(ProductDTO productDTO, ModelAndView mv) throws Exception {
-//		productDTO = productService.getGiftDetail(productDTO);
-//		mv.addObject("giftDetail", productDTO);
-//		mv.setViewName("product/giftDetail");
-//
-//		return mv;
-//	}
+	@RequestMapping(value = "giftDetail", method = RequestMethod.GET)
+	public ModelAndView getGiftDetail(ProductDTO productDTO, ModelAndView mv) throws Exception {
+		productDTO = productService.getGiftDetail(productDTO);
+		mv.addObject("giftDetail", productDTO);
+		mv.setViewName("product/giftDetail");
+
+		return mv;
+	}
 }

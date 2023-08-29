@@ -11,6 +11,13 @@
 		parameterType="Long">
 		SELECT * FROM PRODUCT
 	</select>
+	
+	
+	<select id="getGiftDetail" resultType="ProductDTO" parameterType="ProductDTO">
+		SELECT * FROM PRODUCT WHERE #{p_Num}
+	</select>
+
+
 
 
 	<select id="getGiftTotal" resultType="Long">

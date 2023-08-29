@@ -26,7 +26,7 @@ public class ProductDAO {
 		return sqlSession.selectOne(NAMESPACE+"getGiftTotal");	
 	}
 
-//	public ProductDTO getGiftDetail(ProductDTO productDTO) throws Exception{
-//		return sqlSession.selectOne(NAMESPACE+"getGiftDetail",productDTO);
-//	}
+	public ProductDTO getGiftDetail(ProductDTO productDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getGiftDetail",productDTO);
+	}
 }

@@ -12,8 +12,8 @@ https://templatemo.com/tm-583-festava-live
 -----------------------------------------*/
 :root {
   --white-color:                  #ffffff;
-  /* --primary-color:                #F8CB2E; */
-  /* --secondary-color:              #EE5007; */
+--primary-color:                #F8CB2E; 
+--secondary-color:              #EE5007;
   --section-bg-color:             #f0f8ff;
   --custom-btn-bg-color:          #EE5007;
   --custom-btn-bg-hover-color:    #c01f27;
@@ -351,7 +351,6 @@ strong {
 .site-header {
   background-color: var(--primary-color);
   padding-top: 12px;
-  padding-bottom: 12px;
 }
 
 
@@ -371,7 +370,7 @@ strong {
 }
 
 .navbar {
-  background: transparent;
+  background: orchid;
   z-index: 9;
 }
 
@@ -828,7 +827,7 @@ strong {
 }
 
 .site-footer-top {
-  background-color: var(--secondary-color);
+  background-color: var(orchid);
   background-image: url('../images/nainoa-shizuru-NcdG9mK3PBY-unsplash.jpg');
   background-repeat: no-repeat;
   margin-bottom: 70px;
