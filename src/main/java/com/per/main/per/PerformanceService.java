@@ -14,6 +14,12 @@ public class PerformanceService {
 	private PerformanceDAO performanceDAO;
 	private PerformanceApi api = new PerformanceApi();
 	
+	public PerformancePlaceDTO getDetail(PerformanceDTO performanceDTO) throws Exception {
+		return performanceDAO.getDetail(performanceDTO);
+	}
+	
+	//------------------------------
+	
 	//공연 삭제
 	public int setPerDelete(PerformanceDTO performanceDTO) throws Exception {
 		return performanceDAO.setPerDelete(performanceDTO);

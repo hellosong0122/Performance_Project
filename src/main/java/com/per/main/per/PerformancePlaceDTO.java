@@ -1,5 +1,7 @@
 package com.per.main.per;
 
+import java.util.List;
+
 public class PerformancePlaceDTO {
 	//공연시설ID
 	private String mt10id;
@@ -16,7 +18,15 @@ public class PerformancePlaceDTO {
 	
 	private PerformanceDTO performanceDTO;
 
-	
+
+	public PerformanceDTO getPerformanceDTO() {
+		return performanceDTO;
+	}
+
+	public void setPerformanceDTO(PerformanceDTO performanceDTO) {
+		this.performanceDTO = performanceDTO;
+	}
+
 	public String getMt10id() {
 		return mt10id;
 	}
@@ -63,14 +73,6 @@ public class PerformancePlaceDTO {
 
 	public void setTelno(String telno) {
 		this.telno = telno;
-	}
-
-	public PerformanceDTO getPerformanceDTO() {
-		return performanceDTO;
-	}
-
-	public void setPerformanceDTO(PerformanceDTO performanceDTO) {
-		this.performanceDTO = performanceDTO;
 	}
 	
 	

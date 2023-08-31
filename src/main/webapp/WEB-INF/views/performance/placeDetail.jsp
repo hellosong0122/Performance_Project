@@ -12,10 +12,10 @@
 <body>
     <c:import url="../base/header.jsp"></c:import>
 
-    <section class="container mt-5 mx-auto" style="width: 75%;">
-    <h1 class="mb-5 text-center">공연시설 상세정보</h1>
-    <div id="place">
-        <table class="table">
+    <section class="container my-5 mx-auto" style="width: 70%;">
+    <h2 class="text-center">공연시설 상세정보</h2>
+    <div class="mt-5">
+        <table class="table my-3">
             <tr>
                 <th>공연시설명</th>
                 <td>${dto.fcltynm}</td>
@@ -41,7 +41,7 @@
     <form id="frm" action="">
         <input type="hidden" name="mt10id" value="${dto.mt10id}">
     </form>
-    <div class="d-flex justify-content-end mb-5"s>
+    <div class="d-flex justify-content-end my-5">
         <button type="button" class="btn btn-dark" id="delBtn" data-url="placeDelete">삭제</button>
     </div>
 </section>

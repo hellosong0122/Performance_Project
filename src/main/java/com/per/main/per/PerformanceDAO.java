@@ -14,6 +14,13 @@ public class PerformanceDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.per.main.per.PerformanceDAO.";
 	
+	
+	public PerformancePlaceDTO getDetail(PerformanceDTO performanceDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getDetail", performanceDTO);
+	}
+	
+	//------------------------------
+	
 	//공연 삭제
 	public int setPerDelete(PerformanceDTO performanceDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setPerDelete", performanceDTO);

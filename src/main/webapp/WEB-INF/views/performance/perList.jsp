@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -11,10 +11,10 @@
 </head>
 <body>
 	<c:import url="../base/header.jsp"></c:import>
-    <section class="container mt-5 mx-auto" style="width: 75%;">
-        <h1 class="mb-5 text-center">공연 관리</h1>
+    <section class="container mt-5 mx-auto" style="width: 70%;">
+        <h2 class="mb-5 text-center">공연 관리</h2>
 
-        <div class="input-group mb-3">
+        <div class="input-group my-3">
             <form action="./perList" method="get" id="frm" class="d-flex w-50">
                 <input type="hidden" value="${pager.page}" name="page" id="page">
                 <select name="kind" id="k" data-kind="${pager.kind}" class="form-select w-25" aria-label="Default select example">
@@ -27,7 +27,8 @@
                   </div>
             </form>
         </div>
-        <table class="table table-hover">
+
+        <table class="table table-hover mb-5">
             <thead>
                 <tr class="table-dark">
                     <th>공연명</th>

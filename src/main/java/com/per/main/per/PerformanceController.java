@@ -17,15 +17,13 @@ import com.per.utils.Pager;
 public class PerformanceController {
 	@Autowired
 	private PerformanceService performanceService;
-		
-	@GetMapping("main")
-	public void main() throws Exception {
-
-	}
 	
 	@GetMapping("detail")
-	public void detail() throws Exception {
+	public String detail(PerformanceDTO performanceDTO, Model model) throws Exception {
+		PerformancePlaceDTO placeDTO = performanceService.getDetail(performanceDTO);
+		model.addAttribute("dto", placeDTO);
 		
+		return "/performance/detail";
 	}
 	
 	//--------------------------------------

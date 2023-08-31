@@ -89,12 +89,12 @@
 		SELECT * FROM PERFORMANCE
 		WHERE PERFORMANCE_NUM = #{performance_num}
 	</select>
-	
+ 	
 	<select id="getPlaceDetail" resultType="PerformancePlaceDTO" parameterType="PerformancePlaceDTO">
 		SELECT * FROM PERFORMANCE_PLACE
 		WHERE MT10ID = #{mt10id}
 	</select>
-	
+	 
 	<select id="getPerList" resultType="PerformanceDTO" parameterType="Pager">
 		SELECT PERFORMANCE_NUM, PRFNM, PRFPDFROM, PRFPDTO, GENRENM
 		FROM (SELECT ROWNUM R, F.*
@@ -124,4 +124,38 @@
 		SELECT COUNT(MT10ID) FROM PERFORMANCE_PLACE
 		<include refid="searchPlaceSql"></include>
 	</select>
+	
+		
+	<select id="getDetail" parameterType="PerformanceDTO" resultMap="getDetailResult">
+		SELECT PP.*, P.* 
+		FROM PERFORMANCE_PLACE PP
+		INNER JOIN PERFORMANCE P 
+		ON PP.MT10ID = P.MT10ID  
+		WHERE P.PERFORMANCE_NUM = #{performance_num}
+	</select>
+	
+	
+	<resultMap type="PerformancePlaceDTO" id="getDetailResult">
+		<id column="MT10ID" property="mt10id"/>
+		<result column="FCLTYNM" property="fcltynm"/>
+		<result column="ADRES" property="adres"/>
+		<result column="LA" property="lo"/>
+		<result column="LO" property="la"/>
+		<result column="TELNO" property="telno"/>
+		
+		<association property="performanceDTO" javaType="PerformanceDTO">
+			<id column="PERFORMANCE_NUM" property="performance_num"/>
+			<result column="MT10ID" property="mt10id"/>
+			<result column="MT20ID" property="mt20id"/>
+			<result column="PRFNM" property="prfnm"/>
+			<result column="PRFPDFROM" property="prfpdfrom"/>
+			<result column="PRFPDTO" property="prfpdto"/>
+			<result column="PRFCAST" property="prfcast"/>
+			<result column="PRFRUNTIME" property="prfruntime"/>
+			<result column="POSTER" property="poster"/>
+			<result column="DTGUIDANCE" property="dtguidance"/>
+			<result column="PCSEGUIDANCE" property="pcseguidance"/>	
+			<result column="GENRENM" property="genrenm"/>
+		</association>
+	</resultMap>
 </mapper>
