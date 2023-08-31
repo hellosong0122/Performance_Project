@@ -19,7 +19,7 @@
 <body>
 	<c:import url="../base/header.jsp"></c:import>
 
-    <section class="container-md mt-5 mx-auto" style="width: 70%;">
+    <section class="container mt-5 mx-auto" style="width: 70%;">
         <div class="d-flex flex mb-5">
             <div>
                 <img src="${dto.performanceDTO.poster}" width="400">
@@ -28,7 +28,7 @@
                 <div class="border-4 border-bottom border-dark-subtle">
                     <h3>${dto.performanceDTO.genrenm} <${dto.performanceDTO.prfnm}></h3>
                 </div>
-                <div class="my-5">
+                <div class="mt-5">
                     <table class="table table-borderless"> 
                         <tr>
                             <th class="pb-3">공연장소</th>
@@ -59,7 +59,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end mt-3">
                     <button class="btn btn-dark btn-lg">예매하기</button> 
                 </div>
             </div>
