@@ -5,8 +5,8 @@
   
 <mapper namespace="com.per.main.member.MemberDAO">
  	 	<insert id="setJoin" parameterType="MemberDTO">
- 		INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS)
- 		VALUES (MEMBERP_SEQ.NEXTVAL, #{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth}, #{address})
+ 		INSERT INTO MEMBER (NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS, ROLE)
+ 		VALUES (#{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth}, #{address}, 0)
  	</insert>
  	
  	<select id="getId" resultType="MemberDTO" parameterType="MemberDTO">
