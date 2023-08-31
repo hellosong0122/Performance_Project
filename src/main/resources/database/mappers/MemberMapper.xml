@@ -3,9 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.per.main.member.MemberDAO">
- 	<insert id="setJoin" parameterType="MemberDTO">
- 		INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, EMAIL, PHONE, BIRTH)
- 		VALUES (MEMBER_SEQ.NEXTVAL, #{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth})
+<mapper namespace="com.per.main.member.MemberDAO">
+ 	 	<insert id="setJoin" parameterType="MemberDTO">
+ 		INSERT INTO MEMBER (NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS, ROLE)
+ 		VALUES (#{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth}, #{address}, 0)
  	</insert>
+ 	
+ 	<select id="getId" resultType="MemberDTO" parameterType="MemberDTO">
+ 		SELECT ID FROM MEMBER WHERE ID=#{id}
+ 	</select>
+ 	
+ 	<select id="getLogin" resultType="MemberDTO" parameterType="MemberDTO">
+ 		SELECT ID, PW
+ 		  FROM MEMBER
+ 		 WHERE ID=#{id} AND PW=#{pw}
+ 	</select>
+ 	
+ 	<select id="findId" resultType="MemberDTO" parameterType="MemberDTO">
+ 		SELECT ID
+ 		  FROM MEMBER
+ 	     WHERE NAME=#{name} AND EMAIL=#{email} 	
+ 	</select>
   </mapper>
