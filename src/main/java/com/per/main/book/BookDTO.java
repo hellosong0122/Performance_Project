@@ -7,7 +7,7 @@ public class BookDTO {
 	//티켓ID
 	private String ticketId;
 	//공연번호
-	private Integer performance_Num;
+	private Long performance_Num;
 	//좌석ID
 	private String seatId;
 	//이메일
@@ -30,10 +30,10 @@ public class BookDTO {
 	public void setTicketId(String ticketId) {
 		this.ticketId = ticketId;
 	}
-	public Integer getPerformance_Num() {
+	public Long getPerformance_Num() {
 		return performance_Num;
 	}
-	public void setPerformance_Num(Integer performance_Num) {
+	public void setPerformance_Num(Long performance_Num) {
 		this.performance_Num = performance_Num;
 	}
 	public String getSeatId() {
