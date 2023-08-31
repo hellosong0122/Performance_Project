@@ -159,3 +159,7 @@ a:hover {
     background-color: #444444;
     transform: translateY(-50%);
 }
+.gift-item{
+    border-radius: 10%;
+    border: 1px solid grey;
+}
