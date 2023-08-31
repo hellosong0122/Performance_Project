@@ -9,7 +9,7 @@ public class ProductDTO {
 	private Long P_Num;
 	private String P_Name;
 	private Integer P_Price;
-	private List<ImageDTO> P_Image;
+	private String P_Image;
 	private Date P_Regdate;
 	private Integer P_Count;
 	private String P_Writer;
@@ -45,13 +45,24 @@ public class ProductDTO {
 	}
 
 
-	public List<ImageDTO> getP_Image() {
+
+	public String getP_Image() {
 		return P_Image;
 	}
 
 
-	public void setP_Image(List<ImageDTO> p_Image) {
+	public void setP_Image(String p_Image) {
 		P_Image = p_Image;
+	}
+
+
+	public String getP_Writer() {
+		return P_Writer;
+	}
+
+
+	public void setP_Writer(String p_Writer) {
+		P_Writer = p_Writer;
 	}
 
 
