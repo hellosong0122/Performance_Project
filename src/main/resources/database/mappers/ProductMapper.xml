@@ -14,7 +14,7 @@
 	
 	
 	<select id="getGiftDetail" resultType="ProductDTO" parameterType="ProductDTO">
-		SELECT * FROM PRODUCT WHERE #{p_Num}
+		SELECT * FROM PRODUCT WHERE P_NUM = #{p_Num}
 	</select>
 
 
