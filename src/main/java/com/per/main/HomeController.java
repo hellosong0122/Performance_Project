@@ -19,7 +19,7 @@ public class HomeController {
 	
 	
 	@RequestMapping("/")
-	public String home() {
+	public String home() throws Exception{
 		return "index";
 	}
 	

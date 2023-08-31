@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+	
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.per.main.member.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.per.main.book.BookDTO" alias="BookDTO"/>
+		<typeAlias type="com.per.main.per.PerformanceDTO" alias="PerformanceDTO"/>
+		<typeAlias type="com.per.main.per.PerformancePlaceDTO" alias="PerformancePlaceDTO"/>
+		<typeAlias type="com.per.main.pay.product.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.per.utils.Pager" alias="Pager"/>
+		<typeAlias type="java.lang.Long" alias="Long"/>
+	</typeAliases>
+</configuration>
