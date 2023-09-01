@@ -41,14 +41,20 @@ import com.per.utils.Pager;
 			   return "book/list";
 			//	return "calendar/calendar";
 			}
+			// 예매하기 버튼누르기
+			// 예메하기 버튼을 누르면 팝업창 오픈
+			@GetMapping("/selectPerBtn")
+			public String calendarOpen()throws Exception {
+			    return "book/calendar";
+			}
+			//book/calendar
+			//팝업창 열리면 calendar.jsp 출력
+			@GetMapping("/calendar")
+			public String showCalendar() {
+			    return "book/calendar";
+			}
 			
-			
-//			@PostMapping("/list")
-//			public String getPerList(BookDTO bookDTO, Model model, HttpSession session)throws Exception{
-//				int result = bookService.getPerList(bookDTO, model, session);
-//				return	"calendar/calendar";
-//			}
-		 
+
 			
 			
 	}	

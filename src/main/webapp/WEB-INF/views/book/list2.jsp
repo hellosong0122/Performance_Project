@@ -13,7 +13,7 @@
     <script>
         //seletPerbtn아이디를 가진 버튼을 클릭했을때.
         $(document).ready(function() {
-        $('#seletPerbtn').click(function(){
+        $('#seletPerbtn').on("click",function(){
     // JSON 데이터를 불러와서 테이블에 표시하는 함수
             let perNum = $(this).data(num);
             let perName = $(this).data(name);

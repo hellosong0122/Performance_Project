@@ -7,6 +7,19 @@
 <head>
     <meta charset="UTF-8"> 	
     <title>공연 목록</title>
+  
+    <!-- <script>
+        $('selectPerBtn').on("click", function(e){
+            e.preventDefault();
+            //팝업창 설정
+            let popUrl = "Calendar.jsp";
+            let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
+            //팝업창오픈(url,이름,옵션)     
+            window.open(popUrl,"예매하기",popOption);
+        })
+   
+
+    </script>  -->
 </head>
 <body>
 
@@ -23,32 +36,24 @@
         </thead>
         
         <tbody>
-           <form action="list2.jsp" name="perList">
+           <form action="calendar" name="perList">
    			<!--어떤페이지로이동할지  -->
           
            <c:forEach var="p" items="${list}">   
                 <tr>
-                    <td><button name="selectPerf" id="selectPerBtn" data-num="${p.performance_num}" data-name="${p.prfnm}" 
-                        data-start="${p.prfpdfrom}" data-end="${p.prfpdto}">${p.prfnm}</button></td>
-                    <!--name은 ? 뒤 이름  -->
+                    <td>${p.prfnm}</td>
                     <td>${p.prfpdfrom}</td>
                     <td>${p.prfpdto}</td>
                     <td>${p.genrenm}</td>
+                    <td><button  type="button" id="selectPerBtn" data-num="${p.performance_num}" data-name="${p.prfnm}" 
+                        data-start="${p.prfpdfrom}" data-end="${p.prfpdto}">예매하기</button></td>
+                    <!--name은 ? 뒤 이름  -->
                 </tr>
             </c:forEach>
            </form>
 
+    
 
-
-      <!-- <c:forEach var="performance" items="${list}">
-                <tr>
-                    <td><button class="performance_button" id="date_btn">${performance.prfnm}</button></td>
-                   
-                    <td>${performance.prfpdfrom}</td>
-                    <td>${performance.prfpdto}</td>
-                    <td>${performance.genrenm}</td>
-                </tr>
-            </c:forEach> -->
         </tbody>
     </table> 
  		<nav aria-label="Page navigation example">
@@ -69,6 +74,6 @@
 		</nav>
 
 	</section>
-
+            <script src="/resources/js/popopen.js" type="text/javascript"></script>
 </body>
 </html>
