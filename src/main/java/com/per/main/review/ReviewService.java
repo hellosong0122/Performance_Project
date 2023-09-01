@@ -7,4 +7,8 @@ import org.springframework.stereotype.Service;
 public class ReviewService {
 	@Autowired
 	private ReviewDAO reviewDAO;
+	
+	public int setAdd(ReviewDTO reviewDTO) throws Exception {
+		return reviewDAO.setAdd(reviewDTO);
+	}
 }

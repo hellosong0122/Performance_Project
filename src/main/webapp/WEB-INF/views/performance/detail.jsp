@@ -19,8 +19,8 @@
 <body>
 	<c:import url="../base/header.jsp"></c:import>
 
-    <section class="container mt-5 mx-auto" style="width: 70%;">
-        <div class="d-flex flex mb-5">
+    <section class="container my-5 mx-auto" style="width: 70%;">
+        <div class="d-flex flex py-5 my-5">
             <div>
                 <img src="${dto.performanceDTO.poster}" width="400">
             </div>
@@ -50,10 +50,10 @@
                             <th class="pb-3">티켓가격</th>
                             <td class="ps-3">
                                 <ul id="price">
-                                    <li>VIP석 ${dto.performanceDTO.pcseguidance+80000}원</li>
-                                    <li>R석 ${dto.performanceDTO.pcseguidance+60000}원</li>
-                                    <li>S석 ${dto.performanceDTO.pcseguidance+40000}원</li>
-                                    <li>A석 ${dto.performanceDTO.pcseguidance}원</li> 
+                                    <li>VIP석 <b>${dto.performanceDTO.pcseguidance+80000}원</b></li>
+                                    <li>R석 <b>${dto.performanceDTO.pcseguidance+60000}원</b></li>
+                                    <li>S석 <b>${dto.performanceDTO.pcseguidance+40000}원</b></li>
+                                    <li>A석 <b>${dto.performanceDTO.pcseguidance}원</b></li> 
                                 </ul>
                             </td>
                         </tr>
@@ -68,59 +68,100 @@
         <div class="mb-3 border-bottom">
             <ul class="nav nav-underline">
                 <li class="nav-item">
-                    <a class="nav-link active" id="review" data-target="review" aria-current="page" href="#">댓글</a>
+                    <a class="nav-link active fs-5" id="review" data-target="review" aria-current="page" href="#">댓글</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="map" data-target="map" href="#">오시는 길</a>
+                    <a class="nav-link fs-5" id="map" data-target="map" href="#">오시는 길</a>
                 </li>
             </ul>
         </div>
 
         
 
-        <div id="info" class="d-flex mb-5">
-            <div class="col-sm-7">
-                <textarea name="contents" id="contents" class="form-control" placeholder="기대평이나 관람후기를 작성해주세요"></textarea>
+        <div id="reviewInfo" class="mb-5">
+            <div class="d-flex">
+                <div class="col-sm-7">
+                    <textarea name="contents" id="contents" class="form-control" placeholder="기대평이나 관람후기를 작성해주세요"></textarea>
+                </div>
+                <div class="ms-3">
+                    <button type="button" id="reviewAdd" class="btn btn-dark h-100" 
+                    data-add-num="${dto.performanceDTO.performance_num}" 
+                    data-id = "${member.id}">등록</button>
+                </div>
             </div>
-            <div class="ms-3">
-                <button type="button" id="reviewAdd" class="btn btn-dark h-100">등록</button>
-            </div>
-            
-            <div id="list">
-
-            </div>
-            <div>
+            <div id="reviewList">
 
             </div>
         </div>
-    
+
     </section>
 
+    <c:import url="../base/footer.jsp"></c:import>
+
+    <script src="/resources/js/detail.js"></script>
 </body>
 
 
-<script>
+<!-- <script>
     const review = document.getElementById('review');
     const map = document.getElementById('map');
     const reviewAdd = document.getElementById('reviewAdd');
-    const list = document.getElementById('list');
-    const info = document.getElementById('info');
+    const reviewList = document.getElementById('reviewList');
+    const reviewInfo = document.getElementById('reviewInfo');
 
+    //오시는 길
     map.addEventListener('click', function(){
         review.classList.toggle('active');
         map.classList.toggle('active');
-        info.innerHTML = '';
+        reviewInfo.innerHTML = '';
     })
 
+    //댓글
     review.addEventListener('click', function(){
         map.classList.toggle('active');
         review.classList.toggle('active');
     })
 
+    //performance_num 가져오기
+    let pn = reviewAdd.getAttribute('data-add-num');
+
     //review 등록
     reviewAdd.addEventListener('click', function(){
-        alert('댓글이 등록되었습니다');
-        list.innerHTML = '댓글';
+        let id = reviewAdd.getAttribute('data-id');
+        
+        if(!id){ //로그인 X
+            alert('로그인이 필요합니다');
+            return;
+        }
+
+        let check = confirm('댓글을 등록하시겠습니까?');
+        let contents = document.getElementById('contents').value;
+
+        if(check){
+            // console.log(pn+": "+contents+": "+id);
+            ajax1(pn, contents, id)
+        }
     })
-</script>
+
+
+    function ajax1(performance_num, contents, id){
+        fetch("../review/add",{
+            method: "post",
+            body: "performance_num="+performance_num+"&contents="+contents+"&id="+id,
+            Headers: {
+                "Content-type":"application/x-www-form-urlencoded"
+            }
+        })
+        .then((response)=>{
+            return response.text();
+        })
+        .then((r) => {
+            if(r>0){
+                alert('댓글이 등록되었습니다');
+            }else{
+                alert('댓글 등록에 실패했습니다');
+            }
+        })
+    }
+</script> -->
 </html>

@@ -9,4 +9,8 @@ public class ReviewDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.per.main.review.ReviewDAO.";
+	
+	public int setAdd(ReviewDTO reviewDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setAdd", reviewDTO);
+	}
 }

@@ -9,6 +9,7 @@
     </settings>
 
 	<typeAliases>
+		<typeAlias type="com.per.main.review.ReviewDTO" alias="ReviewDTO"/>
 		<typeAlias type="com.per.main.member.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.per.main.book.BookDTO" alias="BookDTO"/>
 		<typeAlias type="com.per.main.per.PerformanceDTO" alias="PerformanceDTO"/>

@@ -13,8 +13,16 @@ public class ReviewDTO {
 	private Long good;
 	//등록일
 	private Date regDate;
+	//ID
+	private String id;
 	
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public Long getReview_num() {
 		return review_num;
 	}

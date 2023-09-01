@@ -43,6 +43,14 @@
 
 					<li class="nav-item"><a class="nav-link click-scroll"
 						href="#section_6">Contact</a></li>
+					<c:if test="${not empty member}">
+						<li><a class = "nav-link click-scroll" href="/member/logout" >로그아웃</a></li>
+						<li><a class = "nav-link click-scroll" href="/member/mypage">mypage</a></li>
+					</c:if>
+					<c:if test="${empty member}">
+						<li ><a class = "nav-link click-scroll" href="/member/login">로그인</a></li>
+						<li ><a class = "nav-link click-scroll" href="/member/join">회원가입</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>

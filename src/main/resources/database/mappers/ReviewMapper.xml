@@ -5,8 +5,9 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.per.main.review.ReviewDAO">
-	<insert id="setAdd">
-		INSERT INTO REVIEW ()
-		VALUES ()		 
+	<insert id="setAdd" parameterType="ReviewDTO">
+		INSERT INTO REVIEW 
+		(review_num, performance_num, contents, good, regDate, id)
+		VALUES (REVIEW_SEQ.NEXTVAL, #{performance_num}, #{contents}, 0, SYSDATE, #{id})		 
 	</insert>
 </mapper>
