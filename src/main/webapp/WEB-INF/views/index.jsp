@@ -7,15 +7,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<c:import url="./base/base.jsp"></c:import>
 
 <title>Home</title>
 </head>
-<body>
-<!-- ================index.jsp ================== -->
 
-
-<c:import url="./base/base.jsp"></c:import>
-</head>
 <body>
 	<c:import url="./base/header.jsp"></c:import>
 
