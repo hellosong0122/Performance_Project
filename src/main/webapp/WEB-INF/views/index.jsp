@@ -7,6 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<c:import url="./base/base.jsp"></c:import>
 
 <title>Home</title>
 </head>
