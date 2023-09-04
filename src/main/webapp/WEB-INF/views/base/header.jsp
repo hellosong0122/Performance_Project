@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+  <!-- ======= Header ======= -->
+
+
 <header class="site-header">
 	<div class="container">
 		<div class="row">
@@ -19,7 +22,7 @@
 		<div class="container">
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false"
+				aria-controls="navbarNav" aria-expanded="true"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -43,19 +46,19 @@
 
 					<li class="nav-item"><a class="nav-link click-scroll"
 						href="#section_6">Contact</a></li>
-				
+					
 					<c:if test="${not empty member}">
-					      			<li><a href="/member/logout">로그아웃</a></li>
-					      			<li><a href="/member/mypage">mypage</a></li>
-					  </c:if>
-				  	<c:if test="${empty member}">
-						      		<li ><a href="/member/login">로그인</a></li>
-						      		<li ><a href="/member/join">회원가입</a></li>
-					  </c:if>
+	      				<li><a class = "nav-link click-scroll" href="/member/logout" >로그아웃</a></li>
+	      				<li><a class = "nav-link click-scroll" href="/member/mypage">mypage</a></li>
+	 				 </c:if>
+  					<c:if test="${empty member}">
+		      			<li ><a class = "nav-link click-scroll" href="/member/login">로그인</a></li>
+		      			<li ><a class = "nav-link click-scroll" href="/member/join">회원가입</a></li>
+					 </c:if>
+						
 				</ul>
 			</div>
 		</div>
 	</nav>
 </header>
-</div>
 

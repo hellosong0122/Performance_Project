@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../temp/bootStrap.jsp"></c:import>
+<c:import url="../base/base.jsp"></c:import>
 </head>
 <body>
-	<c:import url="../temp/header.jsp"></c:import>
+	<c:import url="../base/header.jsp"></c:import>
 	<section class="container mt-5">
 	<h1 class="mb-3 text-center">login page</h1>
 

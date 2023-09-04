@@ -22,13 +22,14 @@
 	</repositories>
 	<dependencies>
 
-			<!-- Iamport   lib-->
+
 		<dependency>
 			<groupId>com.github.iamport</groupId>
 			<artifactId>iamport-rest-client-java</artifactId>
 			<version>0.2.23</version>
 		</dependency>
-			
+
+
 	<!-- 제이슨 파싱 -->
 		<dependency>
 		    <groupId>com.googlecode.json-simple</groupId>
@@ -56,6 +57,12 @@
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-context-support</artifactId>
 		    <version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.iamport</groupId>
+			<artifactId>iamport-rest-client-java</artifactId>
+			<version>0.2.23</version>
+
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>

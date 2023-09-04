@@ -5,9 +5,9 @@
   
 <mapper namespace="com.per.main.member.MemberDAO">
  	 	<insert id="setJoin" parameterType="MemberDTO">
- 		INSERT INTO MEMBER ( NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS, ROLE )
- 		VALUES ( #{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth}, #{address}, 0)
- 	</insert>
+ 		INSERT INTO MEMBER (NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS, ROLE)
+ 		VALUES (#{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth}, #{address}, 0)
+	 	</insert>
  	
  	<select id="getId" resultType="MemberDTO" parameterType="MemberDTO">
  		SELECT ID FROM MEMBER WHERE ID=#{id}
@@ -24,6 +24,5 @@
  		  FROM MEMBER
  	     WHERE NAME=#{name} AND EMAIL=#{email} 	
  	</select>
- 	
- 	
+
   </mapper>
