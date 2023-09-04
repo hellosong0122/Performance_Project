@@ -43,44 +43,12 @@
 				<c:when test="${empty member}">
 				<li class="nav-item text-white me-3"><a href="/member/login">로그인</a></li>
 		      	<li class="nav-item text-white me-3"><a href="/member/join">회원가입</a></li>
-				</c:when>
-				
-				<c:when test="${not empty sessionId}">
-					<li class="nav-item text-white me-3"><a href="/member/logout">로그아웃</a></li>
-		      			<li class="nav-item text-white me-3"><a href="/member/mypage">mypage</a></li>
-		      	</c:when>
-				<c:when test="${empty sessionId}">
-				<li class="nav-item text-white me-3"><a href="/member/login">로그인</a></li>
-		      	<li class="nav-item text-white me-3"><a href="/member/join">회원가입</a></li>
-				</c:when>				
-				
-				<c:otherwise>					
-				</c:otherwise>
+				</c:when>	
 				
 				</c:choose>
 	   		 </ul>
 	    	</nav>
-	      
-	      
-	      
-	      
-	     <%--  <nav>
-	      	<ul class="nav">
-	      		<c:if test="${not empty member}">
-	      			<li class="nav-item text-white me-3"><a href="/member/logout">로그아웃</a></li>
-	      			<li class="nav-item text-white me-3"><a href="/member/mypage">mypage</a></li>
-	      		</c:if>
-	      		<c:if test="${empty member || sessionId}">
-		      		<li class="nav-item text-white me-3"><a href="/member/login">로그인</a></li>
-		      		<li class="nav-item text-white me-3"><a href="/member/join">회원가입</a></li>
-	      		</c:if>
-	      	</ul>      
-	      	
-	      </nav> --%>
-	     <!--  <form class="d-flex" role="search">
-	        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	        <button class="btn btn-outline-success" type="submit">Search</button>
-	      </form> -->
+
 	    </div>
 	  </div>
 		</nav>
