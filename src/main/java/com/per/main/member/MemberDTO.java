@@ -74,6 +74,13 @@ public class MemberDTO {
 	public void setMarketing(Boolean marketing) {
 		this.marketing = marketing;
 	}
+	@Override
+	public String toString() {
+		return "MemberDTO [memberNum=" + memberNum + ", name=" + name + ", id=" + id + ", pw=" + pw + ", email=" + email
+				+ ", phone=" + phone + ", birth=" + birth + ", address=" + address + ", auth=" + auth + ", marketing="
+				+ marketing + "]";
+	}
+	
 	
 
 }
