@@ -26,12 +26,12 @@
 			
 				<div class="mb-3" >
 					<label for="id" class="form-label">ID</label>
-					<input type="text" name="id" class="form-control" id="id" placeholder="ID">
+					<input type="text" name="id" class="form-control" id="id" placeholder="ID" value="jisun1010">
 					</div>
 					<!-- 	DTO의 SETTER이름과 동일해야함 NAME -->
 					<div class="mb-3" >
 					<label for="pw" class="form-label">PASSWORD</label>
-					<input type="password" name="pw" class="form-control" id="pw" placeholder="패스워드">
+					<input type="password" name="pw" class="form-control" id="pw" placeholder="패스워드" value="wltjswltjs10">
 					</div>					
 			
 					<div class="mb-3"s>
