@@ -7,7 +7,7 @@
 	
 	<!-- <context:property-placeholder location="classpath:database/config/email.properties"/> -->
 	 <!-- 이메일 인증 관련 빈 등록 -->
-   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
       <property name="host" value="smtp.gmail.com" />
       <property name="port" value="587" />
       <property name="username" value="songjisun0122" />

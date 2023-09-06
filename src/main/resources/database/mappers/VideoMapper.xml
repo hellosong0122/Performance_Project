@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.per.main.board.video.VideoDAO">
+      	<sql id="searchSql">
+      		WHERE N.DELETETYPE = '1' 
+							
+			<choose>
+				<when test="kind=='title'">
+					AND N.TITLE LIKE '%'||#{search}||'%'
+				</when>
+				
+				<when test="kind=='content'">
+					AND N.CONTENT LIKE '%'||#{search}||'%'
+				</when>
+			</choose>
+  		</sql>
+	<select id="getList" resultMap="getSelectResult" parameterType="Pager">
+  		SELECT 
+  			*
+		FROM(
+			SELECT 
+				ROWNUM R, 
+				B.* 
+			FROM(
+				SELECT
+					*
+				FROM 
+					VIDEO N 
+						LEFT JOIN MEMBER M
+							ON N.MEMBER_NUM = M.MEMBER_NUM
+				<include refid="searchSql"></include>	
+				
+				ORDER BY
+					N.VIDEO_NUM DESC
+				) B
+			)
+		WHERE
+			R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  	
+  	<resultMap type="VideoDTO" id="getSelectResult">
+  		<id column="VIDEO_NUM" property="num"/>
+  		<result column="TITLE" property="title"/>
+  		<result column="CONTENT" property="content"/>
+  		<result column="REGDATE" property="regDate"/>
+  		<result column="UPDATEDATE" property="updateDate"/>
+  		<result column="HIT" property="hit"/>
+  		<collection property="nfDto" javaType="List" ofType="VideoFileDTO">
+  			<id column="VIDEO_FILE_NUM" property="video_file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORIGIN_NAME" property="origin_name"/>
+  		</collection>
+  		<collection property="memberDto" javaType="MemberDTO">
+  			<id column="MEMBER_NUM" property="member_num"/>
+  			<result column="NAME" property="name"/>
+  		</collection>
+  	</resultMap>
+  	
+  	
+  	<select id="getTotal" resultType="Long">
+  		SELECT
+  			COUNT(N.VIDEO_NUM)
+  		FROM
+  			VIDEO N
+  			LEFT JOIN MEMBER M
+  				ON	N.MEMBER_NUM = M.MEMBER_NUM
+  		<include refid="searchSql"></include>
+  	</select>
+  	
+  	<insert id="setFileAdd" parameterType="VideoFileDTO">
+  		INSERT INTO VIDEO_FILE
+  		VALUES (VIDEO_FILE_SEQ.NEXTVAL, #{video_num}, #{file_name}, #{origin_name}, SYSDATE)
+  	</insert>
+  	
+  	<insert id="setAdd" parameterType="VideoDTO">
+  		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+  			SELECT VIDEO_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO	VIDEO 
+  		VALUES (#{num},	#{member_num}, #{title}, #{content}, SYSDATE, SYSDATE, 1, 0)
+  	</insert>
+  	
+  	<select id="getDetail" resultMap="getSelectResult" parameterType="VideoDTO">  
+  		SELECT 
+  			* 
+  		FROM
+  			VIDEO N
+  			LEFT JOIN MEMBER M
+  				ON N.MEMBER_NUM = M.MEMBER_NUM
+  			LEFT JOIN VIDEO_FILE NF
+ 				ON N.VIDEO_NUM=NF.VIDEO_NUM
+  		WHERE
+  			N.VIDEO_NUM = #{num} AND
+  			N.DELETETYPE = '1'
+  	</select>
+  	
+  	<delete id="setDelete" parameterType="VideoDTO">
+  		UPDATE
+  			VIDEO
+  		SET 
+  			DELETETYPE = '0'
+  		WHERE 
+  			VIDEO_NUM=#{num}
+  	</delete>
+  	
+  	<update id="setUpdate" parameterType="VideoDTO">
+  		UPDATE
+  			VIDEO
+  		SET 
+  			TITLE=#{title},
+  			content=#{content}
+  		WHERE
+  			VIDEO_NUM=#{num}
+  	</update>
+  	
+  	<update id="setHitCount">
+		UPDATE
+			VIDEO
+		SET
+			HIT = HIT + 1
+		WHERE
+			VIDEO_NUM = #{video_num}
+	</update>
+	
+	<delete id="setFileDelete" parameterType="VideoFileDTO">
+		DELETE FROM VIDEO_FILE WHERE VIDEO_FILE_NUM = #{video_file_num}
+	</delete>
+	
+	<select id="getFileDetail" parameterType="VideoFileDTO" resultType="VideoFileDTO">
+		SELECT * FROM VIDEO_FILE WHERE VIDEO_FILE_NUM = #{video_file_num}
+	</select>
+
+  </mapper>

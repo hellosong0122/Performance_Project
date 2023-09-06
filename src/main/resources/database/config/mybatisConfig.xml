@@ -4,12 +4,28 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
 	
 <configuration>
+	<settings>
+        <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
+
 	<typeAliases>
+		<typeAlias type="com.per.main.review.ReviewDTO" alias="ReviewDTO"/>
 		<typeAlias type="com.per.main.member.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.per.main.book.BookDTO" alias="BookDTO"/>
 		<typeAlias type="com.per.main.per.PerformanceDTO" alias="PerformanceDTO"/>
 		<typeAlias type="com.per.main.per.PerformancePlaceDTO" alias="PerformancePlaceDTO"/>
 		<typeAlias type="com.per.main.pay.product.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.per.main.board.notice.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.per.main.board.notice.NoticeFileDTO" alias="NoticeFileDTO"/>
+		<typeAlias type="com.per.main.board.banner.BannerDTO" alias="BannerDTO"/>
+		<typeAlias type="com.per.main.board.banner.BannerFileDTO" alias="BannerFileDTO"/>
+		<typeAlias type="com.per.main.board.video.VideoDTO" alias="VideoDTO"/>
+		<typeAlias type="com.per.main.board.video.VideoFileDTO" alias="VideoFileDTO"/>
+		<typeAlias type="com.per.main.board.faq.FaqDTO" alias="FaqDTO"/>
+		<typeAlias type="com.per.main.board.faq.FaqFileDTO" alias="FaqFileDTO"/>
+		<typeAlias type="com.per.main.board.ticketopen.TicketOpenDTO" alias="TicketOpenDTO"/>
+		<typeAlias type="com.per.main.board.ticketopen.TicketOpenFileDTO" alias="TicketOpenFileDTO"/>
+		<typeAlias type="com.per.main.pay.product.ProductVO" alias="ProductVO"/>
 		<typeAlias type="com.per.utils.Pager" alias="Pager"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="java.lang.String" alias="String"/>

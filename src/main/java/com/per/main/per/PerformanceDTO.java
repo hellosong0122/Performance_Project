@@ -25,8 +25,15 @@ public class PerformanceDTO {
 	private String poster;
 	//공연시간
 	private String dtguidance;
+	//티켓가격
+	private Long pcseguidance;
 	
-	
+	public Long getPcseguidance() {
+		return pcseguidance;
+	}
+	public void setPcseguidance(Long pcseguidance) {
+		this.pcseguidance = pcseguidance;
+	}
 	public String getDtguidance() {
 		return dtguidance;
 	}
