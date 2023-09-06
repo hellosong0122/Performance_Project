@@ -10,7 +10,7 @@
 			<c:if test="${empty member}">
 		    <script type="text/javascript">
 		        alert("로그인하세요");
-		        location.href="../member/login";   //로그인페이지 구현되면 추후에
+		        //location.href="../member/login";   //로그인페이지 구현되면 추후에
 		    </script>	
 			</c:if>
 			
