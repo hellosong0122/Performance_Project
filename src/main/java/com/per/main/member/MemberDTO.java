@@ -3,8 +3,7 @@ package com.per.main.member;
 import java.sql.Date;
 
 public class MemberDTO {
-
-	private Long member_num;
+	private Long memberNum;
 	private String name;
 	private String id;
 	private String pw;
@@ -12,13 +11,16 @@ public class MemberDTO {
 	private String phone;
 	private Date birth;
 	private String address;
-	private Boolean auth;
-	private Boolean marketing;
-	public Long getMember_num() {
-		return member_num;
+	private Integer auth;
+	private Integer marketing;
+	private Long role;
+	
+
+	public Long getMemberNum() {
+		return memberNum;
 	}
-	public void setMemberNum(Long member_num) {
-		this.member_num = member_num;
+	public void setMemberNum(Long memberNum) {
+		this.memberNum = memberNum;
 	}
 	public String getName() {
 		return name;
@@ -62,25 +64,23 @@ public class MemberDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Boolean getAuth() {
+	public Integer getAuth() {
 		return auth;
 	}
-	public void setAuth(Boolean auth) {
+	public void setAuth(Integer auth) {
 		this.auth = auth;
 	}
-	public Boolean getMarketing() {
+	public Integer getMarketing() {
 		return marketing;
 	}
-	public void setMarketing(Boolean marketing) {
+	public void setMarketing(Integer marketing) {
 		this.marketing = marketing;
+	}	
+	public Long getRole() {
+		return role;
 	}
-	@Override
-	public String toString() {
-		return "MemberDTO [memberNum=" + memberNum + ", name=" + name + ", id=" + id + ", pw=" + pw + ", email=" + email
-				+ ", phone=" + phone + ", birth=" + birth + ", address=" + address + ", auth=" + auth + ", marketing="
-				+ marketing + "]";
+	public void setRole(Long role) {
+		this.role = role;
 	}
 	
-	
-
 }

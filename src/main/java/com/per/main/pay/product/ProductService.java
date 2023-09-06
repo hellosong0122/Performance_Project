@@ -25,8 +25,10 @@ public class ProductService {
 		return productDAO.getGiftList(pager);
 	}
 
+
 	public ProductDTO getGiftDetail(ProductDTO productDTO) throws Exception {
 		
 		return productDAO.getGiftDetail(productDTO);
 	}
+
 }
