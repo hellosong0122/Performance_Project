@@ -18,7 +18,7 @@ public class MailSendService {
 	private JavaMailSenderImpl mailSender;
 	private int authNumber; 
 
-	
+		//인증번호 생성
 		public void makeRandomNumber() {
 			// 난수의 범위 111111 ~ 999999 (6자리 난수)
 			Random r = new Random();

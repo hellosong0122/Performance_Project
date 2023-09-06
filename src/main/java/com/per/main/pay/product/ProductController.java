@@ -3,8 +3,6 @@ package com.per.main.pay.product;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +27,7 @@ public class ProductController {
 		return mv;
 	}
 
+
 	@RequestMapping(value = "giftDetail", method = RequestMethod.GET)
 	public ModelAndView getGiftDetail(ProductDTO productDTO, ModelAndView mv) throws Exception {
 		productDTO = productService.getGiftDetail(productDTO);
@@ -37,5 +36,5 @@ public class ProductController {
 
 		return mv;
 	}	
-	
+
 }

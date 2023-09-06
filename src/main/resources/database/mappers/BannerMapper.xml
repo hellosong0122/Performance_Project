@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.per.main.board.banner.BannerDAO">
+      	<sql id="searchSql">
+      		WHERE N.DELETETYPE = '1' 
+							
+			<choose>
+				<when test="kind=='title'">
+					AND N.TITLE LIKE '%'||#{search}||'%'
+				</when>
+				
+				<when test="kind=='content'">
+					AND N.CONTENT LIKE '%'||#{search}||'%'
+				</when>
+			</choose>
+  		</sql>
+	<select id="getList" resultMap="getSelectResult" parameterType="Pager">
+  		SELECT 
+  			*
+		FROM(
+			SELECT 
+				ROWNUM R, 
+				B.* 
+			FROM(
+				SELECT
+					*
+				FROM 
+					BANNER N 
+						LEFT JOIN MEMBER M
+							ON N.MEMBER_NUM = M.MEMBER_NUM
+				<include refid="searchSql"></include>	
+				
+				ORDER BY
+					N.BANNER_NUM DESC
+				) B
+			)
+		WHERE
+			R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  	
+  	<resultMap type="BannerDTO" id="getSelectResult">
+  		<id column="BANNER_NUM" property="num"/>
+  		<result column="TITLE" property="title"/>
+  		<result column="CONTENT" property="content"/>
+  		<result column="REGDATE" property="regDate"/>
+  		<result column="UPDATEDATE" property="updateDate"/>
+  		<result column="HIT" property="hit"/>
+  		<collection property="nfDto" javaType="List" ofType="BannerFileDTO">
+  			<id column="BANNER_FILE_NUM" property="banner_file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORIGIN_NAME" property="origin_name"/>
+  		</collection>
+  		<collection property="memberDto" javaType="MemberDTO">
+  			<id column="MEMBER_NUM" property="member_num"/>
+  			<result column="NAME" property="name"/>
+  		</collection>
+  	</resultMap>
+  	
+  	
+  	<select id="getTotal" resultType="Long">
+  		SELECT
+  			COUNT(N.BANNER_NUM)
+  		FROM
+  			BANNER N
+  			LEFT JOIN MEMBER M
+  				ON	N.MEMBER_NUM = M.MEMBER_NUM
+  		<include refid="searchSql"></include>
+  	</select>
+  	
+  	<insert id="setFileAdd" parameterType="BannerFileDTO">
+  		INSERT INTO BANNER_FILE
+  		VALUES (BANNER_FILE_SEQ.NEXTVAL, #{banner_num}, #{file_name}, #{origin_name}, SYSDATE)
+  	</insert>
+  	
+  	<insert id="setAdd" parameterType="BannerDTO">
+  		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+  			SELECT BANNER_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO	BANNER 
+  		VALUES (#{num},	#{member_num}, #{title}, #{content}, SYSDATE, SYSDATE, 1, 0)
+  	</insert>
+  	
+  	<select id="getDetail" resultMap="getSelectResult" parameterType="BannerDTO">  
+  		SELECT 
+  			* 
+  		FROM
+  			BANNER N
+  			LEFT JOIN MEMBER M
+  				ON N.MEMBER_NUM = M.MEMBER_NUM
+  			LEFT JOIN BANNER_FILE NF
+ 				ON N.BANNER_NUM=NF.BANNER_NUM
+  		WHERE
+  			N.BANNER_NUM = #{num} AND
+  			N.DELETETYPE = '1'
+  	</select>
+  	
+  	<delete id="setDelete" parameterType="BannerDTO">
+  		UPDATE
+  			BANNER
+  		SET 
+  			DELETETYPE = '0'
+  		WHERE 
+  			BANNER_NUM=#{num}
+  	</delete>
+  	
+  	<update id="setUpdate" parameterType="BannerDTO">
+  		UPDATE
+  			BANNER
+  		SET 
+  			TITLE=#{title},
+  			content=#{content}
+  		WHERE
+  			BANNER_NUM=#{num}
+  	</update>
+  	
+  	<update id="setHitCount">
+		UPDATE
+			BANNER
+		SET
+			HIT = HIT + 1
+		WHERE
+			BANNER_NUM = #{banner_num}
+	</update>
+	
+	<delete id="setFileDelete" parameterType="BannerFileDTO">
+		DELETE FROM BANNER_FILE WHERE BANNER_FILE_NUM = #{banner_file_num}
+	</delete>
+	
+	<select id="getFileDetail" parameterType="BannerFileDTO" resultType="BannerFileDTO">
+		SELECT * FROM BANNER_FILE WHERE BANNER_FILE_NUM = #{banner_file_num}
+	</select>
+
+  </mapper>
