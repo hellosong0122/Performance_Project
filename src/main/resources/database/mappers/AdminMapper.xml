@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.per.main.admin.AdminDAO">
+	<select id="getAdminList" resultType="MemberDTO">
+		SELECT *
+		  FROM MEMBER
+		 WHERE ROLE=1
+	</select>
+	
+	<select id="getAdminDetail" resultType="MemberDTO" parameterType="MemberDTO">
+		SELECT *
+		  FROM MEMBER
+		 WHERE ROLE=1 AND ID=#{id}
+	</select>
+	
+	<insert id="setAdminAdd" parameterType="MemberDTO">
+		INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS, ROLE)
+		VALUES (MEMBERP_SEQ.NEXTVAL,#{name},#{id},#{pw}, #{email}, #{phone}, #{birth}, #{address}, 1)	
+	</insert>
+	
+	<select id="getAdminUpdateDetail" resultType="MemberDTO" parameterType="MemberDTO">
+		SELECT *
+		  FROM MEMBER
+		 WHERE ID=#{id}	
+	</select>
+	
+	<update id="setAdminUpdate" parameterType="MemberDTO">
+		UPDATE MEMBER SET NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}, BIRTH=#{birth}, ADDRESS=#{address} WHERE ID=#{id}
+	</update>	
+	
+	<delete id="setAdminDelete" parameterType="MemberDTO">
+		DELETE MEMBER WHERE ID=#{id}
+	</delete>
+ 
+ 	<select id="getMemberList" resultType="MemberDTO">
+		SELECT *
+		  FROM MEMBER
+		 WHERE ROLE=0
+	</select>
+	<select id="getMemberDetail" resultType="MemberDTO" parameterType="MemberDTO">
+		SELECT *
+		  FROM MEMBER
+		 WHERE ROLE=0 AND ID=#{id}
+	</select>
+	
+	<insert id="setMemberAdd" parameterType="MemberDTO">
+		INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS, ROLE)
+ 		VALUES (MEMBERP_SEQ.NEXTVAL, #{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth}, #{address}, 0)
+	</insert>
+	
+	<update id="setMemberUpdate" parameterType="MemberDTO">
+		UPDATE MEMBER 
+		   SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, BIRTH=#{birth}, ADDRESS=#{address}
+		 WHERE ID=#{id}
+	</update>	
+	
+	<delete id="setMemberDelete" parameterType="MemberDTO">
+		DELETE MEMBER WHERE ID=#{id}
+	</delete>
+    
+  </mapper>

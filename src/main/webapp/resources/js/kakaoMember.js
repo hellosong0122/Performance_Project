@@ -20,7 +20,7 @@ let nameCheckResult = false;
 let emailCheckResult = false;
 let phoneCheckResult = false;
 
-let checkResults = [false, false, false, false, false, false, false];
+let checkResults = [false, false, false, false, false];
 
 
 
@@ -39,18 +39,18 @@ id.addEventListener("blur", function () {
           idResult.innerHTML = "6~15글자 ID입력해주세요";
           idResult.className = "f";
           checkResults[0] = false;
-          checkResults[6] = false;
+          checkResults[5] = false;
         } else {
           idResult.innerHTML = "가능한 ID입니다.";
           idResult.className = "s";
           checkResults[0] = true;
-          checkResults[6] = true;
+          checkResults[5] = true;
         }
       } else {
         idResult.innerHTML = "이미 사용중인 ID입니다.";
         idResult.className = "f";
         checkResults[0] = false;
-        checkResults[6] = false;
+        checkResults[5] = false;
       }
     });
 });
@@ -87,10 +87,11 @@ pw2.addEventListener("keyup", function () {
   }
 });
 
-nameadd.addEventListener("blur", function () {
-  let check = emptyCheck(nameadd);
-  const nameout = document.getElementById("nameResult");
-  nameout.innerHTML = "이름을 입력해주세요";
+
+phone.addEventListener("blur", function () {
+  let check = emptyCheck(phone);
+  const nameout = document.getElementById("phoneResult");
+  nameout.innerHTML = "핸드폰번호를 입력해주세요";
   nameout.className = "f";
   checkResults[3] = false;
   if (!check) {
@@ -99,76 +100,17 @@ nameadd.addEventListener("blur", function () {
   }
 });
 
-email.addEventListener("blur", function () {
-  let check = emptyCheck(email);
-  const emailout = document.getElementById("emailResult");
-  emailout.innereHTML = "이메일 입력해주세요";
-  emailout.className = "f";
-  checkResults[4] = false;
-
-  if (!check) {
-    emailout.innerHTML = "";
-    checkResults[4] = true;
-  }
-});
-
-$('#mailCheckBtn').click(function(){
-  const eamil = $('#email').val();
-  console.log(eamil);
-  const checkInput = $('.mail-check-input');
-
-  $.ajax({
-    type: 'get',
-    url: "/member/mailCheck?email="+ eamil,
-    success: function (data) {
-      console.log("data: " + data);
-      checkInput.attr('disabled', false);
-      code = data;
-      alert("인증번호가 전송되었습니다.");
-    }
-  });
-});
-
-//인증번호 6자리입력 확인
-$('.mail-check-input').blur(function () {
-  const inputCode = $(this).val();
-  const $resultMsg = $('#mail-check-warn');
-  // let check = emptyCheck()
-  
-  if(inputCode == code){
-    $resultMsg.html('인증번호가 일치합니다.');
-    $resultMsg.css('color','green');
-    $('#mailCheckBtn').attr('disabled',true);   
-    $('#email').attr('readonly',true);
-  }else{
-    $resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
-    $resultMsg.css('color','red');   }
-  
-});
-
-phone.addEventListener("blur", function () {
-  let check = emptyCheck(phone);
-  const nameout = document.getElementById("phoneResult");
-  nameout.innerHTML = "핸드폰번호를 입력해주세요";
-  nameout.className = "f";
-  checkResults[5] = false;
-  if (!check) {
-    nameout.innerHTML = "";
-    checkResults[5] = true;
-  }
-});
-
 birth.addEventListener("change", function () {
   let check = emptyCheck(birth);
   const birthout = document.getElementById("birthResult");
   birthout.innereHTML = "생일을 입력해주세요";
   birthout.className = "f";
-  checkResults[6] = false;
+  checkResults[4] = false;
 
   if (!check) {
     birthout.innerHTML = "";
     birthout.className = "s";
-    checkResults[6] = true;
+    checkResults[4] = true;
   }
 });
 

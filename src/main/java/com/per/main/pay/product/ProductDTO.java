@@ -9,15 +9,19 @@ public class ProductDTO {
 	private Long P_Num;
 	private String P_Name;
 	private Integer P_Price;
-	private String P_Image;
+
+	private List<ImageDTO> P_Image;
+
 	private Date P_Regdate;
 	private Integer P_Count;
 	private String P_Writer;
 	
 	
+
 	public Long getP_Num() {
 		return P_Num;
 	}
+
 
 
 	public void setP_Num(Long p_Num) {
@@ -25,9 +29,11 @@ public class ProductDTO {
 	}
 
 
+
 	public String getP_Name() {
 		return P_Name;
 	}
+
 
 
 	public void setP_Name(String p_Name) {
@@ -35,9 +41,11 @@ public class ProductDTO {
 	}
 
 
+
 	public Integer getP_Price() {
 		return P_Price;
 	}
+
 
 
 	public void setP_Price(Integer p_Price) {
@@ -46,24 +54,16 @@ public class ProductDTO {
 
 
 
-	public String getP_Image() {
+	public List<ImageDTO> getP_Image() {
 		return P_Image;
 	}
 
 
-	public void setP_Image(String p_Image) {
+
+	public void setP_Image(List<ImageDTO> p_Image) {
 		P_Image = p_Image;
 	}
 
-
-	public String getP_Writer() {
-		return P_Writer;
-	}
-
-
-	public void setP_Writer(String p_Writer) {
-		P_Writer = p_Writer;
-	}
 
 
 	public Date getP_Regdate() {
@@ -71,9 +71,11 @@ public class ProductDTO {
 	}
 
 
+
 	public void setP_Regdate(Date p_Regdate) {
 		P_Regdate = p_Regdate;
 	}
+
 
 
 	public Integer getP_Count() {
@@ -81,19 +83,23 @@ public class ProductDTO {
 	}
 
 
+
 	public void setP_Count(Integer p_Count) {
 		P_Count = p_Count;
 	}
 
 
-	public String getP_Writter() {
+
+	public String getP_Writer() {
 		return P_Writer;
 	}
 
 
-	public void setP_Writter(String p_Writer) {
+
+	public void setP_Writer(String p_Writer) {
 		P_Writer = p_Writer;
 	}
+
 
 
 	@Override
