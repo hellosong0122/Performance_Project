@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.per.main.board.ticketopen.TicketOpenDAO">
+      	<sql id="searchSql">
+      		WHERE N.DELETETYPE = '1' 
+							
+			<choose>
+				<when test="kind=='title'">
+					AND N.TITLE LIKE '%'||#{search}||'%'
+				</when>
+				
+				<when test="kind=='content'">
+					AND N.CONTENT LIKE '%'||#{search}||'%'
+				</when>
+			</choose>
+  		</sql>
+	<select id="getList" resultMap="getSelectResult" parameterType="Pager">
+  		SELECT 
+  			*
+		FROM(
+			SELECT 
+				ROWNUM R, 
+				B.* 
+			FROM(
+				SELECT
+					*
+				FROM 
+					TICKET_OPEN N 
+						LEFT JOIN MEMBER M
+							ON N.MEMBER_NUM = M.MEMBER_NUM
+				<include refid="searchSql"></include>	
+				
+				ORDER BY
+					N.TICKET_OPEN_NUM DESC
+				) B
+			)
+		WHERE
+			R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
+  	
+  	<resultMap type="TicketOpenDTO" id="getSelectResult">
+  		<id column="TICKET_OPEN_NUM" property="num"/>
+  		<result column="TITLE" property="title"/>
+  		<result column="CONTENT" property="content"/>
+  		<result column="REGDATE" property="regDate"/>
+  		<result column="UPDATEDATE" property="updateDate"/>
+  		<result column="HIT" property="hit"/>
+  		<collection property="nfDto" javaType="List" ofType="TicketOpenFileDTO">
+  			<id column="TICKET_OPEN_FILE_NUM" property="ticket_open_file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORIGIN_NAME" property="origin_name"/>
+  		</collection>
+  		<collection property="memberDto" javaType="MemberDTO">
+  			<id column="MEMBER_NUM" property="member_num"/>
+  			<result column="NAME" property="name"/>
+  		</collection>
+  	</resultMap>
+  	
+  	
+  	<select id="getTotal" resultType="Long">
+  		SELECT
+  			COUNT(N.TICKET_OPEN_NUM)
+  		FROM
+  			TICKET_OPEN N
+  			LEFT JOIN MEMBER M
+  				ON	N.MEMBER_NUM = M.MEMBER_NUM
+  		<include refid="searchSql"></include>
+  	</select>
+  	
+  	<insert id="setFileAdd" parameterType="TicketOpenFileDTO">
+  		INSERT INTO TICKET_OPEN_FILE
+  		VALUES (TICKET_OPEN_FILE_SEQ.NEXTVAL, #{ticket_open_num}, #{file_name}, #{origin_name}, SYSDATE)
+  	</insert>
+  	
+  	<insert id="setAdd" parameterType="TicketOpenDTO">
+  		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+  			SELECT TICKET_OPEN_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO	TICKET_OPEN 
+  		VALUES (#{num},	#{member_num}, #{title}, #{content}, SYSDATE, SYSDATE, 1, 0)
+  	</insert>
+  	
+  	<select id="getDetail" resultMap="getSelectResult" parameterType="TicketOpenDTO">  
+  		SELECT 
+  			* 
+  		FROM
+  			TICKET_OPEN N
+  			LEFT JOIN MEMBER M
+  				ON N.MEMBER_NUM = M.MEMBER_NUM
+  			LEFT JOIN TICKET_OPEN_FILE NF
+ 				ON N.TICKET_OPEN_NUM=NF.TICKET_OPEN_NUM
+  		WHERE
+  			N.TICKET_OPEN_NUM = #{num} AND
+  			N.DELETETYPE = '1'
+  	</select>
+  	
+  	<delete id="setDelete" parameterType="TicketOpenDTO">
+  		UPDATE
+  			TICKET_OPEN
+  		SET 
+  			DELETETYPE = '0'
+  		WHERE 
+  			TICKET_OPEN_NUM=#{num}
+  	</delete>
+  	
+  	<update id="setUpdate" parameterType="TicketOpenDTO">
+  		UPDATE
+  			TICKET_OPEN
+  		SET 
+  			TITLE=#{title},
+  			content=#{content}
+  		WHERE
+  			TICKET_OPEN_NUM=#{num}
+  	</update>
+  	
+  	<update id="setHitCount">
+		UPDATE
+			TICKET_OPEN
+		SET
+			HIT = HIT + 1
+		WHERE
+			TICKET_OPEN_NUM = #{ticket_open_num}
+	</update>
+	
+	<delete id="setFileDelete" parameterType="TicketOpenFileDTO">
+		DELETE FROM TICKET_OPEN_FILE WHERE TICKET_OPEN_FILE_NUM = #{ticket_open_file_num}
+	</delete>
+	
+	<select id="getFileDetail" parameterType="TicketOpenFileDTO" resultType="TicketOpenFileDTO">
+		SELECT * FROM TICKET_OPEN_FILE WHERE TICKET_OPEN_FILE_NUM = #{ticket_open_file_num}
+	</select>
+
+  </mapper>
