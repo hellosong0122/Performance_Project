@@ -35,6 +35,13 @@
 			  		FROM PERFORMANCE) F)
 		<!-- WHERE R BETWEEN #{startRow} AND #{lastRow} --> 
 	</select>
+	
+	<select id="getSeat" resultType="SeatDTO">
+		SELECT
+			*
+		FROM
+			SEAT
+	</select>
 
 
 	    <!-- BOOK 테이블에서 모든 예약 정보 -->
