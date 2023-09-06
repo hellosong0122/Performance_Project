@@ -5,6 +5,8 @@ const nameadd = document.getElementById("name");
 const email = document.getElementById("email");
 const birth = document.getElementById("birth");
 const phone = document.getElementById("phone");
+const mailCheckBtn = document.getElementById("mailCheckBtn");
+
 
 const frm = document.getElementById("frm");
 const btn = document.getElementById("btn");
@@ -20,10 +22,11 @@ let phoneCheckResult = false;
 
 let checkResults = [false, false, false, false, false, false, false];
 
+
+
 id.addEventListener("blur", function () {
   const idResult = document.getElementById(id.id + "Result");
 
-  6 - 15;
 
   fetch("idCheck?id=" + id.value, { method: "get" })
     .then((response) => {
@@ -126,9 +129,11 @@ $('#mailCheckBtn').click(function(){
   });
 });
 
+//인증번호 6자리입력 확인
 $('.mail-check-input').blur(function () {
   const inputCode = $(this).val();
   const $resultMsg = $('#mail-check-warn');
+  // let check = emptyCheck()
   
   if(inputCode == code){
     $resultMsg.html('인증번호가 일치합니다.');
@@ -137,8 +142,8 @@ $('.mail-check-input').blur(function () {
     $('#email').attr('readonly',true);
   }else{
     $resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
-    $resultMsg.css('color','red');
-  }
+    $resultMsg.css('color','red');   }
+  
 });
 
 phone.addEventListener("blur", function () {
@@ -190,6 +195,7 @@ function emptyCheck(element) {
   }
 }
 
+//주소찾기버튼 클릭했을때
 addrSearch.addEventListener("click", function () {
   console.log("ok");
   new daum.Postcode({
@@ -224,11 +230,11 @@ addrSearch.addEventListener("click", function () {
   }).open();
 });
 
+
+
 btn.addEventListener("click", function () {
   let c = checkResults.includes(false);
   if (!c) {
-    //form전송
-    console.log("form전송");
     frm.submit();
   } else {
     alert("필수 항목을 입력해주세요");

@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <c:import url="../temp/bootStrap.jsp"></c:import>
+    <c:import url="../temp/bootStrap.jsp"></c:import>   
+    
     <style>
       .f {
         color: red;
@@ -14,7 +16,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
       .s {
         color: blue;
-      }
+      }      
+   
     </style>
   </head>
   <body>
@@ -71,12 +74,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <div id="nameResult"></div>
         </div>
 
-        <!-- 	<div class="row mb-3">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-	    <div class="col-sm-5">
-	      <input type="text" name="email" class="form-control" id="email" placeholder="name@example.com">
-	    </div>
-  	 </div> -->
+
 
         <div class="form-group email-form">
           <label for="email" class="form-label">Email</label>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    <mapper namespace="com.per.main.calendar.CalendarDAO">
+   
+    <!--테이블생성하기  -->
+    
+    <insert id="SelectedInfoDate" parameterType="com.per.main.calendar.CalendarDTO">
+        INSERT INTO SELECTDATE (date, prfnm, prfpdfrom, prfpdto)
+        VALUES (#{date}, #{prfnm}, #{prfpdfrom}, #{prfpdto})
+    </insert>
+</mapper>

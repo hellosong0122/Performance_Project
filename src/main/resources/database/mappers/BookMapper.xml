@@ -3,10 +3,46 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-   <mapper namespace="com.per.main.book.BookDAO">
-   
-   <select id="getList" resultType="BookDTO" >
-		SELECT TICKETID, SEATID, PERFORMANCE_NUM, EMAIL, BOOKDATE, PRICE, WRITER FROM BOOK 
+   <mapper namespace="com.per.main.per.BookDAO">
+  
+  <select id="getPerList" resultType="PerformanceDTO" parameterType="Pager">
+		SELECT PRFNM, PRFPDFROM, PRFPDTO, GENRENM
+		FROM (SELECT ROWNUM R, F.*
+			  FROM (SELECT *
+			  		FROM PERFORMANCE) F)
+		<!-- WHERE R BETWEEN #{startRow} AND #{lastRow} --> 
+	</select>
+	
+	<select id="getPlaceList" resultType="PerformancePlaceDTO" parameterType="Pager">
+		SELECT FCLTYNM, ADRES, TELNO
+		FROM (SELECT ROWNUM R, P.*
+		 	  FROM (SELECT * 
+			  	    FROM PERFORMANCE_PLACE) P)
+		<!-- WHERE R BETWEEN #{startRow} AND #{lastRow}  -->
 	</select> 
+	
+
+<select id="getPlaceDetails" resultType="PerformancePlaceDTO" parameterType="String">
+    SELECT FCLTYNM, ADRES, TELNO
+    FROM PERFORMANCE_PLACE
+    WHERE MT10ID = #{mt10id}
+</select>
+
+  <select id="getPerTime" resultType="PerformanceDTO" parameterType="Pager">
+		SELECT PRFNM, PRFPDFROM, PRFPDTO, GENRENM, dtguidance, performance_num
+		FROM (SELECT ROWNUM R, F.*
+			  FROM (SELECT *
+			  		FROM PERFORMANCE) F)
+		<!-- WHERE R BETWEEN #{startRow} AND #{lastRow} --> 
+	</select>
+	
+	<select id="getSeat" resultType="SeatDTO">
+		SELECT
+			*
+		FROM
+			SEAT
+	</select>
+
+
 	
 </mapper>
