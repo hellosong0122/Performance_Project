@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import com.per.main.board.BoardDTO;
 import com.per.main.per.PerformanceService;
 import com.per.utils.Pager;
 
@@ -55,7 +55,9 @@ import com.per.utils.Pager;
 			
 			
 			@GetMapping("/seat")
-			public String showSeat()throws Exception {
+			public String showSeat(Model model)throws Exception {
+				List<SeatDTO> arr = bookService.getSeat();
+				model.addAttribute("list", arr);
 			    return "book/seat";
 			}
 			
