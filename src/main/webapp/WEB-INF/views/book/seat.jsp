@@ -14,80 +14,80 @@
 		<!-- VIP -->
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="0" end="9">
-				<input type="button" id="${v.title}" name="seats" class="seat VIP" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat VIP" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<!-- R -->
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="10" end="19">
-				<input type="button" id="${v.title}" name="seats" class="seat R" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat R" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="20" end="29">
-				<input type="button" id="${v.title}" name="seats" class="seat R" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat R" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="30" end="39">
-				<input type="button" id="${v.title}" name="seats" class="seat R" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat R" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<!-- S -->
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="40" end="49">
-				<input type="button" id="${v.title}" name="seats" class="seat S" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat S" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="50" end="59">
-				<input type="button" id="${v.title}" name="seats" class="seat S" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat S" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="60" end="69">
-				<input type="button" id="${v.title}" name="seats" class="seat S" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat S" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="70" end="79">
-				<input type="button" id="${v.title}" name="seats" class="seat S" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat S" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<!-- A -->
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="80" end="89">
-				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="90" end="99">
-				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="100" end="109">
-				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="110" end="119">
-				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="120" end="129">
-				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="130" end="139">
-				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="140" end="149">
-				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-value="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat A" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
 			</c:forEach>
 		</div>
 	</div>
@@ -110,7 +110,7 @@
 		</table>
 	</div>
 
-	<button type="button" id="goToPay">좌석 예약</button>
+	<button type="button" id="goToPay" style="color: red;">좌석 예약</button>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
