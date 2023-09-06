@@ -55,4 +55,9 @@ public class ReviewService {
 	public int setDelete(ReviewDTO reviewDTO) throws Exception {
 		return reviewDAO.setDelete(reviewDTO);
 	}
+	
+	//댓글 수정
+	public int setUpdate(ReviewDTO reviewDTO) throws Exception {
+		return reviewDAO.setUpdate(reviewDTO);
+	}
 }

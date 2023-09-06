@@ -5,10 +5,10 @@
 <ul style="list-style-type: none; padding-left: 0">
     <c:forEach items="${list}" var="re">
         <li class="border-bottom border-secondary-subtle mb-3">
-            <div class="mb-3"> 
+            <div class="mb-3 contents"> 
                 ${re.contents} 
             </div>
-            <div class="d-flex">
+            <div class="d-flex re">
                 <div class="flex-grow-1" style="color: rgb(132, 132, 132);">
                     ${re.id} | ${re.regDate} | 좋아요 ${re.good}
                    
@@ -19,6 +19,7 @@
                 </div>
                 <div class="justify-content-end">
                     <c:if test="${member.id eq re.id}">
+                        <button data-num="${re.review_num}" data-page="${pager.page}" class="reviewUp btn btn-dark btn-sm" type="button">수정</button>
                         <button data-num="${re.review_num}" class="reviewDel btn btn-dark btn-sm" type="button">삭제</button>
                     </c:if>
                 </div>

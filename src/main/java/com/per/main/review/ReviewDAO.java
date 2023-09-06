@@ -53,4 +53,8 @@ public class ReviewDAO {
 	public Long getTotal(ReviewDTO reviewDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getTotal", reviewDTO);
 	}
+	
+	public int setUpdate(ReviewDTO reviewDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setUpdate", reviewDTO);
+	}
 }

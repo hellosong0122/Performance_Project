@@ -127,6 +127,47 @@ function delReview(review_num){
     })
 }
 
+//Review 수정
+$('#reviewList').on('click', '.reviewUp', function(){
+    let result = confirm('수정하시겠습니까?');
+    if(result){
+        let a = '<input type="text" name="contents">'
+        let contents = $(this).closest('.re').siblings('.contents');
+        contents.html(a);
+        $(this).removeClass('reviewUp').addClass('Update');
+    }
+})
+
+$('#reviewList').on('click', '.Update', function(){
+    let rn = $(this).attr('data-num');
+    page = $(this).attr('data-page');
+    
+    //input value -> name = contents
+    let contents = $(this).closest('.re').siblings('.contents').children().val();
+    // console.log(contents);
+    upReview(rn, contents, page);
+})
+
+//Review update
+function upReview(review_num, contents, page){
+    $.ajax({
+        type: 'post',
+        url: '/review/update',
+        data: {
+            review_num: review_num,
+            contents: contents
+        },
+        success: function(result){
+            if(result.trim()>0){
+                alert('댓글이 수정되었습니다');
+                getList(pn, page);
+            }else{
+                alert('댓글 수정에 실패하였습니다');
+            }
+        }
+    })
+}
+
 //좋아요
 $('#reviewList').on('click', '.good', function(){
     let rn = $(this).attr('data-num');

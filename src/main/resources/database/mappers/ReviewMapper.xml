@@ -38,6 +38,11 @@
 	
 	
 	<!-- review -->
+	<update id="setUpdate" parameterType="ReviewDTO">
+		UPDATE REVIEW SET
+		CONTENTS = #{contents}
+		WHERE REVIEW_NUM = #{review_num}
+	</update>
 
 	<delete id="setDelete" parameterType="ReviewDTO">
 		DELETE REVIEW
