@@ -110,7 +110,7 @@
 		</table>
 	</div>
 
-	<button type="button" id="goToPay">좌석 예약</button>
+	<button type="button" id="goToPay" style="color: red;">좌석 예약</button>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
