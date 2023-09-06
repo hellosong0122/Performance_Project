@@ -10,7 +10,7 @@
 			<c:if test="${empty member}">
 		    <script type="text/javascript">
 		        alert("로그인하세요");
-		        //location.href="../member/login";   로그인페이지 구현되면 추후에
+		        //location.href="../member/login";   //로그인페이지 구현되면 추후에
 		    </script>	
 			</c:if>
 			
@@ -242,6 +242,7 @@
 						// 선택된 날짜의 날짜 정보 가져오기
 						// newDIV.innerHTML => innerhtml을 사용하여 newDIV내의 날짜를 문자열로 함/ 그래서 문자열로 숫자로 변환 
 						let selectedDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), parseInt(newDIV.innerHTML));
+						
 						let selectedMonth = selectedDate.getMonth() + 1;
 						let selectedDay = selectedDate.getDate();
 						// div 시간표
@@ -251,41 +252,55 @@
 						
 						console.log("선택된 날짜:", selectedMonth + "월" + selectedDay + "일");
 						console.log(selectedDate)
-					
-						
+
+						//session
+						let selectedAllDate = {
+							month: selectedDate.getMonth() + 1,
+							day: selectedDate.getDate()
+							};
+							sessionStorage.setItem('selectedDate', JSON.stringify(selectedAllDate));
+    						console.log(selectedAllDate.month + "월" + selectedAllDate.day + "일");
+
+							 
+
+							// 	localStorage.setItem('selectedDate', JSON.stringify(selectedAllDate));
+
+							// 	// 로컬 스토리지에서 선택된 날짜 정보 가져오기
+							// 	const selectedAllDated = JSON.parse(localStorage.getItem('selectedDate'));
+
+							// 	if (selectedAllDated) {
+							// 		console.log(`선택된 날짜: ${selectedAllDated.month}월 ${selectedAllDated.day}일`);
+							// 	} else {
+							// 		console.log('선택된 날짜가 없습니다.');
+							// 	}
+
+
+
+
 						// 선택된 날짜를 해당 버튼의 data-date 속성에 저장
 						document.getElementById("selectSeat").setAttribute("data-date", selectedDateString);
 						
 
+						
+						
+						
+						
+						
 						// 시간표 div 표시
 						selectTimeDiv.style.display = "block"; //display에서 block은 보이게 하는것
-						 // 날짜 선택 해제 시 시간표 숨김
-						 // newDIV는 각 셀
+						// 날짜 선택 해제 시 시간표 숨김
+						// newDIV는 각 셀
 						newDIV.onclick = function () {
-						  selectTimeDiv.style.display = "none";
-						  };
-
+							selectTimeDiv.style.display = "none";
+						};
+						
 						// 시간표 div의 내용 업데이트를 위해 선택된 날짜 정보 서버로 전송
    						const data = { selectedDate: `${selectedMonth}월 ${selectedDay}일` };
 
-						  $.ajax({
-							type: "POST",
-							url: "/book/checkBeforePay",
-							data: data,
-							success: function(success) {
-								console.log('Success:');
-							},
-							error: function(error) {
-								console.log('Error:');
-							}
-						});
 
-            // 추가적인 동작 수행 (생략)
- 
-
-					}
+						}
 						
-		
+				
 					// 이전달 버튼 클릭
 					function prevCalendar() {
 						nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());  // 현재 달을 1 감소
@@ -318,7 +333,20 @@
 					 
 					 // 선택된 시간을 콘솔에 표시
 					console.log("선택된 시간:", selectedTime.innerText);
-     				   }
+     				
+					// //session
+					// let selectedAllDate = {
+					// 	month: selectedDate.getMonth() + 1,
+					// 	day: selectedDate.getDate()
+					// 	};
+					// 	sessionStorage.setItem('selectedDate', JSON.stringify(selectedAllDate));
+    				// 	console.log(selectedAllDate.month + "월" + selectedAllDate.day + "일");
+
+
+					// 선택된 시간을 세션 저장
+					sessionStorage.setItem('selectedTime', selectedTime.innerText);
+					console.log("시간선택:", selectedTime.innerText);
+					}
 
 
 			  

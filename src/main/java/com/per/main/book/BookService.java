@@ -23,19 +23,12 @@ public class BookService {
 	public List<PerformanceDTO> getPerList()throws Exception{
 		return bookDAO.getPerList();
 	}
-
 	
-	
-	//booking
-	public List<PerformanceDTO> getPerTime() throws Exception{
-		return bookDAO.getPerTime();
-	}
-	
-//	
-//	//공연가격정보가져오기
-//	public void getPerformancePrice(Long performance_num)throws Exception{
-//		return performanceService.getPerformanceNum(performance_num);
-//	}
+	//price
+	 public Long getPerformancePrice() throws Exception {
+	        PerformanceDTO performanceDTO = performanceService.getPrice();
+	        return performanceDTO.getPcseguidance();
+	    }
 	
 }
 

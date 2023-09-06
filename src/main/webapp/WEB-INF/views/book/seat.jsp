@@ -170,6 +170,14 @@
         //선택좌석
         const seatDiv = document.querySelector(".selectedseats");
 
+        // 세션에 저장
+        const selSeat = []; 
+
+        // 로컬 스토리지에 선택한 좌석 정보 저장
+        localStorage.setItem("selSeat", JSON.stringify(selSeat));
+        console.log("선택좌석:"+localStorage.getItem('selSeat'));
+
+        
         //좌석별 가격 정보
         const seatPrices = {VIP : 140000, R: 120000, S:100000, A:60000};
     
@@ -222,12 +230,19 @@
                             selectedSeats.push(data.value);
                         });
                         //click class가 존재하지 않을때 (추가해주는 toggle)
+                        // 선택한 좌석 정보를 세션 스토리지에 업데이트
+                        sessionStorage.setItem("selSeat", JSON.stringify(selectedSeats));
+                    
                     } else {
                         input.classList.add("clicked");
                         clicked = document.querySelectorAll(".clicked");
                         clicked.forEach((data) => {
                             selectedSeats.push(data.value);
                         })
+                        // 선택한 좌석 정보를 세션 스토리지에 업데이트
+                        sessionStorage.setItem("selSeat", JSON.stringify(selectedSeats));
+                        console.log("세션좌석:"+ sessionStorage.getItem('selSeat'));
+
                     };
                 
     

@@ -37,5 +37,9 @@
 	</select>
 
 
+	    <!-- BOOK 테이블에서 모든 예약 정보 -->
+    <select id="getBookList" resultType="BookDTO">
+        SELECT * FROM BOOK
+    </select>
 	
 </mapper>

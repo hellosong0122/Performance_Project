@@ -22,7 +22,8 @@
                     let data = {
                         prfnm: $(this).data('name'),
                         performance_num: $(this).data('num'), 
-                        id: $(this).data('id') 
+                        id: $(this).data('id'),
+                        pcseguidance : $(this).data('price')
                     };
                      // localStorage에 데이터 저장, 공연정보 json문자로 변환
                     localStorage.setItem('selectedPerformance', JSON.stringify(data));
@@ -101,7 +102,8 @@
                     <button  type="submit" id="selectPerBtn" data-name="${dto.performanceDTO.prfnm}" 
                         data-start="${dto.performanceDTO.prfpdfrom}" data-end="${dto.performanceDTO.prfpdto}" 
                         data-num="${dto.performanceDTO.performance_num}" 
-                        data-perId="${dto.performanceDTO.mt20id}" data-id = "${member.id}">예매하기</button>
+                        data-perId="${dto.performanceDTO.mt20id}" data-id = "${member.id}" 
+                        data-price="${dto.performanceDTO.pcseguidance}">예매하기</button>
                         
                 </div>
             </div>

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import com.per.main.per.PerformanceDTO;
 import com.per.main.per.PerformanceService;
 import com.per.utils.Pager;
 
@@ -53,17 +53,39 @@ import com.per.utils.Pager;
 			return "book/seat";
 			}
 			
-			
 			@GetMapping("/seat")
 			public String showSeat()throws Exception {
 			    return "book/seat";
 			}
+			
+			@GetMapping("/practice")
+			public String showPractice()throws Exception {
+			    return "book/practice";
+			}
+			
+			
+//			@GetMapping("/seat")
+//			public String showSeat(Model model) throws Exception {
+//			    PerformanceDTO performanceDTO = performanceService.getPrice();
+//			    // PerformanceDTO에서 pcseguidance 값을 가져와서 모델에 추가
+//			    model.addAttribute("performancePrice", performanceDTO.getPcseguidance());
+//			    return "book/seat";
+//			}
 			
 			@GetMapping("/checkBeforePay")
 			public String check()throws Exception{
 				return "book/checkBeforePay";
 			}
 			
+//			@RequestMapping("/seat")
+//			public String getPrice(Model model, PerformanceDTO performanceDTO)throws Exception{
+//				performanceDTO=performanceService.getPrice(performanceDTO);
+//				//모델에 공연가격 데이터를 뷰로 전달
+//				model.addAttribute("performancePrice", performanceDTO);
+//				 // seat.jsp로 이동
+//			    return "seat"; 
+//				}
+	
 			
 //			//detail form에서 전달된 값 받기
 //			@RequestMapping("/checkBeforePay")
@@ -98,11 +120,6 @@ import com.per.utils.Pager;
 //			}
 //		
 
-//			@RequestMapping("/checkBeforePay")
-//			public String checkBeforePay(@ModelAttribute BookDTO bookDTO, Model model) throws Exception {
-//			    //session.setAttribute("bookDTO", bookDTO);
-//			    return "book/checkBeforePay"; // JSP 페이지 경로
-//			}
 	}	
 	
 
