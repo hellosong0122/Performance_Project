@@ -21,7 +21,7 @@ public class MemberDAO {
 	public MemberDTO getId(MemberDTO memberDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getId", memberDTO);
 	}
-	
+		
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);
 	}
@@ -29,4 +29,9 @@ public class MemberDAO {
 	public MemberDTO findId(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"findId", memberDTO);
 	}
+	
+	public MemberDTO getUserInfo(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getUserInfo", memberDTO);
+	}
+
 }

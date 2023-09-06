@@ -11,7 +11,12 @@
 
 <title>Home</title>
 </head>
+<body>
+<!-- ================index.jsp ================== -->
 
+
+<c:import url="./base/base.jsp"></c:import>
+</head>
 <body>
 	<c:import url="./base/header.jsp"></c:import>
 

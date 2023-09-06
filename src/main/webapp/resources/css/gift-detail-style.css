@@ -243,7 +243,7 @@ nav ul ul {
 }
 
 /* Display Dropdowns on Hover */
-nav ul li:hover > ul {
+nav ul li:hover>ul {
     display: inherit;
 }
 
@@ -277,7 +277,7 @@ nav ul ul ul li {
 }
 
 /* Change ' +' in order to change the Dropdown symbol */
-li > a:only-child:after {
+li>a:only-child:after {
     content: '';
 }
 
@@ -308,7 +308,7 @@ li > a:only-child:after {
 
     /* Hide the navigation menu by default */
     /* Also hide the  */
-    .toggle + a,
+    .toggle+a,
     .menu {
         display: none;
     }
@@ -350,7 +350,7 @@ li > a:only-child:after {
     }
 
     /* Display Dropdown when clicked on Parent Lable */
-    [id^=drop]:checked + ul {
+    [id^=drop]:checked+ul {
         display: block;
         background: #fff;
         padding: 15px 0;
@@ -423,8 +423,8 @@ li > a:only-child:after {
     }
 
     /* Hide menus on hover */
-    nav ul ul li:hover > ul,
-    nav ul li:hover > ul {
+    nav ul ul li:hover>ul,
+    nav ul li:hover>ul {
         display: none;
     }
 
@@ -840,14 +840,14 @@ ul.list-login-bottom li:nth-child(2) {
     cursor: pointer;
 }
 
-.checkbox input:checked + i:after,
-.radio input:checked + i:after {
+.checkbox input:checked+i:after,
+.radio input:checked+i:after {
     opacity: 1;
 }
 
 
-.checkbox input + i:after,
-.radio input + i:after {
+.checkbox input+i:after,
+.radio input+i:after {
     position: absolute;
     opacity: 0;
     transition: opacity 0.1s;
@@ -1008,15 +1008,15 @@ ul.list-login-bottom li:nth-child(2) a,
     transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #cfd7d9;
 }
 
-input:focus + .slider {
+input:focus+.slider {
     box-shadow: 0 0 1px #555;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     -webkit-transform: translateX(14px);
     -ms-transform: translateX(14px);
     transform: translateX(14px);
@@ -1679,4 +1679,78 @@ h3.sub-w3ls-headf {
     }
 }
 
-/*--//responsive--*/
+.c_product_input_count .form_input:not(:only-child) {
+    padding: 0 32px;
+}
+.c_product_input .form_input:not(:only-child) {
+    padding-right: 56px;
+}
+.c_product_input_count .form_input {
+    width: 108px;
+    height: 32px;
+    border: none;
+    text-align: center;
+    font-family: "Lato", "Helvetica Neue", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", "돋움", dotum, sans-serif;
+    font-size: 16px;
+    line-height: 32px;
+}
+.c_product_input .form_input {
+    width: 100%;
+    height: 48px;
+    padding: 0 13px 0 16px;
+    /* background-color: #fff; */
+    border: 1px solid #ddd;
+    color: #111;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body, h1, h2, h3, h4, th, td, input, select, textarea, button {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: "Noto Sans KR", "Helvetica Neue", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", "돋움", dotum, sans-serif;
+    color: #666;
+    letter-spacing: 0;
+}
+/* ---------------------- */
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+.container1{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+.counter1{
+    display: flex;
+}
+#increment-btn, #decrement-btn{
+    height: 30px;
+    width: 50px;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-right: 5px;
+    margin-right: 5px;
+    background-color: #938dc0;
+    border: 2px solid #938dc0;
+    color: white;
+}
+#p_Counter{
+    height: 30px;
+    width: 50px;
+    margin-right: 5px;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgba(255, 0, 0, 0.187);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

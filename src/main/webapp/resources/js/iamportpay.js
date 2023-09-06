@@ -1,5 +1,9 @@
-$("#iamportBtn").click(function(){
-    iamport();
+let price = $('#payBtn').attr(data-price);
+
+$("#payBtn").click(function(){
+     let value = $("payBtn").attr('data-price');
+    console.log(price);
+     //iamport();
 })
 function iamport(){
     IMP.init('imp22750372');   //가맹점 식별코드
@@ -8,10 +12,10 @@ function iamport(){
         pay_method : 'card',
         merchant_uid : 'merchant_' + new Date().getTime(),
         name : '상품1' ,     //결제창에서 보여질 이름
-        amount : 100,        //실제 결제되는 가격
-        buyer_email : 'iamport@siot.do',
+        amount : 1,        //실제 결제되는 가격
+        buyer_email : 'kss111112@naver.com',
         buyer_name : '구매자',
-        buyer_tel : '010-1234-5678',
+        buyer_tel : '010-4701-0052',
         buyer_addr : '서울 강남구 도곡동',
         buyer_postcode : '123-456'
     }, function(rsp) {
@@ -30,4 +34,4 @@ function iamport(){
             }
         });
     });
-    }
+}

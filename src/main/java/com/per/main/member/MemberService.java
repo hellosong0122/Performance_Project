@@ -25,4 +25,8 @@ public class MemberService {
 	public MemberDTO findId(MemberDTO memberDTO)throws Exception{
 		return memberDAO.findId(memberDTO);
 	}
+	
+	public MemberDTO getUserInfo(MemberDTO memberDTO) throws Exception{
+		return memberDAO.getUserInfo(memberDTO);
+	}
 }
