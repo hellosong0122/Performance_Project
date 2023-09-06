@@ -31,6 +31,11 @@ public class BookService {
 		return bookDAO.getPerTime();
 	}
 	
+	//seat
+	public List<SeatDTO> getSeat() throws Exception {
+		return bookDAO.getSeat();
+	}
+	
 //	
 //	//공연가격정보가져오기
 //	public void getPerformancePrice(Long performance_num)throws Exception{
