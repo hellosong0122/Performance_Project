@@ -3,7 +3,6 @@ package com.per.main.member;
 import java.sql.Date;
 
 public class MemberDTO {
-
 	private Long memberNum;
 	private String name;
 	private String id;
@@ -12,8 +11,11 @@ public class MemberDTO {
 	private String phone;
 	private Date birth;
 	private String address;
-	private Boolean auth;
-	private Boolean marketing;
+	private Integer auth;
+	private Integer marketing;
+	private Long role;
+	
+
 	public Long getMemberNum() {
 		return memberNum;
 	}
@@ -62,18 +64,23 @@ public class MemberDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Boolean getAuth() {
+	public Integer getAuth() {
 		return auth;
 	}
-	public void setAuth(Boolean auth) {
+	public void setAuth(Integer auth) {
 		this.auth = auth;
 	}
-	public Boolean getMarketing() {
+	public Integer getMarketing() {
 		return marketing;
 	}
-	public void setMarketing(Boolean marketing) {
+	public void setMarketing(Integer marketing) {
 		this.marketing = marketing;
+	}	
+	public Long getRole() {
+		return role;
+	}
+	public void setRole(Long role) {
+		this.role = role;
 	}
 	
-
 }

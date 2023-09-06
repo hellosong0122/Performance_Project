@@ -20,7 +20,20 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
+	<interceptors>		
+		<interceptor>
+			<mapping path="/admin/adminPage"/>			
+			<mapping path="/admin/adminDetail"/>
+			<mapping path="/admin/adminAdd"/>
+			<mapping path="/admin/memberPage"/>			
+			<beans:ref bean="adminInterceptor"/>
+		</interceptor>
+	</interceptors> 
+	
+	
 	<beans:bean id="naverLoginBO" class="com.per.main.member.NaverLoginBO"></beans:bean>
+	<beans:bean id="kakaoLoginBO" class="com.per.main.member.KakaoLoginBO"></beans:bean>
 	
 	<context:component-scan base-package="com.per.main" />
 	

@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-  <head>
+ <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
     <c:import url="../temp/bootStrap.jsp"></c:import>   
@@ -24,8 +22,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <c:import url="../temp/header.jsp"></c:import>
     <section class="container mt-5">
       <h1 class="mb-3 text-center">회원가입</h1>
-
-      <form action="./join" method="post" id="frm">
+		<script>alert("회원가입을 진행해주세요!")</script>
+      <form action="./kakaoJoin" method="post" id="frm">
         <div class="mb-3">
           <label for="id" class="form-label">아이디</label>
           <input
@@ -68,13 +66,19 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             type="text"
             name="name"
             class="form-control"
-            id="name"
-            placeholder=""
+            id="name"        
+            value="${name}"
+            readonly
           />
           <div id="nameResult"></div>
         </div>
 
-
+        <!-- 	<div class="row mb-3">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+	    <div class="col-sm-5">
+	      <input type="text" name="email" class="form-control" id="email" placeholder="name@example.com">
+	    </div>
+  	 </div> -->
 
         <div class="form-group email-form">
           <label for="email" class="form-label">Email</label>
@@ -83,28 +87,11 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             name="email"
             class="form-control"
             id="email"
-            placeholder="name@example.com"
+        	value="${email}"
+            readonly
           />
 
-          <div id="emailResult"></div>
-
-          <div class="input-group-addon">
-            <button type="button" class="btn btn-primary" id="mailCheckBtn">
-              본인인증
-            </button>
-          </div>
-
-          <div class="mail-check-box">
-            <input
-              class="mail-check-input"
-              placeholder="인증번호 6자리를 입력해주세요" 
-              disabled ="disabled"        
-              maxlength="6"
-            />
-          </div>
-          <span id="mail-check-warn"></span>
-      
-        </div>
+          <div id="emailResult"></div>       
 
         <div class="mb-3">
           <label for="phone" class="form-label">휴대폰</label>
@@ -124,8 +111,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             type="date"
             name="birth"
             class="form-control"
-            id="birth"
-            placeholder="19970102"
+            id="birth"           
           />
           <div id="birthResult"></div>
         </div>
@@ -176,8 +162,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         </div>
       </form>
     </section>
-    <script src="/resources/js/member.js"></script>
-    <!-- 카카오주소api -->
+   <script src="/resources/js/kakaoMember.js"></script>
+
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     
   </body>
