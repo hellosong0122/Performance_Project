@@ -17,5 +17,6 @@
 		<typeAlias type="com.per.main.pay.product.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.per.utils.Pager" alias="Pager"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
+		<typeAlias type="java.util.Map" alias="Map"/>
 	</typeAliases>
 </configuration>

@@ -18,12 +18,30 @@ public class PerformanceController {
 	@Autowired
 	private PerformanceService performanceService;
 	
+	@GetMapping("playList")
+	public String playList(Pager pager, Model model) throws Exception {
+		List<PerformanceDTO> ar = performanceService.getPlayList(pager);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		
+		return "performance/playList";
+	}
+	
+	@GetMapping("musicalList")
+	public String musicalList(Pager pager, Model model) throws Exception {
+		List<PerformanceDTO> ar = performanceService.getMusicalList(pager);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		
+		return "performance/musicalList";
+	}
+	
 	@GetMapping("detail")
 	public String detail(PerformanceDTO performanceDTO, Model model) throws Exception {
 		PerformancePlaceDTO placeDTO = performanceService.getDetail(performanceDTO);
 		model.addAttribute("dto", placeDTO);
 		
-		return "/performance/detail";
+		return "performance/detail";
 	}
 	
 	//--------------------------------------
@@ -62,7 +80,7 @@ public class PerformanceController {
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
-		return "/performance/perList";
+		return "performance/perList";
 	}
 	
 	@GetMapping("placeList")
@@ -71,7 +89,7 @@ public class PerformanceController {
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
-		return "/performance/placeList";
+		return "performance/placeList";
 	}
 	
 	@GetMapping("perDetail")
@@ -87,7 +105,7 @@ public class PerformanceController {
 		placeDTO = performanceService.getPlaceDetail(placeDTO);
 		model.addAttribute("dto", placeDTO);
 		
-		return "/performance/placeDetail";
+		return "performance/placeDetail";
 	}
 
 }
