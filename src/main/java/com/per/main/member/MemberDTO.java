@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class MemberDTO {
 
-	private Long memberNum;
+	private Long member_num;
 	private String name;
 	private String id;
 	private String pw;
@@ -14,11 +14,11 @@ public class MemberDTO {
 	private String address;
 	private Boolean auth;
 	private Boolean marketing;
-	public Long getMemberNum() {
-		return memberNum;
+	public Long getMember_num() {
+		return member_num;
 	}
-	public void setMemberNum(Long memberNum) {
-		this.memberNum = memberNum;
+	public void setMemberNum(Long member_num) {
+		this.member_num = member_num;
 	}
 	public String getName() {
 		return name;
