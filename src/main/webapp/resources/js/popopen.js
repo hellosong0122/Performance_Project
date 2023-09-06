@@ -1,27 +1,39 @@
-// const btn = document.querySelector('.selectPerBtn');
-// //아마 버튼이 name으로 되어있어서 querySelector인듯..?
-
-// btn.addEventListener("click",function(){
-//     let popUrl = "Calendar.jsp";
-//     let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
-//     //팝업창오픈(url,이름,옵션)     
-//     window.open(popUrl,"예매하기",popOption);
-// })
 
 
 const popbutton = document.getElementById("selectPerBtn")
+const selectedPer = document.querySelector(".selectedPer");
 
-popbutton.addEventListener("click",function(){
-    window.open("calendar", "달력", "width=600, height=600, left=200, top=0")
+
+popbutton.addEventListener("click", function() {
+    
+     
+        
+    
+    // 데이터 가져오기
+    const prfName = popbutton.getAttribute("data-name");
+    const prfStart = popbutton.getAttribute("data-start");
+    const prfEnd = popbutton.getAttribute("data-end");
+    const prNum = popbutton.getAttribute("data-num");
+
+    // 데이터 확인을 위해 출력
+    console.log("공연명:", prfName);
+    console.log("공연시작일:", prfStart);
+    console.log("공연종료일:", prfEnd);
+    console.log("공연번호:", prNum);
+
+    
+    //섹션1 구간에 선택영화 이름과 포스터 넣기
+    // selectedPer.innerHTML =  `
+    // <h3>${prfName}</h3>
+    // <img src="${prPost}" width="400">
+    // `;
+    
+    //`<h3>${prfName}</h3>
+    //<img src="${prPost}" width="400">`;
+        
+    const popUrl = `../book/calendar?start=${encodeURIComponent(prfStart)}&end=${encodeURIComponent(prfEnd)}&name=${encodeURIComponent(prfName)}`;
+   //encodeURIComponent : URI로 데이터를 전달하기 위해서 문자열을 인코딩
+    //const popUrl = `../book/calendar?start=${prfStart}&end=${prfEnd}&end=${prfName}`;
+    const popOption = "width=1000, height=1000, left=200, top=0, scrollbars=yes";
+    window.open(popUrl, "예약", popOption);
 })
-
-//const buttons = document.querySelectorAll('.selectPerBtn');
-
-// buttons.forEach(function(btn) {
-//     btn.addEventListener("click", function() {
-//         let popUrl = "Calendar.jsp";
-//         let popOption = "width=650px, height=550px, top=300px, left=300px, scrollbars=yes";
-//         //팝업창오픈(url,이름,옵션)     
-//         window.open(popUrl, "예매하기", popOption);
-//     });
-// });

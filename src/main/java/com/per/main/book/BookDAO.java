@@ -36,7 +36,11 @@ public class BookDAO {
 	public List<PerformanceDTO> getPerTime()throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getPerTime");
 	}
-
+	//공연가격정보
+	 public PerformanceDTO getPerformancePrice(Long performance_num) throws Exception {
+	        return sqlSession.selectOne(NAMESPACE + "getPerformancePrice", performance_num);
+	    }
+	
 
 }
 
