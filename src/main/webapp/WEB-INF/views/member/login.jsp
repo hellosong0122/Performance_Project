@@ -40,7 +40,7 @@
 				</form>
 			</div>
 			<div class="sign-in-container">
-				<form action="./login" method="post" name="frm">				
+				<form name="frm">				
 					<div class="social-links">
 						<div>
 							<a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -55,7 +55,7 @@
 					<span>or use your account</span> <input type="text" name="id"
 						id="id" placeholder="ID"> <input type="password" name="pw"
 						id="pw" placeholder="PASSWORD">
-					<button class="form_btn">Sign In</button>
+					<button class="form_btn" id="loginBtn">Sign In</button>
 
               <!-- 네이버 로그인 창으로 이동 -->
               <a id="naver_id_login" href="${urlNaver}">
@@ -95,5 +95,6 @@
 
 	
 	</section>
+	<script src="/resources/js/member/login.js"></script>
 </body>
 </html>
