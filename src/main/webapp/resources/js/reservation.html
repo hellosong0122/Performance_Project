@@ -1,16 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>확인 페이지</title>
 </head>
 <body>
-	<h1>확인</h1>
-    <c:out value="${sessionScope.bookDTO.performance_num}" /> <br>
-    <c:out value="${sessionScope.bookDTO.prfnm}" /> <br>
-    <c:out value="${sessionScope.bookDTO.id}" /> <br>
+    <h1>확인</h1>
+    <!-- 공연정보 가져오기 -->
+    <form action="practice.jsp" method="post"> <!-- 결제 페이지로 POST 요청을 보냄 -->
+        <div>
+            <p>공연명: <span id="prfnm"></span></p>
+            <p>공연 번호: <span id="performance_num"></span></p>
+            <p>구매자 ID: <span id="member_id"></span></p>
+            <p>구매자 E-MAIL: <span id="member_email"></span></p>
+            <p>예약날짜: <span id="selectedDate"></span></p>
+            <p>예약시간: <span id="selectedTime"></span></p>
+            <p>선택한 좌석: <span id="selectedSeats"></span></p>
+        </div>
+        <!-- 위에서 JavaScript로 가져온 정보를 hidden input 필드에 설정 -->
+        <input type="hidden" name="prfnm" id="prfnm_input">
+        <input type="hidden" name="performance_num" id="performance_num_input">
+        <input type="hidden" name="member_id" id="member_id_input">
+        <input type="hidden" name="member_email" id="member_email_input">
+        <input type="hidden" name="selectedDate" id="selectedDate_input">
+        <input type="hidden" name="selectedTime" id="selectedTime_input">
+        <input type="hidden" name="selectedSeats" id="selectedSeats_input">
+        <!-- 확인 버튼 클릭 시 form이 서버로 제출됩니다. -->
+        <button type="submit">결제하기</button>
+    </form>
+
+    <script>
+        if (selectedPerformance) {
+            document.getElementById('prfnm').textContent = selectedPerformance.prfnm;
+            document.getElementById('performance_num').textContent = selectedPerformance.performance_num;
+            document.getElementById('member_id').textContent = selectedPerformance.member_id;
+            document.getElementById('member_email').textContent = selectedPerformance.member_email;
+
+            // JavaScript로 가져온 정보를 hidden input 필드에 설정
+            document.getElementById('prfnm_input').value = selectedPerformance.prfnm;
+            document.getElementById('performance_num_input').value = selectedPerformance.performance_num;
+            document.getElementById('member_id_input').value = selectedPerformance.member_id;
+            document.getElementById('member_email_input').value = selectedPerformance.member_email;
+        }
+
+        if (selectedDate) {
+            document.getElementById('selectedDate').textContent = selectedDate.month + '월 ' + selectedDate.day + '일';
+            document.getElementById('selectedDate_input').value = selectedDate.month + '월 ' + selectedDate.day + '일';
+        } else {
+            console.log('선택된 날짜 또는 시간이 없습니다.');
+        }
+        if (selectedTime) {
+            document.getElementById('selectedTime').textContent = selectedTime;
+            document.getElementById('selectedTime_input').value = selectedTime;
+        } else {
+            console.log('선택된 날짜 또는 시간이 없습니다.');
+        }
+
+        let seatDiv = document.getElementById('selectedSeats');
+
+        if (selSeats) {
+            let selectedSeats = JSON.parse(selSeats);
+            seatDiv.innerHTML = selectedSeats.join(", ");
+            document.getElementById('selectedSeats_input').value = selectedSeats.join(", ");
+        }
+    </script>
 </body>
 </html>

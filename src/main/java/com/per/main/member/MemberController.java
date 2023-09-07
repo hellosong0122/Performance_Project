@@ -128,16 +128,36 @@ public class MemberController {
 	}
 
 	//로그인
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String getLogin(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
-		memberDTO = memberService.getLogin(memberDTO);
-
-		if (memberDTO != null) {
-			session.setAttribute("member", memberDTO);
-		}
-
-		return "redirect:../";
-	}
+//	@RequestMapping(value = "login", method = RequestMethod.POST)
+//	public String getLogin(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
+//		memberDTO = memberService.getLogin(memberDTO);
+//		
+//		System.out.println(memberDTO.toString());
+//
+//		if (memberDTO != null) {
+//			session.setAttribute("member", memberDTO);
+//		}
+//
+//		return "redirect:../";
+//	}
+	
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> getLogin(MemberDTO memberDTO, HttpSession session) throws Exception {
+       memberDTO = memberService.getLogin(memberDTO);
+       
+       Map<String, Object> result = new HashMap<String, Object>();
+       if (memberDTO != null) {
+          session.setAttribute("member", memberDTO);
+          result.put("type", "성공");
+          result.put("msg", "[안내] 로그인 성공");
+       } else {
+          result.put("type", "실패");
+          result.put("msg", "[안내] 로그인 실패");
+       }
+       
+       return result;
+    }
 
 	// 네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })

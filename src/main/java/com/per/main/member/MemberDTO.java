@@ -106,13 +106,6 @@ public class MemberDTO {
 		this.role = role;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberDTO [member_num=" + member_num + ", name=" + name + ", id=" + id + ", pw=" + pw + ", email="
-				+ email + ", phone=" + phone + ", birth=" + birth + ", address=" + address + ", auth=" + auth
-				+ ", marketing=" + marketing + ", role=" + role + "]";
-	}
-
 
 
 }

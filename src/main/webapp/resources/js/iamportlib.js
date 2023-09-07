@@ -44,8 +44,8 @@ function iamport(p_name, price, email, user, tel, addr, postcode) {
             */
             console.log("imp_uid" + rsp.imp_uid);
             console.log("orderNum" + rsp.merchant_uid);
-            console.log("P_Num" + p_num);
-            console.log("P_Name" + rsp.name);
+            console.log("P_Num : " + p_num);
+            console.log("P_Name : " + rsp.name);
             console.log("counter" + p_count);
             console.log("totalPrice" + price);
             console.log("memberNum" + memberNum);

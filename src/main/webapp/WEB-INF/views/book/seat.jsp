@@ -7,6 +7,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="/resources/css/seat.css">
+	<style>
+		body { background-color : blanchedalmond;} 
+	</style>
 </head>
 <body>
 	<div class="seat-wrapper">
@@ -95,7 +98,8 @@
 		<table class="seatTable">
 			<thead>
 				<tr>
-					<td>선택한 좌석</td>
+					<td><span>선택한좌석</span></td>
+					<td><span id="seatvalue" name="seatvalue"></span></td>
 				</tr>
 			</thead>
 			<tbody>
@@ -103,15 +107,15 @@
 					<td>
 						<!--좌석출력-->
 						<div class="selectedseats"></div>
-						
+
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 
-	<button type="button" id="goToPay">좌석 예약</button>
-
+	<button type="button" id="goToPay" style="color: red;" >좌석 예약 </button>
+	
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/resources/js/book/seat.js"></script>

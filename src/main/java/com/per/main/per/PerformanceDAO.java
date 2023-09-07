@@ -64,4 +64,7 @@ public class PerformanceDAO {
 	public int setPlaceInfo(PerformancePlaceDTO placeDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"setPlaceInfo", placeDTO);
 	}
+	
+	
+
 }
