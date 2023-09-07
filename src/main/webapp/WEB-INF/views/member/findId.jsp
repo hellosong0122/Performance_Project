@@ -67,8 +67,8 @@
 	
 		<div id="root">
 			<button class="btn btn-primary" id="idcheck">아이디확인</button>
-		
-	
+			<a class="btn btn-primary" href="./login">로그인</a>
+			
 
 		 <c:if test="${not empty successMessage}">
 			<div role="alert">${successMessage}</div>

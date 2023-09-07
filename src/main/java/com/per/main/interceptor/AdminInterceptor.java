@@ -18,12 +18,11 @@ public class AdminInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
-		Long role= memberDTO.getRole();
-		
-			if(role==1) {
+		String role= memberDTO.getRole();
+		System.out.println(role);
+		if(role.equals("1")){			
 				return true;
-			}		
-		
+			}			
 		request.setAttribute("message", "권한이 아닙니다!");
 		request.setAttribute("url", "/");
 		

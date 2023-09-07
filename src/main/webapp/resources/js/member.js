@@ -12,7 +12,7 @@ const frm = document.getElementById("frm");
 const btn = document.getElementById("btn");
 const addrSearch = document.getElementById("addrSearch");
 
-const code;
+const code = 0;
 
 //idcheck결과
 let idCheckResult = false;
@@ -21,6 +21,8 @@ let pw2CheckResult = false;
 let nameCheckResult = false;
 let emailCheckResult = false;
 let phoneCheckResult = false;
+
+let idCheckchf = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$/;
 
 let checkResults = [false, false, false, false, false, false, false];
 
@@ -150,11 +152,16 @@ $('.mail-check-input').blur(function () {
   
 });
 
+//핸드폰번호
 phone.addEventListener("blur", function () {
   let check = emptyCheck(phone);
   const nameout = document.getElementById("phoneResult");
   nameout.innerHTML = "핸드폰번호를 입력해주세요";
   nameout.className = "f";
+  if(phone.value.length>11){
+    nameout.innerHTML = "핸드폰번호 11자리 입력해주세요"  
+    nameout.className = "f";  
+  }
   checkResults[5] = false;
   if (!check) {
     nameout.innerHTML = "";
@@ -238,9 +245,24 @@ addrSearch.addEventListener("click", function () {
 
 btn.addEventListener("click", function () {
   let c = checkResults.includes(false);
+  //let d = checkResults[3];
+  let d = checkResults[4];
+  let f = checkResults[5];
+
+  console.log(checkResults[4]);
+  console.log(checkResults[5]);
+  // console.log(d);
   if (!c) {
     frm.submit();
   } else {
-    alert("필수 항목을 입력해주세요");
-  }
+      if(d==false){
+        alert("필수항목인 이메일을 입력해주세요");
+      }else if(checkResults[5]=false){
+        alert("필수항목인 휴대폰번호를 입력해주세요");
+      }else if(checkResults[6]=false){
+        alert("필수항목인 생년월일 입력해주세요");
+      }
+      
+    } 
+  
 });

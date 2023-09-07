@@ -309,6 +309,10 @@ public class MemberController {
 		return mailService.joinEmail(email);
 	}
 
+	@RequestMapping(value="/memberOrder", method = RequestMethod.GET )
+	public void getMemberOrder() {
+			
+	}
 	
 
 }

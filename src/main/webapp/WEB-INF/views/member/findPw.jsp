@@ -26,28 +26,27 @@
 				</div>
 				
 				<div>
-                <button class="btn btn-primary" type="submit">비밀번호찾기</button>
+                <button class="btn btn-primary" type="submit" id="findPw">비밀번호찾기</button>
 				<a href="./login" class="btn btn-primary">로그인하러가기</a>
 				</div>
             </div>
 			
 					
-		    <!-- 성공 메시지 출력 -->
+		    <!-- 성공 메시지 출력
 		    <c:if test="${not empty successMessage}">
-		        <div role="alert">
-		            ${successMessage}
-		        </div>
+		        <script>alert("${successMessage}")</script>
 		    </c:if>
-		
+		 -->
 		    <!-- 에러 메시지 출력 -->
-		    <c:if test="${not empty errorMessage}">
+		    <!-- <c:if test="${not empty errorMessage}">
 		        <div  role="alert">
-		            ${errorMessage}
+				 <script>alert("${errorMessage}")</script>
 		        </div>
-		    </c:if>
+		    </c:if> -->
 			
 		</form>
 </section>	
 
+	<script src="/resources/js/findPw.js"></script>
 </body>
 </html>
