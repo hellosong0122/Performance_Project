@@ -62,8 +62,5 @@ public class MemberService {
 	        e.printStackTrace();
 	    }
 	}
-	
-	public MemberDTO getUserInfo(MemberDTO memberDTO) throws Exception{
-		return memberDAO.getUserInfo(memberDTO);
-	}
+
 }
