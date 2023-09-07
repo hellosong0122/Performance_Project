@@ -1,4 +1,4 @@
-// let price = $('#payBtn').attr(data-price);
+ let price = $('#payBtn').attr(data-price);
 
 $('#payBtn').click(function(){
     console.log("click");

@@ -36,7 +36,7 @@
                     localStorage.setItem('selectedPerformance', JSON.stringify(data));
 
                     console.log("선택공연:"+localStorage.getItem('selectedPerformance'));
-   
+                    
                     $.ajax({
                         url: '/book/checkBeforePay',
                         type: 'GET',

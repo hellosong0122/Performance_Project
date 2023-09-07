@@ -81,13 +81,13 @@ import com.per.utils.Pager;
 //			
 //
 //			
-//			@RequestMapping(value="/practice")
+			@RequestMapping(value="/practice")
 //		//@GetMapping("/practice")//form 에서 연결된곳
-//			public String setBook(BookDTO bookDTO, Model model)throws Exception{
-//				bookService.setBook(bookDTO);
-//				//return "book/practice";
-//				return "redirect:../detail";
-//			}
+			public String setBook(BookDTO bookDTO, Model model)throws Exception{
+				bookService.setBook(bookDTO);
+				//return "book/practice";
+				return "redirect:../detail";
+			}
 //			
 		
 	}	

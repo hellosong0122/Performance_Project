@@ -25,7 +25,7 @@
 <body>
 	<h1>예매내역 확인하기</h1>
     <!-- 공연정보 가져오기 -->
-    <form action="./checkBeforePay" method="post">
+    <form action="./practice" method="post">
     <div>
         <p>공연명: <span id="prfnm"></span></p>
         <p>공연 번호: <span id="performance_num"></span></p>
@@ -45,7 +45,7 @@
         <!-- <input type="hidden" name="seatId" id="selectedSeats_input"> -->
       
         <input type="reset" style="color: crimson;" value="취소하기">
-        <button type="button" onclick="" style="color: blue;" id="payBtn">결제하기</button>  
+        <button type="button" onclick="location.href='./pracetice'" style="color: blue;" id="payBtn">결제하기</button>  
        
     </form>
         <script>
@@ -87,7 +87,7 @@
             } */
 
     </script>   
-    <script src="../../../resources/js/iamportpay.js"></script>        
+    <!-- <script src="../../../resources/js/iamportpay.js"></script>         -->
 
         
 </body>
