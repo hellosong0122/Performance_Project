@@ -87,7 +87,6 @@ public class AdminController {
 		@RequestMapping(value="memberDetail")
 		public ModelAndView getMemberDetail(ModelAndView mv, MemberDTO memberDTO) throws Exception{
 			memberDTO = adminService.getMemberDetail(memberDTO);
-			System.out.println(memberDTO.getMemberNum());
 			mv.addObject("dto", memberDTO);
 			mv.setViewName("admin/memberDetail");
 			
