@@ -30,5 +30,11 @@
 	<script src="../../resources/js/click-scroll.js"></script>
 	<script src="../../resources/js/custom.js"></script>
 
+
+
+	<c:if test="${not empty success}">
+		<script>alert("${success}")</script>
+	</c:if>	
+
 </body>
 </html>
