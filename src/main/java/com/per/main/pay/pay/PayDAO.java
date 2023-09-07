@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.per.main.member.MemberDTO;
 
 
+@Repository
 public class PayDAO {
 	
 	@Autowired
@@ -15,6 +16,8 @@ public class PayDAO {
 	private final String NAMESPACE = "com.per.main.pay.pay.PayDAO.";
 
 	public int insertPayData(ProductOrderDTO orderDTO) throws Exception {
+		System.out.println("step2");
+		System.out.println("test model : "+ orderDTO.toString() );
 		return sqlSession.insert(NAMESPACE+"insertPayData", orderDTO);
 	}
 

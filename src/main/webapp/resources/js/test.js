@@ -126,7 +126,7 @@ function createPayInfo(uid) {
             })
         },
         error: function() {
-            swal('결제정보 저장 통신 실패');
+           // swal('결제정보 저장 통신 실패');
         }
     });
 }

@@ -51,7 +51,7 @@
                                             <dl class="price">
                                                 <dd>
                                                     <strong>
-                                                        <input type="hidden" id="h_p_Total" name="p_Total" value="">
+                                                        <input type="hidden" id="h_p_Total" name="p_Total" value="${giftDetail.p_Price}">
                                                         <span class="value ui_total_price" id="p_Total"
                                                             name="p_Total"></span>
                                                         <span class="unit">원</span>

@@ -273,7 +273,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                 <h1>테스트 : ${gift.p_Total}</h1>
                                     <button type="button" class="btn btn-primary btn-submit-fix" id="payBtn"
-                                        onclick="iamport()" data-pnum="${gift.p_Num}" data-name="${gift.p_Name}" data-price="${gift.p_Total}" data-count="${gift.p_Counter}" data-usernum="${member.memberNum}"
+                                        onclick="iamport()" data-pnum="${gift.p_Num}" data-name="${gift.p_Name}" data-price="${gift.p_Total}" data-count="${gift.p_Counter}" data-usernum="${member.member_num}"
                                         data-user="${member.name}" data-email="${member.email}"
                                         data-tel="${member.phone}" data-addr="${member.address}">Place
                                         Order</button>

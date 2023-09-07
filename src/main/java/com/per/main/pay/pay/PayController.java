@@ -39,17 +39,15 @@ public class PayController {
 
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private PayService payService;
-	
-	
 
 	public PayController() {
 		// REST API 키와 REST API secret 입력.
 		IamPortKey key = new IamPortKey();
 		this.api = new IamportClient(key.getAPIKey(), key.getAPISecret());
-			
+
 	}
 
 	@RequestMapping(value = "buygift", method = RequestMethod.POST)
@@ -57,12 +55,14 @@ public class PayController {
 			ModelAndView mv) throws Exception {
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		memberDTO = (MemberDTO) memberService.getUserInfo(memberDTO);
+		System.out.println(memberDTO.toString());
 		if (memberDTO != null) {
 			mv.addObject("member", memberDTO);
 			mv.addObject("gift", payProductDTO);
-			System.out.println("price :"+ payProductDTO.getP_Name());
-			System.out.println("price :"+ payProductDTO.getP_Total());
-			
+			System.out.println("price :" + payProductDTO.getP_Name());
+			System.out.println("price :" + payProductDTO.getP_Total());
+			System.out.println("memberDTO :" + memberDTO.getMember_num());
+
 		}
 
 		System.out.println(memberDTO.toString());
@@ -74,43 +74,53 @@ public class PayController {
 	@ResponseBody
 	@RequestMapping(value = "/verifyIamport/{imp_uid}")
 	public IamportResponse<Payment> paymentByImpUid(Model model, Locale locale, HttpSession session,
-			@PathVariable(value = "imp_uid") String imp_uid,HttpServletRequest request) throws IamportResponseException, IOException {
+			@PathVariable(value = "imp_uid") String imp_uid, HttpServletRequest request)
+			throws IamportResponseException, IOException {
 		System.out.println("step 1");
-        
-		
-        IamportResponse<Payment> paymentIamportResponse = api.paymentByImpUid(imp_uid);
-        Payment payment = paymentIamportResponse.getResponse();
-        session = request.getSession(false);
-        session.setAttribute("payment",payment);
-        session.setMaxInactiveInterval(600); 
-        return paymentIamportResponse;
+
+		IamportResponse<Payment> paymentIamportResponse = api.paymentByImpUid(imp_uid);
+		Payment payment = paymentIamportResponse.getResponse();
+		session = request.getSession(false);
+		session.setAttribute("payment", payment);
+		session.setMaxInactiveInterval(600);
+		return paymentIamportResponse;
 	}
-	
+
 	@PostMapping("done")
 	@ResponseBody
-	public boolean payDone(ProductOrderDTO orderDTO) throws Exception{
-		System.out.println("테스트 : " + orderDTO.getImp_uid());
-		
-		System.out.println("test innfo");
+	public boolean payDone(ProductOrderDTO orderDTO) throws Exception {
+
 		boolean result = true;
 		
-		String token = payService.getToken();
-		System.out.println();
-		String amount = payService.paymentInfo(orderDTO.getImp_uid(), token);
-		System.out.println("amount :" + amount);
-		System.out.println(orderDTO.getTotalPrice());
-		System.out.println(amount);
-		if (orderDTO.getTotalPrice() != Long.parseLong(amount)) {
-			//결제 취소
-		//	payService.canclePay(orderDTO.getImp_uid(),token,amount,"결제 취th");
-			result = false;
+		if (orderDTO.getImp_uid() != null) {
+
+			String imp_uid = orderDTO.getImp_uid();
+
+			System.out.println("test imp_uid : " + imp_uid);
+
+			String token = payService.getToken();
+
+			System.out.println("test token : " + token);
+
+			String amount = payService.paymentInfo(orderDTO.getImp_uid(), token);
+
+			System.out.println("test amount : " + amount);
+
+			System.out.println("test amountType : " + amount.getClass().getName());
+
+			System.out.println("test totalPrice : " + orderDTO.getTotalPrice());
+
+			if (orderDTO.getTotalPrice() != Long.parseLong(amount)) {
+				// 결제 취소
+				// payService.canclePay(orderDTO.getImp_uid(),token,amount,"결제 취th");
+				result = false;
+			}
+
+			payService.insertPayData(orderDTO);
+			System.out.println("가격값이 같을");
 		}
-		payService.insertPayData(orderDTO);
-		
-		
-		
+
 		return result;
 	}
-	
-	
+
 }

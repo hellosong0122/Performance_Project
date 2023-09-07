@@ -2,7 +2,7 @@ let count = 1;
 
 let price = $('#p_Price').text();
 $("#p_Total").text((count * 1) * price);
-$('h_p_Price').attr('value', price);
+$('#h_p_Price').attr('value', price);
 
 
 function increment() {
@@ -41,7 +41,7 @@ function decrement() {
         $("#p_Total").text((count * 1) * price);
         $('#h_p_Total').attr('value', total);
         
-        let totalvalue = $('h_p_Total').attr('value');
+        let totalvalue = $('#h_p_Total').attr('value');
         console.log(totalvalue);
 
         $("#p_Counter").html(count);

@@ -20,13 +20,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.per.utils.IamPortKey;
 
-
 @Service
 public class PayService {
-	
-	
+
 	private IamPortKey key = new IamPortKey();
-	
+
+	@Autowired
 	private PayDAO payDAO;
 
 	public String getToken() throws Exception {
@@ -44,9 +43,9 @@ public class PayService {
 
 		json.addProperty("imp_key", key.getAPIKey());
 		json.addProperty("imp_secret", key.getAPISecret());
-		
+
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-		
+
 		bw.write(json.toString());
 		bw.flush();
 		bw.close();
@@ -57,7 +56,6 @@ public class PayService {
 
 		String response = gson.fromJson(br.readLine(), Map.class).get("response").toString();
 
-
 		String token = gson.fromJson(response, Map.class).get("access_token").toString();
 
 		br.close();
@@ -65,7 +63,6 @@ public class PayService {
 
 		return token;
 	}
-	
 
 	public String paymentInfo(String imp_uid, String access_token) throws IOException, ParseException {
 		HttpsURLConnection conn = null;
@@ -83,32 +80,24 @@ public class PayService {
 		JSONParser parser = new JSONParser();
 
 		JSONObject p = (JSONObject) parser.parse(br.readLine());
-		
+
 		String response = p.get("response").toString();
-		
+
 		p = (JSONObject) parser.parse(response);
-		
+
 		String amount = p.get("amount").toString();
 
 		System.out.println("check : " + amount);
 		return amount;
 	}
 
-
 	public void canclePay(String imp_uid, String token, String amount, String string) throws Exception {
-		
-		
-	}
 
+	}
 
 	public int insertPayData(ProductOrderDTO orderDTO) throws Exception {
-		
+		System.out.println(orderDTO.toString());
 		return payDAO.insertPayData(orderDTO);
 	}
-
-
-
-	
-	
 
 }
