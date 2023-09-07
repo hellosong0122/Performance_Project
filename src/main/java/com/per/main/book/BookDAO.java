@@ -40,6 +40,15 @@ public class BookDAO {
 	 public PerformanceDTO getPerformancePrice(Long performance_num) throws Exception {
 	        return sqlSession.selectOne(NAMESPACE + "getPerformancePrice", performance_num);
 	    }
+	 
+	 //seat
+	 public List<SeatDTO> getSeat() throws Exception {
+		 return sqlSession.selectList(NAMESPACE+"getSeat");
+	 }
+	 //setbook
+	 public int setBook(BookDTO bookDTO)throws Exception{
+		 return sqlSession.insert(NAMESPACE+"setBook",bookDTO);
+	 }
 	
 
 }

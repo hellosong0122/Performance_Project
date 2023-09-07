@@ -26,6 +26,7 @@
 		<typeAlias type="com.per.main.board.ticketopen.TicketOpenDTO" alias="TicketOpenDTO"/>
 		<typeAlias type="com.per.main.board.ticketopen.TicketOpenFileDTO" alias="TicketOpenFileDTO"/>
 		<typeAlias type="com.per.main.pay.product.ProductVO" alias="ProductVO"/>
+		<typeAlias type="com.per.main.book.SeatDTO" alias="SeatDTO"/>
 		<typeAlias type="com.per.utils.Pager" alias="Pager"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="java.lang.String" alias="String"/>

@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-
+import com.per.main.board.BoardDTO;
 import com.per.main.per.PerformanceService;
 import com.per.utils.Pager;
 
@@ -55,54 +56,40 @@ import com.per.utils.Pager;
 			
 			
 			@GetMapping("/seat")
-			public String showSeat()throws Exception {
+			public String showSeat(Model model)throws Exception {
+				List<SeatDTO> arr = bookService.getSeat();
+				model.addAttribute("list", arr);
 			    return "book/seat";
 			}
 			
+
+			
+			
+			//check
 			@GetMapping("/checkBeforePay")
 			public String check()throws Exception{
 				return "book/checkBeforePay";
 			}
 			
 			
-//			//detail form에서 전달된 값 받기
-//			@RequestMapping("/checkBeforePay")
-//			public String getPerInfo(@RequestBody BookDTO bookdto, Model model, HttpSession session) throws Exception{
-//				//dto 객체를 세션에 추가
-//				session.setAttribute("bookDTO", bookdto);
-//				
-//				  System.out.println("공연번호: " + bookdto.getPerformance_num());
-//				  System.out.println("공연명: " + bookdto.getPrfnm());
-//				  System.out.println("ID: " + bookdto.getId());
-//				
-//				return "book/checkBeforePay"; //JSP 페이지 경로 
-//			}
-//			@RequestMapping("/checkBeforePay")
-//			public String allSelectTime(@RequestBody BookDTO bookDTO, HttpSession session)throws Exception{
-//					session.setAttribute("bookDTO",bookDTO);				
-//					  System.out.println("예약날짜 : " + bookDTO.getReservDate());
-//					  System.out.println("예약시간 : " + bookDTO.getResevTime());
-//					return "book/checkBeforePay"; //JSP 페이지 경로 
-//			}
 			
-//			@RequestMapping("/checkBeforePay")
-//			public String checkBeforePay(@RequestBody BookDTO bookDTO, Model model, HttpSession session) throws Exception {
-//			    session.setAttribute("bookDTO", bookDTO);
+			
+			
+			
+			
+			
+//			
 //
-//			    System.out.println("공연번호: " + bookDTO.getPerformance_num());
-//			    System.out.println("공연명: " + bookDTO.getPrfnm());
-//			    System.out.println("ID: " + bookDTO.getId());
-//			    System.out.println("예약날짜 : " + bookDTO.getReservDate());
-//			    System.out.println("예약시간 : " + bookDTO.getResevTime());
-//			    return "book/checkBeforePay"; // JSP 페이지 경로
-//			}
-//		
-
-//			@RequestMapping("/checkBeforePay")
-//			public String checkBeforePay(@ModelAttribute BookDTO bookDTO, Model model) throws Exception {
-//			    //session.setAttribute("bookDTO", bookDTO);
-//			    return "book/checkBeforePay"; // JSP 페이지 경로
-//			}
+//			
+			@RequestMapping(value="/practice")
+//		//@GetMapping("/practice")//form 에서 연결된곳
+			public String setBook(BookDTO bookDTO, Model model)throws Exception{
+				bookService.setBook(bookDTO);
+				//return "book/practice";
+				return "redirect:../detail";
+			}
+//			
+		
 	}	
 	
 

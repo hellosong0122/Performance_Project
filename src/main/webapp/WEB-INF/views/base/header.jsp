@@ -42,7 +42,7 @@
 						href="#section_4">Schedule</a></li>
 
 					<li class="nav-item"><a class="nav-link click-scroll"
-						href="#section_5">Pricing</a></li>
+						href="../product/giftShop">Pricing</a></li>
 
 					<li class="nav-item"><a class="nav-link click-scroll"
 						href="#section_6">Contact</a></li>

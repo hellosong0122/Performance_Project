@@ -12,6 +12,8 @@ const frm = document.getElementById("frm");
 const btn = document.getElementById("btn");
 const addrSearch = document.getElementById("addrSearch");
 
+const code;
+
 //idcheck결과
 let idCheckResult = false;
 let pwCheckResult = false;
@@ -112,6 +114,7 @@ email.addEventListener("blur", function () {
   }
 });
 
+//메일인증버튼 눌렀을때
 $('#mailCheckBtn').click(function(){
   const eamil = $('#email').val();
   console.log(eamil);
@@ -120,6 +123,7 @@ $('#mailCheckBtn').click(function(){
   $.ajax({
     type: 'get',
     url: "/member/mailCheck?email="+ eamil,
+    async: true,
     success: function (data) {
       console.log("data: " + data);
       checkInput.attr('disabled', false);
