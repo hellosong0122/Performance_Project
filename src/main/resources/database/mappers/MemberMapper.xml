@@ -15,7 +15,7 @@
  	</select>
  	
  	<select id="getLogin" resultType="MemberDTO" parameterType="MemberDTO">
- 		SELECT *
+ 		SELECT MEMBER_NUM, NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS,MARKETING, SNS, ROLE
  		  FROM MEMBER
  		 WHERE ID=#{id} AND PW=#{pw}
  	</select>
