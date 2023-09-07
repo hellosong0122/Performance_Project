@@ -15,28 +15,30 @@ public class ReviewDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.per.main.review.ReviewDAO.";
 	
-	public int setAddGood(ReviewDTO reviewDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"setAddGood", reviewDTO);
+	
+	//good ----------------
+	public int setGoodAdd(ReviewDTO reviewDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setGoodAdd", reviewDTO);
 	}
 
-	public int setDeleteGood(ReviewDTO reviewDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE+"setDeleteGood", reviewDTO);
+	public int setGoodDelete(ReviewDTO reviewDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setGoodDelete", reviewDTO);
 	}
 	
 	public int goodCheck(ReviewDTO reviewDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"goodCheck", reviewDTO);
 	}
 	
-	public int setUpdateGood(ReviewDTO reviewDTO) throws Exception {
-		return sqlSession.update(NAMESPACE+"setUpdateGood", reviewDTO);
+	public int setGoodUpdate(ReviewDTO reviewDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setGoodUpdate", reviewDTO);
 	}
 	
-	public int setCancelGood(ReviewDTO reviewDTO) throws Exception {
-		return sqlSession.update(NAMESPACE+"setCancelGood", reviewDTO);
+	public int setGoodCancel(ReviewDTO reviewDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setGoodCancel", reviewDTO);
 	}
 	
 	
-	//----------------
+	//review ----------------
 	
 	public List<ReviewDTO> getList(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getList", map);

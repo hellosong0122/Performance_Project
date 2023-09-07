@@ -13,24 +13,24 @@
 		AND ID = #{id}
 	</select>
 	
-	<insert id="setAddGood" parameterType="ReviewDTO">
+	<insert id="setGoodAdd" parameterType="ReviewDTO">
 		INSERT INTO GOOD(GOOD_NUM, REVIEW_NUM, REGDATE, ID)
 		VALUES (GOOD_SEQ.NEXTVAL, #{review_num}, SYSDATE, #{id})
 	</insert>
 
-	<delete id="setDeleteGood" parameterType="ReviewDTO">
+	<delete id="setGoodDelete" parameterType="ReviewDTO">
 		DELETE GOOD
 		WHERE REVIEW_NUM = #{review_num}
 		AND ID = #{id}
 	</delete>
 
-	<update id="setUpdateGood" parameterType="ReviewDTO">
+	<update id="setGoodUpdate" parameterType="ReviewDTO">
 		UPDATE REVIEW SET
 		GOOD = GOOD+1
 		WHERE REVIEW_NUM = #{review_num}
 	</update>
 	
-	<update id="setCancelGood" parameterType="ReviewDTO">
+	<update id="setGoodCancel" parameterType="ReviewDTO">
 		UPDATE REVIEW SET
 		GOOD = GOOD-1
 		WHERE REVIEW_NUM = #{review_num}

@@ -128,23 +128,29 @@ function delReview(review_num){
 }
 
 //Review 수정
+//수정 버튼 클릭
 $('#reviewList').on('click', '.reviewUp', function(){
     let result = confirm('수정하시겠습니까?');
     if(result){
-        let a = '<input type="text" name="contents">'
+        // let a = '<input type="text" name="contents">'
         let contents = $(this).closest('.re').siblings('.contents');
+
+        let a ='<textarea name="contents" class="form-control">'
+        a += $(this).closest('.re').siblings('.contents').text().trim() //기존 내용
+        a +='</textarea>'
+
         contents.html(a);
         $(this).removeClass('reviewUp').addClass('Update');
     }
 })
-
+//내용 입력 후 수정 버튼 클릭 
 $('#reviewList').on('click', '.Update', function(){
     let rn = $(this).attr('data-num');
     page = $(this).attr('data-page');
     
     //input value -> name = contents
-    let contents = $(this).closest('.re').siblings('.contents').children().val();
-    // console.log(contents);
+    let contents = $(this).closest('.re').siblings('.contents').children().val(); //수정된 내용
+
     upReview(rn, contents, page);
 })
 

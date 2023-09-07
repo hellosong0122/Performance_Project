@@ -16,16 +16,16 @@ public class ReviewService {
 	
 	
 	//댓글 좋아요 업데이트
-	public int setUpdateGood(ReviewDTO reviewDTO) throws Exception {
+	public int setGoodUpdate(ReviewDTO reviewDTO) throws Exception {
 		int check = reviewDAO.goodCheck(reviewDTO);
 		int result = 1;
 		
 		if(check==0) { //좋아요 처음으로 누를 때 
-			reviewDAO.setUpdateGood(reviewDTO); //REVIEW 테이블 +1
-			reviewDAO.setAddGood(reviewDTO); //GOOD 테이블에 insert
+			reviewDAO.setGoodUpdate(reviewDTO); //REVIEW 테이블 +1
+			reviewDAO.setGoodAdd(reviewDTO); //GOOD 테이블에 insert
 		}else {
-			reviewDAO.setDeleteGood(reviewDTO); //GOOD 테이블에 delete
-			reviewDAO.setCancelGood(reviewDTO); //REVIEW 테이블 -1
+			reviewDAO.setGoodDelete(reviewDTO); //GOOD 테이블에 delete
+			reviewDAO.setGoodCancel(reviewDTO); //REVIEW 테이블 -1
 			result = 0;
 		}
 		

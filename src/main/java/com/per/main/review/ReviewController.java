@@ -20,8 +20,8 @@ public class ReviewController {
 	
 	
 	@PostMapping("good")
-	public String setUpdateGood(ReviewDTO reviewDTO, Model model) throws Exception {
-		int result = reviewService.setUpdateGood(reviewDTO);
+	public String setGoodUpdate(ReviewDTO reviewDTO, Model model) throws Exception {
+		int result = reviewService.setGoodUpdate(reviewDTO);
 		model.addAttribute("result", result);
 		
 		return "commons/ajaxResult";

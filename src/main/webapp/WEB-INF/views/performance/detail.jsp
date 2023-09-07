@@ -124,7 +124,7 @@
 
         <div id="reviewInfo" class="mb-5">
             <div class="d-flex mb-5 pt-3">
-                <div class="col-sm-7">
+                <div class="col-sm-8">
                     <textarea name="contents" id="contents" class="form-control" placeholder="기대평이나 관람후기를 작성해주세요"></textarea>
                 </div>
                 <div class="ms-3">

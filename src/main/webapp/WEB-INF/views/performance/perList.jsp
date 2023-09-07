@@ -52,7 +52,7 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item ${pager.pre?'':'disabled'}">
-                <a class="page-link move" href=# data-num="${pager.startNum-1} aria-label="Previous">
+                <a class="page-link move" href=# data-num="${pager.startNum-1}" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
