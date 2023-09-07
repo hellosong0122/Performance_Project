@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.per.main.pay.pay.PayDAO">
+
+
+	<insert id="insertPayData">
+		INSERT INTO ORDERINFO (ORDERNUM,IMP_UID,P_NUM,P_Name,MEMBER_NUM,P_Count,ORDERDATE,TOTALPRICE)
+		VALUES (#{orderNum},#{imp_uid},#{p_Num},#{p_Name},#{memberNum},#{p_Count},SYSDATE,#{totalPrice})
+	</insert>
+
+
+
+</mapper>

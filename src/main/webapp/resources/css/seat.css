@@ -1,0 +1,96 @@
+.seat {
+	width: 50px;
+	height: 50px;
+}
+/*좌석 등급마다 색을 다르게 하기*/
+.VIP {
+	background-color: gold;
+	color: white;
+}
+
+/* .VIP.selected{
+	                    background-color: red;
+	                    color: white;
+	                } */
+.R {
+	background-color: skyblue;
+	color: white;
+}
+
+.S {
+	background-color: pink;
+	color: white;
+}
+
+.A {
+	background-color: green;
+	color: white;
+}
+
+.clicked {
+	background-color: red;
+	color: white;
+}
+
+/*좌석별가격표*/
+.price {
+	position: relative;
+	margin-left: 800px;
+	bottom: 570px;
+}
+
+.priceTable {
+	width: 20%;
+	border-collapse: separate;
+	text-align: center;
+}
+
+.priceTable td {
+	border: 1px;
+}
+
+#VIP {
+	color: gold;
+}
+
+#R {
+	color: skyblue;
+}
+
+#S {
+	color: pink;
+}
+
+#A {
+	color: green;
+}
+
+/*선택좌석*/
+.list {
+	position: relative;
+	margin-left: 1000px;
+	bottom: 350px;
+}
+
+.seatTable {
+	width: 20%; /*테이블크기*/
+	border-collapse: separate;
+}
+
+.seatTable td {
+	border: 1px;
+}
+
+/* 버튼 스타일 */
+#goToPay {
+	position: fixed;
+	float: right;
+	bottom: 20px;
+	left: auto; /*left 속성 제거*/
+	right: 20px;
+	color: white; /* 글자색 설정 */
+	padding: 10px 20px; /* 내용과 버튼 간 여백 설정 */
+	border: none; /* 테두리 제거 */
+	border-radius: 5px; /* 모서리둥글게 */
+	cursor: pointer;
+}
