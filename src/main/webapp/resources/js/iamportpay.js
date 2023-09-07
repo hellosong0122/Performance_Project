@@ -1,9 +1,7 @@
-let price = $('#payBtn').attr(data-price);
+// let price = $('#payBtn').attr(data-price);
 
-$("#payBtn").click(function(){
-     let value = $("payBtn").attr('data-price');
-    console.log(price);
-     //iamport();
+$('#payBtn').click(function(){
+    console.log("click");
 })
 function iamport(){
     IMP.init('imp22750372');   //가맹점 식별코드

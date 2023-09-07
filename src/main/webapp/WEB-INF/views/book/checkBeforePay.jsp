@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 
 </head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     //로컬스토리지에서 공연정보가져오기
     let showPerInfo = localStorage.getItem('selectedPerformance');
@@ -44,7 +45,7 @@
         <!-- <input type="hidden" name="seatId" id="selectedSeats_input"> -->
       
         <input type="reset" style="color: crimson;" value="취소하기">
-        <button type="submit" style="color: blue;">결제하기</button>  
+        <button type="button" onclick="" style="color: blue;" id="payBtn">결제하기</button>  
        
     </form>
         <script>
@@ -78,15 +79,15 @@
                 document.getElementById('selectedSeats').textContent = seat;
             }
 
-            function closePop(){
+     /*        function closePop(){
                 //부모창이동
                 window.opener.location.href = "../member/login	";
                // 팝업 창 닫기
                 window.close();
-            }
+            } */
 
     </script>   
-        
+    <script src="../../../resources/js/iamportpay.js"></script>        
 
         
 </body>
