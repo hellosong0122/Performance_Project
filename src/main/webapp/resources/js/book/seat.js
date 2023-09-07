@@ -11,14 +11,18 @@ $("input").on("click", function(e){
     // console.log(price);
     // console.log(num);
 
+    
+    let clickedSeat = document.querySelector(".clicked")
+    
+    
     //click class가 존재할때(제거해주는 toggle)
     if (this.classList.contains("clicked")) {
         this.classList.remove("clicked");
-    //click class가 존재하지 않을때 (추가해주는 toggle)
-    } else {
+        //click class가 존재하지 않을때 (추가해주는 toggle)
+    } else { 
         this.classList.add("clicked");
     };
-
+    
     return false;
 });
 
