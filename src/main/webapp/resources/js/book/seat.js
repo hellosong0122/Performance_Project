@@ -22,6 +22,8 @@ $("input").on("click", function(e){
     return false;
 });
 
+
+
 //좌석 선택 완료
 $("#goToPay").on("click", function(){
     let arr = []; //선택한 좌석 태그 id 넣어둠 (반복문 돌려서 선택한 태그의 속성값에서 금액, 좌석명, pk 등 가져올 수 있음)
@@ -38,6 +40,20 @@ $("#goToPay").on("click", function(){
         alert("[안내] 좌석을 선택해주세요.");
         return false;
     }
+ // 페이지 넘기는거 작업하는곳
+    
+    // 선택한 좌석 정보를 URL로
+    const seat = arr.join(","); //join() 메서드는 배열의 모든 요소를 연결해 하나의 문자열로 만듭니다.
+    const seatUrl = `./checkBeforePay?seat=${seat}`;
+
+    //선택좌석 세션저장
+    // let selectedSeats= [];
+    // sessionStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+    // console.log(sessionStorage.getItem('selectedSeats'))
+
+
+    // 페이지 이동
+    window.location.href = seatUrl;
 
     return false;
 });

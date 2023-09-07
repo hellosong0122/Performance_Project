@@ -45,6 +45,10 @@ public class BookDAO {
 	 public List<SeatDTO> getSeat() throws Exception {
 		 return sqlSession.selectList(NAMESPACE+"getSeat");
 	 }
+	 //setbook
+	 public int setBook(BookDTO bookDTO)throws Exception{
+		 return sqlSession.insert(NAMESPACE+"setBook",bookDTO);
+	 }
 	
 
 }

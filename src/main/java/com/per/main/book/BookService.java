@@ -35,12 +35,14 @@ public class BookService {
 	public List<SeatDTO> getSeat() throws Exception {
 		return bookDAO.getSeat();
 	}
-	
-//	
-//	//공연가격정보가져오기
-//	public void getPerformancePrice(Long performance_num)throws Exception{
-//		return performanceService.getPerformanceNum(performance_num);
-//	}
+
+
+
+	public int setBook(BookDTO bookDTO)throws Exception {
+		return bookDAO.setBook(bookDTO);
+		
+	}
+
 	
 }
 

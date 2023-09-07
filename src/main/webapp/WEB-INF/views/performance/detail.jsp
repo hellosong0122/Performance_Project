@@ -19,30 +19,43 @@
 <script>
             $(document).ready(function() {
                 $('#selectPerBtn').click(function() {
+                                      
+                // data- 속성에서 멤버 데이터 가져오기
+                let memberId = $('#selectPerBtn').data('id');
+                let memberEmail = $('#selectPerBtn').data('email');
+
+
                     let data = {
-                        prfnm: $(this).data('name'),
-                        performance_num: $(this).data('num'), 
-                        id: $(this).data('id'),
-                        pcseguidance : $(this).data('price')
+                        prfnm: $(this).data('name'), // 공연명
+                        performance_num: $(this).data('num'), //선택한 공연의 번호
+                        pcseguidance : $(this).data('price'),//선택한 공연의 가격
+                        member_id: memberId,      // 로그인한 사용자의 아이디 
+                        member_email: memberEmail   // 로그인한 사용자의 이메일 
                     };
                      // localStorage에 데이터 저장, 공연정보 json문자로 변환
                     localStorage.setItem('selectedPerformance', JSON.stringify(data));
 
                     console.log("선택공연:"+localStorage.getItem('selectedPerformance'));
-
-                    // $.ajax({
-                    //     url: '/book/checkBeforePay',
-                    //     type: 'POST',
-                    //     data: JSON.stringify(data),
-                    //     contentType: 'application/json',
-                    //     success: function(response) {
-                    //         console.log('Success:', response);
-                    //     },
-                    //     error: function(error) {
-
-                    //         console.log('Error:', error);
-                    //     }
-                    // });
+   
+                    $.ajax({
+                        url: '/book/checkBeforePay',
+                        type: 'GET',
+                        data: {
+                            prfnm: data.prfnm, 
+                            performance_num: data.performance_num, 
+                            pcseguidance: data.pcseguidance, 
+                            member_id: data.member_id, 
+                            member_email: data.member_email
+                        },
+                        success: function(success) {
+                            console.log('Success:');
+                            console.log('Member ID:', data.member_id);
+                            console.log('Member Email:', data.member_email);
+                        },
+                        error: function(error) {
+                            console.log('Error:');
+                        }
+                    });
                 });
             });
 </script>
@@ -51,7 +64,7 @@
 <body>
 	<c:import url="../base/header.jsp"></c:import>
 
-
+    
             <section class="container my-5 mx-auto" style="width: 70%;">
         <div class="d-flex flex py-5 my-5">
             <div>
@@ -103,7 +116,8 @@
                         data-start="${dto.performanceDTO.prfpdfrom}" data-end="${dto.performanceDTO.prfpdto}" 
                         data-num="${dto.performanceDTO.performance_num}" 
                         data-perId="${dto.performanceDTO.mt20id}" data-id = "${member.id}" 
-                        data-price="${dto.performanceDTO.pcseguidance}">예매하기</button>
+                        data-price="${dto.performanceDTO.pcseguidance}"
+                        data-email="${member.email}" >예매하기</button>
                         
                 </div>
             </div>

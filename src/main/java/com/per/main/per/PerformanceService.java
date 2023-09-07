@@ -88,12 +88,6 @@ public class PerformanceService {
 		return count;
 	}
 
-	//price
-	public PerformanceDTO getPrice() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 
 

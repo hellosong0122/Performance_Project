@@ -15,51 +15,79 @@
     // 캘린더에서 세션에서 선택된 날짜와 시간을 읽어옴
     let selectedDate = JSON.parse(sessionStorage.getItem('selectedDate'));
     let selectedTime = sessionStorage.getItem('selectedTime');
-    // 좌석에서 세션으로 선택된 좌석 읽어줌
-    let selSeats = sessionStorage.getItem('selSeat');
+    // 좌석
+   // let selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats'));
+   // const serchSeat = `./checkBeforePay?seat=${seat}`
+    //const searchParams = new URLSearchParams(location.search);
+    
 </script>
 <body>
-	<h1>확인</h1>
+	<h1>예매내역 확인하기</h1>
     <!-- 공연정보 가져오기 -->
-    <form action="practice.jsp">
+    <form action="./checkBeforePay" method="post">
     <div>
         <p>공연명: <span id="prfnm"></span></p>
         <p>공연 번호: <span id="performance_num"></span></p>
-        <p>예약날짜: <span id="selectedDate"></span></p>
+        <p>구매자 ID: <span id="member_id"></span></p>
+        <p>구메자 E-MAIL: <span id="member_email"></span></p>
+        <p>예약날짜: <span id="selectedDate"></span></p>    
         <p>예약시간: <span id="selectedTime"></span></p>
         <p>선택한 좌석: <span id="selectedSeats"></span></p>
+        <!-- <P>구매금액: </P> -->
     </div>
+        <input type="hidden" name="prfnm" id="prfnm_input"/>
+        <input type="hidden" name="performance_num" id="performance_num_input">
+        <input type="hidden" name="id" id="member_id_input">
+        <input type="hidden" name="email" id="member_email_input">
+        <input type="hidden" name="reservDate" id="selectedDate_input">
+        <input type="hidden" name="reserveTime" id="selectedTime_input">
+        <!-- <input type="hidden" name="seatId" id="selectedSeats_input"> -->
+      
+        <input type="reset" style="color: crimson;" value="취소하기">
+        <button type="submit" style="color: blue;">결제하기</button>  
+       
     </form>
-    <script>
-        if (selectedPerformance) {
-            document.getElementById('prfnm').textContent = selectedPerformance.prfnm;
-            document.getElementById('performance_num').textContent = selectedPerformance.performance_num;
-        }
-        if (selectedDate) {
-        // 선택된 날짜 정보를 화면에 출력
-        document.getElementById('selectedDate').textContent = selectedDate.month + '월 ' + selectedDate.day + '일';
-        } else {
-            console.log('선택된 날짜 또는 시간이 없습니다.');
-        }
-        if (selectedTime) {
-        // 선택된 날짜 정보를 화면에 출력
-        document.getElementById('selectedTime').textContent = selectedTime;
-        } else {
-            console.log('선택된 날짜 또는 시간이 없습니다.');
-        }
-
-        //좌석
-        let seatDiv = document.getElementById('selectedSeats');
-
-       // 선택된 좌석 정보를 화면에 출력
-        if (selSeats) {
-            selectedSeats = JSON.parse(selSeats);
-            // 선택된 좌석들을 div에 표시
-            seatDiv.textContent = selectedSeats.join(", ");
-        }
-</script>   
+        <script>
+            if (selectedPerformance) {
+                document.getElementById('prfnm').textContent = selectedPerformance.prfnm;
+                document.getElementById('performance_num').textContent = selectedPerformance.performance_num;
+                document.getElementById('member_id').textContent = selectedPerformance.member_id;
+                document.getElementById('member_email').textContent = selectedPerformance.member_email;
+            }
     
+            if (selectedDate) {
+            // 선택된 날짜 정보를 화면에 출력
+            document.getElementById('selectedDate').textContent = selectedDate.month + '월 ' + selectedDate.day + '일';
+            } else {
+                console.log('선택된 날짜 또는 시간이 없습니다.');
+            }
+            if (selectedTime) {
+            // 선택된 날짜 정보를 화면에 출력
+            document.getElementById('selectedTime').textContent = selectedTime;
+            } else {
+                console.log('선택된 날짜 또는 시간이 없습니다.');
+            }
 
-        <button type="button" onclick="location.href='practice'">결제하기</button>  
+        // URL에서 'seat' 매개변수를 가져오기
+        const searchParams = new URLSearchParams(location.search);
+            if (searchParams.has('seat')) {
+                // 'seat' 매개변수의 값을 가져오기
+                const seat = searchParams.get('seat');
+
+                // 선택한 좌석을 화면에 표시
+                document.getElementById('selectedSeats').textContent = seat;
+            }
+
+            function closePop(){
+                //부모창이동
+                window.opener.location.href = "../member/login	";
+               // 팝업 창 닫기
+                window.close();
+            }
+
+    </script>   
+        
+
+        
 </body>
 </html>
