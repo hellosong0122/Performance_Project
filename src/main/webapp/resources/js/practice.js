@@ -22,13 +22,9 @@ $("input").on("click", function(e){
     } else { 
         this.classList.add("clicked");
     };
-    //선택좌석표시하기
-    updateSeat();
     
     return false;
 });
-
-
 
 
 
@@ -54,10 +50,6 @@ $("#goToPay").on("click", function(){
     const seat = arr.join(","); //join() 메서드는 배열의 모든 요소를 연결해 하나의 문자열로 만듭니다.
     const seatUrl = `./checkBeforePay?seat=${seat}`;
 
-    //선택좌석 세션저장
-    // let selectedSeats= [];
-    // sessionStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
-    // console.log(sessionStorage.getItem('selectedSeats'))
 
 
     // 페이지 이동
