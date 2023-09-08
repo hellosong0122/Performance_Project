@@ -11,6 +11,9 @@
 		VALUES (#{orderNum},#{imp_uid},#{p_Num},#{p_Name},#{memberNum},#{p_Count},SYSDATE,#{totalPrice})
 	</insert>
 
-
+	<!-- 추가  -->
+	 <select id="getProductOrderList" resultType="ProductOrderDTO">
+        SELECT * FROM ProductOrders WHERE member_num = #{member_num}
+    </select>
 
 </mapper>
