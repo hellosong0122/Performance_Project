@@ -59,7 +59,7 @@ function iamport(p_name, price, email, user, tel, addr, postcode) {
                     "P_Name": rsp.name,
                     "P_Count": p_count,
                     "totalPrice": price,
-                    "memberNum": memberNum // 회원번호 
+                    "member_num": memberNum // 회원번호 
                 }
             }).done(function (data) {
                 jQuery.ajax({

@@ -34,6 +34,7 @@ $("input").on("click", function(e){
 
 //좌석 선택 완료
 $("#goToPay").on("click", function(){
+    console.log("click123");
     let arr = []; //선택한 좌석 태그 id 넣어둠 (반복문 돌려서 선택한 태그의 속성값에서 금액, 좌석명, pk 등 가져올 수 있음)
     clicked = document.querySelectorAll(".clicked");
         clicked.forEach((data) => {
