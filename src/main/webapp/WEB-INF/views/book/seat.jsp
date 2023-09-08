@@ -17,7 +17,7 @@
 		<!-- VIP -->
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="0" end="9">
-				<input type="button" id="${v.title}" name="seats" class="seat VIP" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat VIP" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}" >
 			</c:forEach>
 		</div>
 		<!-- R -->

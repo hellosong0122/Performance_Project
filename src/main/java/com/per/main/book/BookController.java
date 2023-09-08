@@ -65,7 +65,7 @@ import com.per.utils.Pager;
 
 			
 			
-			//check
+			//check  -> seat에서 넘어가는쪽
 			@GetMapping("/checkBeforePay")
 			public String check()throws Exception{
 				return "book/checkBeforePay";
@@ -73,22 +73,17 @@ import com.per.utils.Pager;
 			
 			
 			
-			
-			
-			
-			
-			
-//			
-//
-//			
-			@RequestMapping(value="/practice")
-//		//@GetMapping("/practice")//form 에서 연결된곳
+			//@RequestMapping(value="/checkBeforePay")
+			@PostMapping("/practice")//form 에서 연결된곳
 			public String setBook(BookDTO bookDTO, Model model)throws Exception{
 				bookService.setBook(bookDTO);
 				//return "book/practice";
 				return "redirect:../detail";
 			}
-//			
+			
+			
+			
+			
 		
 	}	
 	

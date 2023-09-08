@@ -45,7 +45,7 @@
         <!-- <input type="hidden" name="seatId" id="selectedSeats_input"> -->
       
         <input type="reset" style="color: crimson;" value="취소하기">
-        <button type="button" onclick="location.href='./pracetice'" style="color: blue;" id="payBtn">결제하기</button>  
+        <button type="submit"  style="color: blue;" id="payBtn">결제하기</button>  
        
     </form>
         <script>
@@ -89,6 +89,6 @@
     </script>   
     <!-- <script src="../../../resources/js/iamportpay.js"></script>         -->
 
-        
+        <button type="submit"> 확인용</button>
 </body>
 </html>

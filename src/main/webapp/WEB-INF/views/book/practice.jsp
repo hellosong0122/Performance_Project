@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-    여기로 오기
+    여기로 오기 : 
 </body>
 </html>

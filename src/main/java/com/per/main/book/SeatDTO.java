@@ -7,6 +7,8 @@ public class SeatDTO {
 	private String title;
 	private Date regDate;
 	private Long price;
+
+	
 	
 	public Long getSeat_num() {
 		return seat_num;
@@ -32,6 +34,7 @@ public class SeatDTO {
 	public void setPrice(Long price) {
 		this.price = price;
 	}
+	
 	
 	@Override
 	public String toString() {

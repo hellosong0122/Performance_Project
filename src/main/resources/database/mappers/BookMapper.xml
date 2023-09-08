@@ -1,46 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-   <mapper namespace="com.per.main.per.BookDAO">
-  
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper
+	  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	  
+	   <mapper namespace="com.per.main.per.BookDAO">
+	  
+		
+		<select id="getPlaceList" resultType="PerformancePlaceDTO" parameterType="Pager">
+			SELECT FCLTYNM, ADRES, TELNO
+			FROM (SELECT ROWNUM R, P.*
+			 	  FROM (SELECT * 
+				  	    FROM PERFORMANCE_PLACE) P)
+			<!-- WHERE R BETWEEN #{startRow} AND #{lastRow}  -->
+		</select> 
+		
 	
-	<select id="getPlaceList" resultType="PerformancePlaceDTO" parameterType="Pager">
-		SELECT FCLTYNM, ADRES, TELNO
-		FROM (SELECT ROWNUM R, P.*
-		 	  FROM (SELECT * 
-			  	    FROM PERFORMANCE_PLACE) P)
-		<!-- WHERE R BETWEEN #{startRow} AND #{lastRow}  -->
-	</select> 
+		
+		<select id="getPrice" resultType="PerformanceDTO">
+			SELECT PRFNM, pcseguidance, performance_num
+			FROM
+			PERFORMANCE F
+		
+		</select>
+		
+		<select id="getSeat" resultType="SeatDTO">
+			SELECT
+				*
+			FROM
+				SEAT
+		</select>
+		
 	
-
-	
-	<select id="getPrice" resultType="PerformanceDTO">
-		SELECT PRFNM, pcseguidance, performance_num
-		FROM
-		PERFORMANCE F
-	
-	</select>
-	
-	<select id="getSeat" resultType="SeatDTO">
-		SELECT
-			*
-		FROM
-			SEAT
-	</select>
-	
-
-		<!-- book정보넣기 -->
-		<insert id="setBook" parameterType="MemberDTO">
-		INSERT INTO BOOK (ticket_sequence.NEXTVAL,PRFNM,PERFORMANCE_NUM,ID,EMAIL,RESERVDATE,RESERVTIME,SEATPRICE,SEATID)
-		VALUES(ticket_sequence.NEXTVAL,#{prfnm},#{performance_num},#{id},#{email},#{reservDate},#{reservTime},#{seatPrice},#{seatId});
-		</insert>
-	
-	
-		    <!-- BOOK 테이블에서 모든 예약 정보 -->
-	    <select id="getBook" resultType="BookDTO">
-	        SELECT * FROM BOOK
-	    </select>
-	
-</mapper>
+			<!-- book정보넣기 -->
+			<insert id="setBook" parameterType="MemberDTO">
+			INSERT INTO BOOK (ticket_sequence.NEXTVAL,PRFNM,PERFORMANCE_NUM,ID,EMAIL,RESERVDATE,RESERVTIME,SEATPRICE,SEATID)
+			VALUES(ticket_sequence.NEXTVAL,#{prfnm},#{performance_num},#{id},#{email},#{reservDate},#{reservTime},#{seatPrice},#{seatId});
+			</insert>
+		
+		
+			    <!-- BOOK 테이블에서 모든 예약 정보 -->
+		    <select id="getBook" resultType="BookDTO">
+		        SELECT * FROM BOOK
+		    </select>
+		
+	</mapper>
