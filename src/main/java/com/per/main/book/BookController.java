@@ -95,10 +95,13 @@ public class BookController {
 	}
 
 	@PostMapping("done")
-	public ModelAndView viewPayInfo(@ModelAttribute PerformanceOrderDTO orderDTO,ModelAndView mv) throws Exception {
+	public ModelAndView viewPayInfo(@ModelAttribute PerformanceOrderDTO orderDTO,PerformanceDTO performanceDTO,PerformancePlaceDTO performancePlaceDTO,ModelAndView mv) throws Exception {
 		System.out.println("complete pay");
 		System.out.println(orderDTO.toString());
 		
+	
+		mv.addObject("dto", orderDTO);
+		mv.setViewName("book/bookDone");
 		
 		return mv;
 	}
