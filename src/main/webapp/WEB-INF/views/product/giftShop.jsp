@@ -34,7 +34,7 @@
 		crossorigin="anonymous" />
 
 	<br>
- ㅇㅇㅇㅇ	<br>
+		<br>
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
 			<div
@@ -43,7 +43,7 @@
 				<div class="col mb-5">
 					<div class="card h-100" style=" cursor: pointer;" onclick="location.href='./giftDetail?p_Num=${d.p_Num}';" > 
 						<img class="card-img-top"
-							src="${d.p_Image}" alt="..." />
+							src="${d.p_Image}"  />
 						<div class="card-body p-4">
 							<div class="text-center">
 								
