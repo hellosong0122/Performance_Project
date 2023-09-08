@@ -244,7 +244,7 @@
 							// 선택된 날짜의 날짜 정보 가져오기
 							// newDIV.innerHTML => innerhtml을 사용하여 newDIV내의 날짜를 문자열로 함/ 그래서 문자열로 숫자로 변환 
 							let selectedDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), parseInt(newDIV.innerHTML));
-							
+							let selectedYear= selectedDate.getFullYear();
 							let selectedMonth = selectedDate.getMonth() + 1;
 							let selectedDay = selectedDate.getDate();
 							// div 시간표
@@ -257,6 +257,7 @@
 
 							//session
 							let selectedAllDate = {
+								year : selectedDate.getFullYear(),
 								month: selectedDate.getMonth() + 1,
 								day: selectedDate.getDate()
 								};
