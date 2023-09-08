@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -86,9 +87,9 @@ public class PayController {
 		return paymentIamportResponse;
 	}
 
-	@PostMapping("done")
+	@GetMapping("done")
 	@ResponseBody
-	public boolean payDone(ProductOrderDTO orderDTO) throws Exception {
+	public String payDone(ProductOrderDTO orderDTO) throws Exception {
 			
 		boolean result = true;
 		
@@ -120,7 +121,7 @@ public class PayController {
 			System.out.println("가격값이 같을");
 		}
 
-		return result;
+		return "done";
 	}
 
 }
