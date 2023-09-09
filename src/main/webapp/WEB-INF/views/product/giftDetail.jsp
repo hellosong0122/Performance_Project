@@ -140,7 +140,7 @@
                         <div class="col-md-3 shop-info-grid text-center mt-4">
                             <div class="product-shoe-info shoe">
                                 <div class="men-thumb-item">
-                                    <img src="images/b1.jpg" class="img-fluid" alt="">
+                                    <img src="https://loremflickr.com/240/240" class="img-fluid" alt="">
 
                                 </div>
                                 <div class="item-info-product">
