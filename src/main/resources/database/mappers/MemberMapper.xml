@@ -187,13 +187,12 @@
   			DELETETYPE = '0'
   		WHERE
   			MEMBER_NUM = #{member_num}
-  	</update>
-  	
+  	</update>  	
   	
   	
   	<insert id="setAdminAdd" parameterType="MemberDTO">
-		INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, ROLE, REGDATE, DELETETYPE)
-		VALUES (MEMBER_SEQ.NEXTVAL,#{name},#{id},#{pw}, 1, SYSDATE, 1)	
+		INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, PHONE, ROLE, REGDATE, DELETETYPE)
+		VALUES (MEMBER_SEQ.NEXTVAL,#{name},#{id},#{pw}, #{phone}, 1, SYSDATE, 1)	
 	</insert>
 	
 	<update id="setAdminUpdate" parameterType="MemberDTO">

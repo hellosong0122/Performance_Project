@@ -15,15 +15,13 @@
 		<h1 class="mb-3 text-center">Admin List</h1>
 
 		<table class="table table-primary table-striped table-hover">
-			<thead>
-				<th>이름</th>
+			<thead>				
 				<th>아이디</th>
 				<th>삭제여부</th>
 			</thead>
 			<tbody>
 				<c:forEach items="${list}" var="a" varStatus="i">
-					<tr>
-						<td>${a.name}</td>
+					<tr>						
 						<td><a href="./adminDetail?member_num=${a.member_num}">${a.id}</a></td>
 						<td>
 							<c:if test="${a.deleteType eq 1}">

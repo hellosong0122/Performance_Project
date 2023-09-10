@@ -267,23 +267,6 @@ public class MemberController {
             session.setAttribute("access_token", oauthToken);
             return "member/kakaoJoin";
          }
-         
-      
-   
-         
-         /*
-          * session.setAttribute("member", apiResult); 
-          * session.setAttribute("email",
-          * email); session.setAttribute("name", name);
-          */
-         
-         //임의 아이디 생성 이메일,이름 -> 멤버에 insert
-      
-         //email 조회 ->
-         
-         
-         //사이트에 없는 이메일이면 -> 따로 가입하게?
-
 
       }
    

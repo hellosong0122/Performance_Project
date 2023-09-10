@@ -5,35 +5,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+   <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="./findId.css">
 <title>Insert title here</title>
-<c:import url="../temp/bootStrap.jsp"></c:import>
-
+<c:import url="../base/base.jsp"></c:import>
+<link rel="stylesheet" type="text/css" href="/resources/css/findId.css">
 
 </head>
 <body>
-	<c:import url="../temp/header.jsp"></c:import>
-	<section class="container mt-5">
-	<h1 class="mb-3 text-center">findId page</h1>
+	<c:import url="../base/header.jsp"></c:import>
 
+	
 
-	<form action="./findId" method="post" id="frm">
-		<div class="mb-3">
-			<label for="name" class="form-label">이름</label> <input type="text"
-				name="name" class="form-control" id="name" placeholder="이름">
-		</div>
-		<div class="mb-3">
-			<label for="email" class="form-label">EMAIL</label> <input
-				type="text" name="email" class="form-control" id="email"
-				placeholder="name@example.com">
-		</div>
+<form action="./findId" method="post" id="frm">	
+	    
+	<div class="wrap">
+        <div class="find_idpw">
+     		
+           		<h2>FIND ID</h2>
+			
+            <div class="find">
+                <h4>NAME</h4>
+                <input type="text" name="name" id="name" placeholder="NAME">
+            </div>
+            <div class="find_email">
+                <h4>EMAIL</h4>
+                <input type="text" name="email" id="email" placeholder="EMAIL@EXAMPLE.COM">
+            </div>  
+           
+           <div class="etc">            
+               <a href="/member/findPw">Forgot your password?</a>          
+           	  <a href="/member/login">Login!</a>
+           </div>          
+         
+            <div class="submit">
+                <input type="submit" value="FIND ID">               
+            </div>
+        </div>
+    </div>
 
-		<div id="root">
-			<button class="btn btn-primary" id="idcheck">아이디찾기</button>
-			<a class="btn btn-primary" href="./login">로그인</a>
-	</form>
+</form>
 
-
-	</section>
 
 </body>
 </html>

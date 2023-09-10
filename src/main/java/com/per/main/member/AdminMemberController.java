@@ -20,6 +20,24 @@ public class AdminMemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	
+	//id 중복확인
+   @RequestMapping(value = "idCheck", method = RequestMethod.GET)
+   public String getId(MemberDTO memberDTO, Model model) throws Exception {
+      memberDTO = memberService.getId(memberDTO);
+
+      int result = 0;
+      
+      //id없음
+      if (memberDTO == null) {
+         result = 1;
+      }
+      model.addAttribute("result", result);
+
+      return "commons/ajaxResult";
+   }
+	   
+		
 	//어드민 회원관리 페이지 리스트
 	@RequestMapping(value = "adminList", method = RequestMethod.GET)
 	public String getAdminList(Pager pager, Model model)throws Exception{
@@ -71,69 +89,69 @@ public class AdminMemberController {
 			
 			return mv;
 	}
-		//관리자등록
-		@RequestMapping(value="adminAdd")
-		public void setAdminAdd()throws Exception{
+			//관리자등록
+			@RequestMapping(value="adminAdd")
+			public void setAdminAdd()throws Exception{
+					
+			}
+			
+			//관리자등록
+			@RequestMapping(value="adminAdd", method=RequestMethod.POST)
+			public String setAdminAdd(MemberDTO memberDTO)throws Exception{
+				int result = memberService.setAdminAdd(memberDTO);
+				System.out.println(result);
+				return "redirect:./adminList";
+			}
+			
+			//회원등록
+			@RequestMapping(value="memberAdd", method=RequestMethod.GET)
+			public void setMemberAdd()throws Exception{			
+			}
+			
+			//회원등록
+			@RequestMapping(value="memberAdd", method=RequestMethod.POST)
+			public String setMemberAdd(MemberDTO memberDTO)throws Exception{
+				int result = memberService.setJoin(memberDTO);
+				return "redirect:./list";
+			}
+			
+			//관리자 수정
+			@RequestMapping(value="adminUpdate", method=RequestMethod.GET)
+			public ModelAndView setAdminUpdate(MemberDTO memberDTO, ModelAndView mv)throws Exception{
+				MemberDTO updateDTO = memberService.getDetail(memberDTO);			
 				
-		}
-		
-		//관리자등록
-		@RequestMapping(value="adminAdd", method=RequestMethod.POST)
-		public String setAdminAdd(MemberDTO memberDTO)throws Exception{
-			int result = memberService.setAdminAdd(memberDTO);
-			System.out.println(result);
-			return "redirect:./adminList";
-		}
-		
-		//회원등록
-		@RequestMapping(value="memberAdd", method=RequestMethod.GET)
-		public void setMemberAdd()throws Exception{			
-		}
-		
-		//회원등록
-		@RequestMapping(value="memberAdd", method=RequestMethod.POST)
-		public String setMemberAdd(MemberDTO memberDTO)throws Exception{
-			int result = memberService.setJoin(memberDTO);
-			return "redirect:./list";
-		}
-		
-		//관리자 수정
-		@RequestMapping(value="adminUpdate", method=RequestMethod.GET)
-		public ModelAndView setAdminUpdate(MemberDTO memberDTO, ModelAndView mv)throws Exception{
-			MemberDTO updateDTO = memberService.getDetail(memberDTO);			
+				mv.addObject("dto",updateDTO);
+				mv.setViewName("member/admin/adminUpdate");		
+				
+				return mv;
+			}
 			
-			mv.addObject("dto",updateDTO);
-			mv.setViewName("member/admin/adminUpdate");		
+			//관리자 수정
+			@RequestMapping(value="adminUpdate", method=RequestMethod.POST)
+			public String setUpdate(MemberDTO memberDTO)throws Exception{
+				memberService.setAdminUpdate(memberDTO);
+				
+				return "redirect:./adminList";
+			}	
 			
-			return mv;
-		}
-		
-		//관리자 수정
-		@RequestMapping(value="adminUpdate", method=RequestMethod.POST)
-		public String setUpdate(MemberDTO memberDTO)throws Exception{
-			memberService.setAdminUpdate(memberDTO);
+			//회원수정
+			@RequestMapping(value="memberUpdate", method=RequestMethod.GET)
+			public ModelAndView setMemberUpdate(MemberDTO memberDTO, ModelAndView mv)throws Exception{
+				MemberDTO updateDTO = memberService.getDetail(memberDTO);			
+				
+				mv.addObject("dto",updateDTO);
+				mv.setViewName("member/admin/memberUpdate");		
+				
+				return mv;
+			}
 			
-			return "redirect:./adminList";
-		}	
-		
-		//회원수정
-		@RequestMapping(value="memberUpdate", method=RequestMethod.GET)
-		public ModelAndView setMemberUpdate(MemberDTO memberDTO, ModelAndView mv)throws Exception{
-			MemberDTO updateDTO = memberService.getDetail(memberDTO);			
-			
-			mv.addObject("dto",updateDTO);
-			mv.setViewName("member/admin/memberUpdate");		
-			
-			return mv;
-		}
-		
-		//회원수정
-		@RequestMapping(value="memberUpdate", method=RequestMethod.POST)
-		public String setMemberUpdate(MemberDTO memberDTO)throws Exception{
-			memberService.setMemberUpdate(memberDTO);
-			
-			return "redirect:./list";
-		}	
+			//회원수정
+			@RequestMapping(value="memberUpdate", method=RequestMethod.POST)
+			public String setMemberUpdate(MemberDTO memberDTO)throws Exception{
+				memberService.setMemberUpdate(memberDTO);
+							
+				return "redirect:./list";
+			}	
 		
 
 	}

@@ -16,9 +16,7 @@
 	
 
 	<table class="mb-3 table table-danger table-hover" >
-		<!-- 	<thead>
-				<th colspan=2 align="center">admin</th>
-			</thead> -->
+
 			<tbody>				
 					<tr>
 						<td>Name</td>
@@ -27,23 +25,16 @@
 					<tr>
 						<td>Id</td>
 						<td>${dto.id} </td>
-					</tr>
-					
-					<tr>
-						<td>Email</td>
-						<td>${dto.email}</td>
-					</tr>
+					</tr>			
+				
 					<tr>
 						<td>Phone</td>
 						<td>${dto.phone} </td>
 					</tr>
+					
 					<tr>
-						<td>Birth</td>
-						<td>${dto.birth}</td>
-					</tr>
-					<tr>
-						<td>address</td>
-						<td>${dto.address}</td>
+						<td>DeleteType</td>
+						<td>${dto.deleteType}</td>
 					</tr>												
 							
 			</tbody>

@@ -23,15 +23,16 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <section class="container mt-5"> 
 
       <form action="./memberAdd" method="post" id="frm">
-        <div class="mb-3">
+          <div class="mb-3">
           <label for="id" class="form-label">아이디</label>
           <input
             type="text"
             name="id"
             class="form-control"
-            id="id"       
+            id="id"           
+            placeholder="6~12 영문,숫자 입력해주세요"            
           />
-  
+          <div id="idResult"></div>
         </div>
 
         <div class="mb-3">
@@ -40,20 +41,23 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             type="password"
             name="pw"
             class="form-control"
-            id="pw"        
+            id="pw"
+            placeholder="8~12 영문,숫자 입력해주세요"
           />
-  
+          <div id="pwResult"></div>
         </div>
 
-  <!--       <div class="mb-3">
+        <div class="mb-3">
           <label for="pw2" class="form-label">비밀번호확인</label>
           <input
             type="password"
             name="pw2"
             class="form-control"
-            id="pw2"         
+            id="pw2"
+            placeholder="8~12 영문,숫자 입력해주세요"
           />
-        </div> -->
+          <div id="pw2Result"></div>
+        </div>
 
         <div class="mb-3">
           <label for="name" class="form-label">이름</label>
@@ -63,8 +67,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             class="form-control"
             id="name"
             placeholder=""
-          />       
+          />
+          <div id="nameResult"></div>
         </div>
+
 
 
         <div class="form-group email-form">
@@ -78,16 +84,18 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           />
 
           <div id="emailResult"></div>
-    
+
 
         <div class="mb-3">
           <label for="phone" class="form-label">휴대폰</label>
           <input
             type="text"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
             name="phone"
             class="form-control"
             id="phone"
-            placeholder="01012341234"
+            placeholder="01012341234" 
+            maxlength="11"                     
           />
           <div id="phoneResult"></div>
         </div>
@@ -102,9 +110,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             placeholder="19970102"
           />
           <div id="birthResult"></div>
-        </div>
+        </div>      
 
-     <!--    <div class="mb-3">
+
+        <div class="mb-3">
           <label for="postcode" class="form-label"></label>
           <input
             type="text"
@@ -112,13 +121,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             class="form-control"
             id="postcode"
             placeholder="우편번호"
+            readonly
           />
-
-          <div class="mb-3">
-          <button class="btn btn-primary" id="addrSearch" type="button">
-            우편번호찾기
-          </button>
-          </div> -->
+        
 
           <div class="mb-3">
           <label for="address" class="form-label"></label>
@@ -128,33 +133,38 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             class="form-control"
             id="address"
             placeholder="주소"
+            readonly
           />
           </div>
  
-       <!--    <label for="detailAddress" class="form-label"></label>
+          <label for="detailAddress" class="form-label"></label>
           <input
             type="text"
             name="address"
             class="form-control"
             id="detailAddress"
             placeholder="상세주소입력"
-          /> -->
-
+          />
+          <div class="mb-3">
+            <button class="btn btn-primary" id="addrSearch" type="button">
+              우편번호찾기
+            </button>
+           </div>
           <div id="addressResult"></div>
         </div>
 
         <div class="mb-3">
           <div class="my-3">
-			<button type="submit" class="btn btn-outline-success">등록</button>
+			<button type="submit" id="addBtn" class="btn btn-outline-success">등록</button>
 		</div>
          
           </button>
         </div>
       </form>
     </section>
-    <!-- <script src="/resources/js/adminAdd.js"></script>
-    카카오주소api
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
+    <script src="/resources/js/member/memberAdd.js"></script>
+    <!-- 카카오주소api -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     
   </body>
 </html>
