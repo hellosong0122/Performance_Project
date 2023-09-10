@@ -97,14 +97,14 @@
   			N.DELETETYPE = '1'
   	</select>
   	
-  	<delete id="setDelete" parameterType="NoticeDTO">
+  	<update id="setDelete" parameterType="NoticeDTO">
   		UPDATE
   			NOTICE
   		SET 
   			DELETETYPE = '0'
   		WHERE 
   			NOTICE_NUM=#{num}
-  	</delete>
+  	</update>
   	
   	<update id="setUpdate" parameterType="NoticeDTO">
   		UPDATE

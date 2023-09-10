@@ -11,7 +11,7 @@ public class ProductDTO {
 	private Integer P_Price;
 
 	private List<ImageDTO> P_Image;
-
+	
 	private Date P_Regdate;
 	private Integer P_Count;
 	private String P_Writer;

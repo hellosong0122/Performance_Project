@@ -7,15 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../temp/bootStrap.jsp"></c:import>
+<c:import url="../../temp/bootStrap.jsp"></c:import>
 </head>
 <body>
-	<c:import url="../temp/header.jsp"></c:import>
+	<c:import url="../../temp/header.jsp"></c:import>
 	<section class="container mt-5">
-		<h1 class="mb-5 text-center">Member Detail</h1> 
+		<h1 class="mb-5 text-center">Admin Detail</h1> 
 	
 
-	<table class="mb-3 table table-danger table-hover" >	
+	<table class="mb-3 table table-danger table-hover" >
+		<!-- 	<thead>
+				<th colspan=2 align="center">admin</th>
+			</thead> -->
 			<tbody>				
 					<tr>
 						<td>Name</td>
@@ -46,8 +49,8 @@
 			</tbody>
 		</table>
 	<div align="center">
-		<a class="btn btn-outline-warning" href="./memberUpdate?id=${dto.id}">수정</a>
-		<a class="btn btn-outline-danger" href="./memberDelete?id=${dto.id}">삭제</a>	
+		<a class="btn btn-outline-warning" href="./adminUpdate?member_num=${dto.member_num}">수정</a>
+		<a class="btn btn-outline-danger" href="./adminDelete?member_num=${dto.member_num}" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>	
 	</div>
 </section>
 </body>

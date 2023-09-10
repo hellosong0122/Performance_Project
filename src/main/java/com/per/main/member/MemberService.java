@@ -5,15 +5,31 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.per.main.board.BoardDTO;
+import com.per.utils.Pager;
 
 @Service
 public class MemberService {
 
 	@Autowired
 	private MemberDAO memberDAO;
+	
+	public List<MemberDTO> getList(Pager pager) throws Exception {
+		pager.makeRowNum();
+		pager.makePageNum(memberDAO.getTotal(pager));
+		return memberDAO.getList(pager);
+	}
+	
+	public List<MemberDTO> getAdminList(Pager pager) throws Exception {
+		pager.makeRowNum();
+		pager.makePageNum(memberDAO.getAdminTotal(pager));
+		return memberDAO.getAdminList(pager);
+	}
 	
 	public int setJoin(MemberDTO memberDTO)throws Exception{
 		return memberDAO.setJoin(memberDTO);
@@ -25,6 +41,10 @@ public class MemberService {
 	
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getLogin(memberDTO);
+	}
+	
+	public int setUpdate(MemberDTO memberDTO)throws Exception{
+		return memberDAO.setUpdate(memberDTO);
 	}
 	
 	public int setMemberUpdate(MemberDTO memberDTO)throws Exception{
@@ -62,5 +82,28 @@ public class MemberService {
 	        e.printStackTrace();
 	    }
 	}
+	
+	//회원,어드민 삭제 (DELETETYPE 업데이트 형식)
+	public int setDelete(MemberDTO memberDTO) throws Exception {
+		return memberDAO.setDelete(memberDTO);
+	}	
+	
 
+	//회원 상세
+	public MemberDTO getDetail(MemberDTO memberDTO) throws Exception {
+		return memberDAO.getDetail(memberDTO);
+	}
+	
+	
+	//어드민 등록
+	public int setAdminAdd(MemberDTO memberDTO) throws Exception {
+		return memberDAO.setAdminAdd(memberDTO);
+	}
+	
+	//어드민 수정
+	public int setAdminUpdate(MemberDTO memberDTO)throws Exception{
+		return memberDAO.setAdminUpdate(memberDTO);
+	}
+	
+	
 }

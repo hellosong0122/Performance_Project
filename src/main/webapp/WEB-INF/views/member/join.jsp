@@ -32,8 +32,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             type="text"
             name="id"
             class="form-control"
-            id="id"
-            placeholder="6~15 영문,숫자 입력해주세요"
+            id="id"           
+            placeholder="6~12 영문,숫자 입력해주세요"            
           />
           <div id="idResult"></div>
         </div>
@@ -109,12 +109,13 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <div class="mb-3">
           <label for="phone" class="form-label">휴대폰</label>
           <input
-            type="number"
+            type="text"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
             name="phone"
             class="form-control"
             id="phone"
-            placeholder="01012341234"
-            maxlength="11"
+            placeholder="01012341234" 
+            maxlength="11"                     
           />
           <div id="phoneResult"></div>
         </div>
@@ -129,7 +130,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             placeholder="19970102"
           />
           <div id="birthResult"></div>
-        </div>
+        </div>      
+
 
         <div class="mb-3">
           <label for="postcode" class="form-label"></label>
@@ -141,12 +143,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             placeholder="우편번호"
             readonly
           />
-
-          <div class="mb-3">
-          <button class="btn btn-primary" id="addrSearch" type="button">
-            우편번호찾기
-          </button>
-          </div>
+        
 
           <div class="mb-3">
           <label for="address" class="form-label"></label>
@@ -168,18 +165,22 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             id="detailAddress"
             placeholder="상세주소입력"
           />
-
+          <div class="mb-3">
+            <button class="btn btn-primary" id="addrSearch" type="button">
+              우편번호찾기
+            </button>
+           </div>
           <div id="addressResult"></div>
         </div>
 
         <div class="mb-3">
-          <button class="btn btn-primary" id="btn" type="button">
+          <button class="btn btn-primary" id="joinBtn" type="button">
             회원가입
           </button>
         </div>
       </form>
     </section>
-    <script src="/resources/js/member.js"></script>
+    <script src="/resources/js/member/join.js"></script>
     <!-- 카카오주소api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     

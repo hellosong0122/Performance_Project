@@ -51,7 +51,7 @@
                                             <dl class="price">
                                                 <dd>
                                                     <strong>
-                                                        <input type="hidden" id="h_p_Total" name="p_Total" value="">
+                                                        <input type="hidden" id="h_p_Total" name="p_Total" value="${giftDetail.p_Price}">
                                                         <span class="value ui_total_price" id="p_Total"
                                                             name="p_Total"></span>
                                                         <span class="unit">원</span>
@@ -82,7 +82,7 @@
 
                                         <button class="btn submit">Buy</button>
                                 </form>
-                                <button type="button" id="add_cart" class="btn submit" >Add Cart</button>
+                                <button type="button" id="add_cart" class="btn submit">Add Cart</button>
 
                                 <span><a href="#">login to save in wishlist </a></span>
                                 <p>Lorem Ipsum has been the industry's standard since the

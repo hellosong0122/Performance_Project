@@ -14,7 +14,7 @@
 
 </head>
 <body>
-	<c:import url="../base/header.jsp"></c:import>
+	<c:import url="../temp/header.jsp"></c:import>
 
 
 	<div class="wrapper">

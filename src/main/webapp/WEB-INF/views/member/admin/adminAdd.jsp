@@ -7,7 +7,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <c:import url="../temp/bootStrap.jsp"></c:import>
+    <c:import url="../../temp/bootStrap.jsp"></c:import>
     <style>
       .f {
         color: red;
@@ -19,7 +19,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     </style>
   </head>
   <body>
-    <c:import url="../temp/header.jsp"></c:import>
+    <c:import url="../../temp/header.jsp"></c:import>
     <section class="container mt-5"> 
 
       <form action="./adminAdd" method="post" id="frm">
@@ -61,7 +61,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 			<button type="submit" class="btn btn-outline-success">등록</button>
 		</div>
          
-          </button>
+  
         </div>
       </form>
     </section>
