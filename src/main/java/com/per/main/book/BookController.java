@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.per.main.board.BoardDTO;
 import com.per.main.per.PerformanceDTO;
 import com.per.main.per.PerformancePlaceDTO;
@@ -94,28 +95,65 @@ public class BookController {
 		return mv;
 	}
 
+	
+	//DB에 book 정보넣기, 단순히 저장만함
 	@PostMapping("done")
-	public ModelAndView viewPayInfo(@ModelAttribute PerformanceOrderDTO orderDTO,PerformanceDTO performanceDTO,PerformancePlaceDTO performancePlaceDTO,ModelAndView mv) throws Exception {
+	public int viewPayInfo(@ModelAttribute PerformanceOrderDTO orderDTO,PerformanceDTO performanceDTO,PerformancePlaceDTO performancePlaceDTO,ModelAndView mv) throws Exception {
+		int result = 1;
 		System.out.println("complete pay");
 		System.out.println(orderDTO.toString());
-		
+		orderDTO = bookService.reservationPer(orderDTO);
 	
+		
 		mv.addObject("dto", orderDTO);
 		mv.setViewName("book/bookDone");
-		
+	 
+		return 1;
+	}
+	
+	
+	
+// done페이지에 결제정보 뿌려주기
+	@GetMapping("bookDone")
+	public ModelAndView getBook(PerformanceOrderDTO performanceOrderDTO, ModelAndView mv)throws Exception{
+		performanceOrderDTO = bookService.getBook(performanceOrderDTO);
+		mv.addObject("dto", performanceOrderDTO);
+		mv.setViewName("book/bookDone");
 		return mv;
 	}
+	// done페이지에 결제정보 뿌려주기
+//	@PostMapping("book/done")
+//	public ModelAndView getBookDetails(PerformanceOrderDTO performanceOrderDTO, ModelAndView mv) throws Exception{
+//	    performanceOrderDTO = bookService.getBook(performanceOrderDTO);
+//	    mv.addObject("dto", performanceOrderDTO);
+//	    mv.setViewName("book/done");
+//	    return mv;
+//	}
+	//BOOK정보가져오기		
+//		@PostMapping("done")
+//		public String getBook(PerformanceOrderDTO performanceOrderDTO,Model model)throws Exception{
+//			List<PerformanceOrderDTO> ar = bookService.getBook(performanceOrderDTO);
+//			model.addAttribute("book",ar);
+//			return "book/done";
+//			//return "redirect:../detail";
+//		}
+	
+		
 
-//			
-//
-//			
-	@RequestMapping(value = "/practice")
+//	@PostMapping("book/checkBeforePay")
+//	public ModelAndView getSeatPrice(PerformanceDTO performanceDTO, ModelAndView mv) throws Exception {
+//		PerformancePlaceDTO placeDTO = performanceService.getDetail(performanceDTO);
+//		mv.addObject("dto", placeDTO);
+//		return mv;
+//	}
+			
+//	@RequestMapping(value = "/practice")
 //		//@GetMapping("/practice")//form 에서 연결된곳
-	public String setBook(BookDTO bookDTO, Model model) throws Exception {
-		bookService.setBook(bookDTO);
-		// return "book/practice";
-		return "redirect:../detail";
-	}
+//	public String setBook(BookDTO bookDTO, Model model) throws Exception {
+//		bookService.setBook(bookDTO);
+//		// return "book/practice";
+//		return "redirect:../detail";
+//	}
 
 	@ResponseBody
 	@RequestMapping(value = "/verifyIamport/{imp_uid}")

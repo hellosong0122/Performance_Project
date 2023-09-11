@@ -71,6 +71,8 @@ function iamport() {
                 }
             }).done(function (data) {
                 console.log(data);
+            // window.location.href = "/book/done"; 
+               location.replace('/book/bookDone');
               
               
             });
@@ -81,6 +83,9 @@ function iamport() {
 
         // 결제검증
 
+
+         //const bookUrl = '/book/done';
+         //window.location.replace = bookUrl;
     });
 }
 

@@ -32,16 +32,36 @@
 	
 
 
-		<!-- book정보넣기 -->
-		<insert id="setBook" parameterType="MemberDTO">
+<!-- 		<insert id="setBook222" parameterType="MemberDTO">
 		INSERT INTO BOOK (ticket_sequence.NEXTVAL,PRFNM,PERFORMANCE_NUM,ID,EMAIL,RESERVDATE,RESERVTIME,SEATPRICE,SEATID)
 		VALUES(ticket_sequence.NEXTVAL,#{prfnm},#{performance_num},#{id},#{email},#{reservDate},#{reservTime},#{seatPrice},#{seatId});
-		</insert>
+		</insert> -->
 	
+		<!-- DB에 book정보넣기 -->
+	<insert id="resevationPer" parameterType="PerformanceOrderDTO">
+    INSERT INTO BOOK 
+    (ORDERNUM, IMP_UID, PERFORMANCE_NUM, PRFNM, PERFORMANCEDATE, PERFORMANCETIME, PERSEAT, MEMBERNUM, TOTALPRICE)
+    VALUES 
+    (#{orderNum}, #{imp_uid}, #{performance_num}, #{prfnm}, #{performanceDate}, #{performanceTime}, #{perSeat}, #{memberNum}, #{totalPrice})
+	</insert>
 	
 		    <!-- BOOK 테이블에서 모든 예약 정보 -->
-	    <select id="getBook" resultType="BookDTO">
+	  <!--   <select id="getBook" resultType="PerformanceOrderDTO">
 	        SELECT * FROM BOOK
-	    </select>
+	    </select> -->
+	    
+	     <!-- BOOK 테이블에서 모든 예약 정보, 공연시설이랑 포스터도 가져오기 -->
+		<select id="getBook" resultType="PerformanceOrderDTO">
+	    SELECT 
+	        BOOK.*, 
+	        PERFORMANCE.POSTER, 
+	        PERFORMANCE_PLACE.FCLTYNM
+	    FROM 
+	        BOOK 
+	    INNER JOIN 
+	        PERFORMANCE ON BOOK.PERFORMANCE_NUM = PERFORMANCE.PERFORMANCE_NUM
+	    INNER JOIN
+	        PERFORMANCE_PLACE ON BOOK.FCLTYNM = PERFORMANCE_PLACE.FCLTYNM
+	</select>
 	
 </mapper>

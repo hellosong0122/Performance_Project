@@ -45,10 +45,16 @@ public class BookDAO {
 	 public List<SeatDTO> getSeat() throws Exception {
 		 return sqlSession.selectList(NAMESPACE+"getSeat");
 	 }
-	 //setbook
-	 public int setBook(BookDTO bookDTO)throws Exception{
-		 return sqlSession.insert(NAMESPACE+"setBook",bookDTO);
-	 }
+	 //mapper : reservationPer, db에 넣기
+	 public void reservationPer(PerformanceOrderDTO orderDTO) throws Exception {
+	        sqlSession.insert("resevationPer", orderDTO);
+	    }
+	 //
+	 public PerformanceOrderDTO getBook(PerformanceOrderDTO performanceOrderDTO) throws Exception {
+		    return sqlSession.selectOne(NAMESPACE+"getBook");
+		}
+	 
+	 
 
 }
 

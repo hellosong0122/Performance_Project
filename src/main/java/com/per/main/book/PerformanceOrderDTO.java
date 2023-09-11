@@ -8,15 +8,17 @@ public class PerformanceOrderDTO {
 	
 	private String imp_uid; // iamport 에서 생성해주는
 	// 공연번호
-	private Long performance_num;
+	private Long performance_num;	
 	// 공연명
 	private String prfnm;
+	//공연시설명
+	private String fcltynm;
 	// 예약날짜
 	private Date performanceDate;
 	// 에약시간
 	private String performanceTime;
 	// 공연좌석 티켓
-	private String perSeat;
+	private String perSeat;	
 	// 회원번호
 	private Long memberNum;
 	// 총금액
@@ -52,6 +54,16 @@ public class PerformanceOrderDTO {
 
 	public void setPrfnm(String prfnm) {
 		this.prfnm = prfnm;
+	}
+	
+	
+
+	public String getFcltynm() {
+		return fcltynm;
+	}
+
+	public void setFcltynm(String fcltynm) {
+		this.fcltynm = fcltynm;
 	}
 
 	public Date getPerformanceDate() {
