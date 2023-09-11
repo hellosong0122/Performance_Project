@@ -209,7 +209,7 @@ public class MemberController {
       
       @RequestMapping(value="kakaoJoin", method=RequestMethod.POST)
       public String setKakaoJoin(MemberDTO memberDTO,HttpSession session)throws Exception{
-         memberService.setJoin(memberDTO);
+         memberService.setKakaoJoin(memberDTO);
          session.setAttribute("member", memberDTO);
          
          return "redirect:../";

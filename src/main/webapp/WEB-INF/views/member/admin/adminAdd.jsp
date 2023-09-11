@@ -30,7 +30,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             name="id"
             class="form-control"
             id="id"           
-            placeholder="4~8 영문,숫자 입력해주세요"            
+            placeholder="6~12 영문,숫자 입력해주세요"            
           />
           <div id="idResult"></div>
         </div>
@@ -86,9 +86,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
         <div class="mb-3">
           <div class="my-3">
-			<button type="submit" class="btn btn-outline-success" id="addBtn">등록</button>
+			<button type="submit" class="btn btn-outline-success">등록</button>
 		</div>
-         <script src="/resources/js/member/adminAdd.js"></script>
+         
   
         </div>
       </form>

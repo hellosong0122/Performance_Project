@@ -33,7 +33,11 @@ public class MemberService {
 	
 	public int setJoin(MemberDTO memberDTO)throws Exception{
 		return memberDAO.setJoin(memberDTO);
-	}
+	}	
+	
+	public int setKakaoJoin(MemberDTO memberDTO)throws Exception{
+		return memberDAO.setKakaoJoin(memberDTO);
+	}	
 	
 	public MemberDTO getId(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getId(memberDTO);
