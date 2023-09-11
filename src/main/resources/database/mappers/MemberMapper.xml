@@ -2,47 +2,204 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.per.main.member.MemberDAO">
-	 <insert id="setJoin" parameterType="MemberDTO">
-       INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS,MARKETING, SNS, ROLE)
-       VALUES (MEMBER_SEQ.NEXTVAL, #{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth}, #{address},0,0,0)
-    </insert>
-    
-    <!-- id조회 -->
-    <select id="getId" resultType="MemberDTO" parameterType="MemberDTO">
-       SELECT ID FROM MEMBER WHERE ID=#{id}
-    </select>
-    
-    <select id="getLogin" resultType="MemberDTO" parameterType="MemberDTO">
-       SELECT MEMBER_NUM, NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS,MARKETING, SNS, ROLE
-         FROM MEMBER
-        WHERE ID=#{id} AND PW=#{pw}
-    </select>
-    
-      <!-- 회원수정 -->
+  
+  <mapper namespace="com.per.main.member.MemberDAO">
+  
+  	<sql id="searchSql">
+ 				WHERE ROLE = '0' AND MEMBER_NUM > 0 
+ 						AND
+		<choose>
+	    	<when test="kind == 'name'">
+				NAME LIKE '%'||#{search}||'%'
+			</when>
+			<otherwise>
+					ID LIKE '%'||#{search}||'%'
+			</otherwise>
+		</choose>  	
+	</sql>
+ 
+  
+<!--   	<select id="getList" resultType="MemberDTO" parameterType="Pager">
+		SELECT 
+			*
+		FROM
+		  	 MEMBER
+		WHERE
+			 ROLE = '0'
+	</select> -->
+	
+	<select id="getList" resultType="MemberDTO" parameterType="Pager">
+		SELECT 
+			*
+		FROM
+		  	 (SELECT ROWNUM R, B.* FROM
+				(	SELECT * FROM MEMBER
+					<include refid="searchSql"/>				
+						
+					ORDER BY MEMBER_NUM DESC
+				) B
+			)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+			 
+	</select>
+	
+	<select id="getAdminList" resultType="MemberDTO" parameterType="Pager">
+		SELECT 
+			*
+		FROM
+		  	 MEMBER
+		WHERE
+			 ROLE = '1'
+	</select>
+	
+	
+	<select id="getTotal" resultType="Long">
+  		SELECT
+  			COUNT(MEMBER_NUM)
+  		FROM
+  			MEMBER
+  			
+  			<include refid="searchSql"></include>
+  	</select>
+	
+	<!-- DELETETYPE 1이 삭제안된 -->
+<!-- 	<select id="getTotal" resultType="Long">
+  		SELECT
+  			COUNT(MEMBER_NUM)
+  		FROM
+  			MEMBER
+  		WHERE	
+  			ROLE = '0' AND
+			DELETETYPE = '1'
+  	</select> -->
+  	
+  	<select id="getAdminTotal" resultType="Long">
+  		SELECT
+  			COUNT(MEMBER_NUM)
+  		FROM
+  			MEMBER
+  		WHERE	
+  			ROLE = '1' AND
+			DELETETYPE = '1'
+  	</select>
+  
+ 	<insert id="setJoin" parameterType="MemberDTO">
+ 		INSERT INTO
+ 			MEMBER
+ 				(
+ 				MEMBER_NUM,
+ 				NAME, 
+ 				ID, 
+ 				PW, 
+ 				EMAIL, 
+ 				PHONE, 
+ 				BIRTH, 
+ 				ADDRESS,
+ 				MARKETING, 
+ 				SNS, 
+ 				ROLE, 
+ 				REGDATE, 
+ 				DELETETYPE
+ 				)
+	 		VALUES 
+	 			(
+	 			MEMBER_SEQ.NEXTVAL, 
+	 			#{name}, 
+	 			#{id}, 
+	 			#{pw}, 
+	 			#{email}, 
+	 			#{phone}, 
+	 			#{birth}, 
+	 			#{address},
+	 			0,
+	 			0,
+	 			0,
+	 			SYSDATE,
+	 			1
+	 			)
+ 	</insert>
+ 	
+ 	<!-- id조회 -->
+ 	<select id="getId" resultType="MemberDTO" parameterType="MemberDTO">
+ 		SELECT
+ 			ID
+ 	 	FROM
+ 	 		MEMBER
+ 	 	WHERE
+ 	 		ID = #{id}
+ 	</select>
+ 	
+ 	<select id="getLogin" resultType="MemberDTO" parameterType="MemberDTO">
+ 		SELECT
+ 			MEMBER_NUM,
+ 			NAME, 
+ 			ID, 
+ 			PW, 
+ 			EMAIL, 
+ 			PHONE, 
+ 			BIRTH, 
+ 			ADDRESS,
+ 			MARKETING, 
+ 			SNS, 
+ 			ROLE
+ 		 FROM
+ 		 	MEMBER
+ 		 WHERE
+ 		 	ID = #{id} AND
+ 		 	PW = #{pw}
+ 	</select>
+ 	
+ 	<update id="setUpdate" parameterType="MemberDTO">
+   		UPDATE MEMBER 
+   		   SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, BIRTH=#{birth}, ADDRESS=#{address}
+   		 WHERE ID = #{id}
+    </update>
+ 	
+ 	
+ 	  <!-- 회원수정 -->
    <update id="setMemberUpdate" parameterType="MemberDTO">
-         UPDATE MEMBER SET
-         PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, BIRTH=#{birth}, ADDRESS=#{address}
-         WHERE ID=#{id}
+   		UPDATE MEMBER 
+   		   SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, BIRTH=#{birth}, ADDRESS=#{address}
+   		 WHERE MEMBER_NUM=#{member_num}
    </update>
    
    <select id="findEmail" resultType="MemberDTO" parameterType="String">
-         SELECT *
-           FROM MEMBER
-          WHERE EMAIL=#{email}      
+   		SELECT *
+   		  FROM MEMBER
+   		 WHERE EMAIL=#{email}   	
    </select> 
+   
+   <!-- 상세정보 -->
+   <select id="getDetail" resultType="MemberDTO" parameterType="MemberDTO">  
+  		SELECT 
+  			* 
+  		FROM
+  			MEMBER
+  		WHERE
+  			MEMBER_NUM = #{member_num}
+  	</select>
+   
+   
+   <update id="setDelete" parameterType="MemberDTO">
+  		UPDATE
+  			MEMBER
+  		SET
+  			DELETETYPE = '0'
+  		WHERE
+  			MEMBER_NUM = #{member_num}
+  	</update>  	
+  	
+  	
+  	<insert id="setAdminAdd" parameterType="MemberDTO">
+		INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, PHONE, ROLE, REGDATE, DELETETYPE)
+		VALUES (MEMBER_SEQ.NEXTVAL,#{name},#{id},#{pw}, #{phone}, 1, SYSDATE, 1)	
+	</insert>
+	
+	<update id="setAdminUpdate" parameterType="MemberDTO">
+		UPDATE MEMBER 
+		   SET NAME=#{name}, ID=#{id}, PW=#{pw} 
+		 WHERE MEMBER_NUM=#{member_num}
+	</update>		
 
 
-	<select id="getUserInfo" resultType="MemberDTO"
-		parameterType="MemberDTO">
-		SELECT *
-		FROM MEMBER
-		WHERE ID = #{id}
-	</select>
-
-	<!-- <insert id="setKakaoJoin" parameterType="MemberDTO"> INSERT MEMBERP 
-		INTO (MEMBER_NUM, NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS, ROLE) VALUES 
-		(MEMBERP_SEQ.NEXTVAL, #{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth}, 
-		#{address}, 0) </insert> -->
-</mapper>
+  </mapper>

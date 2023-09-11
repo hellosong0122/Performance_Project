@@ -3,6 +3,7 @@ package com.per.main.member;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -79,6 +80,7 @@ public class MemberController {
 
       int result = 0;
 
+      //id없음
       if (memberDTO == null) {
          result = 1;
       }
@@ -106,7 +108,7 @@ public class MemberController {
     public String setMemberUpdate(MemberDTO memberDTO, HttpSession session) throws Exception{
        MemberDTO sessionMember = (MemberDTO)session.getAttribute("member");
        memberDTO.setId(sessionMember.getId());
-       int result = memberService.setMemberUpdate(memberDTO);
+       int result = memberService.setUpdate(memberDTO);
        if(result>0) {
           session.setAttribute("member", memberDTO);
        }
@@ -207,7 +209,7 @@ public class MemberController {
       
       @RequestMapping(value="kakaoJoin", method=RequestMethod.POST)
       public String setKakaoJoin(MemberDTO memberDTO,HttpSession session)throws Exception{
-         memberService.setJoin(memberDTO);
+         memberService.setKakaoJoin(memberDTO);
          session.setAttribute("member", memberDTO);
          
          return "redirect:../";
@@ -265,23 +267,6 @@ public class MemberController {
             session.setAttribute("access_token", oauthToken);
             return "member/kakaoJoin";
          }
-         
-      
-   
-         
-         /*
-          * session.setAttribute("member", apiResult); 
-          * session.setAttribute("email",
-          * email); session.setAttribute("name", name);
-          */
-         
-         //임의 아이디 생성 이메일,이름 -> 멤버에 insert
-      
-         //email 조회 ->
-         
-         
-         //사이트에 없는 이메일이면 -> 따로 가입하게?
-
 
       }
    
@@ -301,12 +286,26 @@ public class MemberController {
       return "redirect:../";
    }
 
+   //본인확인 인증메일
    @RequestMapping(value = "mailCheck", method = RequestMethod.GET)
    @ResponseBody
    public String mailCheck(String email) {
       System.out.println("이메일 인증 요청이 들어옴");
       System.out.println("이메일 인증 이메일 : " + email);
-      return mailService.joinEmail(email);
+      return mailService.joinEmail(email); //MailSendService에있는 joinEmail
    }   
+
+
+	@RequestMapping(value="/memberOrder", method = RequestMethod.GET )
+	public void getMemberOrder() {
+			
+	}
+	
+	@RequestMapping(value="/agree", method = RequestMethod.GET )
+	public void getMemberAgree() {
+			
+	}
+	
+	
 
 }

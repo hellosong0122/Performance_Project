@@ -17,8 +17,8 @@
 	</select>
 	
 	<insert id="setAdminAdd" parameterType="MemberDTO">
-		INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS, ROLE)
-		VALUES (MEMBERP_SEQ.NEXTVAL,#{name},#{id},#{pw}, #{email}, #{phone}, #{birth}, #{address}, 1)	
+		INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, ROLE)
+		VALUES (MEMBER_SEQ.NEXTVAL,#{name},#{id},#{pw}, 1)	
 	</insert>
 	
 	<select id="getAdminUpdateDetail" resultType="MemberDTO" parameterType="MemberDTO">
@@ -48,7 +48,7 @@
 	
 	<insert id="setMemberAdd" parameterType="MemberDTO">
 		INSERT INTO MEMBER (MEMBER_NUM, NAME, ID, PW, EMAIL, PHONE, BIRTH, ADDRESS, ROLE)
- 		VALUES (MEMBERP_SEQ.NEXTVAL, #{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth}, #{address}, 0)
+ 		VALUES (MEMBER_SEQ.NEXTVAL, #{name}, #{id}, #{pw}, #{email}, #{phone}, #{birth}, #{address}, 0)
 	</insert>
 	
 	<update id="setMemberUpdate" parameterType="MemberDTO">
