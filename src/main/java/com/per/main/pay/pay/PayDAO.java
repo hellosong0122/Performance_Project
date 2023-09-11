@@ -23,5 +23,14 @@ public class PayDAO {
 		return sqlSession.insert(NAMESPACE+"insertPayData", orderDTO);
 	}
 
+	public ProductOrderDTO orderDetail(ProductOrderDTO productOrderDTO) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"orderDetail",productOrderDTO);
+	}
+
+	public int removeOrder(ProductOrderDTO productOrderDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"removeOrder",productOrderDTO);
+	}
+
 
 }
