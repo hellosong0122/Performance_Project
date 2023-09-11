@@ -41,7 +41,6 @@
                 </div>
                 <div class="mt-3">
                   <p>${d.genrenm} <${d.prfnm}></p>
-                  <p>${d.prfpdfrom} ~ ${d.prfpdto}</p>
                 </div>
               </div>
             </a>
@@ -57,8 +56,7 @@
                     <img src="${d.poster}" width="200px"> 
                   </div>
                   <div class="mt-3">
-                    <p>${d.genrenm} ${d.prfnm}</p>
-                    <p>${d.prfpdfrom} ~ ${d.prfpdto}</p>
+                    <p>${d.genrenm} <${d.prfnm}></p>
                   </div>
                 </div>
               </a>
