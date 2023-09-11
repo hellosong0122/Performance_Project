@@ -66,7 +66,7 @@
     </nav>
     
     <div class="d-flex justify-content-end mb-5">
-        <button type="button" class="btn btn-dark" id="btn">공연시설 업데이트</button>
+        <button type="button" class="btn btn-dark" id="btn" disabled>공연시설 업데이트</button>
     </div>
     
     </section>

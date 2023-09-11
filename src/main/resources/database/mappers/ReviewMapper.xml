@@ -4,10 +4,69 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.per.main.review.ReviewDAO">
+<mapper namespace="com.per.main.review.ReviewDAO">	
+	<!-- good -->
+	
+	<select id="goodCheck" parameterType="ReviewDTO" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM GOOD
+		WHERE REVIEW_NUM = #{review_num}
+		AND ID = #{id}
+	</select>
+	
+	<insert id="setGoodAdd" parameterType="ReviewDTO">
+		INSERT INTO GOOD(GOOD_NUM, REVIEW_NUM, REGDATE, ID)
+		VALUES (GOOD_SEQ.NEXTVAL, #{review_num}, SYSDATE, #{id})
+	</insert>
+
+	<delete id="setGoodDelete" parameterType="ReviewDTO">
+		DELETE GOOD
+		WHERE REVIEW_NUM = #{review_num}
+		AND ID = #{id}
+	</delete>
+
+	<update id="setGoodUpdate" parameterType="ReviewDTO">
+		UPDATE REVIEW SET
+		GOOD = GOOD+1
+		WHERE REVIEW_NUM = #{review_num}
+	</update>
+	
+	<update id="setGoodCancel" parameterType="ReviewDTO">
+		UPDATE REVIEW SET
+		GOOD = GOOD-1
+		WHERE REVIEW_NUM = #{review_num}
+	</update>
+	
+	
+	<!-- review -->
+	<update id="setUpdate" parameterType="ReviewDTO">
+		UPDATE REVIEW SET
+		CONTENTS = #{contents}
+		WHERE REVIEW_NUM = #{review_num}
+	</update>
+
+	<delete id="setDelete" parameterType="ReviewDTO">
+		DELETE REVIEW
+		WHERE REVIEW_NUM = #{review_num}
+	</delete>
+
 	<insert id="setAdd" parameterType="ReviewDTO">
 		INSERT INTO REVIEW 
-		(review_num, performance_num, contents, good, regDate, id)
+		(REVIEW_NUM, PERFORMANCE_NUM, CONTENTS, GOOD, REGDATE, ID)
 		VALUES (REVIEW_SEQ.NEXTVAL, #{performance_num}, #{contents}, 0, SYSDATE, #{id})		 
 	</insert>
+	
+	<select id="getList" parameterType="Map" resultType="ReviewDTO">
+		SELECT *
+		FROM (SELECT ROWNUM R, V.*
+			  FROM (SELECT * 
+			  		FROM REVIEW
+			  		WHERE PERFORMANCE_NUM = #{review.performance_num}
+			  		ORDER BY REGDATE DESC) V)
+		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
+	</select>
+	
+	<select id="getTotal" resultType="Long" parameterType="ReviewDTO">
+		SELECT COUNT(REVIEW_NUM) FROM REVIEW
+		WHERE PERFORMANCE_NUM = #{performance_num}
+	</select>
 </mapper>

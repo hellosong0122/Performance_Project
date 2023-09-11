@@ -15,6 +15,22 @@ public class PerformanceDAO {
 	private final String NAMESPACE = "com.per.main.per.PerformanceDAO.";
 	
 	
+	public Long getPlayTotal(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getPlayTotal", pager);
+	}
+	
+	public List<PerformanceDTO> getPlayList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getPlayList", pager);
+	}
+	
+	public Long getMusicalTotal(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getMusicalTotal", pager);
+	}
+	
+	public List<PerformanceDTO> getMusicalList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getMusicalList", pager);
+	}
+	
 	public PerformancePlaceDTO getDetail(PerformanceDTO performanceDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getDetail", performanceDTO);
 	}
