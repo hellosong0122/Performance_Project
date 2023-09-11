@@ -200,6 +200,12 @@
 		   SET NAME=#{name}, ID=#{id}, PW=#{pw} 
 		 WHERE MEMBER_NUM=#{member_num}
 	</update>		
+	<select id="getUserInfo" resultType="MemberDTO"
+		parameterType="MemberDTO">
+		SELECT *
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
 
 
   </mapper>

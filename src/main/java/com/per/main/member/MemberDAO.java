@@ -80,7 +80,11 @@ public class MemberDAO {
 	public int setAdminAdd(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAdminAdd", memberDTO);
 	}
-	
+	// 삭제 ㄴ	
+	public MemberDTO getUserInfo(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getUserInfo", memberDTO);
+	}
+
 	
 
 }
