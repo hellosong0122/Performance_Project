@@ -9,11 +9,11 @@
 		WHERE PERFORMANCE_NUM > 0 
 		AND
 		<choose>
-			<when test="kind=='title'">
-				PRFNM LIKE '%'||#{search}||'%'
+			<when test="kind=='cast'">
+				PRFCAST LIKE '%'||#{search}||'%'
 			</when>
 			<otherwise>
-				PRFCAST LIKE '%'||#{search}||'%'
+				PRFNM LIKE '%'||#{search}||'%'
 			</otherwise>
 		</choose>
 	</sql>
@@ -21,11 +21,11 @@
 	<sql id="searchPlaceSql">
 		WHERE 
 		<choose>
-			<when test="kind=='name'">
-				FCLTYNM LIKE '%'||#{search}||'%'
+			<when test="kind=='address'">
+				ADRES LIKE '%'||#{search}||'%'
 			</when>
 			<otherwise>
-				ADRES LIKE '%'||#{search}||'%'
+				FCLTYNM LIKE '%'||#{search}||'%'
 			</otherwise>
 		</choose>
 	</sql>
@@ -125,6 +125,41 @@
 		<include refid="searchPlaceSql"></include>
 	</select>
 	
+	<!-- -->
+	
+	<select id="getPlayTotal" parameterType="Pager" resultType="Long">
+		SELECT COUNT(PERFORMANCE_NUM) FROM PERFORMANCE
+		<include refid="searchPerSql"></include>
+		AND GENRENM = '연극'
+	</select>
+	
+	<select id="getPlayList" parameterType="Pager" resultType="PerformanceDTO">
+		SELECT *
+		FROM (SELECT ROWNUM R, F.*
+			  FROM (SELECT *
+			  		FROM PERFORMANCE
+			  		<include refid="searchPerSql"></include>
+			  		AND GENRENM = '연극'
+			  		ORDER BY PRFNM) F)
+		WHERE R BETWEEN #{startRow} AND #{lastRow} 
+	</select>
+	
+	<select id="getMusicalTotal" parameterType="Pager" resultType="Long">
+		SELECT COUNT(PERFORMANCE_NUM) FROM PERFORMANCE
+		<include refid="searchPerSql"></include>
+		AND GENRENM = '뮤지컬'
+	</select>
+	
+	<select id="getMusicalList" parameterType="Pager" resultType="PerformanceDTO">
+		SELECT *
+		FROM (SELECT ROWNUM R, F.*
+			  FROM (SELECT *
+			  		FROM PERFORMANCE
+			  		<include refid="searchPerSql"></include>
+			  		AND GENRENM = '뮤지컬'
+			  		ORDER BY PRFNM) F)
+		WHERE R BETWEEN #{startRow} AND #{lastRow} 
+	</select>
 		
 	<select id="getDetail" parameterType="PerformanceDTO" resultMap="getDetailResult">
 		SELECT PP.*, P.* 

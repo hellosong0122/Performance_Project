@@ -5,84 +5,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+   <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="./findId.css">
 <title>Insert title here</title>
-<c:import url="../temp/bootStrap.jsp"></c:import>
+<c:import url="../base/base.jsp"></c:import>
+<link rel="stylesheet" type="text/css" href="/resources/css/findId.css">
 
-<style>
-#modal {
-	display: none;
-	position: relative;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-}
-
-#modal h2 {
-	margin: 0;
-}
-
-#modal button {
-	display: inline-block;
-	width: 100px;
-	margin-left: calc(100% - 100px - 10px);
-}
-
-#modal .modal_content {
-	width: 300px;
-	margin: 100px auto;
-	padding: 20px 10px;
-	background: #fff;
-	border: 2px solid #666;
-}
-
-#modal .modal_layer {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	z-index: -1;
-}
-</style>
-
-	
 </head>
 <body>
-	<c:import url="../temp/header.jsp"></c:import>
-	<section class="container mt-5">
-	<h1 class="mb-3 text-center">findId page</h1>
+	<c:import url="../base/header.jsp"></c:import>
 
-
-	<form action="./findId" method="post" id="frm">
-		<div class="mb-3">
-			<label for="name" class="form-label">이름</label> <input type="text"
-				name="name" class="form-control" id="name" placeholder="이름">
-		</div>
-		<div class="mb-3">
-			<label for="email" class="form-label">EMAIL</label> <input
-				type="text" name="email" class="form-control" id="email"
-				placeholder="name@example.com">
-		</div>	
-	
-		<div id="root">
-			<button class="btn btn-primary" id="idcheck">아이디확인</button>
-		
 	
 
-		 <c:if test="${not empty successMessage}">
-			<div role="alert">${successMessage}</div>
-		</c:if>
+<form action="./findId" method="post" id="frm">	
+	    
+	<div class="wrap">
+        <div class="find_idpw">
+     		
+           		<h2>FIND ID</h2>
+			
+            <div class="find">
+                <h4>NAME</h4>
+                <input type="text" name="name" id="name" placeholder="NAME">
+            </div>
+            <div class="find_email">
+                <h4>EMAIL</h4>
+                <input type="text" name="email" id="email" placeholder="EMAIL@EXAMPLE.COM">
+            </div>  
+           
+           <div class="etc">            
+               <a href="/member/findPw">Forgot your password?</a>          
+           	  <a href="/member/login">Login!</a>
+           </div>          
+         
+            <div class="submit">
+                <input type="submit" value="FIND ID">               
+            </div>
+        </div>
+    </div>
 
-		<c:if test="${not empty errorMessage}">
-			<div role="alert">${errorMessage}</div>
-		</c:if> 
+</form>
 
-		
-	</form>
-
-
-	</section>
 
 </body>
 </html>
