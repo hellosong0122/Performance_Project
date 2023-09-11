@@ -11,8 +11,7 @@ const mailCheckBtn = document.getElementById("mailCheckBtn");
 const frm = document.getElementById("frm");
 const btn = document.getElementById("btn");
 const addrSearch = document.getElementById("addrSearch");
-
-const code;
+let code = "";
 
 //idcheck결과
 let idCheckResult = false;

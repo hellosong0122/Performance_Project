@@ -66,4 +66,5 @@ public class MemberService {
 	public MemberDTO getUserInfo(MemberDTO memberDTO) throws Exception{
 		return memberDAO.getUserInfo(memberDTO);
 	}
+	
 }

@@ -25,7 +25,7 @@ function iamport(p_name, price, email, user, tel, addr, postcode) {
         pay_method: 'card',
         merchant_uid: 'pp' + createOrderNum(),
         name: p_name,
-        amount: price,
+        amount: 100,
         buyer_email: email,
         buyer_name: user,
         buyer_tel: tel,
@@ -59,28 +59,11 @@ function iamport(p_name, price, email, user, tel, addr, postcode) {
                     "P_Name": rsp.name,
                     "P_Count": p_count,
                     "totalPrice": price,
-                    "memberNum": memberNum // 회원번호 
+                    "member_num": memberNum // 회원번호 
+                },
+                success : function(){
+                    window.location.replace('/pay/done')
                 }
-            }).done(function (data) {
-                jQuery.ajax({
-                    url: "/pay/done",
-                    type: "POST",
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    data: data
-                }).done(function (res) {
-                    console.log("step3");
-                    if (res > 0) {
-                        console.log(res);
-                        console.log("success")
-                        console.log("저장서오옹공");
-                        // createPayInfo(uid);
-                    }
-                    else {
-                        console.log("fail to sace")
-                    }
-                })
-
             })
         } else {
             console.log("fail to pay process : " + rsp);
@@ -124,3 +107,4 @@ function createOrderNum() {
     }
     return orderNum;
 }
+

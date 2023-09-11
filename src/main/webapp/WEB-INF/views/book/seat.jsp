@@ -7,17 +7,32 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="/resources/css/seat.css">
+
 	<style>
-		body { background-color : blanchedalmond;} 
+		body { background-color: blanchedalmond; } 
+		.stage {
+			margin-bottom: 20px; /* stage 밑에 마진 추가 */
+		}
+		.seat-wrapper {
+			text-align: center; /* 좌석 가운데 정렬 */
+		}
+		.seat-wrapper > div {
+			display: inline-block; /* 좌석을 한 줄로 만들기 */
+		}
 	</style>
 </head>
 <body>
+	<div class="stage" style="text-align: center; padding: 20px; background-color: lightgray;">
+		<span style="font-size: large;">STAGE</span>
+	</div>
+
 	<div class="seat-wrapper">
 		<!-- 전체좌석-->
 		<!-- VIP -->
+		
 		<div>
 			<c:forEach items="${requestScope.list}" var="v" begin="0" end="9">
-				<input type="button" id="${v.title}" name="seats" class="seat VIP" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}">
+				<input type="button" id="${v.title}" name="seats" class="seat VIP" data-price="${v.price}" data-num="${v.seat_num}" value="${v.title}" >
 			</c:forEach>
 		</div>
 		<!-- R -->

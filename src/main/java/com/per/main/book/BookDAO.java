@@ -49,7 +49,6 @@ public class BookDAO {
 	 public int setBook(BookDTO bookDTO)throws Exception{
 		 return sqlSession.insert(NAMESPACE+"setBook",bookDTO);
 	 }
-	
 
 }
 

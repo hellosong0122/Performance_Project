@@ -18,9 +18,9 @@ public class AdminInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
-		Long role= memberDTO.getRole();
+	   String role= memberDTO.getRole();
 		
-			if(role==1) {
+			if(role.equals("1")) {
 				return true;
 			}		
 		

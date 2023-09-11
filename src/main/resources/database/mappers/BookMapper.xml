@@ -31,6 +31,7 @@
 	</select>
 	
 
+
 		<!-- book정보넣기 -->
 		<insert id="setBook" parameterType="MemberDTO">
 		INSERT INTO BOOK (ticket_sequence.NEXTVAL,PRFNM,PERFORMANCE_NUM,ID,EMAIL,RESERVDATE,RESERVTIME,SEATPRICE,SEATID)

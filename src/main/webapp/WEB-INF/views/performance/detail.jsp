@@ -21,15 +21,19 @@
                 $('#selectPerBtn').click(function() {
                                       
                 // data- 속성에서 멤버 데이터 가져오기
+                let memberNum = $('#selectPerBtn').data('membernum');
                 let memberId = $('#selectPerBtn').data('id');
+                let memberName = $('#selectPerBtn').data('username');
                 let memberEmail = $('#selectPerBtn').data('email');
-
+                
 
                     let data = {
                         prfnm: $(this).data('name'), // 공연명
                         performance_num: $(this).data('num'), //선택한 공연의 번호
                         pcseguidance : $(this).data('price'),//선택한 공연의 가격
+                        member_num : memberNum,
                         member_id: memberId,      // 로그인한 사용자의 아이디 
+                        member_name: memberName, //로그인한 사용자 성함(결제창에서 씌일거임)
                         member_email: memberEmail   // 로그인한 사용자의 이메일 
                     };
                      // localStorage에 데이터 저장, 공연정보 json문자로 변환
@@ -44,13 +48,17 @@
                             prfnm: data.prfnm, 
                             performance_num: data.performance_num, 
                             pcseguidance: data.pcseguidance, 
+                            member_num : data.member_num,
                             member_id: data.member_id, 
+                            member_name : data.member_name,
                             member_email: data.member_email
                         },
                         success: function(success) {
                             console.log('Success:');
                             console.log('Member ID:', data.member_id);
                             console.log('Member Email:', data.member_email);
+                            console.log('Member Name:', data.member_name);
+                            console.log('pcseguidance price: ', data.pcseguidance)
                         },
                         error: function(error) {
                             console.log('Error:');
@@ -115,8 +123,9 @@
                     <button  type="submit" id="selectPerBtn" data-name="${dto.performanceDTO.prfnm}" 
                         data-start="${dto.performanceDTO.prfpdfrom}" data-end="${dto.performanceDTO.prfpdto}" 
                         data-num="${dto.performanceDTO.performance_num}" 
-                        data-perId="${dto.performanceDTO.mt20id}" data-id = "${member.id}" 
-                        data-price="${dto.performanceDTO.pcseguidance}"
+                        data-perId="${dto.performanceDTO.mt20id}" data-membernum = "${member.member_num}"
+                         data-id = "${member.id}"  data-price="${dto.performanceDTO.pcseguidance}"
+                        data-username="${member.name}"
                         data-email="${member.email}" >예매하기</button>
                         
                 </div>
