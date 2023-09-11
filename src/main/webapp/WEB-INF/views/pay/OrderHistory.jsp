@@ -78,12 +78,12 @@
 		  </form>
 		</div>
 		
-		<c:if test="${not empty member}">
+		<!-- <c:if test="${not empty member}">
 		<a class="btn btn-outline-primary" for="btn-check-outlined" href="./add">글쓰기</a>
-		</c:if>
+		</c:if> -->
 	
 	</section>
-
+	<c:import url="../base/footer.jsp"></c:import>
 	<script src="/resources/js/list.js"></script>
 	<script>
 		//setData('${pager.kind}');
