@@ -23,10 +23,17 @@
 	
 	<interceptors>		
 		<interceptor>
-			<mapping path="/admin/adminPage"/>			
-			<mapping path="/admin/adminDetail"/>
-			<mapping path="/admin/adminAdd"/>
-			<mapping path="/admin/memberPage"/>			
+			<mapping path="/member/admin/*"/>
+<!-- 			<mapping path="member/admin/adminList"/>			
+			<mapping path="member/admin/adminDetail"/>
+			<mapping path="member/admin/adminAdd"/>
+			<mapping path="member/admin/adminDelete"/>
+			<mapping path="member/admin/adminUpdate"/>
+			<mapping path="member/admin/list"/>
+			<mapping path="member/admin/memberDetail"/>
+			<mapping path="member/admin/memberAdd"/>
+			<mapping path="member/admin/memberDelete"/>
+			<mapping path="member/admin/memberUpdate"/> -->			
 			<beans:ref bean="adminInterceptor"/>
 		</interceptor>
 	</interceptors> 

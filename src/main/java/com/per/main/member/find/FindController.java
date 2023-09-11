@@ -29,12 +29,10 @@ public class FindController {
 	    }
 
 	 	@RequestMapping(value="findId", method=RequestMethod.POST)
-	    public ModelAndView findIdResult(String name, String email) throws Exception {
-	        ModelAndView modelAndView = new ModelAndView("member/findId");
-	        MemberDTO memberDTO = new MemberDTO();
+	    public ModelAndView findIdResult(String name, String email, ModelAndView mv, MemberDTO memberDTO) throws Exception {
+	    
 	        memberDTO.setName(name);
-	        memberDTO.setEmail(email);
-	      
+	        memberDTO.setEmail(email);	      
 	        
 	        //데이터 확인용
 	        System.out.println("Name: " + name);
@@ -43,12 +41,18 @@ public class FindController {
 	        memberDTO = findService.getMemberId(memberDTO);
 
 	        if (memberDTO != null) {
-	            modelAndView.addObject("successMessage", "찾으시는 아이디는 " + memberDTO.getId() + " 입니다.");
+	        	
+	        	sendEmailWithFoundId(email,memberDTO.getId(),name);
+	        	mv.addObject("message", "찾으시는 아이디를 이메일로 보내드렸습니다.");
+	        	mv.addObject("url", "/member/login");        
+	        	
 	        } else {
-	            modelAndView.addObject("errorMessage", "일치하는 회원 정보가 없습니다.");
+	            mv.addObject("message", "일치하는 회원 정보가 없습니다.");
+	            mv.addObject("url", "/member/findId");
 	        }
-
-	        return modelAndView;
+	    	mv.setViewName("/commons/result");
+	    	
+	        return mv;
 	    }
 	 
 	 
@@ -60,9 +64,8 @@ public class FindController {
 	
 
 	@RequestMapping(value="findPw", method=RequestMethod.POST)
-    public ModelAndView findPasswordProcess(HttpServletRequest request, String id, String email) {
-        ModelAndView modelAndView = new ModelAndView("member/findPw");
-        MemberDTO memberDTO = new MemberDTO();
+    public ModelAndView findPasswordProcess(HttpServletRequest request, String id, String email, ModelAndView mv, MemberDTO memberDTO) {
+
         memberDTO.setId(id);
         memberDTO.setEmail(email);
         
@@ -83,15 +86,21 @@ public class FindController {
 
                 sendEmailWithTempPassword(email,tempPassword);
 
-                modelAndView.addObject("successMessage", "임시 비밀번호가 이메일로 전송되었습니다.");
+                mv.addObject("message", "임시 비밀번호가 이메일로 전송되었습니다.");
+                mv.addObject("url", "/member/login");               
             } else {
-                modelAndView.addObject("errorMessage", "일치하는 회원 정보가 없습니다.");
+                mv.addObject("message", "일치하는 회원 정보가 없습니다.");
+                mv.addObject("url", "/member/findPw");              
             }
+            
+            mv.setViewName("/commons/result");
+            
         } catch (Exception e) {
-            modelAndView.addObject("errorMessage", "비밀번호 찾기 처리 중 오류가 발생했습니다.");
+            mv.addObject("message", "비밀번호 찾기 처리 중 오류가 발생했습니다.");
+            mv.addObject("url", "/member/findPw");
             e.printStackTrace();
         }
-        return modelAndView;
+        return mv;
     }
 
     // 임시 비밀번호 생성 메소드
@@ -113,8 +122,8 @@ public class FindController {
         return tempPassword.toString();
     }
 
- // 이메일로 임시 비밀번호 전송 메소드
-   
+    
+    // 이메일로 임시 비밀번호 전송 메소드  
 
     private void sendEmailWithTempPassword(String email, String tempPassword) {       
         String setFrom = ".com";
@@ -125,6 +134,16 @@ public class FindController {
 		    "임시 비밀번호는 " + tempPassword + "입니다." + 
 		    "<br>" + 
 		    "임시 비밀번호로 로그인 한 후, 비밀번호를 변경해 주시기 바랍니다.";
+        
+        mailSendService.mailSend(setFrom, email, subject, content);
+    }
+    
+    //이메일로 찾은 아이디 전송
+    private void sendEmailWithFoundId(String email, String id, String name) {       
+        String setFrom = ".com";
+        String subject = "아이디 찾기 결과 안내";
+        String content = name +"님의 아이디는 다음과 같습니다." +
+	        "<br><br>" + id +  "<br>";		    
         
         mailSendService.mailSend(setFrom, email, subject, content);
     }
