@@ -15,6 +15,22 @@ public class PerformanceService {
 	private PerformanceDAO performanceDAO;
 	private PerformanceApi api = new PerformanceApi();
 	
+	public List<PerformanceDTO> getPlayList(Pager pager) throws Exception {
+		pager.makeRowNum();
+		Long total = performanceDAO.getPlayTotal(pager);
+		pager.makePageNum(total);
+		
+		return performanceDAO.getPlayList(pager);
+	}
+	
+	public List<PerformanceDTO> getMusicalList(Pager pager) throws Exception {
+		pager.makeRowNum();
+		Long total = performanceDAO.getMusicalTotal(pager);
+		pager.makePageNum(total);
+		
+		return performanceDAO.getMusicalList(pager);
+	}
+	
 	public PerformancePlaceDTO getDetail(PerformanceDTO performanceDTO) throws Exception {
 		return performanceDAO.getDetail(performanceDTO);
 	}
@@ -56,7 +72,7 @@ public class PerformanceService {
 		return performanceDAO.getPlaceList(pager);
 	}
 	
-	//공연 등록 및 업데이트
+	//공연 등록
 	public int setPerInfo() throws Exception {		
 		int count = 0;
 		
@@ -72,7 +88,7 @@ public class PerformanceService {
 		System.out.println(count);
 		return count;
 	}
-	//공연시설 등록 및 업데이트
+	//공연시설 등록 
 	public int setPlaceInfo() throws Exception {
 		int count = 0;
 		
