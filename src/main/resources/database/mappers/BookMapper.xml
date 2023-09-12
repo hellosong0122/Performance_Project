@@ -13,31 +13,14 @@
 			SEAT
 	</select>
 	
-<!-- 
-	<resultMap type="PerformanceOrderDTO" id="getBookResult">
-  		<id column="ORDERNUM" property="orderNum"/>
-  		<result column="IMP_UID" property="imp_uid"/>
-  		<result column="PERFORMANCE_NUM" property="performance_num"/>
-  		<result column="PRFNM" property="prfnm"/>
-  		<result column="MT10ID" property="mt10id"/>
-  		<result column="PERFORMANCEDATE" property="performanceDate"/>
-  		<result column="PERFORMANCETIME" property="performanceTime"/>
-  		<result column="PERSEAT" property="perSeat"/>
-  		<result column="MEMBERNUM" property="memberNum"/>
-  		<result column="TOTALPRICE" property="totalPrice"/>
-  	</resultMap> -->
 
-<!-- 		<insert id="setBook222" parameterType="MemberDTO">
-		INSERT INTO BOOK (ticket_sequence.NEXTVAL,PRFNM,PERFORMANCE_NUM,ID,EMAIL,RESERVDATE,RESERVTIME,SEATPRICE,SEATID)
-		VALUES(ticket_sequence.NEXTVAL,#{prfnm},#{performance_num},#{id},#{email},#{reservDate},#{reservTime},#{seatPrice},#{seatId});
-		</insert> -->
 	
 		<!-- DB에 book정보넣기 -->
 	<insert id="resevationPer" parameterType="PerformanceOrderDTO">
     INSERT INTO BOOK 
-    (ORDERNUM, PERFORMANCE_NUM, MEMBERNUM, MT10ID, IMP_UID, PRFNM, PERFORMANCEDATE, PERFORMANCETIME, PERSEAT, TOTALPRICE)
+    (ORDERNUM, PERFORMANCE_NUM, MEMBERNUM, MT10ID, IMP_UID, PRFNM, PERFORMANCEDATE, PERFORMANCETIME, PERSEAT, TOTALPRICE, FCLTYNM)
     VALUES 
-    (#{orderNum},#{performance_num}, #{memberNum}, #{mt10id}, #{imp_uid}, #{prfnm}, #{performanceDate}, #{performanceTime},#{perSeat}, #{totalPrice})
+    (#{orderNum},#{performance_num}, #{memberNum}, #{mt10id}, #{imp_uid}, #{prfnm}, #{performanceDate}, #{performanceTime},#{perSeat}, #{totalPrice},#{fcltynm})
 	</insert>
 	
 	
@@ -47,26 +30,36 @@
 	 	  WHERE ORDERNUM = #{orderNum} 
 	 		  
 	  	  	</select>--> 
-<!-- 	     BOOK 테이블에서 모든 예약 정보, 공연시설이랑 포스터도 가져오기 -->
-		
+	
 		<resultMap id="PerformanceOrderResult" type="PerformanceOrderDTO">
-    		<result property="fcltynm" column="FCLTYNM"/>
+			    <result property="orderNum" column="ORDERNUM"/>
+			    <result property="performance_num" column="PERFORMANCE_NUM"/>
+			    <result property="memberNum" column="MEMBERNUM"/>
+			    <result property="mt10id" column="MT10ID"/>
+			    <result property="imp_uid" column="IMP_UID"/>
+			    <result property="prfnm" column="PRFNM"/>
+			    <result property="performanceDate" column="PERFORMANCEDATE"/>
+			    <result property="performanceTime" column="PERFORMANCETIME"/>
+			    <result property="perSeat" column="PERSEAT"/>
+			    <result property="totalPrice" column="TOTALPRICE"/>
+			    <result property="poster" column="POSTER"/>
+			    <result property="fcltynm" column="FCLTYNM"/>
 		</resultMap>
 		
-		
-		<select id="getBook" resultMap="PerformanceOrderResult">
+
+	
+	
+	<select id="getBook" resultMap="PerformanceOrderResult" parameterType="PerformanceOrderDTO" >
 	    SELECT 
 	        BOOK.*, 
-	        PERFORMANCE.POSTER, 
-	        PERFORMANCE_PLACE.FCLTYNM
+	        PERFORMANCE.POSTER
 	    FROM 
 	        BOOK 
-	    LEFT OUTER JOIN  PERFORMANCE 
+	    LEFT OUTER JOIN PERFORMANCE 
 	    ON BOOK.PERFORMANCE_NUM = PERFORMANCE.PERFORMANCE_NUM
-	    LEFT OUTER JOIN PERFORMANCE_PLACE 
-	    ON BOOK.MT10ID = PERFORMANCE_PLACE.MT10ID
-	        	  WHERE ORDERNUM = #{orderNum} 
-	</select> 
+	    WHERE ORDERNUM = #{orderNum} 
+	</select> 	
+	
 	
 	
 </mapper>

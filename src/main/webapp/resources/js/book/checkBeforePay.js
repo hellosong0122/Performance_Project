@@ -21,6 +21,10 @@ if (selectedPerformance) {
     document.getElementById('performance_num').textContent = selectedPerformance.performance_num;
     $('#performance_num_input').attr('value', selectedPerformance.performance_num);
 
+    document.getElementById('fcltynm').textContent = selectedPerformance.fcltynm;
+    $('#fcltynm_input').attr('value', selectedPerformance.fcltynm);
+
+
     document.getElementById('member_id').textContent = selectedPerformance.member_id;
     $('#member_id_input').attr('value', selectedPerformance.member_id);
 
@@ -56,7 +60,8 @@ if (selectedDate) {
     // 선택된 날짜 정보를 화면에 출력
     document.getElementById('selectedDate').textContent = selectedDate.month + '월 ' + selectedDate.day + '일';
     let date = selectedDate.year + "-" + selectedDate.month + "-" + selectedDate.day
-    $('#w').attr('value', date);
+    $('#selectedDate_input').attr('value', date);
+    
 
 
 } else {

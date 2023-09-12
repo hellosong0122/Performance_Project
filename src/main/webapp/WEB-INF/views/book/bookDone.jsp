@@ -3,10 +3,11 @@
   <!doctype html>
   <html>
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <title>결제내역보기 </title>
     <style>
-        div {
+       div {
           border: 1px solid #bcbcbc;
       background-color: rgb(255, 255, 255);
         }
@@ -28,24 +29,31 @@
       
 
       #table-main{
-      width:80%;
+      width:70%;
       height: 470px;
       margin-bottom: 10px;
       }
 
         
       #table-right{
-      width:20%;
+      width:30%;
       height: 470px;
       margin-bottom: 10px;
       }
 
-        #table-right-up, #table-right-down{
+        #table-right-up{
       width:100%;
-      height: 235px;
+      height: 300px;
+      padding-bottom: 20px
           /* box-sizing: border-box; 테두리와 패딩이 너비 및 높이에 포함되도록 설정 */
        
       }
+      #table-right-down{
+        width:100%;
+      height: 170px;
+      margin-top: 50px;
+      }
+
        #table-right-up img{
         width: 100%;
         height: 100%; 
@@ -66,6 +74,7 @@
         }
         .table-cell {
           display: table-cell;
+          vertical-align: top; 
           /* padding: 0px 20px; */
           height: 150px;
         }
@@ -73,7 +82,7 @@
         .md-middle {
           vertical-align: middle;
         }
-        #shopBtn{
+        #continueBtn{
         background-color: coral;
         color:white;
         border:none;
@@ -84,7 +93,7 @@
         box-shadow: 1px 1px 1px #bcbcbc;
         /* transition-duration: 0.1s; */
         }
-        #shopBtn:active{
+        #continueBtn:active{
           margin-left: 5px;
           margin-top: 5px;
           box-shadow: none;
@@ -135,7 +144,7 @@
           </div>
           <div id="table-right" class="table-cell">
             <div id="table-right-up">
-              <p><img src="${dto.poster}" alt="Performance Poster" style="width: 100%; height: 100%;"/></p>
+              <p><img src="${dto.poster}" alt="Performance Poster" style="width: 95%; height: 100%; margin-bottom: 20px;"/></p>
              <br>
             </div>
             <div id="table-right-down">
@@ -154,12 +163,28 @@
 
     <div id="footer">
       <p align="center" style="font-size: 10px;">
-              <button id=shopBtn>
+              <button id="continueBtn" type="button">
               예매계속하기 <!--detail로이동-->
           </button>&nbsp;&nbsp;
-          <button id="homeBtn">
+          <button id="homeBtn" type="button">
               홈으로
           </button></p>
     </div>
+    <script>
+      let performanceNum = "${dto.performance_num}"
+      $(document).ready(function() {
+          $('#continueBtn').click(function() {
+              window.opener.location.href = '../performance/detail?performance_num=' +  performanceNum;  
+            window.close();
+          });
+      });
+
+      $(document).ready(function() {
+          $('#homeBtn').click(function() {
+            window.opener.location.href = '/'    
+            window.close();
+          });
+      });
+  </script> 
   </body>
   </html>

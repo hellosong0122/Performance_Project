@@ -189,18 +189,38 @@
 								nowRow = tbody_Calendar.insertRow();    // 새로운 행 추가
 							}
 							//공연이후클릭x 참고 
-							if (nowDay < today || nowDay > selectedEndDate) {  // 지난 날짜이거나 공연 기간 이후의 날짜인 경우
-									newDIV.className = "pastDay";
-									newDIV.onclick = null; // 클릭 이벤트 제거
-								} else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우           
-									newDIV.className = "today";
-									newDIV.onclick = function () { choiceDate(this); }
-
-								} else {                                      // 미래인 경우
-									newDIV.className = "futureDay";
-									newDIV.onclick = function () { choiceDate(this); }
-								}
-						}
+							if (nowDay.setHours(0,0,0,0) < today.setHours(0,0,0,0)) { 
+								// 오늘 날짜 이전인 경우
+								// 날짜로 하면 시작당일날 선택불가하여 시간으로 변경
+								newDIV.className = "pastDay";
+								newDIV.onclick = null; // 클릭 이벤트 제거
+							} 
+							else if (nowDay.setHours(0,0,0,0) > selectedEndDate.setHours(0,0,0,0)) { 
+								// 공연 종료 날짜 이후인 경우
+								newDIV.className = "pastDay";
+								newDIV.onclick = null; // 클릭 이벤트 제거
+							} 
+							else if (nowDay.setHours(0,0,0,0) < selectedStartDate.setHours(0,0,0,0)) { 
+								// 공연 시작 날짜 이전인 경우
+								newDIV.className = "pastDay";
+								newDIV.onclick = null; // 클릭 이벤트 제거
+							}
+							else if (nowDay.setHours(0,0,0,0) === selectedStartDate.setHours(0,0,0,0)) { 
+								// 공연 시작 날짜인 경우
+								newDIV.className = "futureDay";
+								newDIV.onclick = function () { choiceDate(this); }
+							}
+							else if (nowDay.setHours(0,0,0,0) === today.setHours(0,0,0,0)) { 
+								// 오늘 날짜인 경우
+								newDIV.className = "today";
+								newDIV.onclick = function () { choiceDate(this); }
+							} 
+							else {  
+								// 그 외의 경우 (공연 기간 중인 경우)
+								newDIV.className = "futureDay";
+								newDIV.onclick = function () { choiceDate(this); }
+							}
+							}
 								}
 			
 					

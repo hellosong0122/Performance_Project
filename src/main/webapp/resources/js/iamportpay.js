@@ -1,5 +1,6 @@
 let prfnmVal = $('#prfnm_input').attr('value');
 let performance_numVal = $('#performance_num_input').attr('value');
+let fcltynmVal = $('#fcltynm_input').attr('value');
 let member_numVal = $('#member_num_input').attr('value');
 let member_idVal = $('#member_id_input').attr('value');
 let member_emailVal = $('#member_email_input').attr('value');
@@ -51,6 +52,7 @@ function iamport() {
         pay_method: 'card',
         merchant_uid: num,
         name: prfnmVal,     //결제창에서 보여질 공연 이름???
+        place : fcltynmVal,  // 공연장이름
         amount: 100,
         buyer_name: member_name,       //실제 결제되는 가격
         buyer_email: member_emailVal,
@@ -65,7 +67,8 @@ function iamport() {
                     "imp_uid" : rsp.imp_uid,
                     "performance_num" : performance_numVal,
                     "prfnm" : prfnmVal,
-                    "performanceDate" : selectedDateVal,    
+                    "fcltynm" : fcltynmVal,
+                    "performanceDate" : selectedDateVal,
                     "performanceTime" : selectedTimeVal,
                     "perSeat" : selectedSeatsVal,
                     "memberNum" : member_numVal,

@@ -28,10 +28,7 @@ public class BookDAO {
 	public List<PerformanceDTO> getPerList()throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getPerList");
 	}
-//	//placelist
-//	public List<PerformancePlaceDTO> getPlaceList() throws Exception{
-//		return sqlSession.selectList(NAMESPACE+"getPlaceList");
-//	}
+
 	//booking
 	public List<PerformanceDTO> getPerTime()throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getPerTime");
@@ -54,11 +51,6 @@ public class BookDAO {
 	 public PerformanceOrderDTO getBook(PerformanceOrderDTO orderDTO) throws Exception {
 		    return sqlSession.selectOne(NAMESPACE+"getBook", orderDTO);
 		}
-	 //public List<PerformanceOrderDTO> getBook() throws Exception {
-	//	    return sqlSession.selectList(NAMESPACE+"getBook");
-		//}
-	 
-	 
 	 
 
 }

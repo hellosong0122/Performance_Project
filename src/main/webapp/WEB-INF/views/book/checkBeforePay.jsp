@@ -21,6 +21,7 @@
                 <div>
                     <p>공연명: <span id="prfnm"></span></p>
                     <p>공연 번호: <span id="performance_num"></span></p>
+                    <p>공연 극장: <span id="fcltynm"></span></p>
                     <p>구매자 ID: <span id="member_id"></span></p>
                     <p>구메자 E-MAIL: <span id="member_email"></span></p>
                     <p>예약날짜: <span id="selectedDate"></span></p>
@@ -33,6 +34,7 @@
                 <!-- <form method="post" action="done">  -->
                 <input type="hidden" name="prfnm" id="prfnm_input" />
                 <input type="hidden" name="performance_num" id="performance_num_input">
+                <input type="hidden" name="fcltynm" id="fcltynm_input" />
                 <input type="hidden" name="num" id="member_num_input">
                 <input type="hidden" name="id" id="member_id_input">
                 <input type="hidden" name="name" id="member_name_input">
@@ -41,9 +43,10 @@
                 <input type="hidden" name="reserveTime" id="selectedTime_input">
                 <input type="hidden" name="seatId" id="selectedSeats_input">
                 <input type="hidden" name="baseSeatPrie" id="baseSeatPrie_input">
+                <input type="hidden" name="fcltynm" id="fcltynm_input">
 
                 <input type="reset" style="color: crimson;" value="취소하기" id="cancelBtn">   
-                <button type="button"  style="color: blue;"
+                <button type="submit"  style="color: blue;"
                     id="payBtn" >결제하기</button>
                  <!-- </form>  -->
 

@@ -50,10 +50,6 @@ public class BookService {
 	    	}
 	   
     
-    
- //  public List<PerformanceOrderDTO> getBook(PerformanceOrderDTO orderDTO) throws Exception {
- //	   return bookDAO.getBook();
- //	}
 
 }
 

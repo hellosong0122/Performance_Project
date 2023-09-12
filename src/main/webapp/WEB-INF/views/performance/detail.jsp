@@ -31,6 +31,7 @@
                         prfnm: $(this).data('name'), // 공연명
                         performance_num: $(this).data('num'), //선택한 공연의 번호
                         pcseguidance : $(this).data('price'),//선택한 공연의 가격
+                        fcltynm:$(this).data('fcltynm'),
                         member_num : memberNum,
                         member_id: memberId,      // 로그인한 사용자의 아이디 
                         member_name: memberName, //로그인한 사용자 성함(결제창에서 씌일거임)
@@ -48,6 +49,7 @@
                             prfnm: data.prfnm, 
                             performance_num: data.performance_num, 
                             pcseguidance: data.pcseguidance, 
+                            fcltynm:data.fcltynm,
                             member_num : data.member_num,
                             member_id: data.member_id, 
                             member_name : data.member_name,
@@ -55,6 +57,7 @@
                         },
                         success: function(success) {
                             console.log('Success:');
+                            console.log('fcltynm:', data.fcltynm);
                             console.log('Member ID:', data.member_id);
                             console.log('Member Email:', data.member_email);
                             console.log('Member Name:', data.member_name);
@@ -125,7 +128,7 @@
                         data-num="${dto.performanceDTO.performance_num}" 
                         data-perId="${dto.performanceDTO.mt20id}" data-membernum = "${member.member_num}"
                          data-id = "${member.id}"  data-price="${dto.performanceDTO.pcseguidance}"
-                        data-username="${member.name}"
+                        data-username="${member.name}"  data-fcltynm="${dto.fcltynm}"
                         data-email="${member.email}" >예매하기</button>
                         
                 </div>
