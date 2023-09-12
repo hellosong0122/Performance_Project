@@ -12,7 +12,7 @@
                 id="bootstrap-css">
             <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         </head>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
 
         <body>
             <h1>예매내역 확인하기</h1>
@@ -42,7 +42,7 @@
                 <input type="hidden" name="seatId" id="selectedSeats_input">
                 <input type="hidden" name="baseSeatPrie" id="baseSeatPrie_input">
 
-                <input type="reset" style="color: crimson;" value="취소하기">   
+                <input type="reset" style="color: crimson;" value="취소하기" id="cancelBtn">   
                 <button type="button"  style="color: blue;"
                     id="payBtn" >결제하기</button>
                  <!-- </form>  -->
@@ -50,7 +50,17 @@
             <script src="../../../resources/js/book/checkBeforePay.js"></script>
             <script src="../../../resources/js/iamportpay.js"></script>        
 
-
+            <script>
+                $(document).ready(function() {
+                    $('#cancelBtn').click(function() {
+                        if (confirm('예매를 취소하시겠습니까?')) {
+                            let performanceNum = $('#performance_num').text(); 
+                            window.opener.location.href = '../performance/detail?performance_num=' +  performanceNum;
+                            window.close();
+                        }
+                    });
+                });
+            </script> 
         </body>
 
         </html>

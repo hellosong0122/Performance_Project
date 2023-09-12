@@ -129,6 +129,7 @@ public class BookController {
 	    orderDTO = bookService.getBook(orderDTO);
 		System.out.println(orderDTO.toString());
 	    mv.addObject("dto", orderDTO);
+	//    mv.addObject("perList", orderDTO);
 	    mv.setViewName("book/bookDone");
 	    return mv;
 	}

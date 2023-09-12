@@ -4,24 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
    <mapper namespace="com.per.main.per.BookDAO">
-  
-	
-	<select id="getPlaceList" resultType="PerformancePlaceDTO" parameterType="Pager">
-		SELECT FCLTYNM, ADRES, TELNO
-		FROM (SELECT ROWNUM R, P.*
-		 	  FROM (SELECT * 
-			  	    FROM PERFORMANCE_PLACE) P)
-		<!-- WHERE R BETWEEN #{startRow} AND #{lastRow}  -->
-	</select> 
-	
 
-	
-	<select id="getPrice" resultType="PerformanceDTO">
-		SELECT PRFNM, pcseguidance, performance_num
-		FROM
-		PERFORMANCE F
-	
-	</select>
 	
 	<select id="getSeat" resultType="SeatDTO">
 		SELECT
@@ -30,7 +13,19 @@
 			SEAT
 	</select>
 	
-
+<!-- 
+	<resultMap type="PerformanceOrderDTO" id="getBookResult">
+  		<id column="ORDERNUM" property="orderNum"/>
+  		<result column="IMP_UID" property="imp_uid"/>
+  		<result column="PERFORMANCE_NUM" property="performance_num"/>
+  		<result column="PRFNM" property="prfnm"/>
+  		<result column="MT10ID" property="mt10id"/>
+  		<result column="PERFORMANCEDATE" property="performanceDate"/>
+  		<result column="PERFORMANCETIME" property="performanceTime"/>
+  		<result column="PERSEAT" property="perSeat"/>
+  		<result column="MEMBERNUM" property="memberNum"/>
+  		<result column="TOTALPRICE" property="totalPrice"/>
+  	</resultMap> -->
 
 <!-- 		<insert id="setBook222" parameterType="MemberDTO">
 		INSERT INTO BOOK (ticket_sequence.NEXTVAL,PRFNM,PERFORMANCE_NUM,ID,EMAIL,RESERVDATE,RESERVTIME,SEATPRICE,SEATID)
@@ -47,13 +42,19 @@
 	
 	
 	<!-- 	    BOOK 테이블에서 모든 예약 정보-->
-		     <select id="getBook" resultType="PerformanceOrderDTO" parameterType="PerformanceOrderDTO">
-	 		  SELECT * FROM BOOK WHERE orderNum = #{orderNum}
+		<!--      <select id="getBook" resultType="PerformanceOrderDTO" parameterType="PerformanceOrderDTO">
+	 		  SELECT * FROM BOOK 
+	 	  WHERE ORDERNUM = #{orderNum} 
 	 		  
-	  	  	</select> 
-	    
-<!-- 	     BOOK 테이블에서 모든 예약 정보, 공연시설이랑 포스터도 가져오기
-		<select id="getBook" resultType="PerformanceOrderDTO">
+	  	  	</select>--> 
+<!-- 	     BOOK 테이블에서 모든 예약 정보, 공연시설이랑 포스터도 가져오기 -->
+		
+		<resultMap id="PerformanceOrderResult" type="PerformanceOrderDTO">
+    		<result property="fcltynm" column="FCLTYNM"/>
+		</resultMap>
+		
+		
+		<select id="getBook" resultMap="PerformanceOrderResult">
 	    SELECT 
 	        BOOK.*, 
 	        PERFORMANCE.POSTER, 
@@ -64,7 +65,8 @@
 	    ON BOOK.PERFORMANCE_NUM = PERFORMANCE.PERFORMANCE_NUM
 	    LEFT OUTER JOIN PERFORMANCE_PLACE 
 	    ON BOOK.MT10ID = PERFORMANCE_PLACE.MT10ID
-	         WHERE orderNum = #{orderNum}
-	</select> -->
+	        	  WHERE ORDERNUM = #{orderNum} 
+	</select> 
+	
 	
 </mapper>

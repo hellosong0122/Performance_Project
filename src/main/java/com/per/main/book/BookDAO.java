@@ -47,7 +47,8 @@ public class BookDAO {
 	 }
 	 //mapper : reservationPer, db에 넣기
 	 public void reservationPer(PerformanceOrderDTO orderDTO) throws Exception {
-	        sqlSession.insert("resevationPer", orderDTO);
+	     System.out.println(orderDTO.toString());   
+		 sqlSession.insert("resevationPer", orderDTO);
 	    }
 	
 	 public PerformanceOrderDTO getBook(PerformanceOrderDTO orderDTO) throws Exception {

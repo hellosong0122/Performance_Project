@@ -44,7 +44,12 @@
       width:100%;
       height: 235px;
           /* box-sizing: border-box; 테두리와 패딩이 너비 및 높이에 포함되도록 설정 */
-          box-sizing: ;
+       
+      }
+       #table-right-up img{
+        width: 100%;
+        height: 100%; 
+    
       }
       
         #table-right-up {
@@ -114,25 +119,24 @@
     <div class="mainline">
       <div class="table-row">
         <div id="table-main" class="table-cell">
-          <p style="font-size: xx-large; font-weight: bold;">에매가 완료되었습니다.</p>
+          <p style="font-size: xx-large; font-weight: bold;">예매가 완료되었습니다.</p>
           <p>공연예매가 완료되었습니다</p>
           <p>티켓은 현장에서 발권해주세요.</p>
           <br>
-          <c:forEach var="dto" items="${perList}">
-            <p>티켓번호 :${dto.orderNum} </p>  <!--컬럼명 orderNum--> 
-            <p>공연명 : ${dto.prfnm}</p>
-            <p>공연번호 : ${dto.performance_num}</p>
-            <P>공연시설 :${dto.performancePlaceDTO.fcltynm}</P>
-            <p>예매날짜 :${dto.performanceDate} </p>
-            <p>예매시간 :${dto.performanceTime} </p>
-            <P>예매좌석 :${dto.perSeat}</P>
-            <p>총 가격 :${dto.totalPrice}</p>
-          </div>
+             <p>티켓번호 :${dto.orderNum} </p>  <!--컬럼명 orderNum--> 
+             <p>공연명 : ${dto.prfnm}</p>
+             <p>공연번호 : ${dto.performance_num}</p>
+             <P>공연시설 :${dto.fcltynm}</P>
+             <p>예매날짜 :${dto.performanceDate} </p> 
+             <p>예매시간 :${dto.performanceTime} </p>
+             <P>예매좌석 :${dto.perSeat}</P>
+             <p>총 가격 :${dto.totalPrice}</p>
           
+          </div>
           <div id="table-right" class="table-cell">
             <div id="table-right-up">
-              <p>공연포스터 :${dto.performanceDTO.poster}</p>
-              <br>
+              <p><img src="${dto.poster}" alt="Performance Poster" style="width: 100%; height: 100%;"/></p>
+             <br>
             </div>
             <div id="table-right-down">
               <p>공연명 : ${dto.prfnm} </p>
@@ -140,7 +144,7 @@
               <p>구매가격 : ${dto.totalPrice}</p>
             </div>
           </div>
-          </c:forEach>
+        
           
           </div>
         </div>

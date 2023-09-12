@@ -23,6 +23,10 @@ public class PerformanceOrderDTO {
 	private Long memberNum;
 	// 총금액
 	private Long totalPrice;
+	//공연시설명
+	private String fcltynm;
+	//공연포스터
+	private String poster;
 
 	public String getOrderNum() {
 		return orderNum;
@@ -105,11 +109,31 @@ public class PerformanceOrderDTO {
 	public void setTotalPrice(Long totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	
+	
+
+	public String getFcltynm() {
+		return fcltynm;
+	}
+
+	public void setFcltynm(String fcltynm) {
+		this.fcltynm = fcltynm;
+	}
+	
+	
+
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 
 	@Override
 	public String toString() {
 		return "PerformanceOrderDTO [orderNum=" + orderNum + ", imp_uid=" + imp_uid + ", performance_num="
-				+ performance_num + ", prfnm=" + prfnm + ", mt10id=" + mt10id +", performanceDate=" + performanceDate + ", performanceTime="
+				+ performance_num + ", prfnm=" + prfnm + ", mt10id=" + mt10id +",fcltynm="+ fcltynm+" performanceDate=" + performanceDate + ", performanceTime="
 				+ performanceTime + ", perSeat=" + perSeat + ", memberNum=" + memberNum + ", totalPrice=" + totalPrice
 				+ "]";
 	}

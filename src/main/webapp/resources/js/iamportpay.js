@@ -65,14 +65,15 @@ function iamport() {
                     "imp_uid" : rsp.imp_uid,
                     "performance_num" : performance_numVal,
                     "prfnm" : prfnmVal,
-                    "performanceDate" : selectedDateVal,
+                    "performanceDate" : selectedDateVal,    
                     "performanceTime" : selectedTimeVal,
                     "perSeat" : selectedSeatsVal,
                     "memberNum" : member_numVal,
                     "totalPrice" : sumPrice,        
                 }
+                
             }).done(function (data) {
-                console.log(data);
+                console.log("구별용"+data);
                 const redirectUrl = "./bookDone?orderNum=" + rsp.merchant_uid;
                 location.href = redirectUrl;
               // location.replace('/book/bookDone');
