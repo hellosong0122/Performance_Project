@@ -10,8 +10,8 @@ public class ProductOrderDTO {
 	private String imp_uid; // iamport 에서 생성해주는
 	private Long P_Num; // 상품번호
 	private String P_Name; // 상품이름
-	private Long P_Count;
 	private Long memberNum; // 회원번
+	private Long P_Count;
 	private Date orderDate;
 	private Long totalPrice;
 

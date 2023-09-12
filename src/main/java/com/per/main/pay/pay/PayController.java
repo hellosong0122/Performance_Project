@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,8 +34,6 @@ import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
-
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/pay/*")
@@ -54,6 +53,8 @@ public class PayController {
 		this.api = new IamportClient(key.getAPIKey(), key.getAPISecret());
 
 	}
+
+	
 
 	@RequestMapping(value = "buygift", method = RequestMethod.POST)
 	public ModelAndView payGiftMotion(MemberDTO memberDTO, @ModelAttribute ProductVO payProductDTO, HttpSession session,
@@ -75,6 +76,77 @@ public class PayController {
 		mv.setViewName("pay/payment");
 		return mv;
 	}
+	
+	@GetMapping("deleteorder")
+	public String cancelOrder(ProductOrderDTO productOrderDTO) throws Exception {
+		int resultRemoveData;
+		productOrderDTO = payService.orderDetail(productOrderDTO);
+		System.out.println("취소 : "+ productOrderDTO.toString());
+		resultRemoveData = payService.removeOrder(productOrderDTO);
+		
+		
+		if (resultRemoveData >0) {
+			System.out.println("DB 삭제성공");
+		}
+		return "redirect:../product/giftDetail?p_Num="+productOrderDTO.getP_Num();
+	}
+
+	
+
+	@GetMapping("buygiftinfo")
+	public String openProcessing(ProductOrderDTO productOrderDTO, Model model, HttpSession session) throws Exception {
+		System.out.println("get mapping");
+
+		productOrderDTO = payService.orderDetail(productOrderDTO);
+		System.out.println(productOrderDTO.toString());
+		model.addAttribute("orderDetail", productOrderDTO);
+
+		return "pay/buygiftinfo";
+	}
+
+	@ResponseBody
+	@PostMapping("done")
+	public boolean paycomplete(MemberDTO memberDTO, @ModelAttribute ProductOrderDTO productOrderDTO,
+			HttpSession session, Model model) throws Exception {
+
+		boolean result = true;
+
+		memberDTO = (MemberDTO) session.getAttribute("member");
+		if (memberDTO != null) {
+			model.addAttribute("member", memberDTO);
+		}
+
+		System.out.println(productOrderDTO.toString());
+
+		String imp_uid = productOrderDTO.getImp_uid();
+
+		System.out.println("test imp_uid : " + imp_uid);
+
+		String token = payService.getToken();
+
+		System.out.println("test token : " + token);
+		memberDTO = (MemberDTO) memberService.getUserInfo(memberDTO);
+		productOrderDTO.setMemberNum(memberDTO.getMember_num());
+
+		String amount = payService.paymentInfo(productOrderDTO.getImp_uid(), token);
+
+		System.out.println("test amount : " + amount);
+
+		System.out.println("test amountType : " + amount.getClass().getName());
+
+		System.out.println("test totalPrice : " + productOrderDTO.getTotalPrice());
+
+		if (productOrderDTO.getTotalPrice() != Long.parseLong(amount)) {
+			// 결제 취소
+			// payService.canclePay(orderDTO.getImp_uid(),token,amount,"결제 취th");
+			result = false;
+		}
+
+		payService.insertPayData(productOrderDTO);
+		System.out.println(result);
+
+		return result;
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/verifyIamport/{imp_uid}")
@@ -89,39 +161,6 @@ public class PayController {
 		session.setAttribute("payment", payment);
 		session.setMaxInactiveInterval(600);
 		return paymentIamportResponse;
-	}
-
-	@PostMapping("done")
-	@ResponseBody
-	public String payDone(@ModelAttribute ProductOrderDTO orderDTO) throws Exception {
-
-		boolean result = true;
-
-		String imp_uid = orderDTO.getImp_uid();
-
-		System.out.println("test imp_uid : " + imp_uid);
-
-		String token = payService.getToken();
-
-		System.out.println("test token : " + token);
-
-		String amount = payService.paymentInfo(orderDTO.getImp_uid(), token);
-
-		System.out.println("test amount : " + amount);
-
-		System.out.println("test amountType : " + amount.getClass().getName());
-
-		System.out.println("test totalPrice : " + orderDTO.getTotalPrice());
-
-		if (orderDTO.getTotalPrice() != Long.parseLong(amount)) {
-			// 결제 취소
-			// payService.canclePay(orderDTO.getImp_uid(),token,amount,"결제 취th");
-			result = false;
-		}
-
-		payService.insertPayData(orderDTO);
-
-		return "done";
 	}
 
 }
