@@ -40,17 +40,19 @@
 		<!-- DB에 book정보넣기 -->
 	<insert id="resevationPer" parameterType="PerformanceOrderDTO">
     INSERT INTO BOOK 
-    (ORDERNUM, IMP_UID, PERFORMANCE_NUM, PRFNM, PERFORMANCEDATE, PERFORMANCETIME, PERSEAT, MEMBERNUM, TOTALPRICE)
+    (ORDERNUM, PERFORMANCE_NUM, MEMBERNUM, MT10ID, IMP_UID, PRFNM, PERFORMANCEDATE, PERFORMANCETIME, PERSEAT, TOTALPRICE)
     VALUES 
-    (#{orderNum}, #{imp_uid}, #{performance_num}, #{prfnm}, #{performanceDate}, #{performanceTime}, #{perSeat}, #{memberNum}, #{totalPrice})
+    (#{orderNum},#{performance_num}, #{memberNum}, #{mt10id}, #{imp_uid}, #{prfnm}, #{performanceDate}, #{performanceTime},#{perSeat}, #{totalPrice})
 	</insert>
 	
-		    <!-- BOOK 테이블에서 모든 예약 정보 -->
-	  <!--   <select id="getBook" resultType="PerformanceOrderDTO">
-	        SELECT * FROM BOOK
-	    </select> -->
+	
+	<!-- 	    BOOK 테이블에서 모든 예약 정보-->
+		     <select id="getBook" resultType="PerformanceOrderDTO" parameterType="PerformanceOrderDTO">
+	 		  SELECT * FROM BOOK WHERE orderNum = #{orderNum}
+	 		  
+	  	  	</select> 
 	    
-	     <!-- BOOK 테이블에서 모든 예약 정보, 공연시설이랑 포스터도 가져오기 -->
+<!-- 	     BOOK 테이블에서 모든 예약 정보, 공연시설이랑 포스터도 가져오기
 		<select id="getBook" resultType="PerformanceOrderDTO">
 	    SELECT 
 	        BOOK.*, 
@@ -58,10 +60,11 @@
 	        PERFORMANCE_PLACE.FCLTYNM
 	    FROM 
 	        BOOK 
-	    INNER JOIN 
-	        PERFORMANCE ON BOOK.PERFORMANCE_NUM = PERFORMANCE.PERFORMANCE_NUM
-	    INNER JOIN
-	        PERFORMANCE_PLACE ON BOOK.FCLTYNM = PERFORMANCE_PLACE.FCLTYNM
-	</select>
+	    LEFT OUTER JOIN  PERFORMANCE 
+	    ON BOOK.PERFORMANCE_NUM = PERFORMANCE.PERFORMANCE_NUM
+	    LEFT OUTER JOIN PERFORMANCE_PLACE 
+	    ON BOOK.MT10ID = PERFORMANCE_PLACE.MT10ID
+	         WHERE orderNum = #{orderNum}
+	</select> -->
 	
 </mapper>

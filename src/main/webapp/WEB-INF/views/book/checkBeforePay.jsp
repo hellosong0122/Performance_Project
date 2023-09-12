@@ -42,7 +42,7 @@
                 <input type="hidden" name="seatId" id="selectedSeats_input">
                 <input type="hidden" name="baseSeatPrie" id="baseSeatPrie_input">
 
-                <input type="reset" style="color: crimson;" value="취소하기">
+                <input type="reset" style="color: crimson;" value="취소하기">   
                 <button type="button"  style="color: blue;"
                     id="payBtn" >결제하기</button>
                  <!-- </form>  -->

@@ -39,15 +39,17 @@ function createOrderNum() {
     for (let i = 0; i < 10; i++) {
         orderNum += Math.floor(Math.random() * 8);
     }
-    return orderNum;
+    return 'pt'+orderNum;
 }
 function iamport() {
     IMP.init('imp22750372');   //가맹점 식별코드
     console.log(member_name);
+    let num = createOrderNum();
+    console.log(num);
     IMP.request_pay({
         pg: 'nice.iamport00m',           // pg사
         pay_method: 'card',
-        merchant_uid: 'pt' + createOrderNum(),
+        merchant_uid: num,
         name: prfnmVal,     //결제창에서 보여질 공연 이름???
         amount: 100,
         buyer_name: member_name,       //실제 결제되는 가격
@@ -67,12 +69,13 @@ function iamport() {
                     "performanceTime" : selectedTimeVal,
                     "perSeat" : selectedSeatsVal,
                     "memberNum" : member_numVal,
-                    "totalPrice" : sumPrice,
+                    "totalPrice" : sumPrice,        
                 }
             }).done(function (data) {
                 console.log(data);
-            // window.location.href = "/book/done"; 
-               location.replace('/book/bookDone');
+                const redirectUrl = "./bookDone?orderNum=" + rsp.merchant_uid;
+                location.href = redirectUrl;
+              // location.replace('/book/bookDone');
               
               
             });

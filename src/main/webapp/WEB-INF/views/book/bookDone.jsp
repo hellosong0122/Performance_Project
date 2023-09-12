@@ -4,7 +4,7 @@
   <html>
   <head>
     <meta charset="utf-8">
-    <title>table display 연습</title>
+    <title>결제내역보기 </title>
     <style>
         div {
           border: 1px solid #bcbcbc;
@@ -111,19 +111,18 @@
               공연예매> 주문 · 결제 > 예매완료
           </p>
     </div>
-
-      <div class="mainline">
-
-        <div class="table-row">
-          <div id="table-main" class="table-cell">
-            <p style="font-size: xx-large; font-weight: bold;">에매가 완료되었습니다.</p>
-            <p>공연예매가 완료되었습니다</p>
-            <p>티켓은 현장에서 발권해주세요.</p>
-            <br>
+    <div class="mainline">
+      <div class="table-row">
+        <div id="table-main" class="table-cell">
+          <p style="font-size: xx-large; font-weight: bold;">에매가 완료되었습니다.</p>
+          <p>공연예매가 완료되었습니다</p>
+          <p>티켓은 현장에서 발권해주세요.</p>
+          <br>
+          <c:forEach var="dto" items="${perList}">
             <p>티켓번호 :${dto.orderNum} </p>  <!--컬럼명 orderNum--> 
             <p>공연명 : ${dto.prfnm}</p>
             <p>공연번호 : ${dto.performance_num}</p>
-            <P>공연시설 :${dto.fcltynm}</P>
+            <P>공연시설 :${dto.performancePlaceDTO.fcltynm}</P>
             <p>예매날짜 :${dto.performanceDate} </p>
             <p>예매시간 :${dto.performanceTime} </p>
             <P>예매좌석 :${dto.perSeat}</P>
@@ -131,20 +130,20 @@
           </div>
           
           <div id="table-right" class="table-cell">
-              <div id="table-right-up">
-                <p>공연포스터 :${dto.performanceDTO.poster}</p>
-                <br>
-              </div>
-              <div id="table-right-down">
+            <div id="table-right-up">
+              <p>공연포스터 :${dto.performanceDTO.poster}</p>
+              <br>
+            </div>
+            <div id="table-right-down">
               <p>공연명 : ${dto.prfnm} </p>
               <p>티켓번호 :${dto.orderNum}</p>       
               <p>구매가격 : ${dto.totalPrice}</p>
-              </div>
             </div>
-            
+          </div>
+          </c:forEach>
           
           </div>
-      </div>
+        </div>
           
       </div>
 

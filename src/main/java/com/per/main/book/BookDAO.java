@@ -49,10 +49,14 @@ public class BookDAO {
 	 public void reservationPer(PerformanceOrderDTO orderDTO) throws Exception {
 	        sqlSession.insert("resevationPer", orderDTO);
 	    }
-	 //
-	 public PerformanceOrderDTO getBook(PerformanceOrderDTO performanceOrderDTO) throws Exception {
-		    return sqlSession.selectOne(NAMESPACE+"getBook");
+	
+	 public PerformanceOrderDTO getBook(PerformanceOrderDTO orderDTO) throws Exception {
+		    return sqlSession.selectOne(NAMESPACE+"getBook", orderDTO);
 		}
+	 //public List<PerformanceOrderDTO> getBook() throws Exception {
+	//	    return sqlSession.selectList(NAMESPACE+"getBook");
+		//}
+	 
 	 
 	 
 

@@ -11,8 +11,8 @@ public class PerformanceOrderDTO {
 	private Long performance_num;	
 	// 공연명
 	private String prfnm;
-	//공연시설명
-	private String fcltynm;
+	//공연시설id
+	private String mt10id;
 	// 예약날짜
 	private Date performanceDate;
 	// 에약시간
@@ -56,14 +56,14 @@ public class PerformanceOrderDTO {
 		this.prfnm = prfnm;
 	}
 	
-	
 
-	public String getFcltynm() {
-		return fcltynm;
+
+	public String getMt10id() {
+		return mt10id;
 	}
 
-	public void setFcltynm(String fcltynm) {
-		this.fcltynm = fcltynm;
+	public void setMt10id(String mt10id) {
+		this.mt10id = mt10id;
 	}
 
 	public Date getPerformanceDate() {
@@ -109,7 +109,7 @@ public class PerformanceOrderDTO {
 	@Override
 	public String toString() {
 		return "PerformanceOrderDTO [orderNum=" + orderNum + ", imp_uid=" + imp_uid + ", performance_num="
-				+ performance_num + ", prfnm=" + prfnm + ", performanceDate=" + performanceDate + ", performanceTime="
+				+ performance_num + ", prfnm=" + prfnm + ", mt10id=" + mt10id +", performanceDate=" + performanceDate + ", performanceTime="
 				+ performanceTime + ", perSeat=" + perSeat + ", memberNum=" + memberNum + ", totalPrice=" + totalPrice
 				+ "]";
 	}
