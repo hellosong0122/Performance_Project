@@ -117,6 +117,9 @@ public class NoticeService implements BoardService {
 		return noticeDAO.setDelete(boardDTO);
 	}
 	
-	
+	@Override
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
+		return noticeDAO.setHitUpdate(boardDTO);
+	}
 
 }

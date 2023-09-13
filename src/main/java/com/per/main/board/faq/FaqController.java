@@ -96,6 +96,7 @@ public class FaqController {
 	public String setAdd(FaqDTO faqDTO, Model model)throws Exception{
 		BoardDTO boardDTO = faqService.getDetail(faqDTO);
 		if(boardDTO != null) {
+			faqService.setHitUpdate(boardDTO);
 			model.addAttribute("dto", boardDTO);
 			return "board/detail";
 		} else {

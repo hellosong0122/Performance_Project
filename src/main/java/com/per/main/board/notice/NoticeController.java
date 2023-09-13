@@ -96,6 +96,7 @@ public class NoticeController {
 	public String setAdd(NoticeDTO noticeDTO, Model model)throws Exception{
 		BoardDTO boardDTO = noticeService.getDetail(noticeDTO);
 		if(boardDTO != null) {
+			noticeService.setHitUpdate(boardDTO);
 			model.addAttribute("dto", boardDTO);
 			return "board/detail";
 		} else {

@@ -117,6 +117,9 @@ public class VideoService implements BoardService {
 		return videoDAO.setDelete(boardDTO);
 	}
 	
-	
+	@Override
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
+		return videoDAO.setHitUpdate(boardDTO);
+	}
 
 }

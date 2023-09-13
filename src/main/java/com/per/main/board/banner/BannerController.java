@@ -96,6 +96,7 @@ public class BannerController {
 	public String setAdd(BannerDTO bannerDTO, Model model)throws Exception{
 		BoardDTO boardDTO = bannerService.getDetail(bannerDTO);
 		if(boardDTO != null) {
+			bannerService.setHitUpdate(boardDTO);
 			model.addAttribute("dto", boardDTO);
 			return "board/detail";
 		} else {

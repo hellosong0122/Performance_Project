@@ -96,6 +96,7 @@ public class TicketOpenController {
 	public String setAdd(TicketOpenDTO ticketOpenDTO, Model model)throws Exception{
 		BoardDTO boardDTO = ticketOpenService.getDetail(ticketOpenDTO);
 		if(boardDTO != null) {
+			ticketOpenService.setHitUpdate(boardDTO);
 			model.addAttribute("dto", boardDTO);
 			return "board/detail";
 		} else {

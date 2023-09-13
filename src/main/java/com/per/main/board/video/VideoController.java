@@ -96,6 +96,7 @@ public class VideoController {
 	public String setAdd(VideoDTO videoDTO, Model model)throws Exception{
 		BoardDTO boardDTO = videoService.getDetail(videoDTO);
 		if(boardDTO != null) {
+			videoService.setHitUpdate(boardDTO);
 			model.addAttribute("dto", boardDTO);
 			return "board/detail";
 		} else {
