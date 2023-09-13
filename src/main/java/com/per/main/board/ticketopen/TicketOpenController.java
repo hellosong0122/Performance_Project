@@ -19,7 +19,6 @@ import com.per.main.board.BoardDTO;
 import com.per.utils.Pager;
 
 @Controller
-@RequestMapping("/ticketopen/*")
 public class TicketOpenController {
 	
 	@Autowired
@@ -30,14 +29,14 @@ public class TicketOpenController {
 		return "ticket_open";
 	}
 	
-	@PostMapping("setContentsImgDelete")
+	@PostMapping("/admin/ticketopen/setContentsImgDelete")
 	public String setContentsImgDelete(String path, HttpSession session, Model model)throws Exception{
 		boolean check= ticketOpenService.setContentsImgDelete(path, session);
 		model.addAttribute("result", check);
 		return "commons/ajaxResult";
 	}
 	
-	@PostMapping("setContentsImg")
+	@PostMapping("/admin/ticketopen/setContentsImg")
 	public String setContentsImg(MultipartFile files, HttpSession session, Model model)throws Exception{
 		System.out.println("setContentsImg");
 		System.out.println(files.getOriginalFilename());
@@ -47,7 +46,7 @@ public class TicketOpenController {
 		
 	}
 	
-	@GetMapping("fileDelete")
+	@GetMapping("/admin/ticketopen/fileDelete")
 	public String setFileDelete(TicketOpenFileDTO ticketOpenFileDTO, HttpSession session ,Model model)throws Exception{
 		int result = ticketOpenService.setFileDelete(ticketOpenFileDTO, session);
 		model.addAttribute("result", result);
@@ -55,7 +54,7 @@ public class TicketOpenController {
 		
 	}
 	
-	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@RequestMapping(value = "/ticketopen/list", method = RequestMethod.GET)
 	public String getList(Pager pager, Model model)throws Exception{
 		List<BoardDTO> ar =  ticketOpenService.getList(pager);
 		model.addAttribute("list", ar);
@@ -63,13 +62,21 @@ public class TicketOpenController {
 		return "board/list";
 	}
 	
+	@RequestMapping(value = "/admin/ticketopen/list", method = RequestMethod.GET)
+	public String getAdminList(Pager pager, Model model)throws Exception{
+		List<BoardDTO> ar =  ticketOpenService.getList(pager);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		return "board/adminList";
+	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/admin/ticketopen/add", method = RequestMethod.GET)
 	public String setAdd()throws Exception{
 		return "board/add";
 	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/ticketopen/add", method = RequestMethod.POST)
 	public String setAdd(TicketOpenDTO ticketOpenDTO, MultipartFile[] photos, HttpSession session, Model model)throws Exception{
 		int result = ticketOpenService.setAdd(ticketOpenDTO, photos, session);
 		
@@ -85,7 +92,7 @@ public class TicketOpenController {
 		return "commons/result";
 	}
 	
-	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/ticketopen/detail", method = RequestMethod.GET)
 	public String setAdd(TicketOpenDTO ticketOpenDTO, Model model)throws Exception{
 		BoardDTO boardDTO = ticketOpenService.getDetail(ticketOpenDTO);
 		if(boardDTO != null) {
@@ -96,23 +103,35 @@ public class TicketOpenController {
 			model.addAttribute("url", "list");
 			return "commons/result";
 		}
-		
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/ticketopen/detail", method = RequestMethod.GET)
+	public String setAdminAdd(TicketOpenDTO ticketOpenDTO, Model model)throws Exception{
+		BoardDTO boardDTO = ticketOpenService.getDetail(ticketOpenDTO);
+		if(boardDTO != null) {
+			model.addAttribute("dto", boardDTO);
+			return "board/adminDetail";
+		} else {
+			model.addAttribute("message", "글이 없다");
+			model.addAttribute("url", "list");
+			return "commons/result";
+		}
+	}
+	
+	@RequestMapping(value = "/admin/ticketopen/update", method = RequestMethod.GET)
 	public String setUpdate(BoardDTO boardDTO, Model model)throws Exception{
 		boardDTO = ticketOpenService.getDetail(boardDTO);
 		model.addAttribute("dto", boardDTO);
 		return "board/update";
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/ticketopen/update", method = RequestMethod.POST)
 	public String setUpdate(TicketOpenDTO ticketOpenDTO, MultipartFile[] photos, HttpSession session)throws Exception{
 		int result = ticketOpenService.setUpdate(ticketOpenDTO, photos, session);
 		return "redirect:./list";
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/ticketopen/delete", method = RequestMethod.GET)
 	public String setAdd(TicketOpenDTO ticketOpenDTO)throws Exception{
 		int result = ticketOpenService.setDelete(ticketOpenDTO);
 		return "redirect:./list";

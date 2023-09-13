@@ -19,7 +19,6 @@ import com.per.main.board.BoardDTO;
 import com.per.utils.Pager;
 
 @Controller
-@RequestMapping("/video/*")
 public class VideoController {
 	
 	@Autowired
@@ -30,14 +29,14 @@ public class VideoController {
 		return "video";
 	}
 	
-	@PostMapping("setContentsImgDelete")
+	@PostMapping("/admin/video/setContentsImgDelete")
 	public String setContentsImgDelete(String path, HttpSession session, Model model)throws Exception{
 		boolean check= videoService.setContentsImgDelete(path, session);
 		model.addAttribute("result", check);
 		return "commons/ajaxResult";
 	}
 	
-	@PostMapping("setContentsImg")
+	@PostMapping("/admin/video/setContentsImg")
 	public String setContentsImg(MultipartFile files, HttpSession session, Model model)throws Exception{
 		System.out.println("setContentsImg");
 		System.out.println(files.getOriginalFilename());
@@ -47,7 +46,7 @@ public class VideoController {
 		
 	}
 	
-	@GetMapping("fileDelete")
+	@GetMapping("/admin/video/fileDelete")
 	public String setFileDelete(VideoFileDTO videoFileDTO, HttpSession session ,Model model)throws Exception{
 		int result = videoService.setFileDelete(videoFileDTO, session);
 		model.addAttribute("result", result);
@@ -55,7 +54,7 @@ public class VideoController {
 		
 	}
 	
-	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@RequestMapping(value = "/video/list", method = RequestMethod.GET)
 	public String getList(Pager pager, Model model)throws Exception{
 		List<BoardDTO> ar =  videoService.getList(pager);
 		model.addAttribute("list", ar);
@@ -63,13 +62,21 @@ public class VideoController {
 		return "board/list";
 	}
 	
+	@RequestMapping(value = "/admin/video/list", method = RequestMethod.GET)
+	public String getAdminList(Pager pager, Model model)throws Exception{
+		List<BoardDTO> ar =  videoService.getList(pager);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		return "board/adminList";
+	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/admin/video/add", method = RequestMethod.GET)
 	public String setAdd()throws Exception{
 		return "board/add";
 	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/video/add", method = RequestMethod.POST)
 	public String setAdd(VideoDTO videoDTO, MultipartFile[] photos, HttpSession session, Model model)throws Exception{
 		int result = videoService.setAdd(videoDTO, photos, session);
 		
@@ -85,7 +92,7 @@ public class VideoController {
 		return "commons/result";
 	}
 	
-	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/video/detail", method = RequestMethod.GET)
 	public String setAdd(VideoDTO videoDTO, Model model)throws Exception{
 		BoardDTO boardDTO = videoService.getDetail(videoDTO);
 		if(boardDTO != null) {
@@ -96,23 +103,35 @@ public class VideoController {
 			model.addAttribute("url", "list");
 			return "commons/result";
 		}
-		
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/video/detail", method = RequestMethod.GET)
+	public String setAdminAdd(VideoDTO videoDTO, Model model)throws Exception{
+		BoardDTO boardDTO = videoService.getDetail(videoDTO);
+		if(boardDTO != null) {
+			model.addAttribute("dto", boardDTO);
+			return "board/adminDetail";
+		} else {
+			model.addAttribute("message", "글이 없다");
+			model.addAttribute("url", "list");
+			return "commons/result";
+		}
+	}
+	
+	@RequestMapping(value = "/admin/video/update", method = RequestMethod.GET)
 	public String setUpdate(BoardDTO boardDTO, Model model)throws Exception{
 		boardDTO = videoService.getDetail(boardDTO);
 		model.addAttribute("dto", boardDTO);
 		return "board/update";
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/video/update", method = RequestMethod.POST)
 	public String setUpdate(VideoDTO videoDTO, MultipartFile[] photos, HttpSession session)throws Exception{
 		int result = videoService.setUpdate(videoDTO, photos, session);
 		return "redirect:./list";
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/video/delete", method = RequestMethod.GET)
 	public String setAdd(VideoDTO videoDTO)throws Exception{
 		int result = videoService.setDelete(videoDTO);
 		return "redirect:./list";
