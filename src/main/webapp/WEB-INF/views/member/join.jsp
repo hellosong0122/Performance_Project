@@ -15,16 +15,18 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 	<style type="text/css">
 	
 	.f {
-        color: red;
+        color: pink;
      }
 	.s {
-        color: blue;      
+        color: skyblue;      
    }
 	</style>
 </head>
 <body>
     <c:import url="../base/header.jsp"></c:import>
     
+    <section class="container mt-4"
+		style="width: 70%; padding: 90px 0 0 0;"> 
     <form action="./join" method="post" id="frm">
     <div class="member"> 
     <br>
@@ -106,6 +108,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
  
     </div>
  </form>
+ 
+ </section>
     <script src="/resources/js/member/join.js"></script>
     <!-- 카카오주소api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

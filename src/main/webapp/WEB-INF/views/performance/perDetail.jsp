@@ -7,10 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../base/base.jsp"></c:import>
+<c:import url="../base/adminBase.jsp"></c:import>
 </head>
 <body>
-    <c:import url="../base/header.jsp"></c:import>
+    <c:import url="../base/adminLeft.jsp"></c:import>
+	<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg " style="margin-left: 3.125rem;">
 
     <section class="container my-5 mx-auto" style="width: 70%;">
         <h2 class="text-center">공연 상세정보</h2>
@@ -62,9 +63,13 @@
             <input type="hidden" name="performance_num" value="${dto.performance_num}">
         </form>
         <div class="d-flex justify-content-end my-5">
-            <button type="button" class="btn btn-dark" id="delBtn" data-url="perDelete">삭제</button>
+            <button type="button" class="btn" id="delBtn" data-url="perDelete">삭제</button>
         </div>
     </section>
     <script src="/resources/js/delete.js"></script>
+    
+        <c:import url="../base/adminFooter.jsp"></c:import>
+        </main>
+    
 </body>
 </html>
