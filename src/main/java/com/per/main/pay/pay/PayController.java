@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.per.main.member.MemberDTO;
 import com.per.main.member.MemberService;
+import com.per.main.pay.cart.CartDTO;
 import com.per.main.pay.product.ProductDTO;
 import com.per.main.pay.product.ProductVO;
 import com.per.utils.IamPortKey;
@@ -53,6 +54,19 @@ public class PayController {
 		this.api = new IamportClient(key.getAPIKey(), key.getAPISecret());
 
 	}
+	
+	
+	@RequestMapping(value = "buycart",method = RequestMethod.POST)
+	public ModelAndView buyCart(@ModelAttribute CartDTO cartDTO,MemberDTO memberDTO,HttpSession session,ModelAndView mv)throws Exception{
+		memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO = (MemberDTO) memberService.getUserInfo(memberDTO);
+		
+		
+		
+		mv.setViewName("pay/payment2");
+		return mv;
+	}
+	
 
 	
 
@@ -90,6 +104,8 @@ public class PayController {
 		}
 		return "redirect:../product/giftDetail?p_Num="+productOrderDTO.getP_Num();
 	}
+	
+	
 
 	
 
@@ -116,7 +132,7 @@ public class PayController {
 			model.addAttribute("member", memberDTO);
 		}
 
-		System.out.println(productOrderDTO.toString());
+
 
 		String imp_uid = productOrderDTO.getImp_uid();
 
@@ -129,13 +145,15 @@ public class PayController {
 		productOrderDTO.setMemberNum(memberDTO.getMember_num());
 
 		String amount = payService.paymentInfo(productOrderDTO.getImp_uid(), token);
-
+		
 		System.out.println("test amount : " + amount);
 
 		System.out.println("test amountType : " + amount.getClass().getName());
 
 		System.out.println("test totalPrice : " + productOrderDTO.getTotalPrice());
-
+		
+		System.out.println("after productOrderDTO" + productOrderDTO.toString());
+		
 		if (productOrderDTO.getTotalPrice() != Long.parseLong(amount)) {
 			// 결제 취소
 			// payService.canclePay(orderDTO.getImp_uid(),token,amount,"결제 취th");
@@ -143,6 +161,7 @@ public class PayController {
 		}
 
 		payService.insertPayData(productOrderDTO);
+//		payService.buyProduct(productOrderDTO);
 		System.out.println(result);
 
 		return result;

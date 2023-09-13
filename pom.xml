@@ -21,19 +21,22 @@
 		</repository>
 	</repositories>
 	<dependencies>
-	
-	<!-- httpcore(카카오) -->
-		<dependency> <groupId>org.apache.httpcomponents</groupId> <artifactId>httpcore</artifactId>
+
+		<!-- httpcore(카카오) -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
 			<version>4.4.6</version>
 		</dependency>
-		
-	<!-- httpclient(카카오) -->
+
+		<!-- httpclient(카카오) -->
 		<dependency>
-			<groupId>org.apache.httpcomponents</groupId> <artifactId>httpclient</artifactId>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
 			<version>4.5.2</version>
 		</dependency>
-	
-	<!--email -->
+
+		<!--email -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-email</artifactId>
@@ -48,33 +51,33 @@
 		</dependency>
 
 
-	<!-- 제이슨 파싱 -->
+		<!-- 제이슨 파싱 -->
 		<dependency>
-		    <groupId>com.googlecode.json-simple</groupId>
-		    <artifactId>json-simple</artifactId>
-		    <version>1.1.1</version>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
 		</dependency>
-	
-	<!-- naver -->
+
+		<!-- naver -->
 		<dependency>
 			<groupId>com.github.scribejava</groupId>
 			<artifactId>scribejava-core</artifactId>
 			<version>2.8.1</version>
 		</dependency>
-		
-	<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
-	<dependency>
-	    <groupId>javax.mail</groupId>
-	    <artifactId>mail</artifactId>
-	    <version>1.4.7</version>
-	</dependency>
 
-
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-context-support</artifactId>
-		    <version>${org.springframework-version}</version>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.iamport</groupId>
@@ -266,6 +269,28 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- Retrofit2 -->
+		<dependency>
+			<groupId>com.squareup.retrofit2</groupId>
+			<artifactId>retrofit</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.retrofit2</groupId>
+			<artifactId>converter-jackson</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.retrofit2</groupId>
+			<artifactId>converter-gson</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>3.12.2</version>
 		</dependency>
 	</dependencies>
 	<build>

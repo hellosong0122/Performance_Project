@@ -3,11 +3,15 @@ package com.per.main.pay.product;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.per.main.member.MemberDTO;
 import com.per.utils.Pager;
 
 
@@ -29,9 +33,11 @@ public class ProductController {
 
 
 	@RequestMapping(value = "giftDetail", method = RequestMethod.GET)
-	public ModelAndView getGiftDetail(ProductDTO productDTO, ModelAndView mv) throws Exception {
+	public ModelAndView getGiftDetail(ProductDTO productDTO, MemberDTO memberDTO,ModelAndView mv,HttpSession session) throws Exception {
+		memberDTO = (MemberDTO)session.getAttribute("member");
 		productDTO = productService.getGiftDetail(productDTO);
 		mv.addObject("giftDetail", productDTO);
+		mv.addObject("member", memberDTO);
 		mv.setViewName("product/giftDetail");
 
 		return mv;

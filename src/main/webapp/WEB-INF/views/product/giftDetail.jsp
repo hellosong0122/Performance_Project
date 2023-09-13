@@ -41,6 +41,7 @@
                                     <input type="hidden" id="h_p_Price" name="p_Price" value="${giftDetail.p_Price}">
                                     <h5 id="p_Price" name="p_Price">${giftDetail.p_Price}</h5>
 
+                                    <input type="hidden" id="h_member_num" name="h_member_num" value="${member.member_num}">
                                     <div class="price_total">
                                         <p class="price_num">
                                             <!--  -->
@@ -94,7 +95,7 @@
                                     <h4>Share Product :</h4>
                                     <div class="social-ficons mt-4">
                                         <ul>
-                                            <li><a href="#"><span class="fa fa-facebook"></span>
+                                            <li><a href="/cart/mycart?member_num=${member.member_num}"><span class="fa fa-facebook"></span>
                                                     Facebook</a></li>
                                             <li><a href="#"><span class="fa fa-twitter"></span>
                                                     Twitter</a></li>

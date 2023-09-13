@@ -32,5 +32,9 @@ public class PayDAO {
 		return sqlSession.delete(NAMESPACE+"removeOrder",productOrderDTO);
 	}
 
+//	public int buyProduct(ProductOrderDTO productOrderDTO) throws Exception {
+//		return sqlSession.update(NAMESPACE+"buyProduct", productOrderDTO);
+//	}
+
 
 }

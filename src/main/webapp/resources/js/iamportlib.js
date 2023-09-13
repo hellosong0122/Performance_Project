@@ -27,7 +27,7 @@ function iamport(p_name, price, email, user, tel, addr, postcode) {
         pay_method: 'card',
         merchant_uid: createOrderNum(),
         name: p_name,
-        amount: 100,
+        amount: price,
         buyer_email: email,
         buyer_name: user,
         buyer_tel: tel,
@@ -40,7 +40,7 @@ function iamport(p_name, price, email, user, tel, addr, postcode) {
         if (rsp.success) {
 
 
-            alert(price);
+            alert("결제 완료 하였습니다");
             console.log("step1");
             uid = rsp.imp_uid;
             console.log(uid);
@@ -79,28 +79,6 @@ function iamport(p_name, price, email, user, tel, addr, postcode) {
     });
 }
 
-function createPayInfo(uid) {
-    // 결제정보 생성 및 테이블 저장 후 결제완료 페이지로 이동
-    $.ajax({
-        type: 'get',
-        url: '/order/orderInfo',
-        data: {
-            'imp_uid': uid,
-        },
-        success: function (data) {
-
-            swal('결제 성공 !', "결제완료 페이지로 이동합니다.", "success").then(function () {
-
-                // 결제완료 페이지로 이동
-                location.replace('/order/complete?payNum=' + data);
-
-            })
-        },
-        error: function () {
-            //    swal('결제정보 저장 통신 실패');
-        }
-    });
-}
 
 function createOrderNum() {
     const date = new Date();
