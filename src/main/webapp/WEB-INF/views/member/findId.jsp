@@ -20,18 +20,19 @@
 	
 
 <form action="./findId" method="post" id="frm">	
-	    
+	<section class="container mt-2"
+		style="width: 90%; padding: 60px 0 0 0;">   
 	<div class="wrap">
         <div class="find_idpw">
      		
            		<h2>FIND ID</h2>
 			
             <div class="find">
-                <h4>NAME</h4>
+                <h4 style="color: black">NAME</h4>
                 <input type="text" name="name" id="name" placeholder="NAME">
             </div>
             <div class="find_email">
-                <h4>EMAIL</h4>
+                <h4 style="color: black">EMAIL</h4>
                 <input type="text" name="email" id="email" placeholder="EMAIL@EXAMPLE.COM">
             </div>  
            
@@ -45,7 +46,7 @@
             </div>
         </div>
     </div>
-
+</section>
 </form>
 
 

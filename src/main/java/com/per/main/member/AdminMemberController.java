@@ -14,81 +14,83 @@ import com.per.main.member.MemberDTO;
 import com.per.utils.Pager;
 
 @Controller
-@RequestMapping("/member/admin/*")
+@RequestMapping("/admin/*")
 public class AdminMemberController {
 	
 	@Autowired
 	private MemberService memberService;
 	
 	
-	//id 중복확인
-   @RequestMapping(value = "idCheck", method = RequestMethod.GET)
-   public String getId(MemberDTO memberDTO, Model model) throws Exception {
-      memberDTO = memberService.getId(memberDTO);
-
-      int result = 0;
-      
-      //id없음
-      if (memberDTO == null) {
-         result = 1;
-      }
-      model.addAttribute("result", result);
-
-      return "commons/ajaxResult";
-   }
-	   
+			//id 중복확인
+		   @RequestMapping(value = "idCheck", method = RequestMethod.GET)
+		   public String getId(MemberDTO memberDTO, Model model) throws Exception {
+		      memberDTO = memberService.getId(memberDTO);
 		
-	//어드민 회원관리 페이지 리스트
-	@RequestMapping(value = "adminList", method = RequestMethod.GET)
-	public String getAdminList(Pager pager, Model model)throws Exception{
-		List<MemberDTO> ar =  memberService.getAdminList(pager);
-		model.addAttribute("list", ar);
-		model.addAttribute("pager", pager);
-		return "member/admin/adminPage";
-	}
-	
-	//일반회원 관리 페이지 리스트
-	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String getList(Pager pager, Model model)throws Exception{
-		List<MemberDTO> ar =  memberService.getList(pager);
-		model.addAttribute("list", ar);
-		model.addAttribute("pager", pager);
-		return "member/admin/memberPage";
-	}
-	
-	//회원삭제
-	@RequestMapping(value="memberDelete")
-	public String setMemberDelete(MemberDTO memberDTO)throws Exception{
-		memberService.setDelete(memberDTO);
-		return "redirect:./list";
-	}
-	
-	//관리자 삭제
-	@RequestMapping(value="adminDelete")
-	public String setAdminDelete(MemberDTO memberDTO)throws Exception{
-		memberService.setDelete(memberDTO);
-		return "redirect:./adminList";
-	}		
-	
-	//회원상세
-	@RequestMapping(value="memberDetail")
-	public ModelAndView getMemberDetail(ModelAndView mv, MemberDTO memberDTO) throws Exception{
-		memberDTO = memberService.getDetail(memberDTO);
-		mv.addObject("dto", memberDTO);
-		mv.setViewName("member/admin/memberDetail");
+		      int result = 0;
+		      
+		      //id없음
+		      if (memberDTO == null) {
+		         result = 1;
+		      }
+		      model.addAttribute("result", result);
 		
-		return mv;
-	}
-	
-	//관리자상세
-	@RequestMapping(value="adminDetail")
-	public ModelAndView getAdminDetail(ModelAndView mv, MemberDTO memberDTO) throws Exception{
-			memberDTO = memberService.getDetail(memberDTO);
-			mv.addObject("dto", memberDTO);
-			mv.setViewName("member/admin/adminDetail");
+		      return "commons/ajaxResult";
+		   }
+			   
+				
+			//어드민 회원관리 페이지 리스트
+			@RequestMapping(value = "adminList", method = RequestMethod.GET)
+			public String getAdminList(Pager pager, Model model)throws Exception{
+				List<MemberDTO> ar =  memberService.getAdminList(pager);
+				model.addAttribute("list", ar);
+				model.addAttribute("pager", pager);
+				return "member/admin/adminPage";
+			}
 			
-			return mv;
-	}
+			//일반회원 관리 페이지 리스트
+			@RequestMapping(value = "list", method = RequestMethod.GET)
+			public String getList(Pager pager, Model model)throws Exception{
+				List<MemberDTO> ar =  memberService.getList(pager);
+				System.out.println(ar.size());			
+				model.addAttribute("list", ar);
+				model.addAttribute("pager", pager);
+				return "member/admin/memberPage";
+			}
+			
+			//회원삭제
+			@RequestMapping(value="memberDelete")
+			public String setMemberDelete(MemberDTO memberDTO)throws Exception{
+				memberService.setDelete(memberDTO);
+				return "redirect:./list";
+			}
+			
+			//관리자 삭제
+			@RequestMapping(value="adminDelete")
+			public String setAdminDelete(MemberDTO memberDTO)throws Exception{
+				memberService.setDelete(memberDTO);
+				return "redirect:./adminList";
+			}		
+			
+			//회원상세
+			@RequestMapping(value="memberDetail")
+			public ModelAndView getMemberDetail(ModelAndView mv, MemberDTO memberDTO) throws Exception{
+				memberDTO = memberService.getDetail(memberDTO);
+				mv.addObject("dto", memberDTO);
+				mv.setViewName("member/admin/memberDetail");
+				
+				return mv;
+			}
+			
+			//관리자상세
+			@RequestMapping(value="adminDetail")
+			public ModelAndView getAdminDetail(ModelAndView mv, MemberDTO memberDTO) throws Exception{
+				memberDTO = memberService.getDetail(memberDTO);
+			    mv.addObject("dto", memberDTO);
+			    mv.setViewName("member/admin/adminDetail");
+					
+				return mv;
+			}
+			
 			//관리자등록
 			@RequestMapping(value="adminAdd")
 			public void setAdminAdd()throws Exception{

@@ -38,11 +38,23 @@ public class BookService {
 
 
 
-	public int setBook(BookDTO bookDTO)throws Exception {
-		return bookDAO.setBook(bookDTO);
-		
-	}
+		//db에 book정보넣기
+	    public PerformanceOrderDTO reservationPer(PerformanceOrderDTO orderDTO) throws Exception {
+	        bookDAO.reservationPer(orderDTO);
+	        return orderDTO;
+	    }
+	    
+	    
+	        public PerformanceOrderDTO getBook(PerformanceOrderDTO orderDTO) throws Exception {
+	    	   return bookDAO.getBook(orderDTO);
+	    	}
+	   
+    
+    
+ //  public List<PerformanceOrderDTO> getBook(PerformanceOrderDTO orderDTO) throws Exception {
+ //	   return bookDAO.getBook();
+ //	}
 
-	
 }
+
 

@@ -6,34 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../temp/bootStrap.jsp"></c:import>
+<c:import url="../base/base.jsp"></c:import>
+	<style type="text/css">
+		p {
+			color: white;
+		}
+	</style>
 </head>
 <body>
-<c:import url="../temp/header.jsp"></c:import>
-	<h1>Detail Page</h1>
+<c:import url="../base/header.jsp"></c:import>
 	
-	<section class="container mt-5">
-		<h1 class="mb-3 text-center">Detail Page</h1>
-		
-		<h1>Title : ${requestScope.dto.title}</h1>
-		<table class="table table-success table-sm">
-				
+	<section class="container my-5 mx-auto" style="width: 70%; padding: 90px 0 0 0;">
+		<h1 class="mb-3 text-center">${requestScope.dto.title}</h1>		
+
+		<table class="table table-success table-sm" style="--bs-table-bg: black; --bs-table-color: white;">
 			<thead>
 				<tr>
-					<td>번호</td><td>제목</td><td>이름</td><td>날짜</td><td>조회수</td>
+					<td>번호</td><td>이름</td><td>날짜</td><td>조회수</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>${dto.num}</td>
-					<td>${dto.title}</td>
+					<td>${dto.num}</td>					
 					<td>${dto.memberDto.name}</td>
 					<td>${dto.regDate}</td>
 					<td>${dto.hit}</td>
 				</tr>
 			</tbody>
 		</table>
-		<table class="table table-success table-sm">
+		<table class="table table-success table-sm"  style="--bs-table-bg: black; --bs-table-color: white;">
 			<tr>
 				<td>내용</td>
 			</tr>
@@ -43,19 +44,19 @@
 		</table>
 		
 		<div>
+			<span style="color:white">첨부파일</span>
+			<br>
 			<c:forEach items="${dto.nfDto}" var="f">
 				<a href="../resources/upload/${board}/${f.file_name}">${f.origin_name}</a>
-			</c:forEach>
-		</div>
-		
-		<c:if test="${board ne 'notice'}">
-		<!-- <a class="btn btn-outline-primary" for="btn-check-outlined" href="./reply?num=${dto.num}">답글</a> -->
-		<button id="reply" class="c1" data-url="reply"></button>
-		</c:if>
-		<button id="update" data-val="${dto.num}" class="c1">수정</button>
+				<br>
+			</c:forEach>			
+		</div>		
+
+		<%-- <button id="update" data-val="${dto.num}" class="c1">수정</button>
 		<button id="delete" data-val="${dto.num}" class="btn btn-outline-primary c1">삭제</button>
-			
+			 --%>
 		<script src="/resources/js/board/detail.js"></script>
 	</section>
+<c:import url="../base/footer.jsp"></c:import>
 </body>
 </html>

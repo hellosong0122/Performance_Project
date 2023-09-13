@@ -27,7 +27,7 @@ public class FaqController {
 	
 	@ModelAttribute("board")
 	public String getBoardName() {
-		return "faq";
+		return "FAQ";
 	}
 	
 	@PostMapping("setContentsImgDelete")

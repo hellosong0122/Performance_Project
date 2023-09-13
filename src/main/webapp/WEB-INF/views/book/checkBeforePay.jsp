@@ -29,6 +29,8 @@
                     <p>결제할 금액: <span id="priceValue"></span></p>
                     <!-- <P>구매금액: </P> -->
                 </div>
+
+                <!-- <form method="post" action="done">  -->
                 <input type="hidden" name="prfnm" id="prfnm_input" />
                 <input type="hidden" name="performance_num" id="performance_num_input">
                 <input type="hidden" name="num" id="member_num_input">
@@ -40,9 +42,10 @@
                 <input type="hidden" name="seatId" id="selectedSeats_input">
                 <input type="hidden" name="baseSeatPrie" id="baseSeatPrie_input">
 
-                <input type="reset" style="color: crimson;" value="취소하기">
+                <input type="reset" style="color: crimson;" value="취소하기">   
                 <button type="button"  style="color: blue;"
                     id="payBtn" >결제하기</button>
+                 <!-- </form>  -->
 
             <script src="../../../resources/js/book/checkBeforePay.js"></script>
             <script src="../../../resources/js/iamportpay.js"></script>        

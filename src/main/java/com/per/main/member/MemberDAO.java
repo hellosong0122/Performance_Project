@@ -19,16 +19,15 @@ public class MemberDAO {
 		return sqlSession.selectList(NAMESPACE+"getList", pager);
 	}
 	
-	public Long getTotal(Pager pager) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getTotal", pager);
-	}
-	
 	public List<MemberDTO> getAdminList(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getAdminList", pager);
 	}
+	public Long getTotal(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getTotal",pager);
+	}
 	
 	public Long getAdminTotal(Pager pager) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getAdminTotal", pager);
+		return sqlSession.selectOne(NAMESPACE+"getAdminTotal",pager);
 	}
 	
 	public int setJoin(MemberDTO memberDTO) throws Exception {
@@ -80,6 +79,8 @@ public class MemberDAO {
 	public int setAdminAdd(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAdminAdd", memberDTO);
 	}
+	
+	
 	
 	
 

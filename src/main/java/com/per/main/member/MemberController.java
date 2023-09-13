@@ -99,13 +99,13 @@ public class MemberController {
     
     //update
     @RequestMapping(value="memberUpdate", method=RequestMethod.GET)
-    public void setMemberUpdate() throws Exception{
+    public void setUpdate() throws Exception{
        
     }
    
     //update
     @RequestMapping(value="memberUpdate", method=RequestMethod.POST)
-    public String setMemberUpdate(MemberDTO memberDTO, HttpSession session) throws Exception{
+    public String setUpdate(MemberDTO memberDTO, HttpSession session) throws Exception{
        MemberDTO sessionMember = (MemberDTO)session.getAttribute("member");
        memberDTO.setId(sessionMember.getId());
        int result = memberService.setUpdate(memberDTO);
@@ -116,8 +116,8 @@ public class MemberController {
        return "redirect:./mypage";
     }
    
-
-   @RequestMapping(value = "login", method = RequestMethod.GET)
+    //로그인
+   @RequestMapping(value = "userLogin", method = RequestMethod.GET)
    public String getLogin(Model model, HttpSession session) throws Exception {
       
       String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
@@ -143,6 +143,7 @@ public class MemberController {
 //      return "redirect:../";
 //   }
    
+    //login
     @RequestMapping(value = "login", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> getLogin(MemberDTO memberDTO, HttpSession session) throws Exception {
@@ -153,6 +154,7 @@ public class MemberController {
           session.setAttribute("member", memberDTO);
           result.put("type", "성공");
           result.put("msg", "[안내] 로그인 성공");
+          result.put("role", memberDTO.getRole());
        } else {
           result.put("type", "실패");
           result.put("msg", "[안내] 로그인 실패");
@@ -197,10 +199,9 @@ public class MemberController {
       model.addAttribute("result", apiResult);
 
       System.out.println(session);
-      return "member/naverSuccess";
+      return "redirect:../";
       }
-   
-   
+      
       //카카오
       @RequestMapping(value="kakaoJoin", method=RequestMethod.GET)
       public void setKakaoJoin()throws Exception{
@@ -226,6 +227,7 @@ public class MemberController {
          System.out.println("session = "+session);
          System.out.println("code = "+code);
          System.out.println("state = "+state);
+         System.out.println("-------bo getaccess전------");
          OAuth2AccessToken oauthToken = kakaoLoginBO.getAccessToken(session, code, state);
          System.out.println("oauthToken = "+oauthToken);
          
@@ -301,10 +303,12 @@ public class MemberController {
 			
 	}
 	
-	@RequestMapping(value="/agree", method = RequestMethod.GET )
-	public void getMemberAgree() {
+	@RequestMapping(value="agree", method = RequestMethod.GET)
+	public void getMemberAgree() throws Exception{
 			
 	}
+	
+
 	
 	
 

@@ -6,12 +6,63 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../../temp/bootStrap.jsp"></c:import>
+<c:import url="../../base/adminBase.jsp"></c:import>
 </head>
 <body>
-<c:import url="../../temp/header.jsp"></c:import>	
+<c:import url="../../base/adminLeft.jsp"></c:import>	
+	<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+    
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6>회원 관리</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                       <th class="text-center text-secondary opacity-7">이름</th>
+                      <th class="text-center text-secondary opacity-7">아이디</th>
+                      <th class="text-secondary opacity-7">삭제여부</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <c:forEach items="${list}" var="a" varStatus="i"> 
+                    <tr>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs font-weight-bold">${a.name}</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><a href="./memberDetail?member_num=${a.member_num}">${a.id}</a></span>
+                      </td>
+                      <td class="align-middle">
+						<span class="badge badge-sm bg-gradient-success">                        
+ 							<c:if test="${a.deleteType eq 1}">
+							 활동중
+							</c:if>
+							<c:if test="${a.deleteType eq 0}">
+							  탈퇴
+							</c:if>
+                        </span>
+                      </td>
+                    </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    	<c:import url="../../base/adminFooter.jsp"></c:import>	
+    
+  </main>
 	
-	<section class="container mt-5">
+	<%-- <section class="container mt-5">
 		<h1 class="mb-3 text-center">Member List</h1>
 		
 		<table class="table table-primary table-striped table-hover">
@@ -75,6 +126,7 @@
 		</div>			
 	
 					
-	</section>	
+	</section> --%>
+	
 </body>
 </html>

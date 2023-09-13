@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.per.main.header.HeaderDAO">
+	<select id="getList" resultType="HeaderDTO">
+		SELECT *
+		  FROM HEADER		
+	</select>
+	
+	<insert id="setAdd" parameterType="HEADERDTO">
+		INSERT INTO HEADER (HEADER_NUM,REGDATE,WRITER,URL,DLETE_TYPE,ORDER_NUM)
+		VALUES (HEADER_SEQ.NEXTVAL, SYSDATE, #{id}, #{url},1,#{order_num})	
+	</insert>	
+
+	
+	<update id="setUpdate" parameterType="MemberDTO">
+		UPDATE MEMBER 
+		   SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, BIRTH=#{birth}, ADDRESS=#{address}
+		 WHERE ID=#{id}
+	</update>	
+	
+	<delete id="setDelete" parameterType="MemberDTO">
+		DELETE MEMBER WHERE ID=#{id}
+	</delete>
+    
+  </mapper>
