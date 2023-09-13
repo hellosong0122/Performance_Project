@@ -15,10 +15,10 @@
 	<c:import url="../base/header.jsp"></c:import>
     <section class="container my-5 mx-auto" style="width: 70%;">
 
-
       <div class="input-group my-3">
         <form action="./musicalList" method="get" id="frm" class="d-flex w-50">
-            <input type="hidden" value="${pager.page}" name="page" id="page">
+          
+            <input type="hidden" value="1" name="page" id="page">
             <select name="kind" id="k" data-kind="${pager.kind}" class="form-select w-25" aria-label="Default select example">
                 <option class="kind" value="title">Title</option>
                 <option class="kind" value="cast">Cast</option>
