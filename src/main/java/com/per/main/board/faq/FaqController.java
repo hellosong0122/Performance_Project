@@ -19,7 +19,6 @@ import com.per.main.board.BoardDTO;
 import com.per.utils.Pager;
 
 @Controller
-@RequestMapping("/faq/*")
 public class FaqController {
 	
 	@Autowired
@@ -27,17 +26,17 @@ public class FaqController {
 	
 	@ModelAttribute("board")
 	public String getBoardName() {
-		return "FAQ";
+		return "faq";
 	}
 	
-	@PostMapping("setContentsImgDelete")
+	@PostMapping("/admin/faq/setContentsImgDelete")
 	public String setContentsImgDelete(String path, HttpSession session, Model model)throws Exception{
 		boolean check= faqService.setContentsImgDelete(path, session);
 		model.addAttribute("result", check);
 		return "commons/ajaxResult";
 	}
 	
-	@PostMapping("setContentsImg")
+	@PostMapping("/admin/faq/setContentsImg")
 	public String setContentsImg(MultipartFile files, HttpSession session, Model model)throws Exception{
 		System.out.println("setContentsImg");
 		System.out.println(files.getOriginalFilename());
@@ -47,7 +46,7 @@ public class FaqController {
 		
 	}
 	
-	@GetMapping("fileDelete")
+	@GetMapping("/admin/faq/fileDelete")
 	public String setFileDelete(FaqFileDTO faqFileDTO, HttpSession session ,Model model)throws Exception{
 		int result = faqService.setFileDelete(faqFileDTO, session);
 		model.addAttribute("result", result);
@@ -55,7 +54,7 @@ public class FaqController {
 		
 	}
 	
-	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@RequestMapping(value = "/faq/list", method = RequestMethod.GET)
 	public String getList(Pager pager, Model model)throws Exception{
 		List<BoardDTO> ar =  faqService.getList(pager);
 		model.addAttribute("list", ar);
@@ -63,13 +62,21 @@ public class FaqController {
 		return "board/list";
 	}
 	
+	@RequestMapping(value = "/admin/faq/list", method = RequestMethod.GET)
+	public String getAdminList(Pager pager, Model model)throws Exception{
+		List<BoardDTO> ar =  faqService.getList(pager);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		return "board/adminList";
+	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/admin/faq/add", method = RequestMethod.GET)
 	public String setAdd()throws Exception{
 		return "board/add";
 	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/faq/add", method = RequestMethod.POST)
 	public String setAdd(FaqDTO faqDTO, MultipartFile[] photos, HttpSession session, Model model)throws Exception{
 		int result = faqService.setAdd(faqDTO, photos, session);
 		
@@ -85,7 +92,7 @@ public class FaqController {
 		return "commons/result";
 	}
 	
-	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/faq/detail", method = RequestMethod.GET)
 	public String setAdd(FaqDTO faqDTO, Model model)throws Exception{
 		BoardDTO boardDTO = faqService.getDetail(faqDTO);
 		if(boardDTO != null) {
@@ -95,24 +102,36 @@ public class FaqController {
 			model.addAttribute("message", "글이 없다");
 			model.addAttribute("url", "list");
 			return "commons/result";
-		}
-		
+		}	
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/faq/detail", method = RequestMethod.GET)
+	public String setAdminAdd(FaqDTO faqDTO, Model model)throws Exception{
+		BoardDTO boardDTO = faqService.getDetail(faqDTO);
+		if(boardDTO != null) {
+			model.addAttribute("dto", boardDTO);
+			return "board/adminDetail";
+		} else {
+			model.addAttribute("message", "글이 없다");
+			model.addAttribute("url", "list");
+			return "commons/result";
+		}
+	}
+	
+	@RequestMapping(value = "/admin/faq/update", method = RequestMethod.GET)
 	public String setUpdate(BoardDTO boardDTO, Model model)throws Exception{
 		boardDTO = faqService.getDetail(boardDTO);
 		model.addAttribute("dto", boardDTO);
 		return "board/update";
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/faq/update", method = RequestMethod.POST)
 	public String setUpdate(FaqDTO faqDTO, MultipartFile[] photos, HttpSession session)throws Exception{
 		int result = faqService.setUpdate(faqDTO, photos, session);
 		return "redirect:./list";
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/faq/delete", method = RequestMethod.GET)
 	public String setAdd(FaqDTO faqDTO)throws Exception{
 		int result = faqService.setDelete(faqDTO);
 		return "redirect:./list";

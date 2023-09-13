@@ -29,6 +29,16 @@
             <span class="nav-link-text ms-1">Place</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link  " href="/admin/notice/list">          
+            <span class="nav-link-text ms-1">Notice</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  " href="/admin/faq/list">          
+            <span class="nav-link-text ms-1">Faq</span>
+          </a>
+        </li>
         <!-- 여기에입력해주세요 -->
 	  </ul>
     </div>
