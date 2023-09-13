@@ -72,6 +72,7 @@ function iamport() {
                     "performanceTime" : selectedTimeVal,
                     "perSeat" : selectedSeatsVal,
                     "memberNum" : member_numVal,
+                    "Id": member_idVal,
                     "totalPrice" : sumPrice,        
                 }
                 

@@ -18,18 +18,17 @@
 		<!-- DB에 book정보넣기 -->
 	<insert id="resevationPer" parameterType="PerformanceOrderDTO">
     INSERT INTO BOOK 
+    (ORDERNUM, PERFORMANCE_NUM, MEMBERNUM, IMP_UID, PRFNM, PERFORMANCEDATE, PERFORMANCETIME, PERSEAT, TOTALPRICE, FCLTYNM, ID)
+    VALUES 
+    (#{orderNum}, #{performance_num}, #{memberNum}, #{imp_uid}, #{prfnm}, #{performanceDate}, #{performanceTime}, #{perSeat}, #{totalPrice}, #{fcltynm}, #{id})
+</insert>
+<!-- 		<insert id="resevationPer" parameterType="PerformanceOrderDTO">
+    INSERT INTO BOOK 
     (ORDERNUM, PERFORMANCE_NUM, MEMBERNUM, MT10ID, IMP_UID, PRFNM, PERFORMANCEDATE, PERFORMANCETIME, PERSEAT, TOTALPRICE, FCLTYNM)
     VALUES 
     (#{orderNum},#{performance_num}, #{memberNum}, #{mt10id}, #{imp_uid}, #{prfnm}, #{performanceDate}, #{performanceTime},#{perSeat}, #{totalPrice},#{fcltynm})
-	</insert>
-	
-	
-	<!-- 	    BOOK 테이블에서 모든 예약 정보-->
-		<!--      <select id="getBook" resultType="PerformanceOrderDTO" parameterType="PerformanceOrderDTO">
-	 		  SELECT * FROM BOOK 
-	 	  WHERE ORDERNUM = #{orderNum} 
-	 		  
-	  	  	</select>--> 
+	</insert> -->
+
 	
 		<resultMap id="PerformanceOrderResult" type="PerformanceOrderDTO">
 			    <result property="orderNum" column="ORDERNUM"/>
@@ -44,6 +43,7 @@
 			    <result property="totalPrice" column="TOTALPRICE"/>
 			    <result property="poster" column="POSTER"/>
 			    <result property="fcltynm" column="FCLTYNM"/>
+			    <result property="id" column="ID"/>
 		</resultMap>
 		
 

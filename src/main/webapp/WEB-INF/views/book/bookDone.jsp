@@ -8,7 +8,7 @@
     <title>결제내역보기 </title>
     <style>
        div {
-          border: 1px solid #bcbcbc;
+        border-style: hidden;
       background-color: rgb(255, 255, 255);
         }
       #top{
@@ -24,7 +24,7 @@
       height: 90px;
       margin-bottom: 10px;
       background-color: white;
-          border: 1px solid #1900ff;
+      border-style: hidden;
       }
       
 
@@ -32,6 +32,7 @@
       width:70%;
       height: 470px;
       margin-bottom: 10px;
+      margin-left: 20px;
       }
 
         
@@ -79,9 +80,9 @@
           height: 150px;
         }
 
-        .md-middle {
+        /* .md-middle {
           vertical-align: middle;
-        }
+        } */
         #continueBtn{
         background-color: coral;
         color:white;
@@ -121,36 +122,36 @@
   </head>
   <body>
     <div id="top">
-      <p align="right" style="font-size: 15px; font-weight: bold; color: crimson;"> 
-              공연예매> 주문 · 결제 > 예매완료
+      <p align="right" style="font-size: 15px; font-weight: bold; color: black; padding-right: 50px;"> 
+        공연예매> 주문 · 결제 > <span style="font-weight: bolder; color: crimson; display: inline;">예매완료</span>
           </p>
     </div>
     <div class="mainline">
       <div class="table-row">
         <div id="table-main" class="table-cell">
-          <p style="font-size: xx-large; font-weight: bold;">예매가 완료되었습니다.</p>
+          <p style="font-size: xx-large; font-weight: bold; margin-left: 20px;">예매가 완료되었습니다.</p>
           <p>공연예매가 완료되었습니다</p>
           <p>티켓은 현장에서 발권해주세요.</p>
           <br>
-             <p>티켓번호 :${dto.orderNum} </p>  <!--컬럼명 orderNum--> 
-             <p>공연명 : ${dto.prfnm}</p>
-             <p>공연번호 : ${dto.performance_num}</p>
-             <P>공연시설 :${dto.fcltynm}</P>
-             <p>예매날짜 :${dto.performanceDate} </p> 
-             <p>예매시간 :${dto.performanceTime} </p>
-             <P>예매좌석 :${dto.perSeat}</P>
-             <p>총 가격 :${dto.totalPrice}</p>
+              <p>티켓번호 : ${dto.orderNum} </p>  <!--컬럼명 orderNum--> 
+              <p>공연명 : ${dto.prfnm}</p>
+              <P>공연시설 : ${dto.fcltynm}</P>
+              <p>예매날짜 : ${dto.performanceDate} </p> 
+              <p>예매시간 : ${dto.performanceTime} </p>
+              <P>예매좌석 : ${dto.perSeat}</P>
+              <p>총 가격 : ${dto.totalPrice}</p>
           
           </div>
           <div id="table-right" class="table-cell">
             <div id="table-right-up">
               <p><img src="${dto.poster}" alt="Performance Poster" style="width: 95%; height: 100%; margin-bottom: 20px;"/></p>
-             <br>
+             <br><br><br>
             </div>
             <div id="table-right-down">
               <p>공연명 : ${dto.prfnm} </p>
-              <p>티켓번호 :${dto.orderNum}</p>       
-              <p>구매가격 : ${dto.totalPrice}</p>
+              <p>공연번호 : ${dto.performance_num}</p>  
+              <p>회원아이디 : ${dto.id}</p>   
+            
             </div>
           </div>
         

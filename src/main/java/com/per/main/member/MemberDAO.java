@@ -2,11 +2,13 @@ package com.per.main.member;
 
 import java.util.List;
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.per.main.board.BoardDTO;
+import com.per.main.book.PerformanceOrderDTO;
 import com.per.utils.Pager;
 
 @Repository
@@ -63,9 +65,9 @@ public class MemberDAO {
 	}
 	
 	//admin에서 회원수정
-	public int setMemberUpdate(MemberDTO memberDTO) throws Exception {
-		return sqlSession.update(NAMESPACE + "setMemberUpdate", memberDTO);
-	}
+		public int setMemberUpdate(MemberDTO memberDTO) throws Exception {
+			return sqlSession.update(NAMESPACE + "setMemberUpdate", memberDTO);
+		}
 	//admin회원수정
 	public int setAdminUpdate(MemberDTO memberDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"setAdminUpdate", memberDTO);
@@ -80,7 +82,14 @@ public class MemberDAO {
 	public int setAdminAdd(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAdminAdd", memberDTO);
 	}
-	
-	
+	//회원예매내역
+	public List<PerformanceOrderDTO> getMyBookList(String id) throws Exception {
+	    return sqlSession.selectList(NAMESPACE + "getMyBookList", id);
+	}
+	//회원예매취소
+	 public int deleteBook(String orderNum) throws Exception {
+		 System.out.println("DAO: " + orderNum);
+	    return sqlSession.delete(NAMESPACE + "deleteBook", orderNum);
+	}
 
 }

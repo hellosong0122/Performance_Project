@@ -12,25 +12,108 @@
                 id="bootstrap-css">
             <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         </head>
+        <style>
+           #top{
+      width:100%;
+      height: 50px;
+      margin-bottom: 10px;
+      background-color: white;
+          border-style: hidden;
+          border-bottom: 10px solid blanchedalmond;
+      }
+      #table-main{
+      width:70%;
+      height: 470px;
+      margin-bottom: 10px;
+     
+      }
+      .mainline, .middleline {
+          display: table;
+          width: 100%;
+      margin-bottom: 10px;
+        }
+        .table-row {
+          display: table-row;
+        }
+        .table-cell {
+          display: table-cell;
+          vertical-align: top; 
+          /* padding: 0px 20px; */
+          height: 150px;
+        }
+
+        #divMain{
+          margin-left: 20px;
+        }
+        #payBtn {
+   
         
+        background-color: coral;
+        color:white;
+        border:none;
+        border-radius: 5px;
+        width: 100px;
+        height: 50px;
+        margin-top: 10px;
+        box-shadow: 1px 1px 1px #bcbcbc;
+        /* transition-duration: 0.1s; */
+        }   
+        #cancelBtn {
+        
+   
+        background-color: coral;
+        color:white;
+        border:none;
+        border-radius: 5px;
+        width: 100px;
+        height: 50px;
+        margin-top: 10px;
+        box-shadow: 1px 1px 1px #bcbcbc;
+        /* transition-duration: 0.1s; */
+        }   
+         #payBtn:active {
+          
+          margin-left: 5px;
+            margin-top: 5px;
+            box-shadow: none;
+        } 
+        #cancelBtn:active {
+            
+          margin-left: 5px;
+            margin-top: 5px;
+            box-shadow: none;
+        } 
+        </style>
 
-        <body>
-            <h1>예매내역 확인하기</h1>
-            <!-- 공연정보 가져오기 -->
-
-                <div>
+        <body> 
+       
+          <div id="top">
+            <p align="right" style="font-size: 15px; font-weight: bold; color: black; padding-right: 100px;"> 
+              공연예매> <span style="font-weight: bolder; color: crimson; display: inline; ">주문 · 결제</span> > 예매완료
+                </p>
+          </div>
+          <div class="mainline">
+            <div class="table-row">
+              <div id="table-main" class="table-cell">
+                <p style="font-size: xx-large; font-weight: bold; margin-left: 20px;">예매목록을 확인하세요.</p>
+                <br><br>
+                <div id = "divMain">
+                  <span style="font-size: large;" >
                     <p>공연명: <span id="prfnm"></span></p>
                     <p>공연 번호: <span id="performance_num"></span></p>
                     <p>공연 극장: <span id="fcltynm"></span></p>
                     <p>구매자 ID: <span id="member_id"></span></p>
-                    <p>구메자 E-MAIL: <span id="member_email"></span></p>
+                    <p>구매자 E-MAIL: <span id="member_email"></span></p>
                     <p>예약날짜: <span id="selectedDate"></span></p>
                     <p>상연시간: <span id="selectedTime"></span></p>
                     <p>선택한 좌석: <span id="selectedSeats"></span></p>
                     <p>결제할 금액: <span id="priceValue"></span></p>
+                  </span>
+                </div>
                     <!-- <P>구매금액: </P> -->
                 </div>
-
+              </div>
+            </div>
                 <!-- <form method="post" action="done">  -->
                 <input type="hidden" name="prfnm" id="prfnm_input" />
                 <input type="hidden" name="performance_num" id="performance_num_input">

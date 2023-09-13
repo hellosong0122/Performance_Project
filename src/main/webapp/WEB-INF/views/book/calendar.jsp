@@ -19,7 +19,7 @@
 				<style>
 					@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
 			
-					body { background-color : skyblue;} 
+					body { background-color : blanchedalmond;} 
 				
 					div {
 						background-color : white; /*이거지우면 백그라운드색상과동일*/
@@ -196,7 +196,7 @@
 								newDIV.onclick = null; // 클릭 이벤트 제거
 							} 
 							else if (nowDay.setHours(0,0,0,0) > selectedEndDate.setHours(0,0,0,0)) { 
-								// 공연 종료 날짜 이후인 경우
+								// 공연 종료 날짜 이후인 경우	
 								newDIV.className = "pastDay";
 								newDIV.onclick = null; // 클릭 이벤트 제거
 							} 
