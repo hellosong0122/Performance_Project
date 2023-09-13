@@ -12,8 +12,8 @@
                 <div class="flex-grow-1" style="color: rgb(132, 132, 132);">
                     ${re.id} | ${re.regDate} | 좋아요 ${re.good}
                    
-                    <button class="good" data-id="${member.id}" data-num="${re.review_num}" data-page="${pager.page}" type="button" style="border-style: none; background-color: white;">
-                        <img src="/resources/img/good.png" alt="" class="pb-3">
+                    <button class="good" data-id="${member.id}" data-num="${re.review_num}" data-page="${pager.page}" type="button" style="border-style: none; background-color:#1f2122;">
+                        <img src="/resources/img/heart.png" alt="" class="pb-3">
                     </button> 
                   
                 </div>
@@ -29,19 +29,19 @@
 </ul>
 
 <c:if test="${not empty list}"> 
-<div>
+<div >
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item ${pager.pre?'':'disabled'}">
-            <a class="page-link move" href=# data-num="${pager.startNum-1}" aria-label="Previous">
+            <a class="page-link move" href=# data-num="${pager.startNum-1}" aria-label="Previous" style="background: #27292a;">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-              <li class="page-item"><a class="page-link move" href=# data-num="${i}">${i}</a></li>
+          <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i" >
+              <li class="page-item"><a class="page-link move" href=# data-num="${i}" style="background: #27292a; color: #666;">${i}</a></li>
           </c:forEach>
           <li class="page-item ${pager.next?'':'disabled'}">
-            <a class="page-link move" href=# data-num="${pager.lastNum+1}" aria-label="Next">
+            <a class="page-link move" href=# data-num="${pager.lastNum+1}" aria-label="Next" style="background: #27292a;">
                 <span aria-hidden="true">&raquo;</span>
             </a>
           </li>

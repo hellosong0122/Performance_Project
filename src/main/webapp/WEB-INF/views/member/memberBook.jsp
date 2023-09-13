@@ -36,7 +36,7 @@
         <script type="text/javascript" src="../resources/js/memberBook.js"></script>   
         <!-- <script src="../resources/js/seatBefore.js"></script> -->
         <!-- <script type="text/javascript" src="../../../resources/js/member/memberBook.js"> -->
-            <!--위에 경로는 왜 안되지 이해가 안된다.. -->
+            <!--위에 경로는 왜 안되지 이해가 안된다.... -->
        
  
 </body>

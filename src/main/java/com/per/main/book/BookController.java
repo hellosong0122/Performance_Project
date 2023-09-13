@@ -37,9 +37,10 @@ import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
 
 import oracle.jdbc.proxy.annotation.Post;
+import retrofit2.http.GET;
 
 @Controller
-@RequestMapping("/book/*")
+//@RequestMapping("/book/*")
 public class BookController {
 
 	private IamportClient api;
@@ -58,25 +59,25 @@ public class BookController {
 
 	// 예매하기 버튼누르기
 	// 예메하기 버튼을 누르면 팝업창 오픈
-	@GetMapping("/selectPerBtn")
+	@GetMapping("/book/selectPerBtn")
 	public String calendarOpen() throws Exception {
 		return "book/calendar";
 	}
 
 	// book/calendar
 	// 팝업창 열리면 calendar.jsp 출력
-	@GetMapping("/calendar")
+	@GetMapping("/book/calendar")
 	// calendar로 get요청왔을 때 이 메서드로 매핑.
 	public String showCalendar() throws Exception {
 		return "book/calendar";
 	}
 
-	@GetMapping("/selectSeat")
+	@GetMapping("/book/selectSeat")
 	public String seatOpen() throws Exception {
 		return "book/seat";
 	}
 
-	@GetMapping("/seat")
+	@GetMapping("/book/seat")
 	public String showSeat(Model model) throws Exception {
 		List<SeatDTO> arr = bookService.getSeat();
 		model.addAttribute("list", arr);
@@ -84,7 +85,7 @@ public class BookController {
 	}
 
 	// check
-	@GetMapping("/checkBeforePay")
+	@GetMapping("/book/checkBeforePay")
 	public String check() throws Exception {
 		return "book/checkBeforePay";
 	}
@@ -98,7 +99,7 @@ public class BookController {
 
 	
 	//DB에 book 정보넣기, 단순히 저장만함
-	@PostMapping("done")
+	@PostMapping("/book/done")
 	@ResponseBody
 	public boolean viewPayInfo(@ModelAttribute PerformanceOrderDTO orderDTO,PerformanceDTO performanceDTO,PerformancePlaceDTO performancePlaceDTO,ModelAndView mv) throws Exception {
 		boolean result = false;
@@ -120,8 +121,8 @@ public class BookController {
 	
 	
 	
-	
-	@RequestMapping(value = "bookDone", method = RequestMethod.GET)
+	//결제후 보여주기
+	@RequestMapping(value = "/book/bookDone", method = RequestMethod.GET)
 	public ModelAndView getBook(@RequestParam("orderNum") String orderNum, ModelAndView mv) throws Exception {
 	    PerformanceOrderDTO orderDTO = new PerformanceOrderDTO();
 	    orderDTO.setOrderNum(orderNum);
@@ -148,6 +149,26 @@ public class BookController {
 		session.setMaxInactiveInterval(600);
 		return paymentIamportResponse;
 	}
+	
+	
+	//admin bookList
+
+	@GetMapping("/admin/bookList")
+	public String getBookList(Model model, Pager pager)throws Exception{
+		List<PerformanceOrderDTO> arr = bookService.getBookList(pager);
+		model.addAttribute("list", arr);
+		model.addAttribute("pager", pager);
+		return "book/bookList";
+	}
+	
+	//bookDetail
+	@GetMapping("/admin/bookDetail")
+	public String getBookDetail(PerformanceOrderDTO performanceOrderDTO, Model model)throws Exception{
+		performanceOrderDTO = bookService.getBookDetail(performanceOrderDTO);
+		model.addAttribute("dto", performanceOrderDTO);
+		return "book/bookDetail";
+	}
+	
 
 
 }

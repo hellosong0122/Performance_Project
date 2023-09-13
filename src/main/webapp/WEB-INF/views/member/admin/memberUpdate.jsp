@@ -7,7 +7,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <c:import url="../../temp/bootStrap.jsp"></c:import>
+    <c:import url="../../base/adminBase.jsp"></c:import>
     <style>
       .f {
         color: red;
@@ -19,7 +19,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     </style>
   </head>
   <body>
-    <c:import url="../../temp/header.jsp"></c:import>
+  	<c:import url="../../base/adminLeft.jsp"></c:import>	
+	<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
     <section class="container mt-5"> 
 
       <form action="./memberUpdate" method="post" id="frm">
@@ -47,16 +48,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           />
   
         </div>
-
-  <!--       <div class="mb-3">
-          <label for="pw2" class="form-label">비밀번호확인</label>
-          <input
-            type="password"
-            name="pw2"
-            class="form-control"
-            id="pw2"         
-          />
-        </div> -->
 
         <div class="mb-3">
           <label for="name" class="form-label">이름</label>
@@ -111,24 +102,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           <div id="birthResult"></div>
         </div>
 
-     <!--    <div class="mb-3">
-          <label for="postcode" class="form-label"></label>
-          <input
-            type="text"
-            name="address"
-            class="form-control"
-            id="postcode"
-            placeholder="우편번호"
-          />
-
           <div class="mb-3">
-          <button class="btn btn-primary" id="addrSearch" type="button">
-            우편번호찾기
-          </button>
-          </div> -->
-
-          <div class="mb-3">
-          <label for="address" class="form-label"></label>
+          <label for="address" class="form-label">주소</label>
           <input
             type="text"
             name="address"
@@ -138,31 +113,19 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             placeholder="주소"
           />
           </div>
- 
-       <!--    <label for="detailAddress" class="form-label"></label>
-          <input
-            type="text"
-            name="address"
-            class="form-control"
-            id="detailAddress"
-            placeholder="상세주소입력"
-          /> -->
 
           <div id="addressResult"></div>
         </div>
 
         <div class="mb-3">
           <div class="my-3">
-			<button type="submit" class="btn btn-outline-success">등록</button>
+			<button type="submit" class="btn">등록</button>
 		</div>
          
           </button>
         </div>
       </form>
     </section>
-    <!-- <script src="/resources/js/adminAdd.js"></script>
-    카카오주소api
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
-    
+    </main>
   </body>
 </html>

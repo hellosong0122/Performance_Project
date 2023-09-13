@@ -2,7 +2,6 @@ package com.per.main.member;
 
 import java.util.List;
 
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,16 +20,15 @@ public class MemberDAO {
 		return sqlSession.selectList(NAMESPACE+"getList", pager);
 	}
 	
-	public Long getTotal(Pager pager) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getTotal", pager);
-	}
-	
 	public List<MemberDTO> getAdminList(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getAdminList", pager);
 	}
+	public Long getTotal(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getTotal",pager);
+	}
 	
 	public Long getAdminTotal(Pager pager) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getAdminTotal", pager);
+		return sqlSession.selectOne(NAMESPACE+"getAdminTotal",pager);
 	}
 	
 	public int setJoin(MemberDTO memberDTO) throws Exception {
@@ -65,9 +63,9 @@ public class MemberDAO {
 	}
 	
 	//admin에서 회원수정
-		public int setMemberUpdate(MemberDTO memberDTO) throws Exception {
-			return sqlSession.update(NAMESPACE + "setMemberUpdate", memberDTO);
-		}
+	public int setMemberUpdate(MemberDTO memberDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "setMemberUpdate", memberDTO);
+	}
 	//admin회원수정
 	public int setAdminUpdate(MemberDTO memberDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"setAdminUpdate", memberDTO);
@@ -82,14 +80,17 @@ public class MemberDAO {
 	public int setAdminAdd(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAdminAdd", memberDTO);
 	}
+	
 	//회원예매내역
-	public List<PerformanceOrderDTO> getMyBookList(String id) throws Exception {
-	    return sqlSession.selectList(NAMESPACE + "getMyBookList", id);
-	}
+		public List<PerformanceOrderDTO> getMyBookList(String id) throws Exception {
+		    return sqlSession.selectList(NAMESPACE + "getMyBookList", id);
+		}
 	//회원예매취소
-	 public int deleteBook(String orderNum) throws Exception {
-		 System.out.println("DAO: " + orderNum);
-	    return sqlSession.delete(NAMESPACE + "deleteBook", orderNum);
-	}
+		 public int deleteBook(String orderNum) throws Exception {
+			 System.out.println("DAO: " + orderNum);
+		    return sqlSession.delete(NAMESPACE + "deleteBook", orderNum);
+		}
+	
+	
 
 }

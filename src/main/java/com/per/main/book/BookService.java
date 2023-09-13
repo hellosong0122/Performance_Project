@@ -19,18 +19,7 @@ public class BookService {
 	@Autowired
 	private PerformanceService performanceService;
 	
-	//listget
-	public List<PerformanceDTO> getPerList()throws Exception{
-		return bookDAO.getPerList();
-	}
 
-	
-	
-	//booking
-	public List<PerformanceDTO> getPerTime() throws Exception{
-		return bookDAO.getPerTime();
-	}
-	
 	//seat
 	public List<SeatDTO> getSeat() throws Exception {
 		return bookDAO.getSeat();
@@ -45,12 +34,22 @@ public class BookService {
 	    }
 	    
 	    
-	        public PerformanceOrderDTO getBook(PerformanceOrderDTO orderDTO) throws Exception {
-	    	   return bookDAO.getBook(orderDTO);
-	    	}
+	   public PerformanceOrderDTO getBook(PerformanceOrderDTO orderDTO) throws Exception {
+	   return bookDAO.getBook(orderDTO);
+	  	}
 	   
-    
+	   //adminlist
 
+	   public List<PerformanceOrderDTO> getBookList(Pager pager) throws Exception {
+		    pager.makeRowNum();
+		    Long total = bookDAO.getBookTotal(pager);
+		    pager.makePageNum(total);
+		    return bookDAO.getBookList(pager);
+		}
+
+	   public PerformanceOrderDTO getBookDetail(PerformanceOrderDTO performanceOrderDTO)throws Exception{
+		   return bookDAO.getBookDetail(performanceOrderDTO);
+	   }
 }
 
 

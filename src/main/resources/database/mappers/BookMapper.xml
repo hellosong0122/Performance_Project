@@ -60,6 +60,29 @@
 	    WHERE ORDERNUM = #{orderNum} 
 	</select> 	
 	
+	<!-- admin 예매내역 -->
+	<select id="getBookList" parameterType="Pager" resultType="PerformanceOrderDTO">
+    SELECT ORDERNUM,ID,PRFNM,PERFORMANCEDATE,PERFORMANCETIME,TOTALPRICE  
+    FROM (SELECT ROWNUM R, P.* 
+    	 FROM (SELECT * 
+			  	    FROM BOOK
+			  	    ORDER BY PERFORMANCEDATE ASC) P)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}  
+	</select>
 	
+	<select id="getBookTotal" parameterType="Pager" resultType="long">
+    SELECT COUNT(*) FROM BOOK 
+	</select>
+	
+	<select id="getBookDetail" resultMap="PerformanceOrderResult" parameterType="PerformanceOrderDTO" >
+		  SELECT 
+	        BOOK.*, 
+	        PERFORMANCE.POSTER
+	    FROM 
+	        BOOK 
+	    LEFT OUTER JOIN PERFORMANCE 
+	    ON BOOK.PERFORMANCE_NUM = PERFORMANCE.PERFORMANCE_NUM
+	    WHERE ORDERNUM = #{orderNum}  
+	</select>
 	
 </mapper>

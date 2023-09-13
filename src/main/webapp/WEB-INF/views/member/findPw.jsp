@@ -17,7 +17,8 @@
 	<c:import url="../base/header.jsp"></c:import>
 
 	<form action="./findPw" method="post" id="frm">
-	
+	<section class="container mt-2"
+		style="width: 90%; padding: 60px 0 0 0;"> 
 	    
 	<div class="wrap">
         <div class="find_idpw">
@@ -25,11 +26,11 @@
            		<h2>FIND PASSWORD</h2>
 			
             <div class="find">
-                <h4>ID</h4>
+                <h4 style="color: black">ID</h4>
                 <input type="text" name="id" id="id" placeholder="ID">
             </div>
             <div class="find_email">
-                <h4>EMAIL</h4>
+                <h4 style="color: black">EMAIL</h4>
                 <input type="email" name="email" id="email" placeholder="EMAIL@EXAMPLE.COM">
             </div>  
            

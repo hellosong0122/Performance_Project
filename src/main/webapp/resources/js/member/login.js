@@ -3,6 +3,9 @@ $("#loginBtn").on("click", function(){
 
    let id= $("#id").val();
    let pw= $("#pw").val();
+   
+   console.log(id);
+   console.log(pw);
 
    if(id==""){
       alert("[안내]id를 입력해주세요.");
@@ -24,7 +27,11 @@ $("#loginBtn").on("click", function(){
           console.log(rst);
           if (rst.type == "성공"){
              alert(rst.msg);
-              location.replace("/");
+             if(rst.role==1){
+             	location.replace("/member/admin/list");
+             }else{
+              	location.replace("/");
+             }
           } else {
              alert(rst.msg);
           } 

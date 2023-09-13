@@ -61,7 +61,6 @@ if (selectedDate) {
     document.getElementById('selectedDate').textContent = selectedDate.month + '월 ' + selectedDate.day + '일';
     let date = selectedDate.year + "-" + selectedDate.month + "-" + selectedDate.day
     $('#selectedDate_input').attr('value', date);
-    
 
 
 } else {

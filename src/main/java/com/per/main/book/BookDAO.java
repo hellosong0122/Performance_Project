@@ -51,8 +51,29 @@ public class BookDAO {
 	 public PerformanceOrderDTO getBook(PerformanceOrderDTO orderDTO) throws Exception {
 		    return sqlSession.selectOne(NAMESPACE+"getBook", orderDTO);
 		}
+	 //adminlist
+//	 public List<PerformanceOrderDTO> getBookList(Pager pager)throws Exception{
+//		 return sqlSession.selectList(NAMESPACE+"getBookList", pager);
+//	 } 
+//	 
+	 public List<PerformanceOrderDTO> getBookList(Pager pager) throws Exception {
+		    pager.makeRowNum();
+		    Long total = getBookTotal(pager); // 수정
+		    pager.makePageNum(total);
+		    return sqlSession.selectList(NAMESPACE + "getBookList", pager); // 수정
+		}
+	 public Long getBookTotal(Pager pager)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getBookTotal",pager); 
+	 }
+	 //bookdetail
+	 public PerformanceDTO getPerDetail(PerformanceDTO performanceDTO) throws Exception {
+			return sqlSession.selectOne(NAMESPACE+"getPerDetail", performanceDTO);
+		}
+	 public PerformanceOrderDTO getBookDetail(PerformanceOrderDTO performanceOrderDTO)throws Exception{
+		 return sqlSession.selectOne(NAMESPACE+"getBookDetail", performanceOrderDTO);
+	 }
 	 
-
+	 
 }
 
 
