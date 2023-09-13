@@ -56,7 +56,7 @@ if (selectedDate) {
     // 선택된 날짜 정보를 화면에 출력
     document.getElementById('selectedDate').textContent = selectedDate.month + '월 ' + selectedDate.day + '일';
     let date = selectedDate.year + "-" + selectedDate.month + "-" + selectedDate.day
-    $('#selectedDate_input').attr('value', date);
+    $('#w').attr('value', date);
 
 
 } else {

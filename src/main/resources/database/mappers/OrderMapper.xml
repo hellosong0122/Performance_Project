@@ -12,8 +12,11 @@
 	</insert>
 
 	<!-- 추가  -->
-	 <select id="getProductOrderList" resultType="ProductOrderDTO">
-        SELECT * FROM ProductOrders WHERE member_num = #{member_num}
+	 <select id="orderDetail" parameterType="ProductOrderDTO" resultType="ProductOrderDTO">
+        SELECT * FROM ORDERINFO WHERE ORDERNUM = #{orderNum}
     </select>
+    <delete id="removeOrder" parameterType="ProductOrderDTO">
+    	DELETE ORDERINFO WHERE ORDERNUM = #{orderNum}
+    </delete>
 
 </mapper>

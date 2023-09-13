@@ -3,6 +3,7 @@ let price = $("#payBtn").attr("data-price");
 let p_name = $("#payBtn").attr("data-name");
 let p_count = $("#payBtn").attr("data-count");
 let memberNum = $("#payBtn").attr("data-usernum");
+console.log(price);
 let user = $("#payBtn").attr("data-user");
 let email = $("#payBtn").attr("data-email");
 let tel = $("#payBtn").attr("data-tel");
@@ -10,8 +11,8 @@ let addr_full = $("#payBtn").attr("data-addr");
 let addr = addr_full.substring(addr_full.indexOf(',') + 1, addr_full.length);
 let postcode = addr_full.substring(0, addr_full.indexOf(',') - 1);
 
-$("#payBtn").click(function () {
-    console.log(price);
+$("#payBtn").on("click", function() {
+    console.log("payBtn : "+price);
     console.log(addr);
     console.log(postcode);
     console.log("counnter : " + p_count);
@@ -20,10 +21,11 @@ $("#payBtn").click(function () {
 function iamport(p_name, price, email, user, tel, addr, postcode) {
     let uid = "";
     IMP.init('imp22750372');
+    let ordernum = createOrderNum;
     IMP.request_pay({
         pg: 'nice.iamport00m',
         pay_method: 'card',
-        merchant_uid: 'pp' + createOrderNum(),
+        merchant_uid: createOrderNum(),
         name: p_name,
         amount: 100,
         buyer_email: email,
@@ -35,13 +37,14 @@ function iamport(p_name, price, email, user, tel, addr, postcode) {
     }, function (rsp) { // callback
         console.log(rsp);
         console.log(rsp.paid_amount);
-        if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-            /*
+        if (rsp.success) {
+
+
             alert(price);
             console.log("step1");
             uid = rsp.imp_uid;
-            console.log(uid);     
-            */
+            console.log(uid);
+
             console.log("imp_uid" + rsp.imp_uid);
             console.log("orderNum" + rsp.merchant_uid);
             console.log("P_Num : " + p_num);
@@ -49,23 +52,27 @@ function iamport(p_name, price, email, user, tel, addr, postcode) {
             console.log("counter" + p_count);
             console.log("totalPrice" + price);
             console.log("memberNum" + memberNum);
+
             $.ajax({
-                url: '/pay/done',
+                anyne: true,
                 type: "POST",
+                url: '/pay/done',
                 data: {
-                    "imp_uid": rsp.imp_uid,
                     "orderNum": rsp.merchant_uid,
-                    "P_Num": p_num, //상품번호
-                    "P_Name": rsp.name,
-                    "P_Count": p_count,
-                    "totalPrice": price,
-                    "member_num": memberNum // 회원번호 
+                    "imp_uid": rsp.imp_uid,
+                    "p_Num": p_num, //상품번호
+                    "p_Name": rsp.name,
+                    "p_Count": p_count,
+                    "member_num": memberNum,// 회원번호 ,
+                    "totalPrice": price
                 },
-                success : function(){
-                    window.location.replace('/pay/done')
+                success: function () {
+                    console.log("answkduf dkanrjsk");
+                    location.replace('/pay/buygiftinfo?orderNum='+rsp.merchant_uid);
                 }
-            })
+            });
         } else {
+            console.log(orderNum);
             console.log("fail to pay process : " + rsp);
             console.log("fail to pay process : " + rsp.error_msg);
         }
@@ -73,7 +80,7 @@ function iamport(p_name, price, email, user, tel, addr, postcode) {
 }
 
 function createPayInfo(uid) {
-    // 결제정보 생성 및 테이블 저장 후 결제완료 페이지로 이동 
+    // 결제정보 생성 및 테이블 저장 후 결제완료 페이지로 이동
     $.ajax({
         type: 'get',
         url: '/order/orderInfo',
@@ -105,6 +112,5 @@ function createOrderNum() {
     for (let i = 0; i < 10; i++) {
         orderNum += Math.floor(Math.random() * 8);
     }
-    return orderNum;
+    return 'pp'+orderNum;
 }
-
