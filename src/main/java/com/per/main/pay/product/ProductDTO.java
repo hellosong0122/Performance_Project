@@ -9,12 +9,13 @@ public class ProductDTO {
 	private Long P_Num;
 	private String P_Name;
 	private Integer P_Price;
-
-	private String P_Image;
-	
+	private String P_Description;
+	private String P_Image;	
 	private Date P_Regdate;
 	private Integer P_Count;
 	private String P_Writer;
+	
+	
 	public Long getP_Num() {
 		return P_Num;
 	}
@@ -32,6 +33,12 @@ public class ProductDTO {
 	}
 	public void setP_Price(Integer p_Price) {
 		P_Price = p_Price;
+	}
+	public String getP_Description() {
+		return P_Description;
+	}
+	public void setP_Description(String p_Description) {
+		P_Description = p_Description;
 	}
 	public String getP_Image() {
 		return P_Image;
@@ -57,6 +64,7 @@ public class ProductDTO {
 	public void setP_Writer(String p_Writer) {
 		P_Writer = p_Writer;
 	}
+	
 	
 	
 

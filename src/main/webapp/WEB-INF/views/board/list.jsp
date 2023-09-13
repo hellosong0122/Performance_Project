@@ -8,16 +8,35 @@
  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Insert title here</title>
 
-	<c:import url="../temp/bootStrap.jsp"></c:import>
+	<c:import url="../base/base.jsp"></c:import>
 
-
+	<style type="text/css">
+		p {
+			color: white;
+		}
+	</style>
 </head>
 <body>
-	<c:import url="../temp/header.jsp"></c:import>
-	<section class="container mt-5">
-		<h1 class="mb-3 text-center">${board} List</h1>
+	<c:import url="../base/header.jsp"></c:import>
+	<section class="container mt-5" style="width: 70%; padding: 90px 0 0 0;">
+		<h1 class="mb-3 text-center">${board}</h1>
 		
-		<table class="table table-success table-sm">
+		
+		<div class="input-group my-3">
+        <form action="./list" method="get" id="frm" class="d-flex w-50">
+            <input type="hidden" value="1" name="page" id="page">
+            <select name="kind" id="k" data-kind="${pager.kind}" class="form-select w-25" aria-label="Default select example" style="background: #27292a; color: #666;">
+                <option class="kind" value="title">TITLE</option>
+                <option class="kind" value="content">CONTENT</option>
+            </select>
+            <input type="text" name="search" value="${pager.search}" placeholder="검색어를 입력하세요" class="form-control me-2 w-75" aria-label="Search" style="background: #27292a; color: #666;">
+              <div class="col-auto">
+                  <button type="submit" class="btn btn-dark" style="background-color: var(--bs-btn-hover-bg);">검색</button>
+              </div>
+        </form>
+       </div>
+		
+		<table class="table table-success table-sm" style="--bs-table-bg: black; --bs-table-color: white;">
 		<!-- Latest compiled and minified CSS -->
 			<thead>
 				<th>NO</th>
@@ -42,47 +61,32 @@
 		</table>
 			
 			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			  	<c:if test="${pager.pre}">
-				    <li class="page-item">
-				      <a class="page-link move" href="#" data-num="${pager.startNum-1}" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				      </a>
-				    </li>
-			    </c:if>
-			    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			    	<li class="page-item"><a class="page-link move" href="#" data-num="${i}">${i}</a></li>
-			    </c:forEach>
-			    <c:if test="${pager.next}">
-				    <li class="page-item">
-				      <a class="page-link move" href="#" data-num="${pager.lastNum+1}" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				      </a>
-				    </li>
-			    </c:if>
-			  </ul>
-			</nav>
+		      <ul class="pagination justify-content-center">
+		        <li class="page-item ${pager.pre?'':'disabled'}">
+		          <a class="page-link move" href=# data-num="${pager.startNum-1}" aria-label="Previous" style="background: #27292a;">
+		            <span aria-hidden="true">&laquo;</span>
+		          </a>
+		        </li>
+		        <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+		            <li class="page-item"><a class="page-link move" href=# data-num="${i}" style="background: #27292a; color: #666;">${i}</a></li>
+		        </c:forEach>
+		        <li class="page-item ${pager.next?'':'disabled'}">
+		          <a class="page-link move" href=# data-num="${pager.lastNum+1}" aria-label="Next" style="background: #27292a;">
+		            <span aria-hidden="true">&raquo;</span>
+		          </a>
+		        </li>
+		      </ul>
+		    </nav>
 		
-		<div class="input-group mb-3">
-		 <form action="./list" method="get" id="frm">
-		 	  <input type="hidden" value="${pager.page}" id="page" name="page">
-		 	  	
-			  <select name="kind" id="k" class="form-select" data-kind="${pager.kind}" aria-label="Default select example">
-				  <option class="kind" value="title">TITLE</option>
-				  <option class="kind" value="content">CONTENT</option>
-			  </select>
-			  <input type="text" name="search" value="${pager.search}" class="form-control" aria-label="Amount (to the nearest dollar)">
-			   <div class="col-auto">
-			    <button type="submit" class="btn btn-primary">검색</button>
-			  </div>
-		  </form>
-		</div>
+	
 		
 		<c:if test="${not empty member}">
 		<a class="btn btn-outline-primary" for="btn-check-outlined" href="./add">글쓰기</a>
 		</c:if>
 	
 	</section>
+	
+	<c:import url="../base/footer.jsp"></c:import>
 
 	<script src="/resources/js/board/list.js"></script>
 	<script>
