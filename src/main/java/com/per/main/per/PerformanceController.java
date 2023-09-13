@@ -14,12 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.per.utils.Pager;
 
 @Controller
-@RequestMapping("/performance/*")
 public class PerformanceController {
 	@Autowired
 	private PerformanceService performanceService;
 	
-	@GetMapping("playList")
+	@GetMapping("/performance/playList")
 	public String playList(Pager pager, Model model) throws Exception {
 		List<PerformanceDTO> ar = performanceService.getPlayList(pager);
 		model.addAttribute("list", ar);
@@ -28,7 +27,7 @@ public class PerformanceController {
 		return "performance/playList";
 	}
 	
-	@GetMapping("musicalList")
+	@GetMapping("/performance/musicalList")
 	public String musicalList(Pager pager, Model model) throws Exception {
 		List<PerformanceDTO> ar = performanceService.getMusicalList(pager);
 		model.addAttribute("list", ar);
@@ -37,7 +36,7 @@ public class PerformanceController {
 		return "performance/musicalList";
 	}
 	
-	@GetMapping("detail")
+	@GetMapping("/performance/detail")
 	public String detail(PerformanceDTO performanceDTO, Model model) throws Exception {
 		PerformancePlaceDTO placeDTO = performanceService.getDetail(performanceDTO);
 		model.addAttribute("dto", placeDTO);
@@ -47,35 +46,35 @@ public class PerformanceController {
 	
 	//--------------------------------------
 	
-	@PostMapping("perDelete")
+	@PostMapping("/admin/perDelete")
 	public String setPerDelete(PerformanceDTO performanceDTO) throws Exception {
 		int result = performanceService.setPerDelete(performanceDTO);
 		
 		return "redirect:./perList";
 	}
 	
-	@PostMapping("placeDelete")
+	@PostMapping("/admin/placeDelete")
 	public String setPlaceDelete(PerformancePlaceDTO placeDTO) throws Exception {
 		int result = performanceService.setPlaceDelete(placeDTO);
 		
 		return "redirect:./placeList";
 	}
 	
-	@GetMapping("perUpdate")
+	@GetMapping("/admin/perUpdate")
 	public String setPerUpdate() throws Exception {
 		int result = performanceService.setPerInfo();
 		
 		return "redirect:./perList";
 	}
 	
-	@GetMapping("placeUpdate")
+	@GetMapping("/admin/placeUpdate")
 	public String setPlaceUpdate() throws Exception {
 		int result = performanceService.setPlaceInfo();
 		
 		return "redirect:./placeList";
 	}
 
-	@GetMapping("perList")
+	@GetMapping("/admin/perList")
 	public String getPerList(Pager pager, Model model) throws Exception {
 		List<PerformanceDTO> ar = performanceService.getPerList(pager);
 		model.addAttribute("list", ar);
@@ -84,7 +83,7 @@ public class PerformanceController {
 		return "performance/perList";
 	}
 	
-	@GetMapping("placeList")
+	@GetMapping("/admin/placeList")
 	public String getPlaceList(Pager pager, Model model) throws Exception {
 		List<PerformancePlaceDTO> ar = performanceService.getPlaceList(pager);
 		model.addAttribute("list", ar);
@@ -93,7 +92,7 @@ public class PerformanceController {
 		return "performance/placeList";
 	}
 	
-	@GetMapping("perDetail")
+	@GetMapping("/admin/perDetail")
 	public String getPerDetail(PerformanceDTO performanceDTO, Model model) throws Exception {
 		performanceDTO = performanceService.getPerDetail(performanceDTO);
 		model.addAttribute("dto", performanceDTO);
@@ -101,7 +100,7 @@ public class PerformanceController {
 		return "performance/perDetail";
 	}
 	
-	@GetMapping("placeDetail")
+	@GetMapping("/admin/placeDetail")
 	public String getPlaceDetail(PerformancePlaceDTO placeDTO, Model model) throws Exception {
 		placeDTO = performanceService.getPlaceDetail(placeDTO);
 		model.addAttribute("dto", placeDTO);

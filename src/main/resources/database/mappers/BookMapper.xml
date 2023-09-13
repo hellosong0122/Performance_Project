@@ -32,16 +32,39 @@
 	
 
 
-		<!-- book정보넣기 -->
-		<insert id="setBook" parameterType="MemberDTO">
+<!-- 		<insert id="setBook222" parameterType="MemberDTO">
 		INSERT INTO BOOK (ticket_sequence.NEXTVAL,PRFNM,PERFORMANCE_NUM,ID,EMAIL,RESERVDATE,RESERVTIME,SEATPRICE,SEATID)
 		VALUES(ticket_sequence.NEXTVAL,#{prfnm},#{performance_num},#{id},#{email},#{reservDate},#{reservTime},#{seatPrice},#{seatId});
-		</insert>
+		</insert> -->
+	
+		<!-- DB에 book정보넣기 -->
+	<insert id="resevationPer" parameterType="PerformanceOrderDTO">
+    INSERT INTO BOOK 
+    (ORDERNUM, PERFORMANCE_NUM, MEMBERNUM, MT10ID, IMP_UID, PRFNM, PERFORMANCEDATE, PERFORMANCETIME, PERSEAT, TOTALPRICE)
+    VALUES 
+    (#{orderNum},#{performance_num}, #{memberNum}, #{mt10id}, #{imp_uid}, #{prfnm}, #{performanceDate}, #{performanceTime},#{perSeat}, #{totalPrice})
+	</insert>
 	
 	
-		    <!-- BOOK 테이블에서 모든 예약 정보 -->
-	    <select id="getBook" resultType="BookDTO">
-	        SELECT * FROM BOOK
-	    </select>
+	<!-- 	    BOOK 테이블에서 모든 예약 정보-->
+		     <select id="getBook" resultType="PerformanceOrderDTO" parameterType="PerformanceOrderDTO">
+	 		  SELECT * FROM BOOK WHERE orderNum = #{orderNum}
+	 		  
+	  	  	</select> 
+	    
+<!-- 	     BOOK 테이블에서 모든 예약 정보, 공연시설이랑 포스터도 가져오기
+		<select id="getBook" resultType="PerformanceOrderDTO">
+	    SELECT 
+	        BOOK.*, 
+	        PERFORMANCE.POSTER, 
+	        PERFORMANCE_PLACE.FCLTYNM
+	    FROM 
+	        BOOK 
+	    LEFT OUTER JOIN  PERFORMANCE 
+	    ON BOOK.PERFORMANCE_NUM = PERFORMANCE.PERFORMANCE_NUM
+	    LEFT OUTER JOIN PERFORMANCE_PLACE 
+	    ON BOOK.MT10ID = PERFORMANCE_PLACE.MT10ID
+	         WHERE orderNum = #{orderNum}
+	</select> -->
 	
 </mapper>

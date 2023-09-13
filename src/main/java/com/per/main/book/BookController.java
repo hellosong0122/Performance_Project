@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import com.per.main.board.BoardDTO;
 import com.per.main.per.PerformanceDTO;
@@ -94,28 +96,100 @@ public class BookController {
 		return mv;
 	}
 
+	
+	//DB에 book 정보넣기, 단순히 저장만함
 	@PostMapping("done")
-	public ModelAndView viewPayInfo(@ModelAttribute PerformanceOrderDTO orderDTO,PerformanceDTO performanceDTO,PerformancePlaceDTO performancePlaceDTO,ModelAndView mv) throws Exception {
+	@ResponseBody
+	public boolean viewPayInfo(@ModelAttribute PerformanceOrderDTO orderDTO,PerformanceDTO performanceDTO,PerformancePlaceDTO performancePlaceDTO,ModelAndView mv) throws Exception {
+		boolean result = false;
 		System.out.println("complete pay");
 		System.out.println(orderDTO.toString());
 		
+		if (orderDTO != null) {
+			orderDTO = bookService.reservationPer(orderDTO);
+			result = true;
+		}
+		//orderDTO = bookService.reservationPer(orderDTO);
 	
+		
 		mv.addObject("dto", orderDTO);
 		mv.setViewName("book/bookDone");
+		return result; 
 		
-		return mv;
 	}
+	
+	
+	///////////////
+	
+	
+	@RequestMapping(value = "bookDone", method = RequestMethod.GET)
+	public ModelAndView getBook(@RequestParam("orderNum") String orderNum, ModelAndView mv) throws Exception {
+	    PerformanceOrderDTO orderDTO = new PerformanceOrderDTO();
+	    orderDTO.setOrderNum(orderNum);
+	    orderDTO = bookService.getBook(orderDTO);
+		System.out.println(orderDTO.toString());
+	    mv.addObject("dto", orderDTO);
+	    mv.setViewName("book/bookDone");
+	    return mv;
+	}
+// done페이지에 결제정보 뿌려주기
+//	@RequestMapping( value = "bookDone",method = RequestMethod.GET)
+//	
+//	public ModelAndView getBook(PerformanceOrderDTO orderDTO, ModelAndView mv)throws Exception{
+//	orderDTO = bookService.getBook(orderDTO);
+//		
+//		System.out.println(orderDTO.toString());
+//		mv.addObject("dto", orderDTO);
+//		mv.setViewName("book/bookDone");
+//		System.out.println(orderDTO.toString());
+//		return mv;
+//	}
 
-//			
-//
-//			
-	@RequestMapping(value = "/practice")
-//		//@GetMapping("/practice")//form 에서 연결된곳
-	public String setBook(BookDTO bookDTO, Model model) throws Exception {
-		bookService.setBook(bookDTO);
-		// return "book/practice";
-		return "redirect:../detail";
-	}
+//	@RequestMapping( value = "bookDone",method = RequestMethod.GET)
+//	
+//		public String getBook(Model model, PerformanceOrderDTO orderDTO)throws Exception{
+//		List<PerformanceOrderDTO> ar = bookService.getBook(orderDTO);
+//		
+//		System.out.println(orderDTO.toString());
+//		model.addAttribute("perList", ar);
+//		System.out.println(orderDTO.toString());
+//		return "book/bookDone";
+//	}
+	
+	
+	
+	
+	
+	/////////////////////////
+//	@RequestMapping(value = "bookDone", method = RequestMethod.GET)
+//	public String getBook(@RequestParam("orderNum") String orderNum, Model model, PerformanceOrderDTO orderDTO) throws Exception {
+//		System.out.println(orderDTO.toString());
+//		PerformanceOrderDTO result = bookService.getBook(orderDTO);
+//		model.addAttribute("perList", result);
+//	    return "book/bookDone";
+//	}
+	////////////////////////
+	
+
+	
+	// done페이지에 결제정보 뿌려주기
+//	@PostMapping("book/done")
+//	public ModelAndView getBookDetails(PerformanceOrderDTO performanceOrderDTO, ModelAndView mv) throws Exception{
+//	    performanceOrderDTO = bookService.getBook(performanceOrderDTO);
+//	    mv.addObject("dto", performanceOrderDTO);
+//	    mv.setViewName("book/done");
+//	    return mv;
+//	}
+	//BOOK정보가져오기		
+//		@PostMapping("done")
+//		public String getBook(PerformanceOrderDTO performanceOrderDTO,Model model)throws Exception{
+//			List<PerformanceOrderDTO> ar = bookService.getBook(performanceOrderDTO);
+//			model.addAttribute("book",ar);
+//			return "book/done";
+//			//return "redirect:../detail";
+//		}
+	
+		
 
 	@ResponseBody
 	@RequestMapping(value = "/verifyIamport/{imp_uid}")

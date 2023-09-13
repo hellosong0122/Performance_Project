@@ -61,9 +61,10 @@
   			
   			<include refid="searchSql"></include>
   	</select>
+    	
 	
 	<!-- DELETETYPE 1이 삭제안된 -->
-<!-- 	<select id="getTotal" resultType="Long">
+	<!-- <select id="getTotal" resultType="Long">
   		SELECT
   			COUNT(MEMBER_NUM)
   		FROM
@@ -71,7 +72,7 @@
   		WHERE	
   			ROLE = '0' AND
 			DELETETYPE = '1'
-  	</select> -->
+  	</select>  -->
   	
   	<select id="getAdminTotal" resultType="Long">
   		SELECT
@@ -119,6 +120,43 @@
 	 			)
  	</insert>
  	
+ 	 	<insert id="setKakaoJoin" parameterType="MemberDTO">
+ 		INSERT INTO
+ 			MEMBER
+ 				(
+ 				MEMBER_NUM,
+ 				NAME, 
+ 				ID, 
+ 				PW, 
+ 				EMAIL, 
+ 				PHONE, 
+ 				BIRTH, 
+ 				ADDRESS,
+ 				MARKETING, 
+ 				SNS, 
+ 				ROLE, 
+ 				REGDATE, 
+ 				DELETETYPE
+ 				)
+	 		VALUES 
+	 			(
+	 			MEMBER_SEQ.NEXTVAL, 
+	 			#{name}, 
+	 			#{id}, 
+	 			#{pw}, 
+	 			#{email}, 
+	 			#{phone}, 
+	 			#{birth}, 
+	 			#{address},
+	 			0,
+	 			1,
+	 			0,
+	 			SYSDATE,
+	 			1
+	 			)
+ 	</insert>
+ 	
+ 	
  	<!-- id조회 -->
  	<select id="getId" resultType="MemberDTO" parameterType="MemberDTO">
  		SELECT
@@ -149,14 +187,15 @@
  		 	PW = #{pw}
  	</select>
  	
+ 	
+ 	<!-- mypage 회원수정 -->
  	<update id="setUpdate" parameterType="MemberDTO">
    		UPDATE MEMBER 
    		   SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, BIRTH=#{birth}, ADDRESS=#{address}
    		 WHERE ID = #{id}
-    </update>
+    </update> 	
  	
- 	
- 	  <!-- 회원수정 -->
+ 
    <update id="setMemberUpdate" parameterType="MemberDTO">
    		UPDATE MEMBER 
    		   SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, BIRTH=#{birth}, ADDRESS=#{address}
@@ -197,7 +236,7 @@
 	
 	<update id="setAdminUpdate" parameterType="MemberDTO">
 		UPDATE MEMBER 
-		   SET NAME=#{name}, ID=#{id}, PW=#{pw} 
+		   SET NAME=#{name}, ID=#{id}, PW=#{pw}, PHONE=#{phone} 
 		 WHERE MEMBER_NUM=#{member_num}
 	</update>		
 	<select id="getUserInfo" resultType="MemberDTO"

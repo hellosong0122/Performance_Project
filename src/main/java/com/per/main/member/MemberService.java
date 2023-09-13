@@ -21,7 +21,7 @@ public class MemberService {
 	
 	public List<MemberDTO> getList(Pager pager) throws Exception {
 		pager.makeRowNum();
-		pager.makePageNum(memberDAO.getTotal(pager));
+		pager.makePageNum(memberDAO.getTotal(pager));		
 		return memberDAO.getList(pager);
 	}
 	

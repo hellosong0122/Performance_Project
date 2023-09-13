@@ -25,8 +25,8 @@
   
   .find_idpw {
     width: 30%;
-    height: 600px;
-    background: white;
+    height: 500px;
+    background: #fefcfc;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -35,7 +35,7 @@
   }
   
   h2 {
-    color: rgb(89, 144, 254);
+    color: rgb(148 179 240);
     font-size: 2rem;
   }
   
@@ -90,7 +90,7 @@
     outline: none;
     border-radius: 40px;
 
-    background: linear-gradient(to left, rgb(89, 144, 254), rgb(89, 224 , 255));
+    background: linear-gradient(to left, rgb(148 179 240), rgb(187 222 230));
     color: white;
     font-size: 1.2em;
     letter-spacing: 2px;

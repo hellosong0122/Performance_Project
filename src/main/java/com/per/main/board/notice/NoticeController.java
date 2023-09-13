@@ -27,7 +27,7 @@ public class NoticeController {
 	
 	@ModelAttribute("board")
 	public String getBoardName() {
-		return "notice";
+		return "NOTICE";
 	}
 	
 	@PostMapping("setContentsImgDelete")
