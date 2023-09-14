@@ -256,5 +256,15 @@
 		 WHERE MEMBER_NUM=#{member_num}
 	</update>		
 
+		<!-- 예매내역 -->
+	<select id="getMyBookList" parameterType="String"
+		resultType="PerformanceOrderDTO">
+		SELECT * FROM BOOK WHERE ID=#{id}
+	</select>
+	<!-- 예매취소(삭제) -->
+	<delete id="deleteBook" parameterType="String">
+		DELETE FROM BOOK WHERE ORDERNUM=#{orderNum}
+	</delete>
+	
 
   </mapper>
