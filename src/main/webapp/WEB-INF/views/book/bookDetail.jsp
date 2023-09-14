@@ -70,12 +70,14 @@
                 <input type="hidden" name="orderNum" value="${dto.orderNum}">
             </form>
             <div class="d-flex justify-content-end my-5">
-                <button type="button" class="btn" data-url="bookDelete">삭제</button>
+                <button type="button" class="btn" id="deleteBtn" data-url="bookDelete">삭제</button>
             </div>
         </section>
         <!-- <script type="text/javascript" src="../../../resources/js/bookDelete.js"></script>   -->
         <!-- <script type="text/javascript" src="../resources/js/bookDelete.js"></script>  -->
-        <script type="text/javascript" src="/webapp/resources/js/bookDelete.js"></script>
+       
+        <script type="text/javascript" src="/resources/js/bookDelete.js"></script>
+
         
         <c:import url="../base/adminFooter.jsp"></c:import>
         </main>
