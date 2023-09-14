@@ -10,22 +10,22 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  " href="./list">            
+          <a class="nav-link  " href="/admin/list">            
             <span class="nav-link-text ms-1">Member</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="./adminList">            
+          <a class="nav-link  " href="/admin/adminList">            
             <span class="nav-link-text ms-1">Admin</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="./perList">           
+          <a class="nav-link  " href="/admin/perList">           
             <span class="nav-link-text ms-1">Performance</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="./placeList">          
+          <a class="nav-link  " href="/admin/placeList">          
             <span class="nav-link-text ms-1">Place</span>
           </a>
         </li>
@@ -52,6 +52,11 @@
         <li class="nav-item">
           <a class="nav-link  " href="/admin/video/list">          
             <span class="nav-link-text ms-1">Video</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  " href="/admin/product/giftShop">          
+            <span class="nav-link-text ms-1">Product</span>
           </a>
         </li>
         <!-- 여기에입력해주세요 -->

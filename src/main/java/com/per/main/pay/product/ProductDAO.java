@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.per.main.board.BoardDTO;
 import com.per.utils.Pager;
 
 
@@ -29,6 +30,14 @@ public class ProductDAO {
 
 	public ProductDTO getGiftDetail(ProductDTO productDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getGiftDetail",productDTO);
+	}
+	
+	public int setUpdate(ProductDTO productDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setUpdate", productDTO);
+	}
+
+	public int setDelete(ProductDTO productDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setDelete", productDTO);
 	}
 
 }
