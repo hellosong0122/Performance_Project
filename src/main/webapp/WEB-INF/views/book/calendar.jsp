@@ -19,7 +19,7 @@
 				<style>
 					@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
 			
-					body { background-color : blanchedalmond;} 
+					body { background-color : rgb(255, 241, 251);} 
 				
 					div {
 						background-color : white; /*이거지우면 백그라운드색상과동일*/
@@ -85,7 +85,7 @@
 			
 					.futureDay.choiceDay,
 					.today.choiceDay {
-						background: #F5D042;
+						background: #000000;
 						color: #fff;
 						font-weight: 600;
 						cursor: pointer;
@@ -111,7 +111,7 @@
 					
 					/* 선택된 시간 */
 					.choiceTime {
-						background: #F5D042; 
+						background: #000000; 
 						color: #fff;
 						font-weight: 600;
 						cursor: pointer;
@@ -119,16 +119,20 @@
 
 			/* 버튼 스타일 */
 				#selectSeat {
-				position: fixed;
-				float: right;
-				bottom: 20px;
-				left: auto; /*left 속성 제거*/
-				right: 20px;
-				color: white; /* 글자색 설정 */
-				padding: 10px 20px; /* 내용과 버튼 간 여백 설정 */
-				border: none; /* 테두리 제거 */
-				border-radius: 5px; /* 모서리둥글게 */
-				cursor: pointer;
+					position: fixed;
+					float: right;
+					bottom: 20px;
+					left: auto; /*left 속성 제거*/
+					right: 20px;
+					color: white; /* 글자색 설정 */
+					padding: 10px 20px; /* 내용과 버튼 간 여백 설정 */
+					border: none; /* 테두리 제거 */
+					border-radius: 5px; /* 모서리둥글게 */
+					cursor: pointer;
+					background-color: #000000;
+					width: 125px; 
+					height: 50px; 
+					font-size: 17px;
 				}
 				</style>
 			
@@ -412,7 +416,7 @@
 			
 		
 				<button type="button" id="selectSeat" data-name="${dto.performanceDTO.prfnm}"
-				data-date="" data-time="" style="color: black;" >좌석 예약</button>  
+				data-date="" data-time="">좌석 예약</button>  
 				<!-- onclick="location.href='seat'" -->
 				<script src="../resources/js/seatBefore.js"></script>
 				

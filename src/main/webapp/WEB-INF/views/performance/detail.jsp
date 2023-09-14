@@ -85,7 +85,7 @@ th, td {
 	<c:import url="../base/header.jsp"></c:import>
 
 
-	<section class="container my-5 mx-auto" style="width: 70%;">
+	<section class="container my-5 mx-auto" style="width: 70%; padding-top: 25px;">
 		<div class="d-flex flex py-5 my-5">
 			<div>
 				<img src="${dto.performanceDTO.poster}"
@@ -173,9 +173,9 @@ th, td {
 						placeholder="기대평이나 관람후기를 작성해주세요"></textarea>
 				</div>
 				<div class="ms-3">
-					<button type="button" id="reviewAdd" class="btn h-100"
+					<button type="button" id="reviewAdd" class="btn btn-dark h-100" 
 						data-add-num="${dto.performanceDTO.performance_num}"
-						data-id="${member.id}">등록</button>
+						data-id="${member.id}" style="background-color: var(--bs-btn-hover-bg);">등록</button>
 				</div>
 			</div>
 			<div id="reviewList" style="color: white;"></div>
