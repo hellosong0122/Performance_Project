@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="/resources/css/seat.css">
 
 	<style>
-		body { background-color: blanchedalmond; } 
+		body { background-color: rgb(255, 241, 251); } 
 		.stage {
 			margin-bottom: 20px; /* stage 밑에 마진 추가 */
 		}
@@ -18,6 +18,12 @@
 		}
 		.seat-wrapper > div {
 			display: inline-block; /* 좌석을 한 줄로 만들기 */
+		}
+		#goToPay {
+			background-color: #000000;
+			width: 125px; 
+			height: 50px; 
+			font-size: 17px;
 		}
 	</style>
 </head>
@@ -129,7 +135,7 @@
 		</table>
 	</div>
 
-	<button type="button" id="goToPay" style="color: red;" >좌석 예약 </button>
+	<button type="button" id="goToPay" >좌석 예약 </button>
 	
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

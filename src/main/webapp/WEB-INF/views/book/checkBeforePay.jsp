@@ -12,25 +12,26 @@
                 id="bootstrap-css">
             <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         </head>
-        <style>
-           #top{
-      width:100%;
-      height: 50px;
-      margin-bottom: 10px;
-      background-color: white;
+      <style>
+      #top{
+          width:100%;
+          height: 50px;
+          margin-bottom: 25px;
+          background-color:rgb(255, 241, 251);
           border-style: hidden;
-          border-bottom: 10px solid blanchedalmond;
+          padding: 13px;
       }
       #table-main{
-      width:70%;
-      height: 470px;
-      margin-bottom: 10px;
+          width:70%;
+          height: 470px;
+          margin-bottom: 10px;
      
       }
       .mainline, .middleline {
           display: table;
           width: 100%;
-      margin-bottom: 10px;
+          margin-top: 25px;
+          margin-bottom: 10px;
         }
         .table-row {
           display: table-row;
@@ -46,30 +47,28 @@
           margin-left: 20px;
         }
         #payBtn {
-   
-        
-        background-color: coral;
-        color:white;
-        border:none;
-        border-radius: 5px;
-        width: 100px;
-        height: 50px;
-        margin-top: 10px;
-        box-shadow: 1px 1px 1px #bcbcbc;
-        /* transition-duration: 0.1s; */
+            background-color: rgb(0, 0, 0);
+            color:white;
+            border:none;
+            border-radius: 5px;
+            width: 100px;
+            height: 50px;
+            font-size: 17px;
+            margin-top: 10px;
+            box-shadow: 1px 1px 1px #bcbcbc;
+            /* transition-duration: 0.1s; */
         }   
-        #cancelBtn {
-        
-   
-        background-color: coral;
-        color:white;
-        border:none;
-        border-radius: 5px;
-        width: 100px;
-        height: 50px;
-        margin-top: 10px;
-        box-shadow: 1px 1px 1px #bcbcbc;
-        /* transition-duration: 0.1s; */
+        #cancelBtn {  
+            background-color: rgb(0, 0, 0);
+            color:white;
+            border:none;
+            border-radius: 5px;
+            width: 100px;
+            height: 50px;
+            margin-top: 10px;
+            font-size: 17px;
+            box-shadow: 1px 1px 1px #bcbcbc;
+            /* transition-duration: 0.1s; */
         }   
          #payBtn:active {
           
@@ -92,28 +91,51 @@
               공연예매> <span style="font-weight: bolder; color: crimson; display: inline; ">주문 · 결제</span> > 예매완료
                 </p>
           </div>
-          <div class="mainline">
-            <div class="table-row">
-              <div id="table-main" class="table-cell">
-                <p style="font-size: xx-large; font-weight: bold; margin-left: 20px;">예매목록을 확인하세요.</p>
+          <section class="container my-5 mx-auto" style="width: 70%; padding-top: 25px;">
+
+                <p style="font-size: xx-large; font-weight: bold; margin-left: 20px;">예매정보를 확인하세요.</p>
                 <br><br>
-                <div id = "divMain">
-                  <span style="font-size: large;" >
-                    <p>공연명: <span id="prfnm"></span></p>
-                    <p>공연 번호: <span id="performance_num"></span></p>
-                    <p>공연 극장: <span id="fcltynm"></span></p>
-                    <p>구매자 ID: <span id="member_id"></span></p>
-                    <p>구매자 E-MAIL: <span id="member_email"></span></p>
-                    <p>예약날짜: <span id="selectedDate"></span></p>
-                    <p>상연시간: <span id="selectedTime"></span></p>
-                    <p>선택한 좌석: <span id="selectedSeats"></span></p>
-                    <p>결제할 금액: <span id="priceValue"></span></p>
-                  </span>
-                </div>
+                <table class="table table-dark" style="font-size: 17px;">
+                    <tr>
+                      <th>공연명</th> 
+                      <td><span id="prfnm"></span></td>
+                    </tr>
+                    <tr>
+                      <th>공연 번호</th>
+                      <td><span id="performance_num"></span></td>
+                    </tr>
+                    <tr>
+                      <th>공연장</th>
+                      <td><span id="fcltynm"></span></td>
+                    </tr>
+                    <tr>
+                      <th>예매자 ID</th> 
+                      <td><span id="member_id"></span></td>
+                    </tr>
+                    <tr>
+                      <th>예매자 E-MAIL</th> 
+                      <td><span id="member_email"></span></td>
+                    </tr>
+                    <tr>
+                      <th>일시</th> 
+                      <td><span id="selectedDate"></span></td>
+                    </tr>
+                    <tr>
+                      <th>관람시간</th> 
+                      <td><span id="selectedTime"></span></td>
+                    </tr>
+                    <tr>
+                      <th>좌석</th> 
+                      <td><span id="selectedSeats"></span></td>
+                    </tr>
+                    <tr>
+                      <th>결제금액</th> 
+                      <td><span id="priceValue"></span></td>
+                    </tr>                 
+                    </span>
+                </table>
                     <!-- <P>구매금액: </P> -->
-                </div>
-              </div>
-            </div>
+         
                 <!-- <form method="post" action="done">  -->
                 <input type="hidden" name="prfnm" id="prfnm_input" />
                 <input type="hidden" name="performance_num" id="performance_num_input">
@@ -127,12 +149,12 @@
                 <input type="hidden" name="seatId" id="selectedSeats_input">
                 <input type="hidden" name="baseSeatPrie" id="baseSeatPrie_input">
                 <input type="hidden" name="fcltynm" id="fcltynm_input">
-
-                <input type="reset" style="color: crimson;" value="취소하기" id="cancelBtn">   
-                <button type="submit"  style="color: blue;"
+                <input type="reset" value="취소하기" id="cancelBtn">   
+                <button type="submit" 
                     id="payBtn" >결제하기</button>
+                  
                  <!-- </form>  -->
-
+</section>
             <script src="../../../resources/js/book/checkBeforePay.js"></script>
             <script src="../../../resources/js/iamportpay.js"></script>        
 

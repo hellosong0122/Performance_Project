@@ -4,7 +4,7 @@
 }
 /*좌석 등급마다 색을 다르게 하기*/
 .VIP {
-	background-color: gold;
+	background-color: rgb(33, 18, 132);
 	color: white;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .S {
-	background-color: pink;
+	background-color: rgb(255, 174, 0);
 	color: white;
 }
 
