@@ -82,10 +82,11 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <p>${giftDetail.p_Description}</p>                                
+                                    <p>${giftDetail.p_Description}</p> 
+                                    <button class="btn submit">Buy</button>                               
                                 </form>
                                    <br><br><br>
-                                      <button class="btn submit">Buy</button>
+                                      
                                       <button type="button" id="add_cart" class="btn submit">Add Cart</button>                                   
                                                               
                             </div>
