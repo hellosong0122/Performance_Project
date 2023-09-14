@@ -102,7 +102,7 @@ ul.join_box {
 </head>
 <body>
 	<c:import url="../base/header.jsp"></c:import>
-	<form action="" id="joinForm">
+	<form action="./join" id="joinForm">
 		<br><br>
 		<h2>약관동의</h2>
 		<ul class="join_box">		
@@ -145,7 +145,7 @@ ul.join_box {
 		<br>
 		<div id='result'></div>		
 		<ul class="footBtwrap clearfix">	
-			<li><button class="fpmgBt2" id="btn" disabled>회원가입</button></li>
+			<li><button class="fpmgBt2" id="btn"  disabled>회원가입</button></li>
 		</ul>
 	
 		

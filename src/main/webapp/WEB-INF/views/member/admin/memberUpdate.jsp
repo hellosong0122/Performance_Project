@@ -121,7 +121,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           <div class="my-3">
 			<button type="submit" class="btn">등록</button>
 		</div>
-         
           </button>
         </div>
       </form>
