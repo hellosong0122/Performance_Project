@@ -36,6 +36,26 @@
 		PRODUCT
 	</select>
 	
+	<update id="setDelete" parameterType="ProductDTO">
+  		DELETE FROM
+  			PRODUCT
+  		WHERE 
+  			P_NUM = #{p_Num}
+  	</update>
+  	
+  	<update id="setUpdate" parameterType="ProductDTO">
+  		UPDATE
+  			PRODUCT
+  		SET 
+  			P_NAME = #{p_Name},
+  			P_PRICE = #{p_Price},
+  			P_DESCRIPTION = #{p_Description},
+  			P_IMAGE = #{p_Image},
+  			P_COUNT = #{p_Count}
+  		WHERE
+  			P_NUM = #{p_Num}
+  	</update>
+	
 
 
 </mapper>

@@ -26,7 +26,7 @@ public class TicketOpenController {
 	
 	@ModelAttribute("board")
 	public String getBoardName() {
-		return "ticket_open";
+		return "ticketopen";
 	}
 	
 	@PostMapping("/admin/ticketopen/setContentsImgDelete")
