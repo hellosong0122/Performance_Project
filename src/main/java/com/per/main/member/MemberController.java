@@ -87,25 +87,8 @@ public class MemberController {
 
 		model.addAttribute("result", result);
 
-    //login
-    @RequestMapping(value = "userLogin", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, Object> getLogin(MemberDTO memberDTO, HttpSession session) throws Exception {
-       memberDTO = memberService.getLogin(memberDTO);
-       
-       Map<String, Object> result = new HashMap<String, Object>();
-       if (memberDTO != null) {
-          session.setAttribute("member", memberDTO);
-          result.put("type", "성공");
-          result.put("msg", "[안내] 로그인 성공");
-          result.put("role", memberDTO.getRole());
-       } else {
-          result.put("type", "실패");
-          result.put("msg", "[안내] 로그인 실패");
-       }
-       
-       return result;
-    }
+		return "commons/ajaxResult";
+	}
 
 	// mypage
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
@@ -182,7 +165,7 @@ public class MemberController {
 	// 네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
-			throws IOException, ParseException {
+			throws Exception, ParseException {
 
 		System.out.println("여기는 callback");
 		OAuth2AccessToken oauthToken;
@@ -333,18 +316,19 @@ public class MemberController {
 
 	// 예매취소하기
 
-	@RequestMapping(value = "deleteBook", method = RequestMethod.GET)
-	public String deleteBook(@RequestParam("orderNum") String orderNum, HttpSession session) throws Exception {
-	    System.out.println(orderNum);
-	    int result = memberService.deleteBook(orderNum);
-
-	    // 세션에서 member 정보를 가져와 member.id 값을 사용
-	    MemberDTO member = (MemberDTO) session.getAttribute("member");
-	    if (member != null) {
-	        return "redirect:/member/memberBook?id=" + member.getId();
-	    } else {
-	        return "redirect:/"; // member 정보가 없는 경우 홈페이지로 리다이렉션
-	    }
-	}
+//	@RequestMapping(value = "deleteBook", method = RequestMethod.GET)
+//	public String deleteBook(@RequestParam("orderNum") String orderNum, HttpSession session) throws Exception {
+//	    System.out.println(orderNum);
+//	    int result = memberService.deleteBook(orderNum);
+//
+//	    // 세션에서 member 정보를 가져와 member.id 값을 사용
+//	    MemberDTO member = (MemberDTO) session.getAttribute("member");
+//	    if (member != null) {
+//	        return "redirect:/member/memberBook?id=" + member.getId();
+//	    } else {
+//	        return "redirect:/"; // member 정보가 없는 경우 홈페이지로 리다이렉션
+//	    }
+//	}
+	
 
 }
