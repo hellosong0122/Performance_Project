@@ -255,6 +255,12 @@
 		   SET NAME=#{name}, ID=#{id}, PW=#{pw}, PHONE=#{phone} 
 		 WHERE MEMBER_NUM=#{member_num}
 	</update>		
+	<select id="getUserInfo" resultType="MemberDTO"
+		parameterType="MemberDTO">
+		SELECT *
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
 
 		<!-- 예매내역 -->
 	<select id="getMyBookList" parameterType="String"

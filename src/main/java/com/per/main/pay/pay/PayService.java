@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.per.main.member.MemberDTO;
 import com.per.utils.IamPortKey;
 
 @Service
@@ -28,6 +29,12 @@ public class PayService {
 
 	@Autowired
 	private PayDAO payDAO;
+	
+	
+//	public int buyProduct(ProductOrderDTO productOrderDTO)throws Exception{
+//		
+//		return payDAO.buyProduct(productOrderDTO);
+//	}
 
 	public String getToken() throws Exception {
 
@@ -96,6 +103,11 @@ public class PayService {
 
 	}
 
+	public List<ProductOrderDTO> getAll(MemberDTO memberDTO) throws Exception {
+		return payDAO.getAll(memberDTO);
+	}
+
+	
 	public int insertPayData(ProductOrderDTO orderDTO) throws Exception {
 		System.out.println(orderDTO.toString());
 		return payDAO.insertPayData(orderDTO);
@@ -110,16 +122,24 @@ public class PayService {
 		if (!productOrderDTO.getImp_uid().equals("")) {
 			
 			String token= getToken();
+			System.out.println("removeOrder token  :"+ token);
+			
+			
 			Long price = productOrderDTO.getTotalPrice();
+			System.out.println("removeOrder price  :"+ price);
+			
 			Long returnPrice = price;
+			
+			
 			payMentCancle(token,productOrderDTO.getImp_uid(),price.toString(),"취소");
+			
 		}
 		return payDAO.removeOrder(productOrderDTO);
 	}
 
 	public void payMentCancle(String access_token, String imp_uid, String amount,String reason) throws IOException, ParseException {
-
-		System.out.println("imp_uid = " + imp_uid);
+		System.out.println();
+		System.out.println("payMentCancle imp_uid = " + imp_uid);
 		HttpsURLConnection conn = null;
 		URL url = new URL("https://api.iamport.kr/payments/cancel");
 			
@@ -134,15 +154,28 @@ public class PayService {
 		conn.setDoOutput(true);
 		
 		JsonObject json = new JsonObject();
+		System.out.println("=====================================================");
 
 		json.addProperty("reason", reason);
+		System.out.println("payMentCancle reason : "+reason);
+		
+		
 		json.addProperty("imp_uid", imp_uid);
+		System.out.println("payMentCancle imp_uid : "+imp_uid);
+		
 		json.addProperty("amount", amount);
+		System.out.println("payMentCancle amount : "+amount);
+		
 		json.addProperty("checksum", amount);
+		System.out.println("payMentCancle checksum : "+amount);
+		
+		System.out.println("json : " + json.toString());
 		
 		System.out.println("check 1 : " + imp_uid);
 		System.out.println("check 2 : " + amount);
 		System.out.println(reason);
+		System.out.println("=====================================================");
+		
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 
 		bw.write(json.toString());
@@ -153,6 +186,7 @@ public class PayService {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
 	}
+
 
 
 
