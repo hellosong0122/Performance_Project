@@ -7,6 +7,48 @@
 <html lang="en">
 
   <head>
+ 
+   <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <!-- Demo styles -->
+  <style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 	<c:import url="./base/base.jsp"></c:import>
 	<title></title>
   </head>
@@ -27,26 +69,23 @@
   <!-- ***** Preloader End ***** -->
 
  
-
+      <!-- ***** Banner Start ***** -->
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
-
-          <!-- ***** Banner Start ***** -->
-          <div class="main-banner">
-            <div class="row">
-              <div class="col-lg-7">
-                <div class="header-text">
-                  <h6>Welcome To Cyborg</h6>
-                  <h4><em>Browse</em> Our Popular Games Here</h4>
-                  <div class="main-button">
-                    <a href="browse.html">Browse Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+			<!-- Swiper -->
+			  <div class="swiper mySwiper">
+			    <div class="swiper-wrapper">
+			      <div class="swiper-slide"><img src="/resources/img/banner1.jpg"></div>
+			      <div class="swiper-slide"><img src="/resources/img/banner2.jpg"></div>
+			      <div class="swiper-slide"><img src="/resources/img/banner3.jpg"></div>
+			      <div class="swiper-slide"><img src="/resources/img/banner4.jpg"></div>
+			    </div>
+			    <div class="swiper-button-next"></div>
+			    <div class="swiper-button-prev"></div>
+			    <div class="swiper-pagination"></div>
+			  </div>
           <!-- ***** Banner End ***** -->
 
           <!-- ***** Most Popular Start ***** -->
@@ -55,160 +94,35 @@
             <div class="col-lg-8">
               <div class="featured-games header-text">
                 <div class="heading-section">
-                  <h4><em>Live</em> Streams</h4>
+                  <h4>WHAT'S HOT</h4>
                 </div>
                 <div class="owl-features owl-carousel owl-loaded owl-drag">
-                  
-                  
-                  
-                  
-                  
-                  
-                <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1243px, 0px, 0px); transition: all 0.25s ease 0s; width: 2985px;"><div class="owl-item cloned" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-01.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>CS-GO<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item cloned" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-02.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>Gamezer<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item cloned" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-03.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>Island Rusty<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-01.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>CS-GO<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-02.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>Gamezer<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item active" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-03.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>Island Rusty<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item active" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-01.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>CS-GO<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item active" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-02.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>Gamezer<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-03.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>Island Rusty<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item cloned" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-01.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>CS-GO<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item cloned" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-02.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>Gamezer<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div><div class="owl-item cloned" style="width: 218.667px; margin-right: 30px;"><div class="item">
-                    <div class="thumb">
-                      <img src="assets/images/featured-03.jpg" alt="">
-                      <div class="hover-effect">
-                        <h6>2.4K Streaming</h6>
-                      </div>
-                    </div>
-                    <h4>Island Rusty<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"></div></div>
+                  <div class="owl-stage-outer">
+                  <div class="owl-stage" style="transform: translate3d(-1243px, 0px, 0px); transition: all 0.25s ease 0s; width: 2985px;">
+	                  <c:forEach items="${perList}" var="p">
+	                  <div class="owl-item cloned" style="width: 218.667px; margin-right: 30px;">
+		                  <div class="item" style="padding: 30px 15px 60px 15px">
+		                    <div class="thumb">
+		                      <img src="${p.poster}" alt="" height="233px">
+		                      <div class="hover-effect">
+		                        <h6>2.4K Streaming</h6>
+		                      </div>
+		                    </div>
+		                    <h4>${p.prfnm}</h4>
+		                    <br>
+		                    <ul>
+		                      <li><i class="fa fa-star"></i> 5.0</li>
+		                    </ul>
+		                  </div>
+	                  </div>
+	                  </c:forEach>
+                  </div>
+                  </div>
+                  <div class="owl-nav">
+                  	<button type="button" role="presentation" class="owl-prev">
+                  	<span aria-label="Previous">‹</span>
+                  	</button>
+                  	<button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"></div></div>
               </div>
             </div>
             <div class="col-lg-4">
@@ -267,67 +181,38 @@
           <div class="start-stream">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4><em>How To Start Your</em> Live Stream</h4>
-              </div>
+                <h4>TICKET OPEN ${o.file_name}</h4>
+                
+              </div>              
               <div class="row">
+              <c:forEach items="${openList}" var="o">
                 <div class="col-lg-4">
-                  <div class="item">
-                    <div class="icon">
-                      <img src="assets/images/service-01.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
-                    </div>
-                    <h4>Go To Your Profile</h4>
-                    <p>Cyborg Gaming is free HTML CSS website template provided by TemplateMo. This is Bootstrap v5.2.0 layout.</p>
+                  <div class="item" style="height:100%;">                
+                    <h4>${o.title}</h4>
+                    <p>${o.content}</p>
                   </div>
                 </div>
-                <div class="col-lg-4">
-                  <div class="item">
-                    <div class="icon">
-                      <img src="assets/images/service-02.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
-                    </div>
-                    <h4>Live Stream Button</h4>
-                    <p>If you wish to support us, you can make a <a href="https://paypal.me/templatemo" target="_blank">small contribution via PayPal</a> to info [at] templatemo.com</p>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="item">
-                    <div class="icon">
-                      <img src="assets/images/service-03.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
-                    </div>
-                    <h4>You Are Live</h4>
-                    <p>You are not allowed to redistribute this template's downloadable ZIP file on any other template collection website.</p>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="main-button">
-                    <a href="profile.html">Go To Profile</a>
-                  </div>
-                </div>
+               </c:forEach>                
               </div>
             </div>
           </div>
           
   		 <!-- ***** Banner Start ***** -->
-          <div class="main-banner">
+          <div class="main-banner" style="background-image:none;">
             <div class="row">
-              <div class="col-lg-7">
-                <div class="header-text">
-                  <h6>Welcome To Cyborg</h6>
-                  <h4><em>Browse</em> Our Popular Games Here</h4>
-                  <div class="main-button">
-                    <a href="browse.html">Browse Now</a>
-                  </div>
-                </div>
-              </div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/cR2ExRbMdEQ?si=M8f5xpWyIA7eAWm7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
           <!-- ***** Banner End ***** -->
+          
+          
           <!-- ***** Gaming Library Start ***** -->
           <div class="gaming-library">
             <div class="col-lg-12">
               <div class="heading-section">
                 <h4><em>Your Gaming</em> Library</h4>
               </div>
-              <div class="item">
+              <div class="item" >
                 <ul>
                   <li><img src="/resources/assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
                   <li><h4>Dota 2</h4><span>Sandbox</span></li>
@@ -371,10 +256,30 @@
   </div>
  <c:import url="./base/footer.jsp"></c:import>
 
+	<!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-  <script src="/resources/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
   <script src="/resources/assets/js/isotope.min.js"></script>
