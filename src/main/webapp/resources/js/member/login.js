@@ -28,7 +28,7 @@ $("#loginBtn").on("click", function(){
           if (rst.type == "성공"){
              alert(rst.msg);
              if(rst.role==1){
-             	location.replace("/member/admin/list");
+             	location.replace("/admin/list");
              }else{
               	location.replace("/");
              }

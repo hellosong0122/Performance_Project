@@ -4,25 +4,40 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.per.main.header.HeaderDAO">
-	<select id="getList" resultType="HeaderDTO">
-		SELECT *
-		  FROM HEADER		
+  	<select id="getList" resultType="HeaderDTO" parameterType="Pager">
+		SELECT 
+			*
+		FROM
+		  	 (SELECT ROWNUM R, B.* FROM
+				(	SELECT * FROM HEADER
+					ORDER BY HEADER_NUM DESC
+				) B
+			)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}			 
 	</select>
-	
-	<insert id="setAdd" parameterType="HEADERDTO">
+  
+	<insert id="setAdd" parameterType="HeaderDTO">
 		INSERT INTO HEADER (HEADER_NUM,REGDATE,WRITER,URL,DLETE_TYPE,ORDER_NUM)
 		VALUES (HEADER_SEQ.NEXTVAL, SYSDATE, #{id}, #{url},1,#{order_num})	
 	</insert>	
 
 	
-	<update id="setUpdate" parameterType="MemberDTO">
-		UPDATE MEMBER 
-		   SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, BIRTH=#{birth}, ADDRESS=#{address}
-		 WHERE ID=#{id}
+	<update id="setUpdate" parameterType="HeaderDTO">
+		UPDATE HEADER 
+		   SET URL=#{url}, ORDER_NUM=#{order_num}
+		 WHERE HEADER_NUM = #{header_num}
 	</update>	
 	
-	<delete id="setDelete" parameterType="MemberDTO">
-		DELETE MEMBER WHERE ID=#{id}
+	<delete id="setDelete" parameterType="HeaderDTO">
+		UPDATE HEADER
+		   SET DLETE_TYPE = '0'
+		 WHERE HEADER_NUM = #{header_num}
 	</delete>
+	
+	<select id="getDetail" parameterType="HeaderDTO">
+		SELECT *
+		  FROM HEADER
+		 WHERE HEADER_NUM = #{header_num}	
+	</select>
     
   </mapper>

@@ -93,8 +93,8 @@ public class AdminMemberController {
 			
 			//관리자등록
 			@RequestMapping(value="adminAdd")
-			public void setAdminAdd()throws Exception{
-					
+			public String setAdminAdd()throws Exception{
+					return "member/admin/adminAdd";
 			}
 			
 			//관리자등록
@@ -107,7 +107,8 @@ public class AdminMemberController {
 			
 			//회원등록
 			@RequestMapping(value="memberAdd", method=RequestMethod.GET)
-			public void setMemberAdd()throws Exception{			
+			public String setMemberAdd()throws Exception{
+				return "member/admin/memberAdd";
 			}
 			
 			//회원등록
@@ -154,7 +155,6 @@ public class AdminMemberController {
 							
 				return "redirect:./list";
 			}	
-		
 
 	}
 				
