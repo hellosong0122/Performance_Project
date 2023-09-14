@@ -117,6 +117,9 @@ public class BannerService implements BoardService {
 		return bannerDAO.setDelete(boardDTO);
 	}
 	
-	
+	@Override
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
+		return bannerDAO.setHitUpdate(boardDTO);
+	}
 
 }

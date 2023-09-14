@@ -122,7 +122,7 @@
 		SET
 			HIT = HIT + 1
 		WHERE
-			NOTICE_NUM = #{notice_num}
+			NOTICE_NUM = #{num}
 	</update>
 	
 	<delete id="setFileDelete" parameterType="NoticeFileDTO">

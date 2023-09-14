@@ -63,7 +63,7 @@ public class FaqDAO implements BoardDAO {
 	@Override
 	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(NAMESPACE+"setHitCount", boardDTO);
 	}
 	
 	public int setFileAdd(FaqFileDTO faqFileDTO)throws Exception{

@@ -122,7 +122,7 @@
 		SET
 			HIT = HIT + 1
 		WHERE
-			BANNER_NUM = #{banner_num}
+			BANNER_NUM = #{num}
 	</update>
 	
 	<delete id="setFileDelete" parameterType="BannerFileDTO">
