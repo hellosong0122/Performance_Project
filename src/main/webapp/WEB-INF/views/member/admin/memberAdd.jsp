@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Insert title here</title>
-    <c:import url="../../temp/bootStrap.jsp"></c:import>
+    <title>Insert title here</title>    
+    <c:import url="../../base/adminBase.jsp"></c:import>
     <style>
       .f {
         color: red;
@@ -19,7 +18,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     </style>
   </head>
   <body>
-    <c:import url="../../temp/header.jsp"></c:import>
+    <c:import url="../../base/adminLeft.jsp"></c:import>
+    <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
     <section class="container mt-5"> 
 
       <form action="./memberAdd" method="post" id="frm">
@@ -145,26 +145,24 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             id="detailAddress"
             placeholder="상세주소입력"
           />
+          <br>
           <div class="mb-3">
-            <button class="btn btn-primary" id="addrSearch" type="button">
+            <button class="btn" id="addrSearch" type="button">
               우편번호찾기
             </button>
            </div>
           <div id="addressResult"></div>
         </div>
 
-        <div class="mb-3">
-          <div class="my-3">
-			<button type="submit" id="addBtn" class="btn btn-outline-success">등록</button>
-		</div>
-         
-          </button>
+        <div class="my-3" align="center" >
+			<button type="submit" id="addBtn" class="btn">등록</button>
         </div>
       </form>
-    </section>
-    <script src="/resources/js/member/memberAdd.js"></script>
+    </section>   
+  </main>
+  <script src="/resources/js/member/memberAdd.js"></script>
     <!-- 카카오주소api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    
+
   </body>
 </html>
