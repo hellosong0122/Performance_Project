@@ -99,7 +99,7 @@
                 <div class="owl-features owl-carousel owl-loaded owl-drag">
                   <div class="owl-stage-outer">
                   <div class="owl-stage" style="transform: translate3d(-1243px, 0px, 0px); transition: all 0.25s ease 0s; width: 2985px;">
-	                  <c:forEach items="${perList}" var="p">
+	                  <c:forEach items="${perList}" var="p" begin="0" end="50">
 	                  <div class="owl-item cloned" style="width: 218.667px; margin-right: 30px;">
 		                  <div class="item" style="padding: 30px 15px 60px 15px">
 		                    <div class="thumb">
@@ -151,20 +151,18 @@
                 
               </div>              
               <div class="row">
-              <c:forEach items="${openList}" var="o">
+              <c:forEach items="${openList}" var="o" begin="0" end="2">
                 <div class="col-lg-4">
                   <div class="item" style="height:100%;">                
                     <h4>${o.title}</h4>
-                    <p>${o.content}</p>
+                    <p class="haha">${o.content}</p>
                   </div>
                 </div>
                </c:forEach>                
               </div>
             </div>
           </div>
-          
-          
-          
+
   		 <!-- ***** Banner Start ***** -->
           <div class="main-banner" style="background-image:none;">
             <div class="row">
@@ -175,8 +173,8 @@
           
           
           <!-- ***** Gaming Library Start ***** -->
-          <div class="gaming-library">
-            <div class="col-lg-12">
+          <div class="gaming-library" style="margin-top: 0px;">
+            <div class="col-lg-12" style="text-align: center;">
               <div class="heading-section">
                 <h4><em>#MD</em> </h4>
               </div>
@@ -198,12 +196,6 @@
                 </ul>
                </c:forEach>               
               </div>
-                          
-            <div class="col-lg-12">
-              <div class="main-button">
-                <a href="profile.html">View Your Library</a>
-              </div>
-            </div>
           </div>
           <!-- ***** Gaming Library End ***** -->
         </div>
