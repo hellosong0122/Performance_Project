@@ -321,7 +321,7 @@ public class MemberController {
 	    System.out.println(orderNum);
 	    int result = memberService.deleteBook(orderNum);
 
-	    // 세션에서 member 정보를 가져와 member.id 값을 사용하려고 합니다.
+	    // 세션에서 member 정보를 가져와 member.id 값을 사용
 	    MemberDTO member = (MemberDTO) session.getAttribute("member");
 	    if (member != null) {
 	        return "redirect:/member/memberBook?id=" + member.getId();
