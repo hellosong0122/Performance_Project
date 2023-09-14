@@ -75,4 +75,13 @@ public class CartDTO {
 		P_Image = p_Image;
 	}
 
+	@Override
+	public String toString() {
+		return "CartDTO [Cart_Num=" + Cart_Num + ", P_Num=" + P_Num + ", P_Name=" + P_Name + ", P_Price=" + P_Price
+				+ ", Cart_Count=" + Cart_Count + ", member_num=" + member_num + ", Cart_Reg=" + Cart_Reg + ", P_Image="
+				+ P_Image + "]";
+	}
+
+	
+	
 }

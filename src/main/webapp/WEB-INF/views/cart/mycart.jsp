@@ -20,22 +20,23 @@
 				<c:import url="../base/header.jsp"></c:import>
 
 				<div class="wrapper">
-					<form action="../pay/buycart" method="post" class="w3pvt-newsletter subscribe-sec"></form>
+					<form action="../pay/buycart" method="post" class="w3pvt-newsletter subscribe-sec">
 					<div id="table" class="bg-white rounded">
 						<div class="d-md-flex align-items-md-center px-3 pt-3">
 							<div class="d-flex flex-column">
-								<div class="h4 font-weight-bold">Gift lists</div>
+								<div class="h4 font-weight-bold">Wish lists</div>
 							</div>
 						</div>
 						<hr>
-						<div class="table-responsive" id="size" data-length="${fn:length(list)}" data-user="${member.member_num}">
+						<div class="table-responsive" id="size" data-length="${fn:length(list)}"
+							data-user="${member.member_num}">
 							<table class="table activitites">
 								<thead>
 									<tr>
 										<th scope="col" class="text-uppercase header"></th>
 										<th scope="col" class="text-uppercase">상품이름</th>
 										<th scope="col" class="text-uppercase">수량</th>
-										<th scope="col" class="text-uppercase">수당 가격 </th>
+										<th scope="col" class="text-uppercase"> 가격 </th>
 										<th scope="col" class="text-uppercase">총가격</th>
 										<th scope="col" class="text-uppercase"></th>
 									</tr>
@@ -65,7 +66,7 @@
 										</tr>
 										<input id="data${i.index}" type="hidden" data-count="${d.cart_Count}"
 											data-cartnum="${d.cart_Num}" data-price="${d.p_Price}"
-											data-count="${d.cart_Count}" data-pnum="${d.p_Num}" >
+											data-count="${d.cart_Count}" data-pnum="${d.p_Num}">
 									</c:forEach>
 								</tbody>
 							</table>
@@ -86,7 +87,8 @@
 							</div>
 						</div>
 					</div>
-					<button class="btn submit" id="buy_btn">Buy</button>
+					<input type="hidden" id="member_num" name="member_num" value="${member.member_num}">
+					<button type="submit" class="btn submit" id="buy_btn">Buy</button>
 					</form>
 					<button type="button" id="back_btn" class="btn submit">뒤로가기</button>
 				</div>

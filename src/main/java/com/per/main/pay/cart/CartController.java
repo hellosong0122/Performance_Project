@@ -43,9 +43,12 @@ public class CartController {
 	
 	@ResponseBody
 	@RequestMapping(value = "add" ,method = RequestMethod.POST)
-	public String addToCart(@ModelAttribute CartDTO cartDTO,HttpSession session, Model model)throws Exception{
+	public String addToCart(MemberDTO memberDTO,@ModelAttribute CartDTO cartDTO,HttpSession session, Model model)throws Exception{
 		int result = 0 ;
-		
+		System.out.println("cartDTO tostring :" +cartDTO.toString());
+		memberDTO = (MemberDTO) session.getAttribute("member");
+		System.out.println("memberDTO : "+ memberDTO.getMember_num());
+		cartDTO.setMember_num(memberDTO.getMember_num());
 		if(cartDTO !=null) {
 			System.out.println("cartdto : " + cartDTO);
 			result = cartService.addToCart(cartDTO);	

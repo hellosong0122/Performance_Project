@@ -7,11 +7,11 @@
             <meta charset="UTF-8">
             <title>Insert title here</title>
             <c:if test="${empty member}">
-            <script type="text/javascript">
-            	alert("로그인하세요");
-           		location.href="../member/login";
-            </script>	
-			</c:if>    
+                <script type="text/javascript">
+                    alert("로그인하세요");
+                    location.href = "../member/login";
+                </script>
+            </c:if>
             <c:import url="../base/base.jsp"></c:import>
             <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -63,11 +63,11 @@
                                     <div class="form-group">
                                         <div class="col-sm-3 col-xs-3">
                                             <img class="img-responsive"
-                                                src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
+                                                src="https://loremflickr.com/240/240" />
                                         </div>
                                         <div class="col-sm-6 col-xs-6">
                                             <div class="col-xs-12">Product name</div>
-                                            <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
+                                            <div class="col-xs-12"><small>Quantity:<span>${gift.p_Counter}</span></small></div>
                                         </div>
                                         <div class="col-sm-3 col-xs-3 text-right">
                                             <h6><span>$</span>25.00</h6>
@@ -75,48 +75,6 @@
                                     </div>
                                     <div class="form-group">
                                         <hr />
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-3 col-xs-3">
-                                            <img class="img-responsive"
-                                                src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
-                                        </div>
-                                        <div class="col-sm-6 col-xs-6">
-                                            <div class="col-xs-12">Product name</div>
-                                            <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
-                                        </div>
-                                        <div class="col-sm-3 col-xs-3 text-right">
-                                            <h6><span>$</span>25.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <hr />
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-3 col-xs-3">
-                                            <img class="img-responsive"
-                                                src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
-                                        </div>
-                                        <div class="col-sm-6 col-xs-6">
-                                            <div class="col-xs-12">Product name</div>
-                                            <div class="col-xs-12"><small>Quantity:<span>2</span></small></div>
-                                        </div>
-                                        <div class="col-sm-3 col-xs-3 text-right">
-                                            <h6><span>$</span>50.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <hr />
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-xs-12">
-                                            <strong>Subtotal</strong>
-                                            <div class="pull-right"><span>$</span><span>200.00</span></div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <small>Shipping</small>
-                                            <div class="pull-right"><span>-</span></div>
-                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <hr />
@@ -142,7 +100,8 @@
                                         </div>
                                     </div>
                                     <div class="deliver-info">
-                                        <input type="radio" name="tab" value="delivery-basic" onclick="showBasic();" checked/>
+                                        <input type="radio" name="tab" value="delivery-basic" onclick="showBasic();"
+                                            checked />
                                         기본배송지
 
                                         <input type="radio" name="tab" value="delivery-new" onclick="showNew();" /> 직접입력
@@ -231,7 +190,8 @@
                                                             maxlength="40" style="" value="" placeholder="받는 사람"
                                                             title="받는 사람">
                                                     </dd>
-                                                    <input type="hidden" id="rcvrNmTmp" name="rcvrNmTmp" value="${member.name}">
+                                                    <input type="hidden" id="rcvrNmTmp" name="rcvrNmTmp"
+                                                        value="${member.name}">
 
                                                 </div>
 
@@ -276,11 +236,13 @@
                             <!--CREDIT CART PAYMENT-->
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h1>테스트 : ${gift.p_Total}</h1>
+                                    <h1>테스트 : ${gift.p_Total}</h1>
                                     <button type="button" class="btn btn-primary btn-submit-fix" id="payBtn"
-                                        onclick="iamport()" data-pnum="${gift.p_Num}" data-name="${gift.p_Name}" data-price="${gift.p_Total}" data-count="${gift.p_Counter}" data-usernum="${member.member_num}"
-                                        data-user="${member.name}" data-email="${member.email}"
-                                        data-tel="${member.phone}" data-addr="${member.address}">Place
+                                        onclick="iamport()" data-pnum="${gift.p_Num}" data-name="${gift.p_Name}"
+                                        data-price="${gift.p_Total}" data-count="${gift.p_Counter}"
+                                        data-usernum="${member.member_num}" data-user="${member.name}"
+                                        data-email="${member.email}" data-tel="${member.phone}"
+                                        data-addr="${member.address}">Place
                                         Order</button>
                                     <button id="cancelBtn" class="btn btn-primary btn-submit-fix"
                                         id="cancelBtn">취소하기</button>

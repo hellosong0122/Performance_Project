@@ -1,17 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
         <!DOCTYPE html>
         <html>
 
         <head>
             <meta charset="UTF-8">
             <title>Insert title here</title>
-            <c:if test="${empty member}">
-            <script type="text/javascript">
-            	alert("로그인하세요");
-           		location.href="../member/login";
-            </script>	
-			</c:if>    
             <c:import url="../base/base.jsp"></c:import>
             <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -50,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row cart-body">
+                <div class="row cart-body" id="listdata" data-length="${fn:length(gfitList)}">
                     <form class="form-horizontal" method="post" action="">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                             <!--REVIEW ORDER-->
@@ -59,63 +54,32 @@
                                     Review Order <div class="pull-right"><small><a class="afix-1" href="#">Edit
                                                 Cart</a></small></div>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <div class="col-sm-3 col-xs-3">
-                                            <img class="img-responsive"
-                                                src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
+                                <div id="size" class="panel-body" data-length="${fn:length(gfitList)}" data-user="${member.member_num}">
+                                    <!-- ******************************************* -->
+                                    <c:forEach items="${gfitList}" var="d" varStatus="i">
+                                        <div class="form-group">
+                                            <div class="col-sm-3 col-xs-3">
+                                                <img class="img-responsive"
+                                                    src="${d.p_Image}" />
+                                            </div>
+                                            <div class="col-sm-6 col-xs-6">
+                                                
+               <!-------상품이름-------->          <div class="col-xs-12" id="pname${i.index}" data-pnum="${d.p_Num}" data-pname="${d.p_Name}">${d.p_Name}</div>
+            <!-------- 수량-------->             <div class="col-xs-12"><small>수량 : <span id="counter${i.index}" data-count="${d.cart_Count}">${d.cart_Count}</span></small></div>
+                                            </div>
+                                            <div class="col-sm-3 col-xs-3 text-right" id="price${i.index}" data-price="${d.p_Price}" data-temprice=""><!-- price-->
+                                                <h6><span>&#8361</span>${d.p_Price}</h6>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-6 col-xs-6">
-                                            <div class="col-xs-12">Product name</div>
-                                            <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
+                                        <div class="form-group">
+                                            <hr />
                                         </div>
-                                        <div class="col-sm-3 col-xs-3 text-right">
-                                            <h6><span>$</span>25.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <hr />
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-3 col-xs-3">
-                                            <img class="img-responsive"
-                                                src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
-                                        </div>
-                                        <div class="col-sm-6 col-xs-6">
-                                            <div class="col-xs-12">Product name</div>
-                                            <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
-                                        </div>
-                                        <div class="col-sm-3 col-xs-3 text-right">
-                                            <h6><span>$</span>25.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <hr />
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-3 col-xs-3">
-                                            <img class="img-responsive"
-                                                src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
-                                        </div>
-                                        <div class="col-sm-6 col-xs-6">
-                                            <div class="col-xs-12">Product name</div>
-                                            <div class="col-xs-12"><small>Quantity:<span>2</span></small></div>
-                                        </div>
-                                        <div class="col-sm-3 col-xs-3 text-right">
-                                            <h6><span>$</span>50.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <hr />
-                                    </div>
+                                    </c:forEach>
+                                    <!-- ******************************************* -->
                                     <div class="form-group">
                                         <div class="col-xs-12">
                                             <strong>Subtotal</strong>
-                                            <div class="pull-right"><span>$</span><span>200.00</span></div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <small>Shipping</small>
-                                            <div class="pull-right"><span>-</span></div>
+                                            <div class="pull-right"><span>$</span><span id="totalPrice1">200.00</span></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -124,7 +88,7 @@
                                     <div class="form-group">
                                         <div class="col-xs-12">
                                             <strong>Order Total</strong>
-                                            <div class="pull-right"><span>${gift.p_Total}</span><span> 원</span></div>
+                                            <div class="pull-right"><span id="totalPrice2"></span><span> 원</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +106,8 @@
                                         </div>
                                     </div>
                                     <div class="deliver-info">
-                                        <input type="radio" name="tab" value="delivery-basic" onclick="showBasic();" checked/>
+                                        <input type="radio" name="tab" value="delivery-basic" onclick="showBasic();"
+                                            checked />
                                         기본배송지
 
                                         <input type="radio" name="tab" value="delivery-new" onclick="showNew();" /> 직접입력
@@ -231,7 +196,8 @@
                                                             maxlength="40" style="" value="" placeholder="받는 사람"
                                                             title="받는 사람">
                                                     </dd>
-                                                    <input type="hidden" id="rcvrNmTmp" name="rcvrNmTmp" value="${member.name}">
+                                                    <input type="hidden" id="rcvrNmTmp" name="rcvrNmTmp"
+                                                        value="${member.name}">
 
                                                 </div>
 
@@ -276,11 +242,10 @@
                             <!--CREDIT CART PAYMENT-->
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h1>테스트 : ${gift.p_Total}</h1>
                                     <button type="button" class="btn btn-primary btn-submit-fix" id="payBtn"
-                                        onclick="iamport()" data-pnum="${gift.p_Num}" data-name="${gift.p_Name}" data-price="${gift.p_Total}" data-count="${gift.p_Counter}" data-usernum="${member.member_num}"
-                                        data-user="${member.name}" data-email="${member.email}"
-                                        data-tel="${member.phone}" data-addr="${member.address}">Place
+                                        onclick="iamport()" data-usernum="${member.member_num}" data-user="${member.name}"
+                                        data-email="${member.email}" data-tel="${member.phone}"
+                                        data-addr="${member.address}">Place
                                         Order</button>
                                     <button id="cancelBtn" class="btn btn-primary btn-submit-fix"
                                         id="cancelBtn">취소하기</button>
@@ -297,7 +262,7 @@
             </div>
             <c:import url="../base/footer.jsp"></c:import>
             <script src="../../../resources/js/delivery.js"></script>
-            <script src="../../../resources/js/iamportlib.js"></script>
+            <script src="../../../resources/js/iamportlib2.js"></script>
         </body>
 
         </html>

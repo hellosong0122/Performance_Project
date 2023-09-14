@@ -43,6 +43,8 @@ public class MemberController {
    @Autowired
    private JavaMailSender mailSender;
    
+   
+   
 
    // naverapi
    private NaverLoginBO naverLoginBO;

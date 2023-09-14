@@ -2,7 +2,12 @@ let sum_price = 0;
 let total_sum = 0;
 
 let length = $('#size').attr('data-length')
-let member_num = ""
+let member_num = $('#size').attr('data-user');
+
+if(member_num==""){
+  alert("로그인후 이용해주세요");
+  location.href = "../member/login";
+}
 let p_Num =""
 console.log("length" + length);
 $('#totalprice').text(total_sum);
@@ -34,8 +39,14 @@ for (let i = 0; i < length; i++) {
 }
 
 
-$('buy_btn').on('click',function(){
-
+$('#buy_btn').on('click',function(){
+    if(member_num !=""){
+      console.log("buy_btn click");
+      buyGift();
+    }else{
+      alert("로그인 후 이용해주세요");
+      location.href = "../member/login";
+    }
 })
 
 $('#back_btn').on('click',function(){
@@ -47,11 +58,10 @@ function buyGift(){
     type: "POST",
     url: '/pay/buycart',
     data: {
-        "p_Num": p_Num,
         "member_num": member_num
     },
     success: function () {
-        alert('delete data')
+       console.log("success");
     },
     error : function(){
         console.log("error");

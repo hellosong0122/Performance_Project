@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.per.main.member.MemberDTO;
 import com.per.utils.IamPortKey;
 
 @Service
@@ -102,6 +103,11 @@ public class PayService {
 
 	}
 
+	public List<ProductOrderDTO> getAll(MemberDTO memberDTO) throws Exception {
+		return payDAO.getAll(memberDTO);
+	}
+
+	
 	public int insertPayData(ProductOrderDTO orderDTO) throws Exception {
 		System.out.println(orderDTO.toString());
 		return payDAO.insertPayData(orderDTO);
@@ -180,6 +186,7 @@ public class PayService {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
 	}
+
 
 
 
