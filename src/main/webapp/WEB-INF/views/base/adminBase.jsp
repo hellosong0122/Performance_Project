@@ -13,6 +13,7 @@
   <link id="pagestyle" href="/resources/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
   
   <!--   Core JS Files   -->
+  <script src="/resources/js/jquery.min.js"></script>
   <script src="/resources/assets/js/core/popper.min.js"></script>
   <script src="/resources/assets/js/core/bootstrap.min.js"></script>
   <script src="/resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -30,3 +31,4 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="/resources/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

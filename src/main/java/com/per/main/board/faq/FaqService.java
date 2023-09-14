@@ -117,6 +117,9 @@ public class FaqService implements BoardService {
 		return faqDAO.setDelete(boardDTO);
 	}
 	
-	
+	@Override
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
+		return faqDAO.setHitUpdate(boardDTO);
+	}
 
 }

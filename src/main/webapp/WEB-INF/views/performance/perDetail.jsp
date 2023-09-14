@@ -11,9 +11,9 @@
 </head>
 <body>
     <c:import url="../base/adminLeft.jsp"></c:import>
-	<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg " style="margin-left: 3.125rem;">
+	<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
-    <section class="container my-5 mx-auto" style="width: 70%;">
+    <section class="container my-5 mx-auto" >
         <h2 class="text-center">공연 상세정보</h2>
         
         <div class="mt-5">
@@ -67,9 +67,8 @@
         </div>
     </section>
     <script src="/resources/js/delete.js"></script>
-    
-        <c:import url="../base/adminFooter.jsp"></c:import>
-        </main>
-    
+    <c:import url="../base/adminFooter.jsp"></c:import>    
+ </main>
+   
 </body>
 </html>

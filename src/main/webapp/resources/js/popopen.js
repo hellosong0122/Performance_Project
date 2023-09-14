@@ -17,13 +17,15 @@ popbutton.addEventListener("click", function() {
     const prfEnd = popbutton.getAttribute("data-end");
     const prNum = popbutton.getAttribute("data-num");
     const prPrice = popbutton.getAttribute("data-price")
-
+    const fcltynm = popbutton.getAttribute("data-fcltynm")
     // 데이터 확인을 위해 출력
     console.log("공연명:", prfName);
+    console.log("공연명:", fcltynm);
     console.log("공연시작일:", prfStart);
     console.log("공연종료일:", prfEnd);
     console.log("공연번호:", prNum);
     console.log("공연가격:",prPrice)
+    
 
     
     //섹션1 구간에 선택영화 이름과 포스터 넣기

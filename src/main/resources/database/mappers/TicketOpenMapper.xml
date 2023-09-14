@@ -122,7 +122,7 @@
 		SET
 			HIT = HIT + 1
 		WHERE
-			TICKET_OPEN_NUM = #{ticket_open_num}
+			TICKET_OPEN_NUM = #{num}
 	</update>
 	
 	<delete id="setFileDelete" parameterType="TicketOpenFileDTO">

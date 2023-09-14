@@ -1,3 +1,5 @@
+
+
 //좌석 선택
 $("input").on("click", function(e){
     //좌석명
@@ -7,12 +9,12 @@ $("input").on("click", function(e){
     //좌석테이블 PK
     let num = $(this).attr('data-num');
 
-    // console.log(val);
+    // console.log(val);    
     // console.log(price);
     // console.log(num);
 
     
-    let clickedSeat = document.querySelector(".clicked")
+    let selectedseats = document.querySelector(".clicked")
     
     
     //click class가 존재할때(제거해주는 toggle)

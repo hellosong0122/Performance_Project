@@ -19,7 +19,6 @@ import com.per.main.board.BoardDTO;
 import com.per.utils.Pager;
 
 @Controller
-@RequestMapping("/notice/*")
 public class NoticeController {
 	
 	@Autowired
@@ -27,17 +26,17 @@ public class NoticeController {
 	
 	@ModelAttribute("board")
 	public String getBoardName() {
-		return "NOTICE";
+		return "notice";
 	}
 	
-	@PostMapping("setContentsImgDelete")
+	@PostMapping("/admin/notice/setContentsImgDelete")
 	public String setContentsImgDelete(String path, HttpSession session, Model model)throws Exception{
 		boolean check= noticeService.setContentsImgDelete(path, session);
 		model.addAttribute("result", check);
 		return "commons/ajaxResult";
 	}
 	
-	@PostMapping("setContentsImg")
+	@PostMapping("/admin/notice/setContentsImg")
 	public String setContentsImg(MultipartFile files, HttpSession session, Model model)throws Exception{
 		System.out.println("setContentsImg");
 		System.out.println(files.getOriginalFilename());
@@ -47,7 +46,7 @@ public class NoticeController {
 		
 	}
 	
-	@GetMapping("fileDelete")
+	@GetMapping("/admin/notice/fileDelete")
 	public String setFileDelete(NoticeFileDTO noticeFileDTO, HttpSession session ,Model model)throws Exception{
 		int result = noticeService.setFileDelete(noticeFileDTO, session);
 		model.addAttribute("result", result);
@@ -55,7 +54,7 @@ public class NoticeController {
 		
 	}
 	
-	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice/list", method = RequestMethod.GET)
 	public String getList(Pager pager, Model model)throws Exception{
 		List<BoardDTO> ar =  noticeService.getList(pager);
 		model.addAttribute("list", ar);
@@ -63,13 +62,21 @@ public class NoticeController {
 		return "board/list";
 	}
 	
+	@RequestMapping(value = "admin/notice/list", method = RequestMethod.GET)
+	public String getAdminList(Pager pager, Model model)throws Exception{
+		List<BoardDTO> ar =  noticeService.getList(pager);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		return "board/adminList";
+	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "admin/notice/add", method = RequestMethod.GET)
 	public String setAdd()throws Exception{
 		return "board/add";
 	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/notice/add", method = RequestMethod.POST)
 	public String setAdd(NoticeDTO noticeDTO, MultipartFile[] photos, HttpSession session, Model model)throws Exception{
 		int result = noticeService.setAdd(noticeDTO, photos, session);
 		
@@ -85,10 +92,11 @@ public class NoticeController {
 		return "commons/result";
 	}
 	
-	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice/detail", method = RequestMethod.GET)
 	public String setAdd(NoticeDTO noticeDTO, Model model)throws Exception{
 		BoardDTO boardDTO = noticeService.getDetail(noticeDTO);
 		if(boardDTO != null) {
+			noticeService.setHitUpdate(boardDTO);
 			model.addAttribute("dto", boardDTO);
 			return "board/detail";
 		} else {
@@ -99,20 +107,34 @@ public class NoticeController {
 		
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/notice/detail", method = RequestMethod.GET)
+	public String setAdminAdd(NoticeDTO noticeDTO, Model model)throws Exception{
+		BoardDTO boardDTO = noticeService.getDetail(noticeDTO);
+		if(boardDTO != null) {
+			model.addAttribute("dto", boardDTO);
+			return "board/adminDetail";
+		} else {
+			model.addAttribute("message", "글이 없다");
+			model.addAttribute("url", "list");
+			return "commons/result";
+		}
+		
+	}
+	
+	@RequestMapping(value = "admin/notice/update", method = RequestMethod.GET)
 	public String setUpdate(BoardDTO boardDTO, Model model)throws Exception{
 		boardDTO = noticeService.getDetail(boardDTO);
 		model.addAttribute("dto", boardDTO);
 		return "board/update";
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/notice/update", method = RequestMethod.POST)
 	public String setUpdate(NoticeDTO noticeDTO, MultipartFile[] photos, HttpSession session)throws Exception{
 		int result = noticeService.setUpdate(noticeDTO, photos, session);
 		return "redirect:./list";
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/notice/delete", method = RequestMethod.GET)
 	public String setAdd(NoticeDTO noticeDTO)throws Exception{
 		int result = noticeService.setDelete(noticeDTO);
 		return "redirect:./list";

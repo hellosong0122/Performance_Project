@@ -113,7 +113,7 @@
 		<table class="seatTable">
 			<thead>
 				<tr>
-					<td><span>선택한좌석</span></td>
+					<!-- <td><span>선택한좌석</span></td> -->
 					<td><span id="seatvalue" name="seatvalue"></span></td>
 				</tr>
 			</thead>

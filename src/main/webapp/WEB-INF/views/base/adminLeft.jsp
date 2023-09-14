@@ -29,6 +29,11 @@
             <span class="nav-link-text ms-1">Place</span>
           </a>
         </li>
+         <li class="nav-item">
+          <a class="nav-link  " href="./bookList">          
+            <span class="nav-link-text ms-1">Book</span>
+          </a>
+        </li>
         <!-- 여기에입력해주세요 -->
 	  </ul>
     </div>

@@ -3,11 +3,12 @@
   <!doctype html>
   <html>
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <title>결제내역보기 </title>
     <style>
-        div {
-          border: 1px solid #bcbcbc;
+       div {
+        border-style: hidden;
       background-color: rgb(255, 255, 255);
         }
       #top{
@@ -23,28 +24,41 @@
       height: 90px;
       margin-bottom: 10px;
       background-color: white;
-          border: 1px solid #1900ff;
+      border-style: hidden;
       }
       
 
       #table-main{
-      width:80%;
+      width:70%;
       height: 470px;
       margin-bottom: 10px;
+      margin-left: 20px;
       }
 
         
       #table-right{
-      width:20%;
+      width:30%;
       height: 470px;
       margin-bottom: 10px;
       }
 
-        #table-right-up, #table-right-down{
+        #table-right-up{
       width:100%;
-      height: 235px;
+      height: 300px;
+      padding-bottom: 20px
           /* box-sizing: border-box; 테두리와 패딩이 너비 및 높이에 포함되도록 설정 */
-          box-sizing: ;
+       
+      }
+      #table-right-down{
+        width:100%;
+      height: 170px;
+      margin-top: 50px;
+      }
+
+       #table-right-up img{
+        width: 100%;
+        height: 100%; 
+    
       }
       
         #table-right-up {
@@ -61,14 +75,15 @@
         }
         .table-cell {
           display: table-cell;
+          vertical-align: top; 
           /* padding: 0px 20px; */
           height: 150px;
         }
 
-        .md-middle {
+        /* .md-middle {
           vertical-align: middle;
-        }
-        #shopBtn{
+        } */
+        #continueBtn{
         background-color: coral;
         color:white;
         border:none;
@@ -79,7 +94,7 @@
         box-shadow: 1px 1px 1px #bcbcbc;
         /* transition-duration: 0.1s; */
         }
-        #shopBtn:active{
+        #continueBtn:active{
           margin-left: 5px;
           margin-top: 5px;
           box-shadow: none;
@@ -107,40 +122,39 @@
   </head>
   <body>
     <div id="top">
-      <p align="right" style="font-size: 15px; font-weight: bold; color: crimson;"> 
-              공연예매> 주문 · 결제 > 예매완료
+      <p align="right" style="font-size: 15px; font-weight: bold; color: black; padding-right: 50px;"> 
+        공연예매> 주문 · 결제 > <span style="font-weight: bolder; color: crimson; display: inline;">예매완료</span>
           </p>
     </div>
     <div class="mainline">
       <div class="table-row">
         <div id="table-main" class="table-cell">
-          <p style="font-size: xx-large; font-weight: bold;">에매가 완료되었습니다.</p>
+          <p style="font-size: xx-large; font-weight: bold; margin-left: 20px;">예매가 완료되었습니다.</p>
           <p>공연예매가 완료되었습니다</p>
           <p>티켓은 현장에서 발권해주세요.</p>
           <br>
-          <c:forEach var="dto" items="${perList}">
-            <p>티켓번호 :${dto.orderNum} </p>  <!--컬럼명 orderNum--> 
-            <p>공연명 : ${dto.prfnm}</p>
-            <p>공연번호 : ${dto.performance_num}</p>
-            <P>공연시설 :${dto.performancePlaceDTO.fcltynm}</P>
-            <p>예매날짜 :${dto.performanceDate} </p>
-            <p>예매시간 :${dto.performanceTime} </p>
-            <P>예매좌석 :${dto.perSeat}</P>
-            <p>총 가격 :${dto.totalPrice}</p>
-          </div>
+              <p>티켓번호 : ${dto.orderNum} </p>  <!--컬럼명 orderNum--> 
+              <p>공연명 : ${dto.prfnm}</p>
+              <P>공연시설 : ${dto.fcltynm}</P>
+              <p>예매날짜 : ${dto.performanceDate} </p> 
+              <p>예매시간 : ${dto.performanceTime} </p>
+              <P>예매좌석 : ${dto.perSeat}</P>
+              <p>총 가격 : ${dto.totalPrice}</p>
           
+          </div>
           <div id="table-right" class="table-cell">
             <div id="table-right-up">
-              <p>공연포스터 :${dto.performanceDTO.poster}</p>
-              <br>
+              <p><img src="${dto.poster}" alt="Performance Poster" style="width: 95%; height: 100%; margin-bottom: 20px;"/></p>
+             <br><br><br>
             </div>
             <div id="table-right-down">
               <p>공연명 : ${dto.prfnm} </p>
-              <p>티켓번호 :${dto.orderNum}</p>       
-              <p>구매가격 : ${dto.totalPrice}</p>
+              <p>공연번호 : ${dto.performance_num}</p>  
+              <p>회원아이디 : ${dto.id}</p>   
+            
             </div>
           </div>
-          </c:forEach>
+        
           
           </div>
         </div>
@@ -150,12 +164,28 @@
 
     <div id="footer">
       <p align="center" style="font-size: 10px;">
-              <button id=shopBtn>
+              <button id="continueBtn" type="button">
               예매계속하기 <!--detail로이동-->
           </button>&nbsp;&nbsp;
-          <button id="homeBtn">
+          <button id="homeBtn" type="button">
               홈으로
           </button></p>
     </div>
+    <script>
+      let performanceNum = "${dto.performance_num}"
+      $(document).ready(function() {
+          $('#continueBtn').click(function() {
+              window.opener.location.href = '../performance/detail?performance_num=' +  performanceNum;  
+            window.close();
+          });
+      });
+
+      $(document).ready(function() {
+          $('#homeBtn').click(function() {
+            window.opener.location.href = '/'    
+            window.close();
+          });
+      });
+  </script> 
   </body>
   </html>

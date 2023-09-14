@@ -24,10 +24,10 @@
 	</head>
 	<body>	    
 	    <script>alert("회원가입을 진행해주세요!")</script>
-	    <form action="./kakaoJoin" method="post" id="frm">
+	    <form action="./naverJoin" method="post" id="frm">
 	    <div class="member"> 
 	    <br>
-			<h2>카카오 회원가입</h2>
+			<h2>네이버 회원가입</h2>
 	 	<br>	
 	        <div class="field">
 	            <b>아이디</b>

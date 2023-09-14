@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.per.main.board.BoardDTO;
+import com.per.main.book.PerformanceOrderDTO;
 import com.per.utils.Pager;
 
 @Service
@@ -37,7 +38,11 @@ public class MemberService {
 	
 	public int setKakaoJoin(MemberDTO memberDTO)throws Exception{
 		return memberDAO.setKakaoJoin(memberDTO);
-	}	
+	}
+	
+	public int setNaverJoin(MemberDTO memberDTO)throws Exception{
+		return memberDAO.setNaverJoin(memberDTO);
+	}
 	
 	public MemberDTO getId(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getId(memberDTO);
@@ -107,6 +112,17 @@ public class MemberService {
 	//어드민 수정
 	public int setAdminUpdate(MemberDTO memberDTO)throws Exception{
 		return memberDAO.setAdminUpdate(memberDTO);
+	}
+	
+	// 예매내역
+	public List<PerformanceOrderDTO> getMyBookList(String id) throws Exception {
+		return memberDAO.getMyBookList(id);
+	}
+
+	// 예매취소
+	public int deleteBook(String orderNum) throws Exception {
+		System.out.println("Service: " + orderNum);
+		return memberDAO.deleteBook(orderNum);
 	}
 	
 	

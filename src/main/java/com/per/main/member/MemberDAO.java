@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.per.main.board.BoardDTO;
+import com.per.main.book.PerformanceOrderDTO;
 import com.per.utils.Pager;
 
 @Repository
@@ -36,6 +37,10 @@ public class MemberDAO {
 	
 	public int setKakaoJoin(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "setKakaoJoin", memberDTO);
+	}
+	
+	public int setNaverJoin(MemberDTO memberDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "setNaverJoin", memberDTO);
 	}
 
 	public MemberDTO getId(MemberDTO memberDTO) throws Exception {
@@ -79,12 +84,16 @@ public class MemberDAO {
 	public int setAdminAdd(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAdminAdd", memberDTO);
 	}
-	// 삭제 ㄴ	
-	public MemberDTO getUserInfo(MemberDTO memberDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "getUserInfo", memberDTO);
-	}
-
 	
+	//회원예매내역
+		public List<PerformanceOrderDTO> getMyBookList(String id) throws Exception {
+		    return sqlSession.selectList(NAMESPACE + "getMyBookList", id);
+		}
+	//회원예매취소
+		 public int deleteBook(String orderNum) throws Exception {
+			 System.out.println("DAO: " + orderNum);
+		    return sqlSession.delete(NAMESPACE + "deleteBook", orderNum);
+		}
 	
 	
 

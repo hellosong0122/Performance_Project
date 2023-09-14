@@ -117,6 +117,9 @@ public class TicketOpenService implements BoardService {
 		return ticketOpenDAO.setDelete(boardDTO);
 	}
 	
-	
+	@Override
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
+		return ticketOpenDAO.setHitUpdate(boardDTO);
+	}
 
 }

@@ -28,10 +28,7 @@ public class BookDAO {
 	public List<PerformanceDTO> getPerList()throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getPerList");
 	}
-//	//placelist
-//	public List<PerformancePlaceDTO> getPlaceList() throws Exception{
-//		return sqlSession.selectList(NAMESPACE+"getPlaceList");
-//	}
+
 	//booking
 	public List<PerformanceDTO> getPerTime()throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getPerTime");
@@ -47,19 +44,42 @@ public class BookDAO {
 	 }
 	 //mapper : reservationPer, db에 넣기
 	 public void reservationPer(PerformanceOrderDTO orderDTO) throws Exception {
-	        sqlSession.insert("resevationPer", orderDTO);
+	     System.out.println(orderDTO.toString());   
+		 sqlSession.insert("resevationPer", orderDTO);
 	    }
 	
 	 public PerformanceOrderDTO getBook(PerformanceOrderDTO orderDTO) throws Exception {
 		    return sqlSession.selectOne(NAMESPACE+"getBook", orderDTO);
 		}
-	 //public List<PerformanceOrderDTO> getBook() throws Exception {
-	//	    return sqlSession.selectList(NAMESPACE+"getBook");
-		//}
+	 //adminlist
+//	 public List<PerformanceOrderDTO> getBookList(Pager pager)throws Exception{
+//		 return sqlSession.selectList(NAMESPACE+"getBookList", pager);
+//	 } 
+//	 
+	 public List<PerformanceOrderDTO> getBookList(Pager pager) throws Exception {
+		    pager.makeRowNum();
+		    Long total = getBookTotal(pager); // 수정
+		    pager.makePageNum(total);
+		    return sqlSession.selectList(NAMESPACE + "getBookList", pager); // 수정
+		}
+	 public Long getBookTotal(Pager pager)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getBookTotal",pager); 
+	 }
+	 //bookdetail
+	 public PerformanceDTO getPerDetail(PerformanceDTO performanceDTO) throws Exception {
+			return sqlSession.selectOne(NAMESPACE+"getPerDetail", performanceDTO);
+		}
+	 public PerformanceOrderDTO getBookDetail(PerformanceOrderDTO performanceOrderDTO)throws Exception{
+		 return sqlSession.selectOne(NAMESPACE+"getBookDetail", performanceOrderDTO);
+	 }
+	 //관리자 예매내역 삭제
+	 public int setPerDelete(PerformanceDTO performanceDTO) throws Exception {
+			return sqlSession.delete(NAMESPACE+"setPerDelete", performanceDTO);
+		}
+	 public int adminBookDelete(PerformanceOrderDTO performanceOrderDTO)throws Exception{
+		 return sqlSession.delete(NAMESPACE+"adminBookDelete", performanceOrderDTO);
+	 }
 	 
-	 
-	 
-
 }
 
 
