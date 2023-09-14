@@ -15,7 +15,7 @@
                 	<input type="hidden" id="url" value="${url}">
                     <!-- ***** Logo Start ***** -->
                     <a href="/" class="logo">
-                        <img src="/resources/assets/images/logo.png" alt="">
+                     <h4>P.P</h4>
                     </a>
                     <!-- ***** Logo End ***** -->
  
