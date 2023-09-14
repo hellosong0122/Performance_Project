@@ -18,7 +18,7 @@ $("#loginBtn").on("click", function(){
    
     $.ajax({
        type: 'post',
-       url: "/member/login",
+       url: "/member/userLogin",
 	    data : {
 	       id : $("#id").val(),
 	       pw : $("#pw").val()

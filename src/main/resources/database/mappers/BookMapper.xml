@@ -5,6 +5,36 @@
   
    <mapper namespace="com.per.main.per.BookDAO">
 
+	<select id="getRank" resultMap="getSelectResult">
+			SELECT
+				COUNT(B.PERFORMANCE_NUM) CNT, B.PERFORMANCE_NUM, P.PRFNM 
+			FROM
+				BOOK B LEFT JOIN 
+					PERFORMANCE P ON (B.PERFORMANCE_NUM=P.PERFORMANCE_NUM)
+			GROUP BY 
+				B.PERFORMANCE_NUM,P.PRFNM
+			ORDER BY 
+				CNT DESC
+	</select>
+	
+   		<resultMap type="PerformanceDTO" id="getSelectResult">  		
+	  			 <result property="performance_num" column="PERFORMANCE_NUM"/>	  			
+	  			 <result property="prfnm" column="prfnm"/>             		
+  		</resultMap> 
+  
+  
+  
+  		
+	
+	<select id="getPlaceList" resultType="PerformancePlaceDTO" parameterType="Pager">
+		SELECT FCLTYNM, ADRES, TELNO
+		FROM (SELECT ROWNUM R, P.*
+		 	  FROM (SELECT * 
+			  	    FROM PERFORMANCE_PLACE) P)
+		<!-- WHERE R BETWEEN #{startRow} AND #{lastRow}  -->
+	</select> 
+	
+
 	
 	<select id="getSeat" resultType="SeatDTO">
 		SELECT
