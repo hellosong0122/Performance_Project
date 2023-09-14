@@ -12,7 +12,46 @@
 <body>
     <c:import url="../base/adminLeft.jsp"></c:import>
 	<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
-    <section class="container mt-5 mx-auto" style="width: 70%;">
+	<div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6>공연시설 관리</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-center text-secondary opacity-7">공연시설명</th>
+                      <th class="text-center text-secondary opacity-7">주소</th>
+                      <th class="text-secondary opacity-7">전화번호</th>                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <c:forEach items="${list}" var="d" varStatus="i"> 
+                    <tr>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs font-weight-bold"><a href="/admin/placeDetail?mt10id=${d.mt10id}" class="text-decoration-none text-dark">${d.fcltynm}</a></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">${d.adres}</span>
+                      </td>
+                      <td class="align-middle">
+                        <span class="text-secondary text-xs font-weight-bold">${d.telno}</span>
+                      </td>
+                    </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%-- <section class="container mt-5 mx-auto" style="width: 70%;">
         <h2 class="mb-5 text-center">공연시설 관리</h2>
 
           <table class="table table-hover mb-5">
@@ -32,7 +71,7 @@
                     </tr>
                 </c:forEach>
             </tbody>
-        </table>
+        </table> --%>
 		<div class="input-group my-3">
             <form action="./placeList" method="get" id="frm" class="d-flex w-50">
                 <input type="hidden" value="${pager.page}" name="page" id="page">
