@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.per.main.pay.cart.CartDAO">
+
+	<insert id="addToCart" parameterType="CartDTO">
+		INSERT INTO CART_TBL VALUES
+		(CART_SEQ.NEXTVAL,#{p_Num},#{cart_Count},#{member_num},SYSDATE)
+	</insert>
+	<delete id="removeToCartItem" parameterType="CartDTO">
+		DELETE FROM CART_TBL WHERE MEMBER_NUM=#{member_num} and P_NUM=#{p_Num}
+	</delete>
+
+	<select id="cartlist" resultMap="cartResultMap">
+		SELECT
+		CT.CART_NUM AS CART_NUM,CT.P_NUM AS P_NUM,P.P_NAME AS P_NAME,
+		P.P_PRICE AS P_PRICE,CT.CART_COUNT AS CART_COUNT,CT.MEMBER_NUM AS MEMBER_NUM,
+		CT.CART_REG AS CART_REG,P.P_IMAGE AS P_IMAGE
+		FROM CART_TBL CT
+		LEFT OUTER JOIN PRODUCT P
+		ON CT.P_NUM = P.P_NUM
+		WHERE CT.MEMBER_NUM = #{member_num}
+		ORDER BY CT.CART_REG DESC
+
+	</select>
+
+    <resultMap id="cartResultMap" type="CartDTO">
+        <id property="cart_Num" column="CART_NUM" />
+        <result property="p_Num" column="P_NUM" />
+        <result property="p_Name" column="P_NAME" />
+        <result property="p_Price" column="P_PRICE" />
+        <result property="cart_Count" column="CART_COUNT" />
+        <result property="member_num" column="MEMBER_NUM" />
+        <result property="cart_Reg" column="CART_REG" />
+        <result property="p_Image" column="P_IMAGE" />
+    </resultMap>
+</mapper>

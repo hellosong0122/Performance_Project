@@ -32,5 +32,14 @@ public class PayDAO {
 		return sqlSession.delete(NAMESPACE+"removeOrder",productOrderDTO);
 	}
 
+	public List<ProductOrderDTO> getAll(MemberDTO memberDTO) throws Exception{
+
+		return sqlSession.selectList(NAMESPACE+"getAll", memberDTO);
+	}
+
+//	public int buyProduct(ProductOrderDTO productOrderDTO) throws Exception {
+//		return sqlSession.update(NAMESPACE+"buyProduct", productOrderDTO);
+//	}
+
 
 }

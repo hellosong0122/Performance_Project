@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.per.main.board.BoardDTO;
-import com.per.main.board.faq.FaqDTO;
+import com.per.main.member.MemberDTO;
+import com.per.main.member.MemberService;
+
 import com.per.utils.Pager;
 
 
@@ -23,6 +24,8 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private MemberService memberService;
 
 	@RequestMapping(value = "/product/giftShop", method = RequestMethod.GET)
 	public ModelAndView getGiftList(ModelAndView mv, Pager pager) throws Exception {
@@ -43,10 +46,13 @@ public class ProductController {
 	}
 
 
+
+
 	@RequestMapping(value = "/product/giftDetail", method = RequestMethod.GET)
 	public ModelAndView getGiftDetail(ProductDTO productDTO, ModelAndView mv) throws Exception {
 		productDTO = productService.getGiftDetail(productDTO);
 		mv.addObject("giftDetail", productDTO);
+		mv.addObject("member", memberDTO);
 		mv.setViewName("product/giftDetail");
 
 		return mv;

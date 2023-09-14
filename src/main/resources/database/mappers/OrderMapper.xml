@@ -7,11 +7,19 @@
 
 
 	<insert id="insertPayData">
-		INSERT INTO ORDERINFO (ORDERNUM,IMP_UID,P_NUM,P_Name,MEMBER_NUM,P_Count,ORDERDATE,TOTALPRICE)
-		VALUES (#{orderNum},#{imp_uid},#{p_Num},#{p_Name},#{memberNum},#{p_Count},SYSDATE,#{totalPrice})
+		INSERT INTO ORDERINFO (ORDERED_SEQNUM,ORDERNUM,IMP_UID,P_NUM,P_Name,MEMBER_NUM,P_Count,ORDERDATE,TOTALPRICE)
+		VALUES (ORDER_SEQ.NEXTVAL,#{orderNum},#{imp_uid},#{p_Num},#{p_Name},#{memberNum},#{p_Count},SYSDATE,#{totalPrice})
 	</insert>
+	
+<!-- 	<update id="buyProduct">
+		UPDATE PRODUCT P_COUNT = P_COUNT - #{p_COUNT} WHERE P_NUM = #{p_Num}
+	</update> -->
 
 	<!-- 추가  -->
+	
+	<select id="">
+		SELECT * FROM ORDERINFO WHERE MEMBER_NUM =#{member_num}
+	</select>
 	 <select id="orderDetail" parameterType="ProductOrderDTO" resultType="ProductOrderDTO">
         SELECT * FROM ORDERINFO WHERE ORDERNUM = #{orderNum}
     </select>

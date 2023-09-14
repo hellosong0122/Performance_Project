@@ -23,7 +23,7 @@
             <c:import url="../base/header.jsp"></c:import>
             <br>
             <section class="container my-5 mx-auto" style="width: 70%;">
-                <div class="container py-md-5">
+                <div class="container py-md-5" id="user" data-user="${member.member_num}">
                     <!-- product right -->
                     <div class="left-ads-display wthree">
                         <div class="row">
@@ -82,12 +82,12 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <p>${giftDetail.p_Description}</p> 
-                                    <button class="btn submit">Buy</button>                               
+                                    <p>${giftDetail.p_Description}</p>                                
+                                    <button type="submit" class="btn submit" id="buy_btn">Buy</button>
                                 </form>
                                    <br><br><br>
                                       
-                                      <button type="button" id="add_cart" class="btn submit">Add Cart</button>                                   
+                                      <button type="button" id="add_cart" class="btn submit">Add Wish</button>                                   
                                                               
                             </div>
                         </div>

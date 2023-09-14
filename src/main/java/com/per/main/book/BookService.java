@@ -20,6 +20,15 @@ public class BookService {
 	private PerformanceService performanceService;
 	
 
+	public List<PerformanceDTO> getRank() throws Exception{
+		return bookDAO.getRank();
+	}	
+	
+	//booking
+	public List<PerformanceDTO> getPerTime() throws Exception{
+		return bookDAO.getPerTime();
+	}
+	
 	//seat
 	public List<SeatDTO> getSeat() throws Exception {
 		return bookDAO.getSeat();

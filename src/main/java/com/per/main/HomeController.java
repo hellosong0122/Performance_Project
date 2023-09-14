@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.per.main.board.BoardDTO;
 import com.per.main.board.ticketopen.TicketOpenService;
+import com.per.main.book.BookService;
 import com.per.main.per.PerformanceDTO;
 import com.per.main.per.PerformanceService;
 import com.per.utils.Pager;
@@ -21,7 +22,9 @@ public class HomeController {
 	@Autowired
 	PerformanceService performanceService;	
 	@Autowired
-	TicketOpenService ticketOpenService;
+	TicketOpenService ticketOpenService;	
+	@Autowired
+	BookService bookService;
 	
 	
 	@RequestMapping("/")
@@ -30,9 +33,13 @@ public class HomeController {
 		List<PerformanceDTO> ar = performanceService.getPlayList(pager);
 		//티켓오픈리스트
 		List<BoardDTO> ar2 = ticketOpenService.getList(pager);
+		//예매순위리스트
+		List<PerformanceDTO> ar3 = bookService.getRank();
+		
 		
 		model.addAttribute("perList", ar);
 		model.addAttribute("openList",ar2);
+		model.addAttribute("rankList", ar3);
 		return "index";
 	}
 	
