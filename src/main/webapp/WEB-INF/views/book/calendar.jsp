@@ -10,7 +10,7 @@
 				<!-- 로그인 여부 묻기  -->
 				<c:if test="${empty sessionScope.member}">
 					<script type="text/javascript">
-						window.opener.location.href = "../member/userLogin";
+						window.opener.location.href = "../member/userLogin	";
 						alert("로그인하세요");
 						window.close(); // 팝업 창 닫기
 					</script>    

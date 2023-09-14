@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%-- <% 
+
 	String url = request.getRequestURI();
 	request.setAttribute("url", url);
-%> --%>
+
   <!-- ***** Header Area Start ***** -->
  <header class="header-area header-sticky">
     <div class="container">
@@ -48,7 +48,7 @@
   </header>
   <!-- ***** Header Area End ***** -->
   <script src="/resources/vendor/jquery/jquery.min.js"></script>
- <!--  <script>
+ <script>
   	let url = $("#url").val();
   	let urlSp = url.split("/");
   	let finalSp = urlSp[4].split(".");
@@ -63,10 +63,10 @@
   		$("#3").addClass("active");
   	} else if ("/product/giftShop" == realResult) {
   		$("#4").addClass("active");
-  	} else if ("/member/login" == realResult) {
+  	} else if ("/member/userLogin" == realResult) {
   		$("#5").addClass("active");
   	} else if ("/member/join" == realResult) {
   		$("#6").addClass("active");
   	}
   	
-  </script> -->
+  </script>

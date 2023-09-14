@@ -87,8 +87,25 @@ public class MemberController {
 
 		model.addAttribute("result", result);
 
-		return "commons/ajaxResult";
-	}
+    //login
+    @RequestMapping(value = "userLogin", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> getLogin(MemberDTO memberDTO, HttpSession session) throws Exception {
+       memberDTO = memberService.getLogin(memberDTO);
+       
+       Map<String, Object> result = new HashMap<String, Object>();
+       if (memberDTO != null) {
+          session.setAttribute("member", memberDTO);
+          result.put("type", "성공");
+          result.put("msg", "[안내] 로그인 성공");
+          result.put("role", memberDTO.getRole());
+       } else {
+          result.put("type", "실패");
+          result.put("msg", "[안내] 로그인 실패");
+       }
+       
+       return result;
+    }
 
 	// mypage
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)

@@ -80,6 +80,9 @@ public class BookDAO {
 		 return sqlSession.delete(NAMESPACE+"adminBookDelete", performanceOrderDTO);
 	 }
 	 
+	 public List<PerformanceDTO> getRank() throws Exception{
+			return sqlSession.selectList(NAMESPACE+"getRank");
+		}
 }
 
 
