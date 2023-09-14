@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Insert title here</title>
-<c:import url="../base/adminBase.jsp"></c:import>
+	<c:import url="../base/adminBase.jsp"></c:import>
 </head>
 <body>
 	<c:import url="../base/adminLeft.jsp"></c:import>	
