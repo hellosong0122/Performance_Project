@@ -40,6 +40,7 @@ th, td {
 				prfnm : $(this).data('name'), // 공연명
 				performance_num : $(this).data('num'), //선택한 공연의 번호
 				pcseguidance : $(this).data('price'),//선택한 공연의 가격
+				fcltynm : $(this).data('fcltynm'),//공연장
 				member_num : memberNum,
 				member_id : memberId, // 로그인한 사용자의 아이디 
 				member_name : memberName, //로그인한 사용자 성함(결제창에서 씌일거임)
@@ -58,6 +59,7 @@ th, td {
 					prfnm : data.prfnm,
 					performance_num : data.performance_num,
 					pcseguidance : data.pcseguidance,
+					fcltynm : data.fcltynm,
 					member_num : data.member_num,
 					member_id : data.member_id,
 					member_name : data.member_name,
@@ -139,6 +141,7 @@ th, td {
 						data-start="${dto.performanceDTO.prfpdfrom}"
 						data-end="${dto.performanceDTO.prfpdto}"
 						data-num="${dto.performanceDTO.performance_num}"
+						data-fcltynm="${dto.fcltynm}"
 						data-perId="${dto.performanceDTO.mt20id}"
 						data-membernum="${member.member_num}" data-id="${member.id}"
 						data-price="${dto.performanceDTO.pcseguidance}"

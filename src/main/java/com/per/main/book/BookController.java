@@ -37,9 +37,10 @@ import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
 
 import oracle.jdbc.proxy.annotation.Post;
+import retrofit2.http.GET;
 
 @Controller
-@RequestMapping("/book/*")
+//@RequestMapping("/book/*")
 public class BookController {
 
 	private IamportClient api;
@@ -58,25 +59,25 @@ public class BookController {
 
 	// 예매하기 버튼누르기
 	// 예메하기 버튼을 누르면 팝업창 오픈
-	@GetMapping("/selectPerBtn")
+	@GetMapping("/book/selectPerBtn")
 	public String calendarOpen() throws Exception {
 		return "book/calendar";
 	}
 
 	// book/calendar
 	// 팝업창 열리면 calendar.jsp 출력
-	@GetMapping("/calendar")
+	@GetMapping("/book/calendar")
 	// calendar로 get요청왔을 때 이 메서드로 매핑.
 	public String showCalendar() throws Exception {
 		return "book/calendar";
 	}
 
-	@GetMapping("/selectSeat")
+	@GetMapping("/book/selectSeat")
 	public String seatOpen() throws Exception {
 		return "book/seat";
 	}
 
-	@GetMapping("/seat")
+	@GetMapping("/book/seat")
 	public String showSeat(Model model) throws Exception {
 		List<SeatDTO> arr = bookService.getSeat();
 		model.addAttribute("list", arr);
@@ -84,7 +85,7 @@ public class BookController {
 	}
 
 	// check
-	@GetMapping("/checkBeforePay")
+	@GetMapping("/book/checkBeforePay")
 	public String check() throws Exception {
 		return "book/checkBeforePay";
 	}
@@ -98,7 +99,7 @@ public class BookController {
 
 	
 	//DB에 book 정보넣기, 단순히 저장만함
-	@PostMapping("done")
+	@PostMapping("/book/done")
 	@ResponseBody
 	public boolean viewPayInfo(@ModelAttribute PerformanceOrderDTO orderDTO,PerformanceDTO performanceDTO,PerformancePlaceDTO performancePlaceDTO,ModelAndView mv) throws Exception {
 		boolean result = false;
@@ -119,77 +120,20 @@ public class BookController {
 	}
 	
 	
-	///////////////
 	
-	
-	@RequestMapping(value = "bookDone", method = RequestMethod.GET)
+	//결제후 보여주기
+	@RequestMapping(value = "/book/bookDone", method = RequestMethod.GET)
 	public ModelAndView getBook(@RequestParam("orderNum") String orderNum, ModelAndView mv) throws Exception {
 	    PerformanceOrderDTO orderDTO = new PerformanceOrderDTO();
 	    orderDTO.setOrderNum(orderNum);
 	    orderDTO = bookService.getBook(orderDTO);
 		System.out.println(orderDTO.toString());
 	    mv.addObject("dto", orderDTO);
+	//    mv.addObject("perList", orderDTO);
 	    mv.setViewName("book/bookDone");
 	    return mv;
 	}
-// done페이지에 결제정보 뿌려주기
-//	@RequestMapping( value = "bookDone",method = RequestMethod.GET)
-//	
-//	public ModelAndView getBook(PerformanceOrderDTO orderDTO, ModelAndView mv)throws Exception{
-//	orderDTO = bookService.getBook(orderDTO);
-//		
-//		System.out.println(orderDTO.toString());
-//		mv.addObject("dto", orderDTO);
-//		mv.setViewName("book/bookDone");
-//		System.out.println(orderDTO.toString());
-//		return mv;
-//	}
 
-//	@RequestMapping( value = "bookDone",method = RequestMethod.GET)
-//	
-//		public String getBook(Model model, PerformanceOrderDTO orderDTO)throws Exception{
-//		List<PerformanceOrderDTO> ar = bookService.getBook(orderDTO);
-//		
-//		System.out.println(orderDTO.toString());
-//		model.addAttribute("perList", ar);
-//		System.out.println(orderDTO.toString());
-//		return "book/bookDone";
-//	}
-	
-	
-	
-	
-	
-	/////////////////////////
-//	@RequestMapping(value = "bookDone", method = RequestMethod.GET)
-//	public String getBook(@RequestParam("orderNum") String orderNum, Model model, PerformanceOrderDTO orderDTO) throws Exception {
-//		System.out.println(orderDTO.toString());
-//		PerformanceOrderDTO result = bookService.getBook(orderDTO);
-//		model.addAttribute("perList", result);
-//	    return "book/bookDone";
-//	}
-	////////////////////////
-	
-
-	
-	// done페이지에 결제정보 뿌려주기
-//	@PostMapping("book/done")
-//	public ModelAndView getBookDetails(PerformanceOrderDTO performanceOrderDTO, ModelAndView mv) throws Exception{
-//	    performanceOrderDTO = bookService.getBook(performanceOrderDTO);
-//	    mv.addObject("dto", performanceOrderDTO);
-//	    mv.setViewName("book/done");
-//	    return mv;
-//	}
-	//BOOK정보가져오기		
-//		@PostMapping("done")
-//		public String getBook(PerformanceOrderDTO performanceOrderDTO,Model model)throws Exception{
-//			List<PerformanceOrderDTO> ar = bookService.getBook(performanceOrderDTO);
-//			model.addAttribute("book",ar);
-//			return "book/done";
-//			//return "redirect:../detail";
-//		}
-	
-		
 
 	@ResponseBody
 	@RequestMapping(value = "/verifyIamport/{imp_uid}")
@@ -205,7 +149,33 @@ public class BookController {
 		session.setMaxInactiveInterval(600);
 		return paymentIamportResponse;
 	}
+	
+	
+	//admin bookList
 
-//			
+	@GetMapping("/admin/bookList")
+	public String getBookList(Model model, Pager pager)throws Exception{
+		List<PerformanceOrderDTO> arr = bookService.getBookList(pager);
+		model.addAttribute("list", arr);
+		model.addAttribute("pager", pager);
+		return "book/bookList";
+	}
+	
+	//bookDetail
+	@GetMapping("/admin/bookDetail")
+	public String getBookDetail(PerformanceOrderDTO performanceOrderDTO, Model model)throws Exception{
+		performanceOrderDTO = bookService.getBookDetail(performanceOrderDTO);
+		model.addAttribute("dto", performanceOrderDTO);
+		return "book/bookDetail";
+	}
+	
+	//관리자 예매내역 삭제
+
+	@PostMapping("/admin/bookDelete")
+	public String adminBookDelete(PerformanceOrderDTO performanceOrderDTO)throws Exception{
+		int result = bookService.adminBookDelete(performanceOrderDTO);
+		return "redirect:./bookList";
+	}
+
 
 }
