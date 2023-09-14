@@ -85,4 +85,9 @@
 	    WHERE ORDERNUM = #{orderNum}  
 	</select>
 	
+		<!-- 예매취소(삭제) -->
+	<delete id="adminBookDelete" parameterType="String">
+		DELETE FROM BOOK WHERE ORDERNUM=#{orderNum}
+	</delete>
+	
 </mapper>

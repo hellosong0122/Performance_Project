@@ -90,8 +90,8 @@
 		  <ul class="mypage_menu">			
 			<li><a href="./memberUpdate">회원수정</a></li>
 			<li><a href="./memberOrder">주문내역</a></li>
-			<!-- <li><a href="./memberBook">예매내역</a></li>	 -->
-			<li><a href="./memberBook?id=${member.id}">예매내역</a></li>		
+			 <!-- <li><a href="./memberBook">예매내역</a></li>	 -->
+			 <li><a href="./memberBook?id=${member.id}">예매내역</a></li>	  
 		  </ul>
 	
 		  <div class="filters-content">

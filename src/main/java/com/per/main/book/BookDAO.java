@@ -72,7 +72,13 @@ public class BookDAO {
 	 public PerformanceOrderDTO getBookDetail(PerformanceOrderDTO performanceOrderDTO)throws Exception{
 		 return sqlSession.selectOne(NAMESPACE+"getBookDetail", performanceOrderDTO);
 	 }
-	 
+	 //관리자 예매내역 삭제
+	 public int setPerDelete(PerformanceDTO performanceDTO) throws Exception {
+			return sqlSession.delete(NAMESPACE+"setPerDelete", performanceDTO);
+		}
+	 public int adminBookDelete(PerformanceOrderDTO performanceOrderDTO)throws Exception{
+		 return sqlSession.delete(NAMESPACE+"adminBookDelete", performanceOrderDTO);
+	 }
 	 
 }
 

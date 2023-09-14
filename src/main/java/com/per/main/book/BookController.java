@@ -169,6 +169,13 @@ public class BookController {
 		return "book/bookDetail";
 	}
 	
+	//관리자 예매내역 삭제
+
+	@PostMapping("/admin/bookDelete")
+	public String adminBookDelete(PerformanceOrderDTO performanceOrderDTO)throws Exception{
+		int result = bookService.adminBookDelete(performanceOrderDTO);
+		return "redirect:./bookList";
+	}
 
 
 }

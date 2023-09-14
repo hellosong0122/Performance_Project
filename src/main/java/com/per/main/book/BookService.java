@@ -50,6 +50,10 @@ public class BookService {
 	   public PerformanceOrderDTO getBookDetail(PerformanceOrderDTO performanceOrderDTO)throws Exception{
 		   return bookDAO.getBookDetail(performanceOrderDTO);
 	   }
+	   // 관리자 예매내역 삭제
+		public int adminBookDelete(PerformanceOrderDTO performanceOrderDTO) throws Exception {
+			return bookDAO.adminBookDelete(performanceOrderDTO);
+		}
 }
 
 
