@@ -128,49 +128,18 @@
             <div class="col-lg-4">
               <div class="top-streamers">
                 <div class="heading-section">
-                  <h4><em>Top</em> Streamers</h4>
+                  <h4>Top 5</h4>
                 </div>
                 <ul>
+                <c:forEach items="${rankList}" var="r" varStatus="s" begin="0" end="4">
                   <li>
-                    <span>01</span>
-                    <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> LahutaM</h6>
+                    <span>${s.index+1}</span>                   
+                    <h6> ${r.prfnm}</h6>
                     <div class="main-button">
-                      <a href="#">Follow</a>
+                      <a href="/performance/detail?performance_num=${r.performance_num}">Detail</a>
                     </div>
                   </li>
-                  <li>
-                    <span>02</span>
-                    <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> Kengan</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>03</span>
-                    <img src="assets/images/avatar-03.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> Areluwa</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>04</span>
-                    <img src="assets/images/avatar-04.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> Omeg</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>05</span>
-                    <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> GangTeam</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
+                 </c:forEach>
                 </ul>
               </div>
             </div>

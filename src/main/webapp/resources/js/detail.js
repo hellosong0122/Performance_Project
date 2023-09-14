@@ -30,7 +30,7 @@ reviewAdd.addEventListener('click', function(){
     
     if(!id){ //로그인 X
         alert('로그인이 필요합니다');
-        location.href = '/member/login'; 
+        location.href = '/member/userLogin'; 
         return;
     }
 

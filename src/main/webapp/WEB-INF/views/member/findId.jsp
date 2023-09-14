@@ -35,7 +35,7 @@
            
            <div class="etc">            
                <a href="/member/findPw">Forgot your password?</a>          
-           	  <a href="/member/login">Login!</a>
+           	  <a href="/member/userLogin">Login!</a>
            </div>          
          
             <div class="submit">

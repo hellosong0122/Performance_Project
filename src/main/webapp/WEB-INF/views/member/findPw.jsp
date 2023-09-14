@@ -36,7 +36,7 @@
            
            <div class="etc">            
                <a href="/member/findId">Forgot your id?</a> 
-               <a href="/member/login">login!</a>         
+               <a href="/member/userLogin">login!</a>         
            </div>          
                    
          
