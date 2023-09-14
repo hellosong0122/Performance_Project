@@ -2,6 +2,7 @@ package com.per.main.pay.pay;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,6 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.per.main.member.MemberDTO;
 import com.per.main.member.MemberService;
+import com.per.main.pay.cart.CartDTO;
+import com.per.main.pay.cart.CartService;
 import com.per.main.pay.product.ProductDTO;
 import com.per.main.pay.product.ProductVO;
 import com.per.utils.IamPortKey;
@@ -47,6 +50,9 @@ public class PayController {
 	@Autowired
 	private PayService payService;
 
+	@Autowired
+	private CartService cartService;
+
 	public PayController() {
 		// REST API 키와 REST API secret 입력.
 		IamPortKey key = new IamPortKey();
@@ -54,7 +60,24 @@ public class PayController {
 
 	}
 
-	
+	@ResponseBody
+	@RequestMapping(value = "buycart", method = RequestMethod.POST)
+	public ModelAndView buyCart(@ModelAttribute MemberDTO memberDTO, HttpSession session, ModelAndView mv)
+			throws Exception {
+
+		System.out.println("들어옴.");
+		memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO = (MemberDTO) memberService.getUserInfo(memberDTO);
+		System.out.println("member : " + memberDTO);
+		List<CartDTO> list = cartService.cartlist(memberDTO);
+		//System.out.println(list.get(0).toString());
+
+		mv.addObject("member", memberDTO);
+		mv.addObject("gfitList", list);
+
+		mv.setViewName("pay/payment2");
+		return mv;
+	}
 
 	@RequestMapping(value = "buygift", method = RequestMethod.POST)
 	public ModelAndView payGiftMotion(MemberDTO memberDTO, @ModelAttribute ProductVO payProductDTO, HttpSession session,
@@ -76,22 +99,19 @@ public class PayController {
 		mv.setViewName("pay/payment");
 		return mv;
 	}
-	
+
 	@GetMapping("deleteorder")
 	public String cancelOrder(ProductOrderDTO productOrderDTO) throws Exception {
 		int resultRemoveData;
 		productOrderDTO = payService.orderDetail(productOrderDTO);
-		System.out.println("취소 : "+ productOrderDTO.toString());
+		System.out.println("취소 : " + productOrderDTO.toString());
 		resultRemoveData = payService.removeOrder(productOrderDTO);
-		
-		
-		if (resultRemoveData >0) {
+
+		if (resultRemoveData > 0) {
 			System.out.println("DB 삭제성공");
 		}
-		return "redirect:../product/giftDetail?p_Num="+productOrderDTO.getP_Num();
+		return "redirect:../product/giftDetail?p_Num=" + productOrderDTO.getP_Num();
 	}
-
-	
 
 	@GetMapping("buygiftinfo")
 	public String openProcessing(ProductOrderDTO productOrderDTO, Model model, HttpSession session) throws Exception {
@@ -110,13 +130,11 @@ public class PayController {
 			HttpSession session, Model model) throws Exception {
 
 		boolean result = true;
-
+		System.out.println("/pay/done in");
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		if (memberDTO != null) {
 			model.addAttribute("member", memberDTO);
 		}
-
-		System.out.println(productOrderDTO.toString());
 
 		String imp_uid = productOrderDTO.getImp_uid();
 
@@ -136,6 +154,8 @@ public class PayController {
 
 		System.out.println("test totalPrice : " + productOrderDTO.getTotalPrice());
 
+		System.out.println("after productOrderDTO" + productOrderDTO.toString());
+
 		if (productOrderDTO.getTotalPrice() != Long.parseLong(amount)) {
 			// 결제 취소
 			// payService.canclePay(orderDTO.getImp_uid(),token,amount,"결제 취th");
@@ -143,6 +163,7 @@ public class PayController {
 		}
 
 		payService.insertPayData(productOrderDTO);
+//		payService.buyProduct(productOrderDTO);
 		System.out.println(result);
 
 		return result;
