@@ -173,7 +173,7 @@ th, td {
 						placeholder="기대평이나 관람후기를 작성해주세요"></textarea>
 				</div>
 				<div class="ms-3">
-					<button type="button" id="reviewAdd" class="btn btn-dark h-100"
+					<button type="button" id="reviewAdd" class="btn h-100"
 						data-add-num="${dto.performanceDTO.performance_num}"
 						data-id="${member.id}">등록</button>
 				</div>

@@ -122,7 +122,7 @@
 		SET
 			HIT = HIT + 1
 		WHERE
-			VIDEO_NUM = #{video_num}
+			VIDEO_NUM = #{num}
 	</update>
 	
 	<delete id="setFileDelete" parameterType="VideoFileDTO">

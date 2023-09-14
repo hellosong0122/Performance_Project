@@ -16,9 +16,6 @@
 </head>
 <body>
 	<c:import url="../base/header.jsp"></c:import>
-
-	
-
 <form action="./findId" method="post" id="frm">	
 	<section class="container mt-2"
 		style="width: 90%; padding: 60px 0 0 0;">   

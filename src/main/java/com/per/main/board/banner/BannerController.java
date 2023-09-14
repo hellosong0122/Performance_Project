@@ -19,7 +19,6 @@ import com.per.main.board.BoardDTO;
 import com.per.utils.Pager;
 
 @Controller
-@RequestMapping("/banner/*")
 public class BannerController {
 	
 	@Autowired
@@ -30,15 +29,14 @@ public class BannerController {
 		return "banner";
 	}
 	
-	@PostMapping("setContentsImgDelete")
-	
+	@PostMapping("/admin/banner/setContentsImgDelete")
 	public String setContentsImgDelete(String path, HttpSession session, Model model)throws Exception{
 		boolean check= bannerService.setContentsImgDelete(path, session);
 		model.addAttribute("result", check);
 		return "commons/ajaxResult";
 	}
 	
-	@PostMapping("setContentsImg")
+	@PostMapping("/admin/banner/setContentsImg")
 	public String setContentsImg(MultipartFile files, HttpSession session, Model model)throws Exception{
 		System.out.println("setContentsImg");
 		System.out.println(files.getOriginalFilename());
@@ -48,7 +46,7 @@ public class BannerController {
 		
 	}
 	
-	@GetMapping("fileDelete")
+	@GetMapping("/admin/banner/fileDelete")
 	public String setFileDelete(BannerFileDTO bannerFileDTO, HttpSession session ,Model model)throws Exception{
 		int result = bannerService.setFileDelete(bannerFileDTO, session);
 		model.addAttribute("result", result);
@@ -56,7 +54,7 @@ public class BannerController {
 		
 	}
 	
-	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@RequestMapping(value = "/banner/list", method = RequestMethod.GET)
 	public String getList(Pager pager, Model model)throws Exception{
 		List<BoardDTO> ar =  bannerService.getList(pager);
 		model.addAttribute("list", ar);
@@ -64,13 +62,21 @@ public class BannerController {
 		return "board/list";
 	}
 	
+	@RequestMapping(value = "/admin/banner/list", method = RequestMethod.GET)
+	public String getAdminList(Pager pager, Model model)throws Exception{
+		List<BoardDTO> ar =  bannerService.getList(pager);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		return "board/adminList";
+	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/admin/banner/add", method = RequestMethod.GET)
 	public String setAdd()throws Exception{
 		return "board/add";
 	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/banner/add", method = RequestMethod.POST)
 	public String setAdd(BannerDTO bannerDTO, MultipartFile[] photos, HttpSession session, Model model)throws Exception{
 		int result = bannerService.setAdd(bannerDTO, photos, session);
 		
@@ -86,12 +92,26 @@ public class BannerController {
 		return "commons/result";
 	}
 	
-	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/banner/detail", method = RequestMethod.GET)
 	public String setAdd(BannerDTO bannerDTO, Model model)throws Exception{
 		BoardDTO boardDTO = bannerService.getDetail(bannerDTO);
 		if(boardDTO != null) {
+			bannerService.setHitUpdate(boardDTO);
 			model.addAttribute("dto", boardDTO);
 			return "board/detail";
+		} else {
+			model.addAttribute("message", "글이 없다");
+			model.addAttribute("url", "list");
+			return "commons/result";
+		}
+	}
+	
+	@RequestMapping(value = "/admin/banner/detail", method = RequestMethod.GET)
+	public String setAdminAdd(BannerDTO bannerDTO, Model model)throws Exception{
+		BoardDTO boardDTO = bannerService.getDetail(bannerDTO);
+		if(boardDTO != null) {
+			model.addAttribute("dto", boardDTO);
+			return "board/adminDetail";
 		} else {
 			model.addAttribute("message", "글이 없다");
 			model.addAttribute("url", "list");
@@ -100,20 +120,20 @@ public class BannerController {
 		
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/banner/update", method = RequestMethod.GET)
 	public String setUpdate(BoardDTO boardDTO, Model model)throws Exception{
 		boardDTO = bannerService.getDetail(boardDTO);
 		model.addAttribute("dto", boardDTO);
 		return "board/update";
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/banner/update", method = RequestMethod.POST)
 	public String setUpdate(BannerDTO bannerDTO, MultipartFile[] photos, HttpSession session)throws Exception{
 		int result = bannerService.setUpdate(bannerDTO, photos, session);
 		return "redirect:./list";
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/banner/delete", method = RequestMethod.GET)
 	public String setAdd(BannerDTO bannerDTO)throws Exception{
 		int result = bannerService.setDelete(bannerDTO);
 		return "redirect:./list";

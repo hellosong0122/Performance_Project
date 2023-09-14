@@ -38,6 +38,10 @@ public class MemberDAO {
 	public int setKakaoJoin(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "setKakaoJoin", memberDTO);
 	}
+	
+	public int setNaverJoin(MemberDTO memberDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "setNaverJoin", memberDTO);
+	}
 
 	public MemberDTO getId(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getId", memberDTO);
