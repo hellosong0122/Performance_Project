@@ -124,11 +124,7 @@ public class MemberService {
 		System.out.println("Service: " + orderNum);
 		return memberDAO.deleteBook(orderNum);
 	}
-	
-	
-	public MemberDTO getUserInfo(MemberDTO memberDTO) throws Exception{
-		return memberDAO.getUserInfo(memberDTO);
-	}
+
 	
 	
 }
