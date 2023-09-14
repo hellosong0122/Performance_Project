@@ -34,7 +34,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public String home(Pager pager, Model model) throws Exception{
 		//공연리스트 
-		List<PerformanceDTO> ar = performanceService.getPlayList(pager);
+		List<PerformanceDTO> ar = performanceService.getMainList();
 		//티켓오픈리스트
 		List<BoardDTO> ar2 = ticketOpenService.getList(pager);
 		//예매순위리스트
