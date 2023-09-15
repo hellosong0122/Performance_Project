@@ -176,7 +176,7 @@
           <div class="gaming-library" style="margin-top: 0px;">
             <div class="col-lg-12" style="text-align: center;">
               <div class="heading-section">
-                <h4><em>#MD</em> </h4>
+                <h4>MD#</h4>
               </div>
               <div class="item" >             
                 <ul>

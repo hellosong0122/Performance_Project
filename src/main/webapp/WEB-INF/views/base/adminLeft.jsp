@@ -63,7 +63,14 @@
           <a class="nav-link  " href="/admin/video/list">          
             <span class="nav-link-text ms-1">Video</span>
           </a>
-        </li>     
+        </li>
+        <br>
+         <li class="nav-item">
+          <a class="nav-link  " href="/">          
+            <span class="nav-link-text ms-1">Home</span>
+          </a>
+         </li>  
+             
 	  </ul>
     </div>   
   </aside>
