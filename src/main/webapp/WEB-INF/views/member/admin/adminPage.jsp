@@ -95,9 +95,7 @@
 			</nav>	 
 
     	<c:import url="../../base/adminFooter.jsp"></c:import>
-	
-	</section>
+	 </section>
 	</main>
-	<c:import url="../../base/adminFooter.jsp"></c:import>
 </body>
 </html>

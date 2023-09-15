@@ -15,7 +15,7 @@
                 	<input type="hidden" id="url" value="${url}">
                     <!-- ***** Logo Start ***** -->
                     <a href="/" class="logo">
-                     <h4 style="color: #ec6090;">P.P</h4>
+                   	    <img src="/resources/img/plogo.png" height="90px" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
  
@@ -24,7 +24,7 @@
                         <li><a href="/performance/musicalList" id="1">뮤지컬</a></li>
                         <li><a href="/performance/playList" id="2">연극</a></li>
                         <li><a href="/notice/list" id="3">공지사항</a></li>
-                        <li><a href="/product/giftShop" id="4">MDshop</a></li>
+                        <li><a href="/product/giftShop" id="4">MD#</a></li>
 
 						<c:if test="${not empty member}">
 							<li><a href="/member/logout" id="7">Logout</a></li>
